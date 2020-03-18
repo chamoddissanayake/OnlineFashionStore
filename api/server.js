@@ -107,6 +107,14 @@ app.get('/api/pay', middleware, (req, res) => { //checkout route for signed in u
 
 });
 
+//modification by piyumi
+app.get('/api/addProducts', (req, res) => { //add products by store manger
+  console.log("Add products");
+  console.log(data);
+return res.json(data.products);
+
+});
+
 
 
 const PORT = 5000;
