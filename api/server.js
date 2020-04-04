@@ -15,7 +15,7 @@ const bodyParser = require('body-parser');
 const data = require('./data');
 
 const middleware = require('./middleware');
-
+const fetch = require('node-fetch');
 
 
 app.use(bodyParser.json());
@@ -96,46 +96,33 @@ app.get('/api/products', (req, res) => { //lists all  available products
 app.post('/api/products', (req, res) => { //generates the list of products in the cart
 
   let products = [], id = null;
+  // var addStatus = false;
 
-  console.log(JSON.parse(req.body));
+  console.log(req.body.id + req.body.name + req.body.description + req.body.price + req.body.available_quantity);
 
-  // let cart = JSON.parse(req.body. cart);
+  var tempItemObj = new Object();
 
-  // if (!cart) return res.json(products)
+  tempItemObj.id = req.body.id;
+  tempItemObj.name = req.body.name;
+  tempItemObj.description = req.body.description;
+  tempItemObj.price = req.body.price;
+  tempItemObj.available_quantity = req.body.available_quantity;
 
-  // for (var i = 0; i < data.products.length; i++) {
+  var MongoClient = require('mongodb').MongoClient;
+  var url = "mongodb://localhost:27017/";
 
-  //   id = data.products[i].id.toString();
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("products").insertOne(tempItemObj, function (err, res) {
+      if (err) throw err;
+      console.log("Product added.");
+      db.close();
+      // addStatus = true;
+    });
+  });
 
-  //   if (cart.hasOwnProperty(id)) {
-
-  //     data.products[i].qty = cart[id]
-
-  //     // products.push(data.products[i]);
-
-
-
-  //     var MongoClient = require('mongodb').MongoClient;
-  //     var url = "mongodb://localhost:27017/";
-
-  //     MongoClient.connect(url, function (err, db) {
-  //       if (err) throw err;
-  //       var dbo = db.db("FashionStore");
-  //       var tempobj = data.products[i];
-  //       dbo.collection("products").insertOne(tempobj, function (err, res) {
-  //         if (err) throw err;
-  //         console.log("Product added.");
-  //         db.close();
-  //       });
-  //     });
-
-
-
-
-  //   }
-
-  // }
-
+  // return res.json(addStatus);
   return res.json(products);
 
 });

@@ -78,10 +78,17 @@ export default class addItem extends Component {
             price: this.state.price,
             available_quantity: this.state.available_quantity
         };
-
+        console.log(productObject);
         axios.post(`${BASE_URL}/api/products`, productObject)
             .then((res) => {
+
                 console.log(res.data)
+                // if(res.data == true){
+                //     alert('Added to DB successfully');
+                // }else{
+                //     alert('Error While adding to DB');
+                // }
+
             }).catch((error) => {
                 console.log(error)
             });
