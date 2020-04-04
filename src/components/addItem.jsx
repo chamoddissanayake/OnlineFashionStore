@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 
 export default class addItem extends Component {
 
@@ -24,7 +25,7 @@ export default class addItem extends Component {
         this.setState({
             id: event.target.value
         }, () => {
-            console.log("Entered ID: ", this.state.id);
+            // console.log("Entered ID: ", this.state.id);
         });
 
 
@@ -33,28 +34,28 @@ export default class addItem extends Component {
         this.setState({
             name: event.target.value
         }, () => {
-            console.log("Entered Name: ", this.state.name);
+            // console.log("Entered Name: ", this.state.name);
         });
     }
     handleDescriptionChange(event) {
         this.setState({
             description: event.target.value
         }, () => {
-            console.log("Entered Description: ", this.state.description);
+            // console.log("Entered Description: ", this.state.description);
         });
     }
     handlePriceChange(event) {
         this.setState({
             price: event.target.value
         }, () => {
-            console.log("Entered Description: ", this.state.price);
+            // console.log("Entered Description: ", this.state.price);
         });
     }
     handleAvailableQuantityChange(event) {
         this.setState({
             available_quantity: event.target.value
         }, () => {
-            console.log("Entered Available Quantity: ", this.state.available_quantity);
+            // console.log("Entered Available Quantity: ", this.state.available_quantity);
         });
     }
 
@@ -69,6 +70,33 @@ export default class addItem extends Component {
             this.state.available_quantity
         );
         event.preventDefault();
+
+        const productObject = {
+            id: this.state.id,
+            name: this.state.name,
+            description: this.state.description,
+            price: this.state.price,
+            available_quantity: this.state.available_quantity
+        };
+
+        axios.post('/api/products', productObject)
+            .then((res) => {
+                console.log(res.data)
+            }).catch((error) => {
+                console.log(error)
+            });
+
+        this.setState({
+            id: '',
+            name: '',
+            description: '',
+            price: '',
+            available_quantity: ''
+        })
+
+
+
+
     }
 
     render() {
@@ -76,7 +104,7 @@ export default class addItem extends Component {
             <div>
                 <h2>Add Items</h2>
 
-                <form onSubmit={this.handleSubmit} >
+                <form onSubmit={this.handleSubmit} action="/api/products" method="POST" >
                     <div className="form-group">
                         <label>ID</label>
                         <input type="text" className="form-control" id="id" onChange={this.handleIdChange} />
