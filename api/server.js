@@ -97,42 +97,44 @@ app.post('/api/products', (req, res) => { //generates the list of products in th
 
   let products = [], id = null;
 
-  let cart = JSON.parse(req.body.cart);
+  console.log(JSON.parse(req.body));
 
-  if (!cart) return res.json(products)
+  // let cart = JSON.parse(req.body. cart);
 
-  for (var i = 0; i < data.products.length; i++) {
+  // if (!cart) return res.json(products)
 
-    id = data.products[i].id.toString();
+  // for (var i = 0; i < data.products.length; i++) {
 
-    if (cart.hasOwnProperty(id)) {
+  //   id = data.products[i].id.toString();
 
-      data.products[i].qty = cart[id]
+  //   if (cart.hasOwnProperty(id)) {
 
-      // products.push(data.products[i]);
+  //     data.products[i].qty = cart[id]
 
-
-
-      var MongoClient = require('mongodb').MongoClient;
-      var url = "mongodb://localhost:27017/";
-
-      MongoClient.connect(url, function (err, db) {
-        if (err) throw err;
-        var dbo = db.db("FashionStore");
-        var tempobj = data.products[i];
-        dbo.collection("products").insertOne(tempobj, function (err, res) {
-          if (err) throw err;
-          console.log("Product added.");
-          db.close();
-        });
-      });
+  //     // products.push(data.products[i]);
 
 
 
+  //     var MongoClient = require('mongodb').MongoClient;
+  //     var url = "mongodb://localhost:27017/";
 
-    }
+  //     MongoClient.connect(url, function (err, db) {
+  //       if (err) throw err;
+  //       var dbo = db.db("FashionStore");
+  //       var tempobj = data.products[i];
+  //       dbo.collection("products").insertOne(tempobj, function (err, res) {
+  //         if (err) throw err;
+  //         console.log("Product added.");
+  //         db.close();
+  //       });
+  //     });
 
-  }
+
+
+
+  //   }
+
+  // }
 
   return res.json(products);
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-
+const BASE_URL = 'http://localhost:5000';
 export default class addItem extends Component {
 
     constructor(props) {
@@ -79,7 +79,7 @@ export default class addItem extends Component {
             available_quantity: this.state.available_quantity
         };
 
-        axios.post('/api/products', productObject)
+        axios.post(`${BASE_URL}/api/products`, productObject)
             .then((res) => {
                 console.log(res.data)
             }).catch((error) => {
