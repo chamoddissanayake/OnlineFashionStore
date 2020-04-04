@@ -60,13 +60,7 @@ export default class ProductList extends React.Component {
 
         </Link><br /><br /><br />
 
-        <Link to="/add">
 
-          <button className="btn btn-primary float-right"
-
-            style={{ marginRight: "10px" }}>Add</button>
-
-        </Link><br /><br /><br />
 
       </div>
 

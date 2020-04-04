@@ -1,32 +1,104 @@
 import React, { Component } from 'react'
 
 export default class addItem extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: '',
+            name: '',
+            description: '',
+            price: '',
+            available_quantity: ''
+        };
+        this.handleIdChange = this.handleIdChange.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+        this.handlePriceChange = this.handlePriceChange.bind(this);
+        this.handleAvailableQuantityChange = this.handleAvailableQuantityChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleIdChange(event) {
+
+        this.setState({
+            id: event.target.value
+        }, () => {
+            console.log("Entered ID: ", this.state.id);
+        });
+
+
+    }
+    handleNameChange(event) {
+        this.setState({
+            name: event.target.value
+        }, () => {
+            console.log("Entered Name: ", this.state.name);
+        });
+    }
+    handleDescriptionChange(event) {
+        this.setState({
+            description: event.target.value
+        }, () => {
+            console.log("Entered Description: ", this.state.description);
+        });
+    }
+    handlePriceChange(event) {
+        this.setState({
+            price: event.target.value
+        }, () => {
+            console.log("Entered Description: ", this.state.price);
+        });
+    }
+    handleAvailableQuantityChange(event) {
+        this.setState({
+            available_quantity: event.target.value
+        }, () => {
+            console.log("Entered Available Quantity: ", this.state.available_quantity);
+        });
+    }
+
+
+
+    handleSubmit(event) {
+        alert('Item was sumbitted' +
+            this.state.id +
+            this.state.name +
+            this.state.description +
+            this.state.price +
+            this.state.available_quantity
+        );
+        event.preventDefault();
+    }
+
     render() {
         return (
             <div>
                 <h2>Add Items</h2>
 
-                <form>
-                    <div class="form-group">
+                <form onSubmit={this.handleSubmit} >
+                    <div className="form-group">
                         <label>ID</label>
-                        <input type="text" class="form-control" id="id" />
+                        <input type="text" className="form-control" id="id" onChange={this.handleIdChange} />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" id="name" />
+                        <input type="text" className="form-control" id="name" onChange={this.handleNameChange} />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label>Description</label>
-                        <input type="text" class="form-control" id="description" />
+                        <input type="text" className="form-control" id="description" onChange={this.handleDescriptionChange} />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label>Price</label>
-                        <input type="number" min="0" step="0.00" class="form-control" id="price" />
+                        <input type="number" min="0" step="0.00" className="form-control" id="price" onChange={this.handlePriceChange} />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label>Available Quantity</label>
-                        <input type="number" min="0" step="0" class="form-control" id="available_quantity" />
+                        <input type="number" min="0" step="0" className="form-control" id="available_quantity" onChange={this.handleAvailableQuantityChange} />
                     </div>
+
+                    <button type="submit" className="btn btn-success">Add This Item</button>
 
                 </form>
 
