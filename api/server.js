@@ -27,17 +27,36 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 
 
+// app.get('/api/products', (req, res) => { //lists all  available products
+//   console.log("request received for get products");
+//   MongoClient.connect(url, function (err, db) {
+//     if (err) throw err;
+//     var dbo = db.db("FashionStore");
+//     dbo.collection("products").findOne({}, function (err, result) {
+//       if (err) throw err;
+//       console.log(result.name);
+//       let rrr = [];
+//       rrr.push(result);
+//       res.send(result);
+//       db.close();
+//     });
+//   });
+//   //return res.json(data.products);
+
+// });
+
+
 app.get('/api/products', (req, res) => { //lists all  available products
   console.log("request received for get products");
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("FashionStore");
-    dbo.collection("products").findOne({}, function (err, result) {
+    dbo.collection("products").find({}).toArray(function (err, result) {
       if (err) throw err;
-      console.log(result.name);
+      console.log(result);
       let rrr = [];
       rrr.push(result);
-      res.send(rrr);
+      res.send(result);
       db.close();
     });
   });
