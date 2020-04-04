@@ -1,117 +1,122 @@
 import React, { Component } from 'react';
 
-    import Login from './components/Login';
+import Login from './components/Login';
 
-    import Products from './components/ProductList';
+import Products from './components/ProductList';
 
-    import Cart from './components/Cart';
+import Cart from './components/Cart';
 
-    import Checkout from './components/Checkout';
+import Checkout from './components/Checkout';
 
-    import {  BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
-    import { isAuthenticated } from './repository';
-
-
-
-
-
-    class App extends Component {
+import { isAuthenticated } from './repository';
+import addItem from './components/addItem';
 
 
 
-      logOut(){
 
-        localStorage.removeItem('x-access-token');
 
-      }
+class App extends Component {
 
 
 
-      render() {
+  logOut() {
 
-        const auth = isAuthenticated();
+    localStorage.removeItem('x-access-token');
 
-        return (
+  }
 
-          <Router>
 
-            <div>
 
-              <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+  render() {
 
-                <div className="container">
+    const auth = isAuthenticated();
 
-                  <Link className="navbar-brand" to="/">ShoppingCart</Link>
+    return (
 
-                  <button className="navbar-toggler" type="button" 
+      <Router>
 
-                    data-toggle="collapse" data-target="#navbarNavAltMarkup" 
+        <div>
 
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" 
+          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
-                    aria-label="Toggle navigation">
+            <div className="container">
 
-                    <span className="navbar-toggler-icon"></span>
+              <Link className="navbar-brand" to="/">ShoppingCart</Link>
 
-                  </button>
+              <button className="navbar-toggler" type="button"
 
-                  <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                data-toggle="collapse" data-target="#navbarNavAltMarkup"
 
-                    <div className="navbar-nav">
+                aria-controls="navbarNavAltMarkup" aria-expanded="false"
 
-                      <Link className="nav-item nav-link" to="/">Products</Link>
+                aria-label="Toggle navigation">
 
-                      <Link className="nav-item nav-link" to="/cart">Cart</Link>
+                <span className="navbar-toggler-icon"></span>
 
-                      { (auth) ? <Link className="nav-item nav-link" to="/checkout">
+              </button>
 
-                              Checkout</Link>: ''}
+              <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
 
-                      { ( auth ) ? 
+                <div className="navbar-nav">
 
-                          ( <a className="nav-item nav-link" href="/" 
+                  <Link className="nav-item nav-link" to="/">Products</Link><br />
 
-                              onClick={this.logOut}>Log out</a>) : 
+                  <Link className="nav-item nav-link" to="/cart">Cart</Link><br />
 
-                          ( <Link className="nav-item nav-link float-right" 
+                  <Link className="nav-item nav-link" to="/add">Add</Link><br />
 
-                              to="/login">Log in</Link> )
+                  {(auth) ? <Link className="nav-item nav-link" to="/checkout">
 
-                      }
+                    Checkout</Link> : ''}
 
-                    </div>
+                  {(auth) ?
 
-                  </div>
+                    (<a className="nav-item nav-link" href="/"
+
+                      onClick={this.logOut}>Log out</a>) :
+
+                    (<Link className="nav-item nav-link float-right"
+
+                      to="/login">Log in</Link>)
+
+                  }
 
                 </div>
-
-              </nav>
-
-              <div className="container">
-
-                <br/>
-
-                <Route exact path="/" component={Products} />
-
-                <Route exact path="/cart" component={Cart} />
-
-                <Route exact path="/checkout" component={Checkout} />
-
-                { (!auth) ? <Route exact path="/login" component={Login} /> : '' }
 
               </div>
 
             </div>
 
-          </Router>
+          </nav>
 
-        );
+          <div className="container">
 
-      }
+            <br />
 
-    }
+            <Route exact path="/" component={Products} />
+
+            <Route exact path="/cart" component={Cart} />
+
+            <Route exact path="/add" component={addItem} />
+
+            <Route exact path="/checkout" component={Checkout} />
+
+            {(!auth) ? <Route exact path="/login" component={Login} /> : ''}
+
+          </div>
+
+        </div>
+
+      </Router>
+
+    );
+
+  }
+
+}
 
 
 
-    export default App;
+export default App;
