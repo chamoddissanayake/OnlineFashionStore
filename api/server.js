@@ -114,19 +114,14 @@ app.post('/api/products', (req, res) => { //generates the list of products in th
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("FashionStore");
-    dbo.collection("products").insertOne(tempItemObj, function (err, res) {
-      if (err) throw err;
+    dbo.collection("products").insertOne(tempItemObj, function (err1, res1) {
+      if (err1) throw err1;
       console.log("Product added.");
-      db.close();
-      // addStatus = true;
-      // console.log("->" + addStatus);
       res.send(true);
+      db.close();
+
     });
   });
-  // console.log("-->" + addStatus);
-  res.send(false);
-  // return res.json(addStatus);
-  // return res.json(products);
 
 });
 
