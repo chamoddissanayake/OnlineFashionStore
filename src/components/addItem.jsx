@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 const BASE_URL = 'http://localhost:5000';
 export default class addItem extends Component {
 
@@ -100,10 +101,6 @@ export default class addItem extends Component {
             price: '',
             available_quantity: ''
         })
-
-
-
-
     }
 
     render() {
@@ -136,11 +133,13 @@ export default class addItem extends Component {
                     <button type="submit" className="btn btn-success">Add This Item</button><br></br><br></br>
                 </form>
 
-                <button className="btn btn-success">View All Items</button><br></br><br></br>
+                <Link to="/viewItems">
 
+                <button className="btn btn-success float-right">View</button>
 
-
+                </Link>
             </div>
+          
         )
     }
 

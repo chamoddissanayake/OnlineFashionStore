@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 import { isAuthenticated } from './repository';
 import addItem from './components/addItem';
+import viewItems from './components/viewItems';
 
 
 
@@ -102,6 +103,8 @@ class App extends Component {
             <Route exact path="/add" component={addItem} />
 
             <Route exact path="/checkout" component={Checkout} />
+
+            <Route exact path="/viewItems" component={viewItems} />
 
             {(!auth) ? <Route exact path="/login" component={Login} /> : ''}
 
