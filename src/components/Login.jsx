@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { login } from '../repository';
+import { Redirect, Link } from 'react-router-dom';
 
 const BASE_URL = 'http://localhost:5000';
 
@@ -48,13 +49,22 @@ export default class Login extends React.Component {
 
     axios.post(`${BASE_URL}/api/auth`, loginUserObj)
       .then((res) => {
-        alert('Back');
-        // console.log(res.data)
-        // if (res.data == true) {
-        //   alert('Added to DB successfully');
-        // } else {
-        //   alert('Something Went wrong!');
-        // }
+
+        if (res.data) {
+          console.log(res.data);
+          // return (<Redirect to="/" />);
+
+          const { location } = this.props;
+          if (location.state && location.state.from) {
+            this.props.history.push(location.state.from);
+          } else {
+            this.props.history.push('/');
+          }
+
+
+        } else {
+          alert("Incorrect Username or password");
+        }
 
       }).catch((error) => {
         console.log(error)

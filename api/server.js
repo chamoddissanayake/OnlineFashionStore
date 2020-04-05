@@ -129,10 +129,34 @@ app.post('/api/products', (req, res) => { //generates the list of products in th
 
 app.post('/api/auth', (req, res) => { //signs in user
 
+  console.log(req.body.username);
+  console.log(req.body.password);
 
-  console.log("###");
-  console.log(req.body);
-  console.log("###");
+  // var tempLoginUserObj = new Object();
+
+  // tempLoginUserObj.username = req.body.username;
+  // tempLoginUserObj.password = req.body.password;
+
+  var MongoClient = require('mongodb').MongoClient;
+  var url = "mongodb://localhost:27017/";
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("users").findOne({ username: req.body.username, password: req.body.password }, function (err1, result) {
+      if (err1) throw err1;
+      console.log(result);
+      res.send(result);
+      db.close();
+    });
+  });
+
+
+  // let user = data.users.filter((user) => {
+
+  //   return user.name == req.body.name && user.password == req.body.password;
+
+  // });
 
 
   // let user = data.users.filter((user) => {
