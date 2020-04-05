@@ -119,11 +119,14 @@ app.post('/api/products', (req, res) => { //generates the list of products in th
       console.log("Product added.");
       db.close();
       // addStatus = true;
+      // console.log("->" + addStatus);
+      res.send(true);
     });
   });
-
+  // console.log("-->" + addStatus);
+  res.send(false);
   // return res.json(addStatus);
-  return res.json(products);
+  // return res.json(products);
 
 });
 

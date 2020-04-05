@@ -83,11 +83,11 @@ export default class addItem extends Component {
             .then((res) => {
 
                 console.log(res.data)
-                // if(res.data == true){
-                //     alert('Added to DB successfully');
-                // }else{
-                //     alert('Error While adding to DB');
-                // }
+                if (res.data == true) {
+                    alert('Added to DB successfully');
+                } else {
+                    alert('Error While adding to DB');
+                }
 
             }).catch((error) => {
                 console.log(error)
