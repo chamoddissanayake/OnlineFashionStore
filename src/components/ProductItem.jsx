@@ -2,100 +2,100 @@ import React from 'react';
 
 
 
-    export default class ProductItem extends React.Component {
+export default class ProductItem extends React.Component {
 
-      constructor(props) {
+  constructor(props) {
 
-        super(props);
+    super(props);
 
-        this.state = {quantity: 1}
+    this.state = { quantity: 1 }
 
-      }
-
-
-
-      handleInputChange = event => 
-
-          this.setState({[event.target.name]: event.target.value})
+  }
 
 
 
-      addToCart = () => {
+  handleInputChange = event =>
 
-        let cart = localStorage.getItem('cart') 
-
-                      ? JSON.parse(localStorage.getItem('cart')) : {};
-
-        let id = this.props.product.id.toString();
-
-        cart[id] = (cart[id] ? cart[id]: 0);
-
-        let qty = cart[id] + parseInt(this.state.quantity);
-
-        if (this.props.product.available_quantity < qty) {
-
-          cart[id] = this.props.product.available_quantity; 
-
-        } else {
-
-          cart[id] = qty
-
-        }
-
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-      }
+    this.setState({ [event.target.name]: event.target.value })
 
 
 
-      render(){
+  addToCart = () => {
 
-        const { product } = this.props;
+    let cart = localStorage.getItem('cart')
 
-        return (
+      ? JSON.parse(localStorage.getItem('cart')) : {};
 
-         <div className="card" style={{ marginBottom: "10px"}}>
+    let id = this.props.product.id.toString();
 
-           <div className="card-body">
+    cart[id] = (cart[id] ? cart[id] : 0);
 
-             <h4 className="card-title">{product.name}</h4>
+    let qty = cart[id] + parseInt(this.state.quantity);
 
-             <p className="card-text">{product.description}</p>
+    if (this.props.product.available_quantity < qty) {
 
-             <h5 className="card-text"><small>price: </small>${product.price}</h5>
+      cart[id] = this.props.product.available_quantity;
 
-             <span className="card-text">
+    } else {
 
-               <small>Available Quantity: </small>{product.available_quantity}
+      cart[id] = qty
 
-             </span>
+    }
 
-             { product.available_quantity > 0 ?
+    localStorage.setItem('cart', JSON.stringify(cart));
 
-              <div>
+  }
 
-                 <button className="btn btn-sm btn-warning float-right" 
 
-                    onClick={this.addToCart}>Add to cart</button>
 
-                 <input type="number" value={this.state.quantity} name="quantity" 
+  render() {
 
-                    onChange={this.handleInputChange} className="float-right" 
+    const { product } = this.props;
 
-                    style={{ width: "60px", marginRight: "10px", borderRadius: "3px"}}/>
+    return (
 
-              </div> : 
+      <div className="card" style={{ marginBottom: "10px" }}>
 
-              <p className="text-danger"> product is out of stock </p>
+        <div className="card-body">
 
-            }
+          <h4 className="card-title">{product.name}</h4>
 
-          </div>
+          <p className="card-text">{product.description}</p>
+
+          <h5 className="card-text"><small>price: </small>${product.price}</h5>
+
+          <span className="card-text">
+
+            <small>Available Quantity: </small>{product.available_quantity}
+
+          </span>
+
+          {product.available_quantity > 0 ?
+
+            <div>
+
+              <button className="btn btn-sm btn-warning float-right"
+
+                onClick={this.addToCart}>Add to cart</button>
+
+              <input type="number" value={this.state.quantity} name="quantity" min="0" max={product.available_quantity}
+
+                onChange={this.handleInputChange} className="float-right"
+
+                style={{ width: "60px", marginRight: "10px", borderRadius: "3px" }} />
+
+            </div> :
+
+            <p className="text-danger"> product is out of stock </p>
+
+          }
 
         </div>
 
-       )
+      </div>
 
-     }
+    )
 
-    }
+  }
+
+}
