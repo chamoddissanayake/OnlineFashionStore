@@ -130,7 +130,10 @@ app.post('/api/products', (req, res) => { //generates the list of products in th
 app.post('/api/auth', (req, res) => { //signs in user
 
 
-  console.log("####");
+  console.log("###");
+  console.log(req.body);
+  console.log("###");
+
 
   // let user = data.users.filter((user) => {
 

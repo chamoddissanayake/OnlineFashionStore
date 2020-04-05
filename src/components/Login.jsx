@@ -38,7 +38,7 @@ export default class Login extends React.Component {
     // event.preventDefault();
     // login(this.state)
     //   .then(token => window.location = '/').catch(err => console.log(err));
-
+    event.preventDefault();
     const loginUserObj = {
       username: this.state.username,
       password: this.state.password
@@ -78,7 +78,7 @@ export default class Login extends React.Component {
           <div className="panel panel-primary">
             <div className="panel-heading"><h3>Log in </h3></div>
             <div className="panel-body">
-              <form onSubmit={this.submitLogin}>
+              <form onSubmit={this.submitLogin} method="POST" >
                 <div className="form-group">
                   <label>Name:</label>
                   <input type="text" className="form-control"
