@@ -54,12 +54,14 @@ export default class Login extends React.Component {
           console.log(res.data);
           // return (<Redirect to="/" />);
 
-          const { location } = this.props;
-          if (location.state && location.state.from) {
-            this.props.history.push(location.state.from);
-          } else {
-            this.props.history.push('/');
-          }
+          // if(this.data.type = "member")
+
+          // const { location } = this.props;
+          // if (location.state && location.state.from) {
+          //   this.props.history.push(location.state.from);
+          // } else {
+          //   this.props.history.push('/');
+          // }
 
 
         } else {

@@ -146,7 +146,17 @@ app.post('/api/auth', (req, res) => { //signs in user
     dbo.collection("users").findOne({ username: req.body.username, password: req.body.password }, function (err1, result) {
       if (err1) throw err1;
       console.log(result);
-      res.send(result);
+
+      var currentLoggedInUserObj = new Object();
+
+      currentLoggedInUserObj._id = result._id;
+      currentLoggedInUserObj.username = result.username;
+      currentLoggedInUserObj.email = result.email;
+      currentLoggedInUserObj.type = result.type;
+
+
+
+      res.send(currentLoggedInUserObj);
       db.close();
     });
   });
