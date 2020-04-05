@@ -6,38 +6,17 @@ import ProductItem from './ProductItem';
 
 import { getProducts } from '../repository';
 
+import TableRow from './TableRow';
+
 import { Link } from 'react-router-dom';
 
 const BASE_URL = 'http://localhost:5000';
 
 export default class viewItems extends Component{
 
-    
-    constructor(props) {
-
-        super(props);
-    
-        this.state = {
-    
-          products: []
-    
-        }
-    
-      }
-
-      componentDidMount() {
-
-        getProducts().then((products) => this.setState({ products }));
-    
-      }
-  
-
-
 
       render() {
-
-        const { products } = this.state;
-    
+          
         return (
     
           <div className=" container">
@@ -55,7 +34,7 @@ export default class viewItems extends Component{
               </tr>
             </thead>
             <tbody>
-              
+          
             </tbody>
           </table>
             
