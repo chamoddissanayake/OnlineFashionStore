@@ -1,6 +1,8 @@
 import React from 'react';
-
+import axios from 'axios';
 import { login } from '../repository';
+
+const BASE_URL = 'http://localhost:5000';
 
 export default class Login extends React.Component {
   constructor() {
@@ -20,22 +22,52 @@ export default class Login extends React.Component {
     this.setState({
       username: event.target.value
     }, () => {
-      console.log("Entered Username: ", this.state.username);
+      // console.log("Entered Username: ", this.state.username);
     });
   }
   handlePasswordChange(event) {
     this.setState({
       password: event.target.value
     }, () => {
-      console.log("Entered Password: ", this.state.password);
+      // console.log("Entered Password: ", this.state.password);
     });
   }
 
 
   submitLogin = (event) => {
-    event.preventDefault();
-    login(this.state)
-      .then(token => window.location = '/').catch(err => console.log(err));
+    // event.preventDefault();
+    // login(this.state)
+    //   .then(token => window.location = '/').catch(err => console.log(err));
+
+    const loginUserObj = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    console.log(loginUserObj);
+
+
+    axios.post(`${BASE_URL}/api/auth`, loginUserObj)
+      .then((res) => {
+        alert('Back');
+        // console.log(res.data)
+        // if (res.data == true) {
+        //   alert('Added to DB successfully');
+        // } else {
+        //   alert('Something Went wrong!');
+        // }
+
+      }).catch((error) => {
+        console.log(error)
+      });
+
+    this.setState({
+      username: '',
+      password: ''
+    })
+
+
+
+
   }
 
   render() {

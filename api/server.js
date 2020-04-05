@@ -129,39 +129,43 @@ app.post('/api/products', (req, res) => { //generates the list of products in th
 
 app.post('/api/auth', (req, res) => { //signs in user
 
-  let user = data.users.filter((user) => {
 
-    return user.name == req.body.name && user.password == req.body.password;
+  console.log("####");
 
-  });
+  // let user = data.users.filter((user) => {
 
-  if (user.length) {
+  //   return user.name == req.body.name && user.password == req.body.password;
 
-    // create a token using user name and password vaild for 2 hours
+  // });
 
-    let token_payload = { name: user[0].name, password: user[0].password };
+  // if (user.length) {
 
-    let token = jwt.sign(token_payload, "jwt_secret_password", { expiresIn: '2h' });
+  //   // create a token using user name and password vaild for 2 hours
 
-    let response = {
-      message: 'Token Created, Authentication Successful!',
+  //   let token_payload = { name: user[0].name, password: user[0].password };
 
-      token: token
-    };
+  //   let token = jwt.sign(token_payload, "jwt_secret_password", { expiresIn: '2h' });
 
+  //   let response = {
+  //     message: 'Token Created, Authentication Successful!',
 
-
-    // return the information including token as JSON
-
-    return res.status(200).json(response);
+  //     token: token
+  //   };
 
 
 
-  } else {
+  //   // return the information including token as JSON
 
-    return res.status("401").json("Authentication failed. admin not found.");
+  //   return res.status(200).json(response);
 
-  }
+
+
+  // } else {
+
+  //   return res.status("401").json("Authentication failed. admin not found.");
+
+  // }
+  // return res.status(200).json(response);
 
 });
 
