@@ -130,14 +130,8 @@ export default class addItem extends Component {
                         <input type="number" min="0" step="0" className="form-control" id="available_quantity" onChange={this.handleAvailableQuantityChange} />
                     </div>
 
-                    <button type="submit" className="btn btn-success">Add This Item</button><br></br><br></br>
+                    <button type="submit" className="btn btn-success">ADD THIS ITEM</button><br></br><br></br>
                 </form>
-
-                <Link to="/viewItems">
-
-                <button className="btn btn-success float-right">View</button>
-
-                </Link>
             </div>
           
         )
