@@ -14,7 +14,24 @@ const BASE_URL = 'http://localhost:5000';
 
 export default class viewItems extends Component{
 
-
+  constructor(props) {
+    super(props);
+    this.state = {products: []};
+  }
+  componentDidMount(){
+    axios.get(`${BASE_URL}/api/products`)
+      .then(response => {
+        this.setState({ products: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
+  tabRow(){
+    return this.state.products.map(function(object, i){
+        return <TableRow obj={object} key={i} />;
+    });
+  }
       render() {
           
         return (
@@ -30,11 +47,12 @@ export default class viewItems extends Component{
                 <th>Description</th>
                 <th>Price</th>
                 <th>Available Quantity</th>
-                <th colSpan="2">Action</th>
+                <th>Edit</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
-          
+                { this.tabRow() }
             </tbody>
           </table>
             
