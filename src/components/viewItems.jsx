@@ -58,11 +58,6 @@ export default class viewItems extends Component{
             
     
             <hr />
-    
-            
-    
-    
-    
           </div>
     
         );

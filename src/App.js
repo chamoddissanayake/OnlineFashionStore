@@ -11,8 +11,13 @@ import Checkout from './components/Checkout';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 import { isAuthenticated } from './repository';
+
 import addItem from './components/addItem';
+
 import viewItems from './components/viewItems';
+
+import editItems from './components/editItems';
+
 import StoreManagerDashbord from './components/StoreManagerDashbord';
 
 
@@ -106,6 +111,8 @@ class App extends Component {
             <Route exact path="/checkout" component={Checkout} />
 
             <Route exact path="/viewItems" component={viewItems} />
+
+            <Route exact path="/'/editItems/:id'" component={editItems} />
 
             <Route exact path="/storeManager" component={StoreManagerDashbord} />
 

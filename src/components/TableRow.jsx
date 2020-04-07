@@ -1,6 +1,14 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
+import axios from 'axios';
+
+const BASE_URL = 'http://localhost:5000';
+
 export default class TableRow extends React.Component {
+
+
 
     render() {
 
@@ -22,10 +30,10 @@ export default class TableRow extends React.Component {
             {this.props.obj.available_quantity}
           </td>
           <td>
-            <button className="btn btn-primary">Edit</button>
+          <Link to={"/editItems/"+this.props.obj._id} className="btn btn-primary">Edit</Link>
           </td>
           <td>
-            <button className="btn btn-danger">Delete</button>
+          <button className="btn btn-danger">Delete</button>
           </td>
         </tr>
         )
