@@ -14,6 +14,7 @@ export function getProducts() {
 
 }
 
+
 export function getCartProducts(cart) {
 
         return axios.post(`${BASE_URL}/api/products`, {cart})
