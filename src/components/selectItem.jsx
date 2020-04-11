@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-
+import axios from 'axios';
 import { postSelectedProduct } from '../repository';
 
-export default class selectItem extends Component {
+const BASE_URL = 'http://localhost:5000';
 
+export default class selectItem extends Component {
 
     constructor(props) {
 
@@ -18,8 +19,15 @@ export default class selectItem extends Component {
     }
     componentDidMount() {
 
-        postSelectedProduct(this.state.currentID).then((product) => this.setState({ product }));
+        postSelectedProduct(this.state.currentID)
+            .then((product) => {
+                this.setState(product);
+            }).catch((error) => {
+                console.log(error);
+            });
 
+        // axios.post(`${BASE_URL}/api/selectitem`, { id: this.state.currentID })
+        //     .then(response => response.data);
     }
 
 
