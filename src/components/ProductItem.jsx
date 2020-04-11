@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 
 
 export default class ProductItem extends React.Component {
@@ -61,12 +63,21 @@ export default class ProductItem extends React.Component {
           <tr>
             <td>
               {/* Display image- start */}
-              <img src={product.imageURL_main} alt="Image Not Found" height="250" width="200" />
+              <Link to={"/selectItem/" + product._id}>
+                <img src={product.imageURL_main} alt="Image Not Found" height="250" width="200" />
+              </Link>
+
+
               {/* Display image- end */}
             </td>
             <td>
               {/* Display Details - start */}
               <div className="card-body">
+
+                <p className="card-text">{product.category}</p>
+
+                <p className="card-text">{product.brand}</p>
+                <p className="card-text">{product.brand}</p>
 
                 <h4 className="card-title">{product.name}</h4>
 
@@ -103,7 +114,8 @@ export default class ProductItem extends React.Component {
 
                 }
 
-                {/* <p>{product.imageURL_main}</p>
+                {
+/* <p>{product.imageURL_main}</p>
 <p>{product.imageURL_1}</p>
 <p>{product.imageURL_2}</p>
 <p>{product.imageURL_3}</p> */}
@@ -111,6 +123,7 @@ export default class ProductItem extends React.Component {
               {/* Display Details - end */}
             </td>
           </tr>
+          <br />
         </table>
 
 

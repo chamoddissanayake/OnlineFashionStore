@@ -20,7 +20,7 @@ import editItems from './components/editItems';
 
 import StoreManagerDashbord from './components/StoreManagerDashbord';
 
-
+import selectItem from './components/selectItem';
 
 
 
@@ -115,6 +115,10 @@ class App extends Component {
             <Route exact path="/'/editItems/:id'" component={editItems} />
 
             <Route exact path="/storeManager" component={StoreManagerDashbord} />
+
+            {/* <Route exact path="/selectItem" component={selectItem} /> */}
+            <Route exact path="/selectItem/:id" component={selectItem} />
+
 
             {(!auth) ? <Route exact path="/login" component={Login} /> : ''}
 
