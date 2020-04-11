@@ -16,37 +16,38 @@ export function getProducts() {
 
 export function getCartProducts(cart) {
 
-        return axios.post(`${BASE_URL}/api/products`, {cart})
+        return axios.post(`${BASE_URL}/api/products`, { cart })
 
                 .then(response => response.data);
 
 }
 
-export function login (data) {
+export function login(data) {
 
-  return axios.post(`${BASE_URL}/api/auth`, 
+        return axios.post(`${BASE_URL}/api/auth`,
 
-                    { name: data.name, password: data.password })
+                { name: data.name, password: data.password })
 
-    .then(response => {
+                .then(response => {
 
-       localStorage.setItem('x-access-token', response.data.token);
+                        localStorage.setItem('x-access-token', response.data.token);
 
-       localStorage.setItem('x-access-token-expiration', 
+                        localStorage.setItem('x-access-token-expiration',
 
-                            Date.now() + 2 * 60 * 60 * 1000);
+                                Date.now() + 2 * 60 * 60 * 1000);
 
-      return response.data})
+                        return response.data
+                })
 
-    .catch(err => Promise.reject('Authentication Failed!'));
+                .catch(err => Promise.reject('Authentication Failed!'));
 
 }
 
-export function pay (data) {
+export function pay(data) {
 
-        return axios.get(`${BASE_URL}/api/pay`, 
+        return axios.get(`${BASE_URL}/api/pay`,
 
-            { params: { 'x-access-token': localStorage.getItem('x-access-token')} })
+                { params: { 'x-access-token': localStorage.getItem('x-access-token') } })
 
                 .then(response => response.data)
 
@@ -54,7 +55,7 @@ export function pay (data) {
 
 }
 
-export function isAuthenticated(){
+export function isAuthenticated() {
 
         return localStorage.getItem('x-access-token') && localStorage.getItem('x-access-token-expiration') > Date.now()
 
