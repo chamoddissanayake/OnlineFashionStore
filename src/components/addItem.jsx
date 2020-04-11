@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 const BASE_URL = 'http://localhost:5000';
 export default class addItem extends Component {
 
@@ -100,10 +101,6 @@ export default class addItem extends Component {
             price: '',
             available_quantity: ''
         })
-
-
-
-
     }
 
     render() {
@@ -114,32 +111,50 @@ export default class addItem extends Component {
                 <form onSubmit={this.handleSubmit} action="/api/products" method="POST" >
                     <div className="form-group">
                         <label>ID</label>
-                        <input type="text" className="form-control" id="id" onChange={this.handleIdChange} />
+                        <input type="text" 
+                        className="form-control" 
+                        id="id" 
+                        onChange={this.handleIdChange} />
                     </div>
+
                     <div className="form-group">
                         <label>Name</label>
-                        <input type="text" className="form-control" id="name" onChange={this.handleNameChange} />
+                        <input type="text" 
+                        className="form-control" 
+                        id="name" 
+                        onChange={this.handleNameChange} />
                     </div>
+
                     <div className="form-group">
                         <label>Description</label>
-                        <input type="text" className="form-control" id="description" onChange={this.handleDescriptionChange} />
+                        <input type="text" 
+                        className="form-control" 
+                        id="description" 
+                        onChange={this.handleDescriptionChange} />
                     </div>
+
                     <div className="form-group">
                         <label>Price</label>
-                        <input type="number" min="0" step="0.00" className="form-control" id="price" onChange={this.handlePriceChange} />
+                        <input type="number" 
+                        min="0" 
+                        step="0.00" 
+                        className="form-control" 
+                        id="price" onChange={this.handlePriceChange} />
                     </div>
+                    
                     <div className="form-group">
                         <label>Available Quantity</label>
-                        <input type="number" min="0" step="0" className="form-control" id="available_quantity" onChange={this.handleAvailableQuantityChange} />
+                        <input type="number" 
+                        min="0" step="0" 
+                        className="form-control" 
+                        id="available_quantity" 
+                        onChange={this.handleAvailableQuantityChange} />
                     </div>
 
-                    <button type="submit" className="btn btn-success">Add This Item</button>
-
+                    <button type="submit" className="btn btn-success">ADD THIS ITEM</button><br></br><br></br>
                 </form>
-
-
-
             </div>
+          
         )
     }
 

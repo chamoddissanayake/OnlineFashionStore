@@ -11,7 +11,14 @@ import Checkout from './components/Checkout';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 import { isAuthenticated } from './repository';
+
 import addItem from './components/addItem';
+
+import viewItems from './components/viewItems';
+
+import editItems from './components/editItems';
+
+import StoreManagerDashbord from './components/StoreManagerDashbord';
 
 
 
@@ -65,7 +72,7 @@ class App extends Component {
 
                   <Link className="nav-item nav-link" to="/cart">Cart</Link><br />
 
-                  <Link className="nav-item nav-link" to="/add">Add</Link><br />
+                  <Link className="nav-item nav-link" to="/storeManager">StoreManagerDashbord</Link><br />
 
                   {(auth) ? <Link className="nav-item nav-link" to="/checkout">
 
@@ -102,6 +109,12 @@ class App extends Component {
             <Route exact path="/add" component={addItem} />
 
             <Route exact path="/checkout" component={Checkout} />
+
+            <Route exact path="/viewItems" component={viewItems} />
+
+            <Route exact path="/'/editItems/:id'" component={editItems} />
+
+            <Route exact path="/storeManager" component={StoreManagerDashbord} />
 
             {(!auth) ? <Route exact path="/login" component={Login} /> : ''}
 
