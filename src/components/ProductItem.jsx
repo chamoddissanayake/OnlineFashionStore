@@ -56,41 +56,64 @@ export default class ProductItem extends React.Component {
 
       <div className="card" style={{ marginBottom: "10px" }}>
 
-        <div className="card-body">
 
-          <h4 className="card-title">{product.name}</h4>
+        <table>
+          <tr>
+            <td>
+              {/* Display image- start */}
+              <img src={product.imageURL_main} alt="Image Not Found" height="250" width="200" />
+              {/* Display image- end */}
+            </td>
+            <td>
+              {/* Display Details - start */}
+              <div className="card-body">
 
-          <p className="card-text">{product.description}</p>
+                <h4 className="card-title">{product.name}</h4>
 
-          <h5 className="card-text"><small>price: </small>${product.price}</h5>
+                <p className="card-text">{product.description}</p>
 
-          <span className="card-text">
+                <h5 className="card-text"><small>price: </small>${product.price}</h5>
 
-            <small>Available Quantity: </small>{product.available_quantity}
+                <span className="card-text">
 
-          </span>
+                  <small>Available Quantity: </small>{product.available_quantity}
 
-          {product.available_quantity > 0 ?
+                </span>
 
-            <div>
+                {product.available_quantity > 0 ?
 
-              <button className="btn btn-sm btn-warning float-right"
+                  <div>
 
-                onClick={this.addToCart}>Add to cart</button>
+                    <button className="btn btn-sm btn-warning float-right"
 
-              <input type="number" value={this.state.quantity} name="quantity" min="0" max={product.available_quantity}
+                      onClick={this.addToCart}>Add to cart</button>
 
-                onChange={this.handleInputChange} className="float-right"
 
-                style={{ width: "60px", marginRight: "10px", borderRadius: "3px" }} />
 
-            </div> :
 
-            <p className="text-danger"> product is out of stock </p>
+                    <input type="number" value={this.state.quantity} name="quantity" min="0" max={product.available_quantity}
 
-          }
+                      onChange={this.handleInputChange} className="float-right"
 
-        </div>
+                      style={{ width: "60px", marginRight: "10px", borderRadius: "3px" }} />
+
+                  </div> :
+
+                  <p className="text-danger"> product is out of stock </p>
+
+                }
+
+                {/* <p>{product.imageURL_main}</p>
+<p>{product.imageURL_1}</p>
+<p>{product.imageURL_2}</p>
+<p>{product.imageURL_3}</p> */}
+              </div>
+              {/* Display Details - end */}
+            </td>
+          </tr>
+        </table>
+
+
 
       </div>
 

@@ -8,12 +8,11 @@ const BASE_URL = 'http://localhost:5000';
 export default class Login extends React.Component {
   constructor() {
     super();
-    this.state = { username: '', password: '', currentUser = null };
+    this.state = { username: '', password: '' };
 
     this.state = {
       username: '',
-      password: '',
-      currentUser: null
+      password: ''
 
     };
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
