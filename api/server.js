@@ -66,6 +66,27 @@ app.get('/api/products', (req, res) => { //lists all  available products
 
 
 
+app.post('/api/selectitem', (req, res) => { //retrieve details of the selected item
+  console.log("request received for the seleced product");
+  console.log(req);
+
+  // MongoClient.connect(url, function (err, db) {
+  //   if (err) throw err;
+  //   var dbo = db.db("FashionStore");
+  //   dbo.collection("products").find({}).toArray(function (err, result) {
+  //     if (err) throw err;
+  //     console.log(result);
+  //     let rrr = [];
+  //     rrr.push(result);
+  //     res.send(result);
+  //     db.close();
+  //   });
+  // });
+  return res.send({});
+
+});
+
+
 // app.post('/api/products', (req, res) => { //generates the list of products in the cart
 
 //   let products = [], id = null;

@@ -13,6 +13,7 @@ export default class Login extends React.Component {
     this.state = {
       username: '',
       password: ''
+
     };
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -52,6 +53,17 @@ export default class Login extends React.Component {
 
         if (res.data) {
           console.log(res.data);
+
+          var loggedInUserObj = new Object();
+
+          loggedInUserObj._id = res.data._id;
+          loggedInUserObj.username = res.data.username;
+          loggedInUserObj.email = res.data.email;
+          loggedInUserObj.type = res.data.type;
+
+          this.setState({
+            currentUser: loggedInUserObj
+          })
 
           if (res.data.type == 'member') {
 
