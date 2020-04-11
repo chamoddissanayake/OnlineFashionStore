@@ -8,8 +8,16 @@ const BASE_URL = 'http://localhost:5000';
 
 export default class TableRow extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.delete = this.delete.bind(this);
+}
 
-
+  delete() {
+    axios.get('${BASE_URL}/api/products/delete/'+this.props.obj._id)
+        .then(console.log('Deleted'))
+        .catch(err => console.log(err))
+  }
     render() {
 
         return (
@@ -33,11 +41,12 @@ export default class TableRow extends React.Component {
           <Link to={"/editItems/"+this.props.obj._id} className="btn btn-primary">Edit</Link>
           </td>
           <td>
-          <button className="btn btn-danger">Delete</button>
+          <button onClick={this.delete} className="btn btn-danger">Delete</button>
           </td>
         </tr>
         )
     
       }
+    
 
-}
+};
