@@ -112,7 +112,7 @@ class App extends Component {
 
             <Route exact path="/viewItems" component={viewItems} />
 
-            <Route exact path="/'/editItems/:id'" component={editItems} />
+            <Route exact path="/editItems/:id" component={editItems} />
 
             <Route exact path="/storeManager" component={StoreManagerDashbord} />
 
