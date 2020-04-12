@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { postSelectedProduct } from '../repository';
+import CommentBox from './CommentBox';
+import utils from '../utils/utils';
 
 const BASE_URL = 'http://localhost:5000';
 
@@ -13,11 +15,14 @@ export default class selectItem extends Component {
         this.state = {
             currentID: this.props.match.params.id,
             selectedProduct: {},
-            quantity: 1
+            quantity: 1,
+            loggedInUserObj: {}
         }
 
     }
     componentDidMount() {
+
+        this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
 
         postSelectedProduct(this.state.currentID)
             .then((product) => {
@@ -247,10 +252,17 @@ export default class selectItem extends Component {
                     </tr>
                 </table>
 
+                <br />
 
 
-
-
+                {!utils.isEmpty(this.state.loggedInUserObj) && <span>
+                    <div id="commentDiv">
+                        <CommentBox selectedProduct={this.state.selectedProduct} />
+                    </div>
+                </span>}
+                {utils.isEmpty(this.state.loggedInUserObj) && <span>
+                    <h4>Hi, Guest. You can add your thoughts about this product. Please Log ...</h4>
+                </span>}
 
 
 

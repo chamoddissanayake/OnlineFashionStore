@@ -145,11 +145,12 @@ class App extends Component {
 
             </div>
 
+            {!utils.isEmpty(this.state.loggedInUserObj) && <span>
+              <p style={{ color: "white" }} >Hi {this.state.loggedInUserObj.username}</p>
+            </span>}
           </nav>
 
-          {!utils.isEmpty(this.state.loggedInUserObj) && <span>
-            <p>Hi {this.state.loggedInUserObj.username}</p>
-          </span>}
+
 
           <div className="container">
 
