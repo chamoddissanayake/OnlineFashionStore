@@ -68,7 +68,7 @@ app.get('/api/products', (req, res) => { //lists all  available products
 
 app.post('/api/selectitem', (req, res) => { //retrieve details of the selected item
   console.log("request received for the seleced product");
-  // console.log(req);
+  console.log(req.body.id);
 
   // MongoClient.connect(url, function (err, db) {
   //   if (err) throw err;
@@ -82,7 +82,17 @@ app.post('/api/selectitem', (req, res) => { //retrieve details of the selected i
   //     db.close();
   //   });
   // });
-  return res.send({});
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("products").findOne({}, function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.send(result);
+      db.close();
+    });
+  });
 
 });
 
