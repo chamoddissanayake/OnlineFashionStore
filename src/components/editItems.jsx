@@ -129,50 +129,75 @@ export default class editItems extends Component {
         <h2>Edit Items</h2>
 
         <form onSubmit={this.handleSubmit} action="/api/products" method="POST" >
-          <div className="form-group">
-            <label>ID</label>
-            <input type="text"
-              className="form-control"
-              id="id"
-              onChange={this.handleIdChange} />
-          </div>
+                    <div className="form-group">
+                        <label>Item ID</label>
+                        <input type="text" 
+                        className="form-control" 
+                        id="id" 
+                        onChange={this.handleIdChange} />
+                    </div>
 
-          <div className="form-group">
-            <label>Name</label>
-            <input type="text"
-              className="form-control"
-              id="name"
-              onChange={this.handleNameChange} />
-          </div>
+                    <div className="form-group">
+                        <label>Category</label>
+                        <input type="text" 
+                        className="form-control" 
+                        id="category" 
+                        onChange={this.handleCategoryChange} />
+                    </div>
 
-          <div className="form-group">
-            <label>Description</label>
-            <input type="text"
-              className="form-control"
-              id="description"
-              onChange={this.handleDescriptionChange} />
-          </div>
+                    <div className="form-group">
+                        <label>Item Name</label>
+                        <input type="text" 
+                        className="form-control" 
+                        id="name" 
+                        onChange={this.handleNameChange} />
+                    </div>
 
-          <div className="form-group">
-            <label>Price</label>
-            <input type="number"
-              min="0"
-              step="0.00"
-              className="form-control"
-              id="price" onChange={this.handlePriceChange} />
-          </div>
+                    <div className="form-group">
+                        <label>Description</label>
+                        <input type="text" 
+                        className="form-control" 
+                        id="description" 
+                        onChange={this.handleDescriptionChange} />
+                    </div>
 
-          <div className="form-group">
-            <label>Available Quantity</label>
-            <input type="number"
-              min="0" step="0"
-              className="form-control"
-              id="available_quantity"
-              onChange={this.handleAvailableQuantityChange} />
-          </div>
+                    <div className="form-group">
+                        <label>Price</label>
+                        <input type="number" 
+                        min="0" 
+                        step="0.00" 
+                        className="form-control" 
+                        id="price" onChange={this.handlePriceChange} />
+                    </div>
+                    
+                    <div className="form-group">
+                        <label>Available Quantity</label>
+                        <input type="number" 
+                        min="0" step="0" 
+                        className="form-control" 
+                        id="available_quantity" 
+                        onChange={this.handleAvailableQuantityChange} />
+                    </div>
 
-          <button type="submit" className="btn btn-success">ADD THIS ITEM</button><br></br><br></br>
-        </form>
+                    <div className="form-group">
+                        <label>Discount</label>
+                        <input type="number" 
+                        min="0" step="0" 
+                        className="form-control" 
+                        id="discount" 
+                        onChange={this.handleDiscountChange} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Image</label>
+                        <input type="text" 
+                        className="form-control" 
+                        id="image" 
+                        onChange={this.handleImageChange} />
+                    </div>
+
+                    <button type="submit" className="btn btn-success">EDIT THIS ITEM</button><br></br><br></br>
+                </form>
       </div>
 
     );
