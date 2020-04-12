@@ -50,6 +50,12 @@ export default class TableRow extends React.Component {
           {this.props.obj.available_quantity}
         </td>
         <td>
+          {this.props.obj.discount}
+        </td>
+        <td>
+          {this.props.obj.image}
+        </td>
+        <td>
           <Link to={"/editItems/" + this.props.obj._id} className="btn btn-primary">Edit</Link>
         </td>
         <td>

@@ -47,6 +47,8 @@ export default class viewItems extends Component{
                 <th>Description</th>
                 <th>Price</th>
                 <th>Available Quantity</th>
+                <th>Discount</th>
+                <th>Image</th>
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>
