@@ -10,16 +10,22 @@ export default class editItems extends Component {
     super(props);
     this.state = {
       id: '',
+      category: '',
       name: '',
       description: '',
       price: '',
-      available_quantity: ''
+      available_quantity: '',
+      discount: '',
+      image: ''
     };
     this.handleIdChange = this.handleIdChange.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.handleAvailableQuantityChange = this.handleAvailableQuantityChange.bind(this);
+    this.handleDiscountChange = this.handleDiscountChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -28,10 +34,13 @@ export default class editItems extends Component {
         .then(response => {
             this.setState({ 
               id: response.data.id, 
+              category: response.data.category,
               name: response.data.name,
               description: response.data.description,
               price: response.data.price,
               available_quantity: response.data.available_quantity,
+              discount: response.data.discount,
+              image: response.data.image,
              });
         })
         .catch(function (error) {
@@ -46,9 +55,17 @@ export default class editItems extends Component {
     }, () => {
       // console.log("Entered ID: ", this.state.id);
     });
-
-
   }
+
+  handleCategoryChange(event) {
+
+    this.setState({
+        category: event.target.value
+    }, () => {
+        // console.log("Entered Category: ", this.state.id);
+    });
+  }
+
   handleNameChange(event) {
     this.setState({
       name: event.target.value
@@ -78,6 +95,22 @@ export default class editItems extends Component {
     });
   }
 
+  handleDiscountChange(event) {
+    this.setState({
+        discount: event.target.value
+    }, () => {
+        // console.log("Entered discount: ", this.state.discount);
+    });
+  }
+
+  handleImageChange(event) {
+    this.setState({
+        image: event.target.value
+    }, () => {
+        // console.log("Entered image: ", this.state.image);
+    });
+  }
+
 
 
   handleSubmit(event) {
@@ -92,10 +125,13 @@ export default class editItems extends Component {
 
     const productObject = {
       id: this.state.id,
+      category: this.state.category,
       name: this.state.name,
       description: this.state.description,
       price: this.state.price,
-      available_quantity: this.state.available_quantity
+      available_quantity: this.state.available_quantity,
+      discount:this.state.discount,
+      image:this.state.image
     };
     console.log(productObject);
     axios.post(`${BASE_URL}/api/products`, productObject)
@@ -114,10 +150,13 @@ export default class editItems extends Component {
 
     this.setState({
       id: '',
+      category: '',
       name: '',
       description: '',
       price: '',
-      available_quantity: ''
+      available_quantity: '',
+      discount: '',
+      image:''
     })
   }
 
