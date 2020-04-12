@@ -27,24 +27,55 @@ import selectItem from './components/selectItem';
 class App extends Component {
 
 
+  constructor() {
+    super();
+    this.state = {
+      loggedInUserObj: {}
+    };
+
+  }
+
 
   logOut() {
 
     localStorage.removeItem('x-access-token');
 
   }
+  checkLoggedInUser() {
+
+    var retrievedObject = localStorage.getItem('loggedInUser');
+
+    if (retrievedObject != null) {
+
+      var k = JSON.parse(retrievedObject);
+
+      this.setState(this.state.loggedInUserObj = k);
 
 
+
+      console.log("" + k.type);
+      console.log("" + this.state.loggedInUserObj.type);
+    } else {
+      console.log("User not logged");
+    }
+
+
+  }
+
+  componentDidMount() {
+    this.checkLoggedInUser();
+
+  }
 
   render() {
-
     const auth = isAuthenticated();
-
     return (
 
       <Router>
 
         <div>
+          {/* {this.state.loggedInUserObj.type}
+          {localStorage.getItem("loggedInUser").type} */}
 
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
