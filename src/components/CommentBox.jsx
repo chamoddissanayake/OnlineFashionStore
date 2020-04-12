@@ -9,9 +9,9 @@ export default class CommentBox extends React.Component {
         this.state = {
             showComments: false,
             comments: [
-                { id: 1, author: "landiggity", body: "This is my first comment on this forum so don't be a dick" },
-                { id: 2, author: "scarlett-jo", body: "That's a mighty fine comment you've got there my good looking fellow..." },
-                { id: 3, author: "rosco", body: "What is the meaning of all of this 'React' mumbo-jumbo?" }
+                { productId: "123345", id: 1, author: "landiggity", body: "This is my first comment on this forum so don't be a dick", rating: 1 },
+                { productId: "234234", id: 2, author: "scarlett-jo", body: "That's a mighty fine comment you've got there my good looking fellow...", rating: 2 },
+                { productId: "456233", id: 3, author: "rosco", body: "What is the meaning of all of this 'React' mumbo-jumbo?", rating: 3 }
             ],
             loggedInUserObj: {}
         };
@@ -47,11 +47,12 @@ export default class CommentBox extends React.Component {
         );
     } // end render
 
-    _addComment(author, body) {
+    _addComment(author, body, rating) {
         const comment = {
             id: this.state.comments.length + 1,
             author,
-            body
+            body,
+            rating
         };
         this.setState({ comments: this.state.comments.concat([comment]) }); // *new array references help React stay fast, so concat works better than push here.
     }
@@ -68,7 +69,9 @@ export default class CommentBox extends React.Component {
                 <Comment
                     author={comment.author}
                     body={comment.body}
-                    key={comment.id} />
+                    key={comment.id}
+                    rating={comment.rating}
+                />
             );
         });
     }
@@ -89,13 +92,26 @@ class CommentForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            loggedInUserObj: {}
+            loggedInUserObj: {},
+            selectValue: 1
         };
     }
 
     componentDidMount() {
         this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
     }
+
+    handleChange = (event) => {
+
+
+
+        this.setState({
+            selectValue: event.target.value
+        }, () => {
+            console.log("selected value ->" + this.state.selectValue);
+        });
+
+    };
 
     render() {
         return (
@@ -105,7 +121,24 @@ class CommentForm extends React.Component {
                     <div class="form-group">
                         <textarea class="form-control" placeholder="Comment" rows="4" required ref={(textarea) => this._body = textarea} />
                     </div>
+
+                    <div>
+
+                        <div>
+                            <select class="form-control" defaultValue={this.state.selectValue} onChange={this.handleChange}>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+
+                        </div>
+
+
+                    </div>
                 </div>
+                <br />
                 <div className="comment-form-actions">
                     <button type="submit" class="btn btn-primary">Post Comment</button>
                 </div>
@@ -117,7 +150,8 @@ class CommentForm extends React.Component {
         event.preventDefault();   // prevents page from reloading on submit
         let author = this._author;
         let body = this._body;
-        this.props.addComment(author.value, body.value);
+        let rating = this.state.selectValue;
+        this.props.addComment(author.value, body.value, rating.value);
     }
 } // end CommentForm component
 
@@ -127,15 +161,16 @@ class Comment extends React.Component {
             <div className="comment">
                 <p className="comment-header">{this.props.author}</p>
                 <p className="comment-body">- {this.props.body}</p>
-                <div className="comment-footer">
+                <p className="comment-rating">- {this.props.rating}</p>
+                {/* <div className="comment-footer">
                     <a href="#" className="comment-footer-delete" onClick={this._deleteComment}>Delete Comment</a>
-                </div>
+                </div> */}
             </div>
         );
     }
-    _deleteComment() {
-        alert("-- DELETE Comment Functionality COMMING SOON...");
-    }
+    // _deleteComment() {
+    //     alert("-- DELETE Comment Functionality COMMING SOON...");
+    // }
 }
 
 
