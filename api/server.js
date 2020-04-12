@@ -236,13 +236,44 @@ app.get('/api/pay', middleware, (req, res) => { //checkout route for signed in u
 
 });
 
-app.delete('/api/products/delete/:id', (req, res) => {
-  products.findByIdAndRemove({ _id: req.params.id }, function (err, products) {
-    if (err) res.json(err);
-    else res.json('Successfully removed');
-  });
-});
+// app.delete('/api/products/delete/:id', (req, res) => {
+//   products.findByIdAndRemove({ _id: req.params.id }, function (err, products) {
+//     if (err) res.json(err);
+//     else res.json('Successfully removed');
+//   });
+// });
 
+
+
+
+
+
+
+app.post('/api/products/delete/', (req, res) => {
+
+  console.log(req.body.id);
+
+  var MongoClient = require('mongodb').MongoClient;
+  var url = "mongodb://localhost:27017/";
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+
+    var myquery = { id: req.body.id };
+    console.log(myquery);
+
+    dbo.collection("products").deleteOne(myquery, function (err1, result) {
+      if (err1) throw err1;
+      console.log("Item was deleted");
+      res.statusCode = 500;
+      res.send(true);
+      db.close();
+    });
+
+  });
+
+});
 
 
 
