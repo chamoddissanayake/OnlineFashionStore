@@ -38,6 +38,9 @@ export default class TableRow extends React.Component {
           {this.props.obj.id}
         </td>
         <td>
+          {this.props.obj.category}
+        </td>
+        <td>
           {this.props.obj.name}
         </td>
         <td>
