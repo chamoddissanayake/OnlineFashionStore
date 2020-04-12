@@ -276,7 +276,6 @@ app.post('/api/products/delete/', (req, res) => {
     dbo.collection("products").deleteOne(myquery, function (err1, result) {
       if (err1) throw err1;
       console.log("Item was deleted");
-      res.statusCode = 500;
       res.send(true);
       db.close();
     });

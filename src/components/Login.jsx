@@ -12,9 +12,11 @@ export default class Login extends React.Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      currentLoggedInUserId: '123456'
 
     };
+
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
 
