@@ -11,13 +11,17 @@ export default class addItem extends Component {
             name: '',
             description: '',
             price: '',
-            available_quantity: ''
+            available_quantity: '',
+            discount: '',
+            image:''
         };
         this.handleIdChange = this.handleIdChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handlePriceChange = this.handlePriceChange.bind(this);
         this.handleAvailableQuantityChange = this.handleAvailableQuantityChange.bind(this);
+        this.handleDiscountChange = this.handleDiscountChange.bind(this);
+        this.handleImageChange = this.handleImageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -60,6 +64,22 @@ export default class addItem extends Component {
         });
     }
 
+    handleDiscountChange(event) {
+        this.setState({
+            discount: event.target.value
+        }, () => {
+            // console.log("Entered discount: ", this.state.discount);
+        });
+    }
+
+    handleImageChange(event) {
+        this.setState({
+            image: event.target.value
+        }, () => {
+            // console.log("Entered image: ", this.state.image);
+        });
+    }
+
 
 
     handleSubmit(event) {
@@ -77,7 +97,9 @@ export default class addItem extends Component {
             name: this.state.name,
             description: this.state.description,
             price: this.state.price,
-            available_quantity: this.state.available_quantity
+            available_quantity: this.state.available_quantity,
+            discount:this.state.discount,
+            image:this.state.image
         };
         console.log(productObject);
         axios.post(`${BASE_URL}/api/products`, productObject)
@@ -99,7 +121,9 @@ export default class addItem extends Component {
             name: '',
             description: '',
             price: '',
-            available_quantity: ''
+            available_quantity: '',
+            discount: '',
+            image:''
         })
     }
 
@@ -149,6 +173,23 @@ export default class addItem extends Component {
                         className="form-control" 
                         id="available_quantity" 
                         onChange={this.handleAvailableQuantityChange} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Discount</label>
+                        <input type="number" 
+                        min="0" step="0" 
+                        className="form-control" 
+                        id="discount" 
+                        onChange={this.handleDiscountChange} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Image</label>
+                        <input type="text" 
+                        className="form-control" 
+                        id="image" 
+                        onChange={this.handleImageChange} />
                     </div>
 
                     <button type="submit" className="btn btn-success">ADD THIS ITEM</button><br></br><br></br>
