@@ -236,6 +236,7 @@ app.get('/api/pay', middleware, (req, res) => { //checkout route for signed in u
 
 });
 
+
 app.delete('/api/products/delete/:id', (req, res) => {
   products.findByIdAndRemove({ _id: req.params.id }, function (err, products) {
     if (err) res.json(err);
