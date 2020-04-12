@@ -88,17 +88,16 @@ export default class selectItem extends Component {
 
         return (
             <div>
-                SelectItem
-                {this.props.match.params.id}
-                {console.log(selectedProduct)}
-                {selectedProduct._id}
-                {selectedProduct.id}
-                {selectedProduct.category}
-                {selectedProduct.brand}
-                {selectedProduct.name}
-                {selectedProduct.description}
-                {selectedProduct.price}
-                {selectedProduct.available_quantity}
+                {this.props.match.params.id}<br />
+                {console.log(selectedProduct)}<br />
+                {selectedProduct._id}<br />
+                {selectedProduct.id}<br />
+                {selectedProduct.category}<br />
+                {selectedProduct.brand}<br />
+                {selectedProduct.name}<br />
+                {selectedProduct.description}<br />
+                {selectedProduct.price}<br />
+                {selectedProduct.available_quantity}<br />
                 {/* {selectedProduct.imageURL_main}
                 {selectedProduct.imageURL_1}
                 {selectedProduct.imageURL_2}
@@ -257,7 +256,7 @@ export default class selectItem extends Component {
 
                 {!utils.isEmpty(this.state.loggedInUserObj) && <span>
                     <div id="commentDiv">
-                        <CommentBox selectedProduct={this.state.selectedProduct} />
+                        <CommentBox selectedProduct={selectedProduct} />
                     </div>
                 </span>}
                 {utils.isEmpty(this.state.loggedInUserObj) && <span>

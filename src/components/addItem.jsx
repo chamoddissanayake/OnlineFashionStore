@@ -8,22 +8,16 @@ export default class addItem extends Component {
         super(props);
         this.state = {
             id: '',
-            category: '',
             name: '',
             description: '',
             price: '',
-            available_quantity: '',
-            discount: '',
-            image:''
+            available_quantity: ''
         };
         this.handleIdChange = this.handleIdChange.bind(this);
-        this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handlePriceChange = this.handlePriceChange.bind(this);
         this.handleAvailableQuantityChange = this.handleAvailableQuantityChange.bind(this);
-        this.handleDiscountChange = this.handleDiscountChange.bind(this);
-        this.handleImageChange = this.handleImageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -34,17 +28,9 @@ export default class addItem extends Component {
         }, () => {
             // console.log("Entered ID: ", this.state.id);
         });
+
+
     }
-
-    handleCategoryChange(event) {
-
-        this.setState({
-            category: event.target.value
-        }, () => {
-            // console.log("Entered Category: ", this.state.id);
-        });
-    }
-
     handleNameChange(event) {
         this.setState({
             name: event.target.value
@@ -74,22 +60,6 @@ export default class addItem extends Component {
         });
     }
 
-    handleDiscountChange(event) {
-        this.setState({
-            discount: event.target.value
-        }, () => {
-            // console.log("Entered discount: ", this.state.discount);
-        });
-    }
-
-    handleImageChange(event) {
-        this.setState({
-            image: event.target.value
-        }, () => {
-            // console.log("Entered image: ", this.state.image);
-        });
-    }
-
 
 
     handleSubmit(event) {
@@ -104,13 +74,10 @@ export default class addItem extends Component {
 
         const productObject = {
             id: this.state.id,
-            category: this.state.category,
             name: this.state.name,
             description: this.state.description,
             price: this.state.price,
-            available_quantity: this.state.available_quantity,
-            discount:this.state.discount,
-            image:this.state.image
+            available_quantity: this.state.available_quantity
         };
         console.log(productObject);
         axios.post(`${BASE_URL}/api/products`, productObject)
@@ -129,13 +96,10 @@ export default class addItem extends Component {
 
         this.setState({
             id: '',
-            category: '',
             name: '',
             description: '',
             price: '',
-            available_quantity: '',
-            discount: '',
-            image:''
+            available_quantity: ''
         })
     }
 
@@ -146,76 +110,51 @@ export default class addItem extends Component {
 
                 <form onSubmit={this.handleSubmit} action="/api/products" method="POST" >
                     <div className="form-group">
-                        <label>Item ID</label>
-                        <input type="text" 
-                        className="form-control" 
-                        id="id" 
-                        onChange={this.handleIdChange} />
+                        <label>ID</label>
+                        <input type="text"
+                            className="form-control"
+                            id="id"
+                            onChange={this.handleIdChange} />
                     </div>
 
                     <div className="form-group">
-                        <label>Category</label>
-                        <input type="text" 
-                        className="form-control" 
-                        id="category" 
-                        onChange={this.handleCategoryChange} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Item Name</label>
-                        <input type="text" 
-                        className="form-control" 
-                        id="name" 
-                        onChange={this.handleNameChange} />
+                        <label>Name</label>
+                        <input type="text"
+                            className="form-control"
+                            id="name"
+                            onChange={this.handleNameChange} />
                     </div>
 
                     <div className="form-group">
                         <label>Description</label>
-                        <input type="text" 
-                        className="form-control" 
-                        id="description" 
-                        onChange={this.handleDescriptionChange} />
+                        <input type="text"
+                            className="form-control"
+                            id="description"
+                            onChange={this.handleDescriptionChange} />
                     </div>
 
                     <div className="form-group">
                         <label>Price</label>
-                        <input type="number" 
-                        min="0" 
-                        step="0.00" 
-                        className="form-control" 
-                        id="price" onChange={this.handlePriceChange} />
+                        <input type="number"
+                            min="0"
+                            step="0.00"
+                            className="form-control"
+                            id="price" onChange={this.handlePriceChange} />
                     </div>
-                    
+
                     <div className="form-group">
                         <label>Available Quantity</label>
-                        <input type="number" 
-                        min="0" step="0" 
-                        className="form-control" 
-                        id="available_quantity" 
-                        onChange={this.handleAvailableQuantityChange} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Discount</label>
-                        <input type="number" 
-                        min="0" step="0" 
-                        className="form-control" 
-                        id="discount" 
-                        onChange={this.handleDiscountChange} />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Image</label>
-                        <input type="text" 
-                        className="form-control" 
-                        id="image" 
-                        onChange={this.handleImageChange} />
+                        <input type="number"
+                            min="0" step="0"
+                            className="form-control"
+                            id="available_quantity"
+                            onChange={this.handleAvailableQuantityChange} />
                     </div>
 
                     <button type="submit" className="btn btn-success">ADD THIS ITEM</button><br></br><br></br>
                 </form>
             </div>
-          
+
         )
     }
 

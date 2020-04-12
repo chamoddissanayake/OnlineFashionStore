@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import commentBoxStyles from '../css/commentBoxStyles.scss';
 import utils from '../utils/utils';
+import { postFetchComments } from '../repository';
+import axios from 'axios';
+const BASE_URL = 'http://localhost:5000';
 
 export default class CommentBox extends React.Component {
     constructor() {
@@ -9,9 +12,9 @@ export default class CommentBox extends React.Component {
         this.state = {
             showComments: false,
             comments: [
-                { productId: "123345", id: 1, author: "landiggity", body: "This is my first comment on this forum so don't be a dick", rating: 1 },
-                { productId: "234234", id: 2, author: "scarlett-jo", body: "That's a mighty fine comment you've got there my good looking fellow...", rating: 2 },
-                { productId: "456233", id: 3, author: "rosco", body: "What is the meaning of all of this 'React' mumbo-jumbo?", rating: 3 }
+                // { productId: "123345", id: 1, author: "landiggity", body: "This is my first comment on this forum so don't be a dick", rating: 1 },
+                // { productId: "234234", id: 2, author: "scarlett-jo", body: "That's a mighty fine comment you've got there my good looking fellow...", rating: 2 },
+                // { productId: "456233", id: 3, author: "rosco", body: "What is the meaning of all of this 'React' mumbo-jumbo?", rating: 3 }
             ],
             loggedInUserObj: {}
         };
@@ -19,6 +22,26 @@ export default class CommentBox extends React.Component {
 
     componentDidMount() {
         this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
+
+        // postFetchComments(this.props.selectedProduct._id).then((comments) => this.setState({ comments }));
+
+        // axios.post(`${BASE_URL}/api/comments`, { id: productId })
+        // .then(response => response.data);
+
+        axios.post(`${BASE_URL}/api/comments`, { selectedProduct: this.props.selectedProduct })
+            .then((comments) => {
+
+                console.log(comments.data);
+                // if (res.data == true) {
+                //     alert('Added to DB successfully');
+                // } else {
+                //     alert('Error While adding to DB');
+                // }
+
+            }).catch((error) => {
+                console.log(error)
+            });
+
     }
 
     render() {

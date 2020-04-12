@@ -53,7 +53,7 @@ app.get('/api/products', (req, res) => { //lists all  available products
     var dbo = db.db("FashionStore");
     dbo.collection("products").find({}).toArray(function (err, result) {
       if (err) throw err;
-      console.log(result);
+      // console.log(result);
       let rrr = [];
       rrr.push(result);
       res.send(result);
@@ -88,13 +88,34 @@ app.post('/api/selectitem', (req, res) => { //retrieve details of the selected i
     var dbo = db.db("FashionStore");
     dbo.collection("products").findOne({}, function (err, result) {
       if (err) throw err;
-      console.log(result);
+      // console.log(result);
       res.send(result);
       db.close();
     });
   });
 
 });
+
+
+
+app.post('/api/comments', (req, res) => { //retrieve Comments
+  console.log("request received for the retrieve comments");
+
+  console.log(req.body);
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("comments").find({ productId: req.body.id }).toArray(function (err, result) {
+      if (err) throw err;
+      // console.log(result);
+      res.send(result);
+      db.close();
+    });
+  });
+
+});
+
 
 
 // app.post('/api/products', (req, res) => { //generates the list of products in the cart
@@ -129,7 +150,7 @@ app.post('/api/products', (req, res) => { //generates the list of products in th
   let products = [], id = null;
   // var addStatus = false;
 
-  console.log(req.body.id + req.body.category + req.body.name + req.body.description + req.body.price + req.body.available_quantity + req.body.discount+ req.body.image);
+  console.log(req.body.id + req.body.category + req.body.name + req.body.description + req.body.price + req.body.available_quantity + req.body.discount + req.body.image);
 
   var tempItemObj = new Object();
 
@@ -179,7 +200,7 @@ app.post('/api/auth', (req, res) => { //signs in user
     var dbo = db.db("FashionStore");
     dbo.collection("users").findOne({ username: req.body.username, password: req.body.password }, function (err1, result) {
       if (err1) throw err1;
-      console.log(result);
+      // console.log(result);
 
       var currentLoggedInUserObj = new Object();
 

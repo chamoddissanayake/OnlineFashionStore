@@ -14,6 +14,15 @@ export function getProducts() {
 
 }
 
+export function postFetchComments(productId) {
+
+        console.log("Product Id_ >" + productId);
+
+        return axios.post(`${BASE_URL}/api/comments`, { id: productId })
+                .then(response => response.data);
+
+}
+
 export function postSelectedProduct(currentID) {
         console.log(currentID);
         return axios.post(`${BASE_URL}/api/selectitem`, { id: currentID })
