@@ -129,11 +129,12 @@ app.post('/api/products', (req, res) => { //generates the list of products in th
   let products = [], id = null;
   // var addStatus = false;
 
-  console.log(req.body.id + req.body.name + req.body.description + req.body.price + req.body.available_quantity + req.body.discount+ req.body.image);
+  console.log(req.body.id + req.body.category + req.body.name + req.body.description + req.body.price + req.body.available_quantity + req.body.discount+ req.body.image);
 
   var tempItemObj = new Object();
 
   tempItemObj.id = req.body.id;
+  tempItemObj.category = req.body.category;
   tempItemObj.name = req.body.name;
   tempItemObj.description = req.body.description;
   tempItemObj.price = req.body.price;

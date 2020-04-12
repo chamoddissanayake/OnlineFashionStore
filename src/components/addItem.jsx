@@ -8,6 +8,7 @@ export default class addItem extends Component {
         super(props);
         this.state = {
             id: '',
+            category: '',
             name: '',
             description: '',
             price: '',
@@ -16,6 +17,7 @@ export default class addItem extends Component {
             image:''
         };
         this.handleIdChange = this.handleIdChange.bind(this);
+        this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handlePriceChange = this.handlePriceChange.bind(this);
@@ -32,9 +34,17 @@ export default class addItem extends Component {
         }, () => {
             // console.log("Entered ID: ", this.state.id);
         });
-
-
     }
+
+    handleCategoryChange(event) {
+
+        this.setState({
+            category: event.target.value
+        }, () => {
+            // console.log("Entered Category: ", this.state.id);
+        });
+    }
+
     handleNameChange(event) {
         this.setState({
             name: event.target.value
@@ -94,6 +104,7 @@ export default class addItem extends Component {
 
         const productObject = {
             id: this.state.id,
+            category: this.state.category,
             name: this.state.name,
             description: this.state.description,
             price: this.state.price,
@@ -118,6 +129,7 @@ export default class addItem extends Component {
 
         this.setState({
             id: '',
+            category: '',
             name: '',
             description: '',
             price: '',
@@ -134,7 +146,7 @@ export default class addItem extends Component {
 
                 <form onSubmit={this.handleSubmit} action="/api/products" method="POST" >
                     <div className="form-group">
-                        <label>ID</label>
+                        <label>Item ID</label>
                         <input type="text" 
                         className="form-control" 
                         id="id" 
@@ -142,7 +154,15 @@ export default class addItem extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label>Name</label>
+                        <label>Category</label>
+                        <input type="text" 
+                        className="form-control" 
+                        id="category" 
+                        onChange={this.handleCategoryChange} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Item Name</label>
                         <input type="text" 
                         className="form-control" 
                         id="name" 

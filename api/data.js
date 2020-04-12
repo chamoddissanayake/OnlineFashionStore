@@ -3,6 +3,8 @@ const products = [
     {
   
       id: 01,
+
+      category: 'testCategory',
   
       name: 'Cool Vex',
   
