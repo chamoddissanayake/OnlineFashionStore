@@ -21,6 +21,7 @@ import editItems from './components/editItems';
 import StoreManagerDashbord from './components/StoreManagerDashbord';
 
 import selectItem from './components/selectItem';
+import utils from './utils/utils';
 
 
 
@@ -41,30 +42,30 @@ class App extends Component {
     localStorage.removeItem('x-access-token');
 
   }
-  checkLoggedInUser() {
+  // checkLoggedInUser() {
 
-    var retrievedObject = localStorage.getItem('loggedInUser');
+  //   var retrievedObject = localStorage.getItem('loggedInUser');
 
-    if (retrievedObject != null) {
+  //   if (retrievedObject != null) {
 
-      var k = JSON.parse(retrievedObject);
+  //     var k = JSON.parse(retrievedObject);
 
-      this.setState(this.state.loggedInUserObj = k);
-
-
-
-      console.log("" + k.type);
-      console.log("" + this.state.loggedInUserObj.type);
-    } else {
-      console.log("User not logged");
-    }
+  //     this.setState(this.state.loggedInUserObj = k);
 
 
-  }
+
+  //     console.log("" + k.type);
+  //     console.log("" + this.state.loggedInUserObj.type);
+  //   } else {
+  //     console.log("User not logged");
+  //   }
+
+
+  // }
 
   componentDidMount() {
-    this.checkLoggedInUser();
-
+    // this.checkLoggedInUser();
+    this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
   }
 
   render() {
