@@ -22,6 +22,7 @@ import StoreManagerDashbord from './components/StoreManagerDashbord';
 
 import selectItem from './components/selectItem';
 import utils from './utils/utils';
+import Logout from './components/Logout';
 
 
 
@@ -104,13 +105,15 @@ class App extends Component {
 
                   <Link className="nav-item nav-link" to="/cart">Cart</Link><br />
 
+                  {/* {this.state.loggedInUserObj.type == "manager" && <span> */}
                   <Link className="nav-item nav-link" to="/storeManager">StoreManagerDashbord</Link><br />
+                  {/* </span>} */}
 
-                  {(auth) ? <Link className="nav-item nav-link" to="/checkout">
+                  {/* {(auth) ? <Link className="nav-item nav-link" to="/checkout">
 
-                    Checkout</Link> : ''}
+                    Checkout</Link> : ''} */}
 
-                  {(auth) ?
+                  {/* {(auth) ?
 
                     (<a className="nav-item nav-link" href="/"
 
@@ -120,7 +123,21 @@ class App extends Component {
 
                       to="/login">Log in</Link>)
 
-                  }
+                  } */}
+
+                  {!utils.isEmpty(this.state.loggedInUserObj) && <span>
+                    <Link className="nav-item nav-link" to="/checkout">Checkout</Link>
+                  </span>}
+
+                  {!utils.isEmpty(this.state.loggedInUserObj) && <span>
+                    <Link className="nav-item nav-link" to="/logout">Logout</Link>
+                  </span>}
+
+                  {utils.isEmpty(this.state.loggedInUserObj) && <span>
+                    <Link className="nav-item nav-link float-right" to="/login">Log in</Link>
+                  </span>}
+
+
 
                 </div>
 
@@ -128,7 +145,12 @@ class App extends Component {
 
             </div>
 
+            {!utils.isEmpty(this.state.loggedInUserObj) && <span>
+              <p style={{ color: "white" }} >Hi {this.state.loggedInUserObj.username}</p>
+            </span>}
           </nav>
+
+
 
           <div className="container">
 
@@ -153,6 +175,8 @@ class App extends Component {
 
 
             {(!auth) ? <Route exact path="/login" component={Login} /> : ''}
+
+            <Route exact path="/logout" component={Logout} />
 
           </div>
 
