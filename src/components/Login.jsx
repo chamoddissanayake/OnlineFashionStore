@@ -15,6 +15,7 @@ export default class Login extends React.Component {
       password: ''
 
     };
+
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
 
@@ -45,14 +46,14 @@ export default class Login extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-    console.log(loginUserObj);
+    // console.log(loginUserObj);
 
 
     axios.post(`${BASE_URL}/api/auth`, loginUserObj)
       .then((res) => {
 
         if (res.data) {
-          console.log(res.data);
+          // console.log(res.data);
 
           var loggedInUserObj = new Object();
 
@@ -60,6 +61,8 @@ export default class Login extends React.Component {
           loggedInUserObj.username = res.data.username;
           loggedInUserObj.email = res.data.email;
           loggedInUserObj.type = res.data.type;
+
+          localStorage.setItem("loggedInUser", JSON.stringify(loggedInUserObj));
 
           this.setState({
             currentUser: loggedInUserObj
@@ -93,7 +96,7 @@ export default class Login extends React.Component {
             }
 
           }
-
+          window.location.reload();
 
         } else {
           alert("Incorrect Username or password");

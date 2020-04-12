@@ -68,7 +68,7 @@ app.get('/api/products', (req, res) => { //lists all  available products
 
 app.post('/api/selectitem', (req, res) => { //retrieve details of the selected item
   console.log("request received for the seleced product");
-  console.log(req);
+  console.log(req.body.id);
 
   // MongoClient.connect(url, function (err, db) {
   //   if (err) throw err;
@@ -82,7 +82,17 @@ app.post('/api/selectitem', (req, res) => { //retrieve details of the selected i
   //     db.close();
   //   });
   // });
-  return res.send({});
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("products").findOne({}, function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.send(result);
+      db.close();
+    });
+  });
 
 });
 
@@ -236,14 +246,43 @@ app.get('/api/pay', middleware, (req, res) => { //checkout route for signed in u
 
 });
 
+// app.delete('/api/products/delete/:id', (req, res) => {
+//   products.findByIdAndRemove({ _id: req.params.id }, function (err, products) {
+//     if (err) res.json(err);
+//     else res.json('Successfully removed');
+//   });
+// });
 
-app.delete('/api/products/delete/:id', (req, res) => {
-  products.findByIdAndRemove({ _id: req.params.id }, function (err, products) {
-    if (err) res.json(err);
-    else res.json('Successfully removed');
+
+
+
+
+
+
+app.post('/api/products/delete/', (req, res) => {
+
+  console.log(req.body.id);
+
+  var MongoClient = require('mongodb').MongoClient;
+  var url = "mongodb://localhost:27017/";
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+
+    var myquery = { id: req.body.id };
+    console.log(myquery);
+
+    dbo.collection("products").deleteOne(myquery, function (err1, result) {
+      if (err1) throw err1;
+      console.log("Item was deleted");
+      res.send(true);
+      db.close();
+    });
+
   });
-});
 
+});
 
 
 

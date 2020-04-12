@@ -21,11 +21,20 @@ import editItems from './components/editItems';
 import StoreManagerDashbord from './components/StoreManagerDashbord';
 
 import selectItem from './components/selectItem';
+import utils from './utils/utils';
 
 
 
 class App extends Component {
 
+
+  constructor() {
+    super();
+    this.state = {
+      loggedInUserObj: {}
+    };
+
+  }
 
 
   logOut() {
@@ -33,18 +42,41 @@ class App extends Component {
     localStorage.removeItem('x-access-token');
 
   }
+  // checkLoggedInUser() {
+
+  //   var retrievedObject = localStorage.getItem('loggedInUser');
+
+  //   if (retrievedObject != null) {
+
+  //     var k = JSON.parse(retrievedObject);
+
+  //     this.setState(this.state.loggedInUserObj = k);
 
 
+
+  //     console.log("" + k.type);
+  //     console.log("" + this.state.loggedInUserObj.type);
+  //   } else {
+  //     console.log("User not logged");
+  //   }
+
+
+  // }
+
+  componentDidMount() {
+    // this.checkLoggedInUser();
+    this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
+  }
 
   render() {
-
     const auth = isAuthenticated();
-
     return (
 
       <Router>
 
         <div>
+          {/* {this.state.loggedInUserObj.type}
+          {localStorage.getItem("loggedInUser").type} */}
 
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
