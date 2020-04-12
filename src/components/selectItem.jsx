@@ -12,8 +12,8 @@ export default class selectItem extends Component {
 
         this.state = {
             currentID: this.props.match.params.id,
-            selectedProduct: {}
-
+            selectedProduct: {},
+            quantity: 1
         }
 
     }
@@ -31,6 +31,35 @@ export default class selectItem extends Component {
         // axios.post(`${BASE_URL}/api/selectitem`, { id: this.state.currentID })
         //     .then(response => response.data);
     }
+    addToCart = () => {
+
+        let cart = localStorage.getItem('cart')
+
+            ? JSON.parse(localStorage.getItem('cart')) : {};
+
+        let id = this.state.selectedProduct.id.toString();
+
+        cart[id] = (cart[id] ? cart[id] : 0);
+
+        let qty = cart[id] + parseInt(this.state.quantity);
+
+        if (this.state.selectedProduct.available_quantity < qty) {
+
+            cart[id] = this.state.selectedProduct.available_quantity;
+
+        } else {
+
+            cart[id] = qty
+
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+    }
+
+    handleInputChange = event =>
+
+        this.setState({ [event.target.name]: event.target.value })
 
 
 
@@ -179,6 +208,32 @@ export default class selectItem extends Component {
                                         </td>
                                         <td>
                                             {/* Add to cart button - Start */}
+                                            <span>
+
+                                                {selectedProduct.available_quantity > 0 ?
+
+                                                    <div>
+
+                                                        <button className="btn btn-sm btn-warning float-right"
+
+                                                            onClick={this.addToCart}>Add to cart</button>
+
+
+
+
+                                                        <input type="number" value={this.state.quantity} name="quantity" min="0" max={selectedProduct.available_quantity}
+
+                                                            onChange={this.handleInputChange} className="float-right"
+
+                                                            style={{ width: "60px", marginRight: "10px", borderRadius: "3px" }} />
+
+                                                    </div> :
+
+                                                    <p className="text-danger"> product is out of stock </p>
+
+                                                }
+
+                                            </span>
                                             {/* Add to cart button - End */}
                                         </td>
                                     </tr>
