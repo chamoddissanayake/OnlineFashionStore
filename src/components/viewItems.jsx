@@ -43,10 +43,13 @@ export default class viewItems extends Component{
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Category</th>
+                <th>Item Name</th>
                 <th>Description</th>
                 <th>Price</th>
                 <th>Available Quantity</th>
+                <th>Discount</th>
+                <th>Image</th>
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>

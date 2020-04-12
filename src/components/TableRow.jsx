@@ -38,6 +38,9 @@ export default class TableRow extends React.Component {
           {this.props.obj.id}
         </td>
         <td>
+          {this.props.obj.category}
+        </td>
+        <td>
           {this.props.obj.name}
         </td>
         <td>
@@ -48,6 +51,12 @@ export default class TableRow extends React.Component {
         </td>
         <td>
           {this.props.obj.available_quantity}
+        </td>
+        <td>
+          {this.props.obj.discount}
+        </td>
+        <td>
+          {this.props.obj.image}
         </td>
         <td>
           <Link to={"/editItems/" + this.props.obj._id} className="btn btn-primary">Edit</Link>

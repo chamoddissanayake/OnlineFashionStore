@@ -3,6 +3,8 @@ const products = [
     {
   
       id: 01,
+
+      category: 'testCategory',
   
       name: 'Cool Vex',
   
@@ -10,8 +12,11 @@ const products = [
   
       price: 450,
   
-      description: 'Lorem ipsum dolor sit amet, iusto appellantur vix te, nam affert feugait menandri eu. Magna simul ad est. Nostrum neglegentur ius at, at pertinax repudiare vel. Vim an adolescens quaerendum.'
+      description: 'Lorem ipsum dolor sit amet, iusto appellantur vix te, nam affert feugait menandri eu. Magna simul ad est. Nostrum neglegentur ius at, at pertinax repudiare vel. Vim an adolescens quaerendum.',
   
+      discount: 10,
+
+      image: 'testIma'
     }
 ]
 
