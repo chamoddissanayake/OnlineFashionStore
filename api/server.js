@@ -67,7 +67,7 @@ app.get('/api/products', (req, res) => { //lists all  available products
 
 
 app.post('/api/selectitem', (req, res) => { //retrieve details of the selected item
-  console.log("request received for the seleced product");
+  console.log("request received for the selected product");
   console.log(req.body.id);
 
   // MongoClient.connect(url, function (err, db) {
@@ -102,6 +102,7 @@ app.post('/api/comments', (req, res) => { //retrieve Comments
   console.log("request received for the retrieve comments");
 
   console.log(req.body);
+
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;

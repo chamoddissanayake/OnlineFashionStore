@@ -6,8 +6,8 @@ import axios from 'axios';
 const BASE_URL = 'http://localhost:5000';
 
 export default class CommentBox extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             showComments: false,
@@ -16,7 +16,8 @@ export default class CommentBox extends React.Component {
                 // { productId: "234234", id: 2, author: "scarlett-jo", body: "That's a mighty fine comment you've got there my good looking fellow...", rating: 2 },
                 // { productId: "456233", id: 3, author: "rosco", body: "What is the meaning of all of this 'React' mumbo-jumbo?", rating: 3 }
             ],
-            loggedInUserObj: {}
+            loggedInUserObj: {},
+            selectedProduct: this.props.selectedProduct
         };
     }
 
@@ -27,6 +28,8 @@ export default class CommentBox extends React.Component {
 
         // axios.post(`${BASE_URL}/api/comments`, { id: productId })
         // .then(response => response.data);
+        console.log("-->" + this.state.selectedProduct._id);
+        console.log(this.props.selectedProduct.name);
 
         axios.post(`${BASE_URL}/api/comments`, { selectedProduct: this.props.selectedProduct })
             .then((comments) => {
@@ -174,7 +177,7 @@ class CommentForm extends React.Component {
         let author = this._author;
         let body = this._body;
         let rating = this.state.selectValue;
-        this.props.addComment(author.value, body.value, rating.value);
+        this.props.addComment(author.value, body.value, rating);
     }
 } // end CommentForm component
 
