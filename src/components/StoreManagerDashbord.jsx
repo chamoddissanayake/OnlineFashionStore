@@ -14,11 +14,12 @@ export default class StoreManagerDashbord extends Component {
             
             <div>
 
-                    <h1>Store Manager Dashbord</h1><br></br><br></br><br></br><br></br>
+                    <h1>Store Manager - Dashbord</h1><br></br><br></br><br></br><br></br>
 
                     <Link to="/add">
 
-                     <button className="btn btn-primary">ADD NEW ITEMS</button>
+                     <button className="btn btn-primary">ADD NEW ITEMS</button><br></br>
+                    
 
                     </Link><br></br><br></br><br></br><br></br>
 
@@ -26,6 +27,7 @@ export default class StoreManagerDashbord extends Component {
                     <Link to="/viewItems">
 
                      <button className="btn btn-primary">VIEW ALL ITEMS</button>
+                     
 
                     </Link>
             </div>
