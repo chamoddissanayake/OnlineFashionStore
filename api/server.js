@@ -100,8 +100,8 @@ app.post('/api/selectitem', (req, res) => { //retrieve details of the selected i
 
 app.post('/api/comments', (req, res) => { //retrieve Comments
   console.log("request received for the retrieve comments");
-
-  console.log(req.body);
+  console.log(req.body.selectedProduct);
+  console.log("*");
 
 
   MongoClient.connect(url, function (err, db) {

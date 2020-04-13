@@ -28,8 +28,10 @@ export default class CommentBox extends React.Component {
 
         // axios.post(`${BASE_URL}/api/comments`, { id: productId })
         // .then(response => response.data);
-        console.log("-->" + this.state.selectedProduct._id);
-        console.log(this.props.selectedProduct.name);
+    }
+
+    render() {
+
 
         axios.post(`${BASE_URL}/api/comments`, { selectedProduct: this.props.selectedProduct })
             .then((comments) => {
@@ -45,9 +47,7 @@ export default class CommentBox extends React.Component {
                 console.log(error)
             });
 
-    }
 
-    render() {
         const comments = this._getComments();
         let commentNodes;
         let buttonText = 'Show Comments';
