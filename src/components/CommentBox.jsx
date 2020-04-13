@@ -32,20 +32,28 @@ export default class CommentBox extends React.Component {
 
     render() {
 
+        if (this.props.selectedProduct) {
+            axios.post(`${BASE_URL}/api/comments`, { selectedProduct: this.props.selectedProduct })
+                .then((comments) => {
 
-        axios.post(`${BASE_URL}/api/comments`, { selectedProduct: this.props.selectedProduct })
-            .then((comments) => {
+                    console.log(comments.data);
 
-                console.log(comments.data);
-                // if (res.data == true) {
-                //     alert('Added to DB successfully');
-                // } else {
-                //     alert('Error While adding to DB');
-                // }
+                    // var arr = [];
+                    // Object.keys(comments.data).forEach(function (key) {
+                    //     arr.push(comments.data[key]);
+                    // });
+                    // console.log("-------")
+                    // console.log(arr);
 
-            }).catch((error) => {
-                console.log(error)
-            });
+                    this.setState({
+                        comments: comments.data
+                    });
+
+
+                }).catch((error) => {
+                    console.log(error)
+                });
+        }
 
 
         const comments = this._getComments();

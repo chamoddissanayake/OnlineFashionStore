@@ -70,19 +70,6 @@ app.post('/api/selectitem', (req, res) => { //retrieve details of the selected i
   console.log("request received for the selected product");
   console.log(req.body.id);
 
-  // MongoClient.connect(url, function (err, db) {
-  //   if (err) throw err;
-  //   var dbo = db.db("FashionStore");
-  //   dbo.collection("products").find({}).toArray(function (err, result) {
-  //     if (err) throw err;
-  //     console.log(result);
-  //     let rrr = [];
-  //     rrr.push(result);
-  //     res.send(result);
-  //     db.close();
-  //   });
-  // });
-
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("FashionStore");
@@ -100,16 +87,16 @@ app.post('/api/selectitem', (req, res) => { //retrieve details of the selected i
 
 app.post('/api/comments', (req, res) => { //retrieve Comments
   console.log("request received for the retrieve comments");
-  console.log(req.body.selectedProduct);
+  console.log(req.body.selectedProduct._id);
   console.log("*");
 
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("FashionStore");
-    dbo.collection("comments").find({ productId: req.body.id }).toArray(function (err, result) {
+    dbo.collection("comments").find({ productId: req.body.selectedProduct._id }).toArray(function (err, result) {
       if (err) throw err;
-      // console.log(result);
+      console.log(result);
       res.send(result);
       db.close();
     });
