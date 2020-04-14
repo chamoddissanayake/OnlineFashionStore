@@ -8,16 +8,22 @@ export default class addItem extends Component {
         super(props);
         this.state = {
             id: '',
+            category: '',
             name: '',
             description: '',
             price: '',
-            available_quantity: ''
+            available_quantity: '',
+            discount: '',
+            image: ''
         };
         this.handleIdChange = this.handleIdChange.bind(this);
+        this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handlePriceChange = this.handlePriceChange.bind(this);
         this.handleAvailableQuantityChange = this.handleAvailableQuantityChange.bind(this);
+        this.handleDiscountChange = this.handleDiscountChange.bind(this);
+        this.handleImageChange = this.handleImageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -28,9 +34,17 @@ export default class addItem extends Component {
         }, () => {
             // console.log("Entered ID: ", this.state.id);
         });
-
-
     }
+
+    handleCategoryChange(event) {
+
+        this.setState({
+            category: event.target.value
+        }, () => {
+            // console.log("Entered Category: ", this.state.id);
+        });
+      }
+
     handleNameChange(event) {
         this.setState({
             name: event.target.value
@@ -60,6 +74,21 @@ export default class addItem extends Component {
         });
     }
 
+    handleDiscountChange(event) {
+        this.setState({
+            discount: event.target.value
+        }, () => {
+            // console.log("Entered discount: ", this.state.discount);
+        });
+      }
+    
+      handleImageChange(event) {
+        this.setState({
+            image: event.target.value
+        }, () => {
+            // console.log("Entered image: ", this.state.image);
+        });
+      }
 
 
     handleSubmit(event) {
@@ -74,10 +103,13 @@ export default class addItem extends Component {
 
         const productObject = {
             id: this.state.id,
+            category: this.state.category,
             name: this.state.name,
             description: this.state.description,
             price: this.state.price,
-            available_quantity: this.state.available_quantity
+            available_quantity: this.state.available_quantity,
+            discount:this.state.discount,
+            image:this.state.image
         };
         console.log(productObject);
         axios.post(`${BASE_URL}/api/products`, productObject)
@@ -85,9 +117,9 @@ export default class addItem extends Component {
 
                 console.log(res.data)
                 if (res.data == true) {
-                    alert('Added to DB successfully');
+                    alert('Item Saved successfully');
                 } else {
-                    alert('Error While adding to DB');
+                    alert('Error in saving');
                 }
 
             }).catch((error) => {
@@ -96,10 +128,13 @@ export default class addItem extends Component {
 
         this.setState({
             id: '',
+            category: '',
             name: '',
             description: '',
             price: '',
-            available_quantity: ''
+            available_quantity: '',
+            discount: '',
+            image:''
         })
     }
 
@@ -110,7 +145,7 @@ export default class addItem extends Component {
 
                 <form onSubmit={this.handleSubmit} action="/api/products" method="POST" >
                     <div className="form-group">
-                        <label>ID</label>
+                        <label>Item ID</label>
                         <input type="text"
                             className="form-control"
                             id="id"
@@ -118,7 +153,15 @@ export default class addItem extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label>Name</label>
+                        <label>Category</label>
+                        <input type="text" 
+                        className="form-control" 
+                        id="category" 
+                        onChange={this.handleCategoryChange} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Item Name</label>
                         <input type="text"
                             className="form-control"
                             id="name"
@@ -149,6 +192,23 @@ export default class addItem extends Component {
                             className="form-control"
                             id="available_quantity"
                             onChange={this.handleAvailableQuantityChange} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Discount</label>
+                        <input type="number" 
+                        min="0" step="0" 
+                        className="form-control" 
+                        id="discount" 
+                        onChange={this.handleDiscountChange} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Image</label>
+                        <input type="text" 
+                        className="form-control" 
+                        id="image" 
+                        onChange={this.handleImageChange} />
                     </div>
 
                     <button type="submit" className="btn btn-success">ADD THIS ITEM</button><br></br><br></br>

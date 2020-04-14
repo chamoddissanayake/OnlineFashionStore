@@ -139,9 +139,9 @@ export default class editItems extends Component {
 
         console.log(res.data)
         if (res.data == true) {
-          alert('Added to DB successfully');
+          alert('Item Edited successfully');
         } else {
-          alert('Error While adding to DB');
+          alert('Error in editing');
         }
 
       }).catch((error) => {

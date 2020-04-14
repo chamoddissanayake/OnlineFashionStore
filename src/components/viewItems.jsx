@@ -42,7 +42,7 @@ export default class viewItems extends Component{
             <table className="table table-striped" style={{ marginTop: 20 }}>
             <thead>
               <tr>
-                <th>Id</th>
+                <th>Item Id</th>
                 <th>Category</th>
                 <th>Item Name</th>
                 <th>Description</th>
