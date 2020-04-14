@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
+
 import axios from 'axios';
+
 import { Link } from 'react-router-dom';
+
 const BASE_URL = 'http://localhost:5000';
+
 export default class addItem extends Component {
 
     constructor(props) {
@@ -16,6 +20,7 @@ export default class addItem extends Component {
             discount: '',
             image: ''
         };
+        
         this.handleIdChange = this.handleIdChange.bind(this);
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -43,7 +48,7 @@ export default class addItem extends Component {
         }, () => {
             // console.log("Entered Category: ", this.state.id);
         });
-      }
+    }
 
     handleNameChange(event) {
         this.setState({
@@ -80,25 +85,19 @@ export default class addItem extends Component {
         }, () => {
             // console.log("Entered discount: ", this.state.discount);
         });
-      }
-    
-      handleImageChange(event) {
+    }
+
+    handleImageChange(event) {
         this.setState({
             image: event.target.value
         }, () => {
             // console.log("Entered image: ", this.state.image);
         });
-      }
+    }
 
 
     handleSubmit(event) {
-        // alert('Item was sumbitted' +
-        //     this.state.id +
-        //     this.state.name +
-        //     this.state.description +
-        //     this.state.price +
-        //     this.state.available_quantity
-        // );
+        
         event.preventDefault();
 
         const productObject = {
@@ -108,8 +107,8 @@ export default class addItem extends Component {
             description: this.state.description,
             price: this.state.price,
             available_quantity: this.state.available_quantity,
-            discount:this.state.discount,
-            image:this.state.image
+            discount: this.state.discount,
+            image: this.state.image
         };
         console.log(productObject);
         axios.post(`${BASE_URL}/api/products`, productObject)
@@ -134,7 +133,7 @@ export default class addItem extends Component {
             price: '',
             available_quantity: '',
             discount: '',
-            image:''
+            image: ''
         })
     }
 
@@ -154,10 +153,10 @@ export default class addItem extends Component {
 
                     <div className="form-group">
                         <label>Category</label>
-                        <input type="text" 
-                        className="form-control" 
-                        id="category" 
-                        onChange={this.handleCategoryChange} />
+                        <input type="text"
+                            className="form-control"
+                            id="category"
+                            onChange={this.handleCategoryChange} />
                     </div>
 
                     <div className="form-group">
@@ -196,19 +195,19 @@ export default class addItem extends Component {
 
                     <div className="form-group">
                         <label>Discount</label>
-                        <input type="number" 
-                        min="0" step="0" 
-                        className="form-control" 
-                        id="discount" 
-                        onChange={this.handleDiscountChange} />
+                        <input type="number"
+                            min="0" step="0"
+                            className="form-control"
+                            id="discount"
+                            onChange={this.handleDiscountChange} />
                     </div>
 
                     <div className="form-group">
                         <label>Image</label>
-                        <input type="text" 
-                        className="form-control" 
-                        id="image" 
-                        onChange={this.handleImageChange} />
+                        <input type="text"
+                            className="form-control"
+                            id="image"
+                            onChange={this.handleImageChange} />
                     </div>
 
                     <button type="submit" className="btn btn-success">ADD THIS ITEM</button><br></br><br></br>
