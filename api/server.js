@@ -60,9 +60,10 @@ app.get('/api/products', (req, res) => { //lists all  available products
       db.close();
     });
   });
-  //return res.json(data.products);
 
 });
+
+
 
 
 
@@ -84,19 +85,66 @@ app.post('/api/selectitem', (req, res) => { //retrieve details of the selected i
 });
 
 
-
 app.post('/api/comments', (req, res) => { //retrieve Comments
   console.log("request received for the retrieve comments");
   console.log(req.body.selectedProduct._id);
   console.log("*");
-
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("FashionStore");
     dbo.collection("comments").find({ productId: req.body.selectedProduct._id }).toArray(function (err, result) {
       if (err) throw err;
+      // console.log(result);
+      res.send(result);
+      db.close();
+    });
+  });
+
+});
+
+
+app.post('/api/wishlist', (req, res) => { //retrieve wishlist
+  console.log("request received for the retrieve wishlist");
+  console.log(req.body.loggedInUserObj);
+
+  let arr = [];
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    //Get items of the curret user from wishlist
+    dbo.collection("wishlist").find({ username: req.body.loggedInUserObj.username }).toArray(function (err, result) {
+      if (err) throw err;
       console.log(result);
+
+      result.forEach((element) => {
+        arr.push(element.productId);
+      });
+
+      // res.send(result);
+      db.close();
+    });
+  });
+
+  console.log("---");
+  console.log(arr);
+  console.log("---");
+
+  // arr.forEach((element) => {
+  //   console.log(element);
+  // });
+
+  //Get items of the curret user from wishlist
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    //Get items of the curret user from wishlist
+    dbo.collection("products").find({ _id: arr[0]._id }).toArray(function (err, result) {
+      if (err) throw err;
+      console.log("This is the final wishlist - start");
+      console.log(result);
+      console.log("This is the final wishlist - end");
       res.send(result);
       db.close();
     });
