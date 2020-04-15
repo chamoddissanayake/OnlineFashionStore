@@ -2,8 +2,6 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-
-
 export default class ProductItem extends React.Component {
 
   constructor(props) {
@@ -11,6 +9,7 @@ export default class ProductItem extends React.Component {
     super(props);
 
     this.state = { quantity: 1 }
+
 
   }
 
@@ -51,6 +50,8 @@ export default class ProductItem extends React.Component {
 
 
   render() {
+
+
 
     const { product } = this.props;
 
@@ -99,9 +100,6 @@ export default class ProductItem extends React.Component {
 
                       onClick={this.addToCart}>Add to cart</button>
 
-
-
-
                     <input type="number" value={this.state.quantity} name="quantity" min="0" max={product.available_quantity}
 
                       onChange={this.handleInputChange} className="float-right"
@@ -113,12 +111,11 @@ export default class ProductItem extends React.Component {
                   <p className="text-danger"> product is out of stock </p>
 
                 }
+                <div>
+                  <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/red-heart_2764.png"
+                    alt="Add to wishlist" height="30" width="30" />
+                </div>
 
-                {
-/* <p>{product.imageURL_main}</p>
-<p>{product.imageURL_1}</p>
-<p>{product.imageURL_2}</p>
-<p>{product.imageURL_3}</p> */}
               </div>
               {/* Display Details - end */}
             </td>
