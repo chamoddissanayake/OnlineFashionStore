@@ -20,6 +20,8 @@ import editItems from './components/editItems';
 
 import StoreManagerDashbord from './components/StoreManagerDashbord';
 
+import Wishlist from './components/Wishlist';
+
 import selectItem from './components/selectItem';
 import utils from './utils/utils';
 import Logout from './components/Logout';
@@ -109,6 +111,10 @@ class App extends Component {
                   <Link className="nav-item nav-link" to="/storeManager">StoreManagerDashbord</Link><br />
                   {/* </span>} */}
 
+                  {this.state.loggedInUserObj.type == "member" && <span>
+                    <Link className="nav-item nav-link" to="/wishlist">My Wishlist</Link><br />
+                  </span>}
+
                   {/* {(auth) ? <Link className="nav-item nav-link" to="/checkout">
 
                     Checkout</Link> : ''} */}
@@ -169,6 +175,8 @@ class App extends Component {
             <Route exact path="/editItems/:id" component={editItems} />
 
             <Route exact path="/storeManager" component={StoreManagerDashbord} />
+
+            <Route exact path="/wishlist" component={Wishlist} />
 
             {/* <Route exact path="/selectItem" component={selectItem} /> */}
             <Route exact path="/selectItem/:id" component={selectItem} />
