@@ -1,19 +1,29 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
+import utils from '../utils/utils';
 
 export default class ProductItem extends React.Component {
 
   constructor(props) {
 
     super(props);
-
-    this.state = { quantity: 1 }
-
-
+    this.handleWishlistClick = this.handleWishlistClick.bind(this);
+    this.state = {
+      quantity: 1,
+      loggedInUserObj: {}
+    }
   }
 
+  componentDidMount() {
+    this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
+  }
 
+  handleWishlistClick(product) {
+    console.log("Wishlist clicked");
+    console.log(product._id);
+    console.log(this.state.loggedInUserObj.username);
+  }
 
   handleInputChange = event =>
 
@@ -46,7 +56,11 @@ export default class ProductItem extends React.Component {
     localStorage.setItem('cart', JSON.stringify(cart));
 
   }
+  // clickWishlistIcon = (product) => {
+  //   console.log("Wishlist Clicked");
+  //   // console.log(product_Id);
 
+  // }
 
 
   render() {
@@ -77,7 +91,6 @@ export default class ProductItem extends React.Component {
 
                 <p className="card-text">{product.category}</p>
 
-                <p className="card-text">{product.brand}</p>
                 <p className="card-text">{product.brand}</p>
 
                 <h4 className="card-title">{product.name}</h4>
@@ -111,10 +124,13 @@ export default class ProductItem extends React.Component {
                   <p className="text-danger"> product is out of stock </p>
 
                 }
-                <div>
-                  <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/red-heart_2764.png"
-                    alt="Add to wishlist" height="30" width="30" />
-                </div>
+
+                {this.state.loggedInUserObj.type == "member" && <span>
+                  <div onClick={() => this.handleWishlistClick(product)}  >
+                    <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/red-heart_2764.png"
+                      alt="Add to wishlist" height="30" width="30" />
+                  </div>
+                </span>}
 
               </div>
               {/* Display Details - end */}

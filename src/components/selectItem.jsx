@@ -11,12 +11,13 @@ export default class selectItem extends Component {
     constructor(props) {
 
         super(props);
-
+        this.handleWishlistClick = this.handleWishlistClick.bind(this);
         this.state = {
             currentID: this.props.match.params.id,
             selectedProduct: {},
             quantity: 1,
-            loggedInUserObj: {}
+            loggedInUserObj: {},
+
         }
 
     }
@@ -35,6 +36,11 @@ export default class selectItem extends Component {
 
         // axios.post(`${BASE_URL}/api/selectitem`, { id: this.state.currentID })
         //     .then(response => response.data);
+    }
+    handleWishlistClick(product) {
+        console.log("Wishlist clicked");
+        console.log(product._id);
+        // console.log(this.state.loggedInUserObj.username);
     }
     addToCart = () => {
 
@@ -210,10 +216,12 @@ export default class selectItem extends Component {
                                     <tr>
                                         <td>
                                             {/* Add To wishlist */}
-                                            <div>
+                                            {/* {this.state.loggedInUserObj.type == "member" && <span> */}
+                                            <div onClick={() => this.handleWishlistClick(selectedProduct)}  >
                                                 <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/red-heart_2764.png"
                                                     alt="Add to wishlist" height="30" width="30" />
                                             </div>
+                                            {/* </span>} */}
 
                                         </td>
                                         <td>
