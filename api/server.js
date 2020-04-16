@@ -116,39 +116,51 @@ app.post('/api/wishlist', (req, res) => { //retrieve wishlist
     //Get items of the curret user from wishlist
     dbo.collection("wishlist").find({ username: req.body.loggedInUserObj.username }).toArray(function (err, result) {
       if (err) throw err;
+      console.log("--------");
       console.log(result);
+      console.log("---------");
 
       result.forEach((element) => {
+        console.log(element.productId)
         arr.push(element.productId);
       });
 
-      // res.send(result);
-      db.close();
-    });
-  });
+      var index = 0;
+      let resultProductWishlist = [];
 
-  console.log("---");
-  console.log(arr);
-  console.log("---");
-
-  // arr.forEach((element) => {
-  //   console.log(element);
-  // });
-
-  //Get items of the curret user from wishlist
-  MongoClient.connect(url, function (err, db) {
-    if (err) throw err;
-    var dbo = db.db("FashionStore");
-    //Get items of the curret user from wishlist
-    dbo.collection("products").find({ _id: arr[0]._id }).toArray(function (err, result) {
-      if (err) throw err;
       console.log("This is the final wishlist - start");
-      console.log(result);
+      while (index < arr.length) {
+        console.log(arr[index]);
+
+        dbo.collection("products").findOne({ _id: arr[index] }, function (err, result) {
+          if (err) throw err;
+          console.log(result);
+          console.log("Found Result");
+          resultProductWishlist.push(result);
+          db.close();
+        });
+        //Checking each items in the items collection and get data - end
+        index++;
+      }
       console.log("This is the final wishlist - end");
-      res.send(result);
+      res.send(resultProductWishlist);
       db.close();
     });
   });
+
+  // MongoClient.connect(url, function (err, db) {
+  //   if (err) throw err;
+  //   var dbo = db.db("FashionStore");
+  //   //Get items of the curret user from wishlist
+  //   dbo.collection("products").find({ _id: arr[0]._id }).toArray(function (err, result) {
+  //     if (err) throw err;
+  //     console.log("This is the final wishlist - start");
+  //     console.log(result);
+  //     console.log("This is the final wishlist - end");
+  //     res.send(result);
+  //     db.close();
+  //   });
+  // });
 
 });
 

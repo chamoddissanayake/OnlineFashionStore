@@ -12,25 +12,17 @@ export default class Wishlist extends Component {
         super();
         this.state = {
             loggedInUserObj: {},
-            wishlistArr: [
-                // { id: "5e96ba2c0c8f0d5534e32a44", productId: "5e8855ff909ead0d64801cb7", username: "ccc", addedDate: "04/15/2020" },
-                // { id: "5e96ca8a0c8f0d5534e32a45", productId: "5e8855ff909ead0d64801cb7", username: "ccc", addedDate: "04/15/2020" }
-            ],
-
+            wishlistArr: []
         };
-
     }
-
 
     componentDidMount() {
         this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
+        console.log("Component Did mount - start");
         console.log(this.state.loggedInUserObj);
+        console.log(this.state.loggedInUserObj.username);
+        console.log("Component Did mount - end");
 
-
-
-    }
-
-    render() {
 
         axios.post(`${BASE_URL}/api/wishlist`, { loggedInUserObj: this.state.loggedInUserObj })
             .then((wishlist) => {
@@ -46,6 +38,11 @@ export default class Wishlist extends Component {
                 // console.log(error)
                 console.log("Something went wrong");
             });
+    }
+
+    render() {
+
+
 
 
         return (
