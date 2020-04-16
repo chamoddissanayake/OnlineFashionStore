@@ -3,6 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import utils from '../utils/utils';
 
+import axios from 'axios';
+const BASE_URL = 'http://localhost:5000';
+
 export default class ProductItem extends React.Component {
 
   constructor(props) {
@@ -23,6 +26,34 @@ export default class ProductItem extends React.Component {
     console.log("Wishlist clicked");
     console.log(product._id);
     console.log(this.state.loggedInUserObj.username);
+    console.log(utils.getCurrentDate());
+
+    //Insert wishlist to db
+    var objToWishlist =
+    {
+      username: this.state.loggedInUserObj.username,
+      productId: product._id,
+      addedDate: utils.getCurrentDate()
+    };
+
+    axios.post(`${BASE_URL}/api/addWishlist`, { objToWishlist })
+
+      .then(response => {
+        // console.log(response.data);
+
+
+        if (response.data == true) {
+          alert("Item was added to your wishlist");
+        } else {
+          alert("Error occurred while adding to your wishlist");
+        }
+      })
+      .catch(err => {
+        alert("Error Occurred");
+        Promise.reject('Something Went Wrong!')
+      });
+
+
   }
 
   handleInputChange = event =>

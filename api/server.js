@@ -154,6 +154,9 @@ app.post('/api/wishlist', (req, res) => { //retrieve wishlist
 
 
 
+
+
+
 // app.post('/api/products', (req, res) => { //generates the list of products in the cart
 
 //   let products = [], id = null;
@@ -217,6 +220,40 @@ app.post('/api/products', (req, res) => { //generates the list of products in th
 });
 
 
+
+//Add wishlist to the DB
+app.post('/api/addWishlist', (req, res) => {
+  console.log("Add to wishlist started");
+
+  var tempWishlistObj = new Object();
+  console.log("#");
+  console.log(req.body.objToWishlist);
+  console.log("*");
+
+  tempWishlistObj.productId = req.body.objToWishlist.productId;
+  tempWishlistObj.username = req.body.objToWishlist.username;
+  tempWishlistObj.addedDate = req.body.objToWishlist.addedDate;
+
+
+
+  var MongoClient = require('mongodb').MongoClient;
+  var url = "mongodb://localhost:27017/";
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("wishlist").insertOne(tempWishlistObj, function (err1, res1) {
+      if (err1) throw err1;
+      console.log("Item was added to the wishlist added.");
+      res.send(true);
+      db.close();
+
+    });
+  });
+
+
+
+});
 
 app.post('/api/auth', (req, res) => { //signs in user
 

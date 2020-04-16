@@ -16,7 +16,7 @@ export default class selectItem extends Component {
             currentID: this.props.match.params.id,
             selectedProduct: {},
             quantity: 1,
-            loggedInUserObj: {},
+            loggedInUserObj: {}
 
         }
 
@@ -41,6 +41,28 @@ export default class selectItem extends Component {
         console.log("Wishlist clicked");
         console.log(product._id);
         // console.log(this.state.loggedInUserObj.username);
+
+        //Insert wishlist to db
+        var objToWishlist =
+        {
+            username: this.state.loggedInUserObj.username,
+            productId: product._id,
+            addedDate: utils.getCurrentDate()
+        };
+
+        axios.post(`${BASE_URL}/api/addWishlist`, { objToWishlist })
+
+            .then(response => {
+                // console.log(response.data);
+                alert("Item was added to your wishlist");
+            })
+            .catch(err => {
+                alert("Error Occurred");
+                Promise.reject('Something Went Wrong!')
+            });
+
+
+
     }
     addToCart = () => {
 

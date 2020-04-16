@@ -37,7 +37,7 @@ export function getCartProducts(cart) {
                 .then(response => {
                         console.log(response.data);
                 })
-                .catch(err => Promise.reject('Something Went Wronong!'));
+                .catch(err => Promise.reject('Something Went Wrong!'));
 
 }
 
