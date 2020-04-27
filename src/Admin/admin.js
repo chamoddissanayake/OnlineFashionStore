@@ -13,4 +13,9 @@ angular.module('admin', []).controller('adminCtrl', function($scope , $interval 
     TodaydateArray =  date.toString().split(' ');
     $scope.displayTodayDate = "     " + TodaydateArray[1] + "/" + TodaydateArray[2] + "/" + TodaydateArray[3] + "\t" + "\t";
 
+
+    $scope.Email = function () {
+        //godk adarei mge raththrn e dws wla aduwa
+        http.sendEmail()
+    }
 });
