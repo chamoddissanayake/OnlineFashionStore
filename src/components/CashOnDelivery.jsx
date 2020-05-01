@@ -56,7 +56,7 @@ export default class CashOnDelivery extends Component {
                             <label class="form-check-label" for="exampleCheck1">Agree tearms and conditions</label>
                         </div>
                         <p>* Delivery Charges will be applied</p>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Place Order >>></button>
                     </form>
                 </div>
 
