@@ -8,6 +8,8 @@ MongoClient.connect(url1, function(err, db) {
   console.log("Database created!");
   db.close();
 });
+
+
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("FashionStore");
@@ -27,4 +29,24 @@ MongoClient.connect(url, function(err, db) {
     console.log("users Collection created!");
     db.close();
   });
-}); 
+});
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("FashionStore");
+  dbo.createCollection("storeManagers", function(err, res) {
+    if (err) throw err;
+    console.log("store manager Collection created!");
+    db.close();
+  });
+});
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("FashionStore");
+  dbo.createCollection("categories", function(err, res) {
+    if (err) throw err;
+    console.log("categories Collection created!");
+    db.close();
+  });
+});

@@ -17,6 +17,9 @@ const data = require('./data');
 const middleware = require('./middleware');
 const fetch = require('node-fetch');
 
+//for send Emails when a new store manger created
+var nodemailer = require('nodemailer');
+
 
 app.use(bodyParser.json());
 
@@ -402,3 +405,33 @@ const PORT = 5000;
 app.listen(PORT);
 
 console.log('api runnging on port ' + PORT + ': ');
+
+
+/*   Please Do not Uncomment This section
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  tls:{
+        rejectUnauthorized: false
+    },
+  auth: {
+    user: 'prageethpramuditha.2020@gmail.com',
+    pass: 'prageeth.456'
+  }
+});
+
+var mailOptions = {
+  from: 'prageethpramuditha.2020@gmail.com',
+  to: 'prageethpramuditha.20162@gmail.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+
+ */

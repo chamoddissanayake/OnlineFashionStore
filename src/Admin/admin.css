@@ -1,0 +1,26 @@
+.backColorTop {
+    background-color: #8A2BE2;
+}
+
+.bodyHeight{
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #00BDFC;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #454545;
+
+}
+.backColorFotter {
+    background-color: #454545;
+}
+
+.wth {
+    height : 3vw;
+    background-color: #00BDFC;
+}
