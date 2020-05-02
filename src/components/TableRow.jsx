@@ -33,11 +33,11 @@ export default class TableRow extends React.Component {
   render() {
 
     return (
-      <tr>
+      <tr >
         <td>
           {this.props.obj.id}
         </td>
-        <td>
+        <td >
           {this.props.obj.category}
         </td>
         <td>

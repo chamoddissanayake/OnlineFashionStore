@@ -396,6 +396,10 @@ app.post('/api/products/delete/', (req, res) => {
 
 });
 
+app.get('/api/products/editItems/:id', (req, res) => {
+ console.log("Edit1");
+});
+
 
 
 const PORT = 5000;

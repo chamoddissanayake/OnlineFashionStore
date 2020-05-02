@@ -9,27 +9,25 @@ const BASE_URL = 'http://localhost:5000';
 
 export default class StoreManagerDashbord extends Component {
 
-    render(){
-        return(
-            
-            <div>
+    render() {
+        return (
+            <div >
+                <h1>Store Manager - Dashbord</h1><br></br><br></br><br></br><br></br>
 
-                    <h1>Store Manager - Dashbord</h1><br></br><br></br><br></br><br></br>
+                <Link to="/add">
 
-                    <Link to="/add">
-
-                     <button className="btn btn-primary">ADD NEW ITEMS</button><br></br>
-                    
-
-                    </Link><br></br><br></br><br></br><br></br>
+                    <button className="btn btn-primary ">ADD NEW ITEMS</button><br></br>
 
 
-                    <Link to="/viewItems">
+                </Link><br></br><br></br><br></br><br></br>
 
-                     <button className="btn btn-primary">VIEW ALL ITEMS</button>
-                     
 
-                    </Link>
+                <Link to="/viewItems">
+
+                    <button className="btn btn-primary">VIEW ALL ITEMS</button>
+
+
+                </Link>
             </div>
         )
     }
