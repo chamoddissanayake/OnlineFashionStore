@@ -30,7 +30,10 @@ export default class editItems extends Component {
   }
 
   componentDidMount() {
+    console.log("Component Did Mount Method");
+    
     axios.get('${BASE_URL}/api/products/editItems/'+this.props.match.params.id)
+    
         .then(response => {
             this.setState({ 
               id: response.data.id, 

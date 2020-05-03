@@ -37,16 +37,18 @@ export default class viewItems extends Component{
         return (
     
           <div className=" container">
-    
-            <h3 className="card-title">View Items</h3><hr />
+            <center>
+            <h3>All Items</h3>
+            </center>
+            
             <table className="table table-striped" style={{ marginTop: 20 }}>
             <thead>
-              <tr>
+              <tr class="bg-primary">
                 <th>Item Id</th>
                 <th>Category</th>
                 <th>Item Name</th>
                 <th>Description</th>
-                <th>Price</th>
+                <th>Item Price</th>
                 <th>Available Quantity</th>
                 <th>Discount</th>
                 <th>Image</th>
