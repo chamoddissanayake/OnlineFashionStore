@@ -14,18 +14,16 @@ export default class TableRow extends React.Component {
   }
 
   delete() {
-    // axios.get('${BASE_URL}/api/products/delete/'+this.props.obj._id)
-    //     .then(console.log('Deleted'))
-    //     .catch(err => console.log(err))
-
-
-
-
+  
     axios.post(`${BASE_URL}/api/products/delete/`, { id: this.props.obj.id })
       .then(response => {
-        console.log("--");
         console.log(response);
-        console.log("---");
+        if (response.data == true) {
+          alert('Item Deleted Successfully');
+      } else {
+          alert('Error in Deleting');
+      }
+
       });
 
 
@@ -62,7 +60,9 @@ export default class TableRow extends React.Component {
           <Link to={"/editItems/" + this.props.obj._id} className="btn btn-primary">Edit</Link>
         </td>
         <td>
-          <button onClick={this.delete} className="btn btn-danger">Delete</button>
+          <Link to="/viewItems">
+            <button onClick={this.delete} className="btn btn-danger">Delete</button>
+          </Link>
         </td>
       </tr>
     )
