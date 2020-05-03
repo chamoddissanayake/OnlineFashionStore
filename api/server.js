@@ -1,6 +1,9 @@
 'use strict';
 
+// import dbCon from '../src/utils/db_Connection';
 
+
+<script src="../src/utils/utils/db_Connection.js"></script>
 
 const express = require('express');
 
@@ -27,8 +30,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+// var url = "mongodb://localhost:27017/";
 
+var url = dbCon.mongoURIConnString;
 
 // app.get('/api/products', (req, res) => { //lists all  available products
 //   console.log("request received for get products");
@@ -218,7 +222,8 @@ app.post('/api/products', (req, res) => { //generates the list of products in th
   tempItemObj.image = req.body.image;
 
   var MongoClient = require('mongodb').MongoClient;
-  var url = "mongodb://localhost:27017/";
+  // var url = "mongodb://localhost:27017/";
+  var url = dbCon.mongoURIConnString;
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
@@ -252,7 +257,8 @@ app.post('/api/addWishlist', (req, res) => {
 
 
   var MongoClient = require('mongodb').MongoClient;
-  var url = "mongodb://localhost:27017/";
+  // var url = "mongodb://localhost:27017/";
+  var url = dbCon.mongoURIConnString;
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
@@ -281,7 +287,8 @@ app.post('/api/auth', (req, res) => { //signs in user
   // tempLoginUserObj.password = req.body.password;
 
   var MongoClient = require('mongodb').MongoClient;
-  var url = "mongodb://localhost:27017/";
+  // var url = "mongodb://localhost:27017/";
+  var url = dbCon.mongoURIConnString;
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
@@ -376,7 +383,8 @@ app.post('/api/products/delete/', (req, res) => {
   console.log(req.body.id);
 
   var MongoClient = require('mongodb').MongoClient;
-  var url = "mongodb://localhost:27017/";
+  // var url = "mongodb://localhost:27017/";
+  var url = dbCon.mongoURIConnString;
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
