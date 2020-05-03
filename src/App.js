@@ -25,7 +25,7 @@ import Wishlist from './components/Wishlist';
 import selectItem from './components/selectItem';
 import utils from './utils/utils';
 import Logout from './components/Logout';
-
+import PaymentMethod from './components/paymentMethod';
 
 
 class App extends Component {
@@ -197,6 +197,8 @@ class App extends Component {
             {(!auth) ? <Route exact path="/login" component={Login} /> : ''}
 
             <Route exact path="/logout" component={Logout} />
+
+            <Route exact path="/paymentMethod" component={PaymentMethod} />
 
           </div>
 
