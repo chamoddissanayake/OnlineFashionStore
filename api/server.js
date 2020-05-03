@@ -1,9 +1,7 @@
 'use strict';
 
-// import dbCon from '../src/utils/db_Connection';
+const dbCon = require('../src/utils/db_Connection');
 
-
-<script src="../src/utils/utils/db_Connection.js"></script>
 
 const express = require('express');
 
@@ -405,7 +403,7 @@ app.post('/api/products/delete/', (req, res) => {
 });
 
 app.get('/api/products/editItems/:id', (req, res) => {
- console.log("Edit1");
+  console.log("Edit1");
 });
 
 
