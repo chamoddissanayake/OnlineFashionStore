@@ -36,7 +36,7 @@ export default class paymentMethod extends Component {
     }
     handleCashOnDeliveryClick() {
         console.log("Handle Cash On Delivery clicked");
-        window.location.href = '/paymentGateway?type=cash';
+        window.location.href = '/cashOnDelivery';
     }
 
 

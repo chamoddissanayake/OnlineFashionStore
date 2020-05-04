@@ -27,6 +27,7 @@ import utils from './utils/utils';
 import Logout from './components/Logout';
 import PaymentMethod from './components/paymentMethod';
 import PaymentGateway from './components/PaymentGateway';
+import CashOnDelivery from './components/CashOnDelivery';
 
 
 class App extends Component {
@@ -202,6 +203,9 @@ class App extends Component {
             <Route exact path="/paymentMethod" component={PaymentMethod} />
 
             <Route exact path="/paymentGateway" component={PaymentGateway} />
+
+            <Route exact path="/cashOnDelivery" component={CashOnDelivery} />
+
 
           </div>
 
