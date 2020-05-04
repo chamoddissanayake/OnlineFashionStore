@@ -26,6 +26,7 @@ import selectItem from './components/selectItem';
 import utils from './utils/utils';
 import Logout from './components/Logout';
 import PaymentMethod from './components/paymentMethod';
+import PaymentGateway from './components/PaymentGateway';
 
 
 class App extends Component {
@@ -199,6 +200,8 @@ class App extends Component {
             <Route exact path="/logout" component={Logout} />
 
             <Route exact path="/paymentMethod" component={PaymentMethod} />
+
+            <Route exact path="/paymentGateway" component={PaymentGateway} />
 
           </div>
 
