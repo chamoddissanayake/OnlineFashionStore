@@ -10,8 +10,7 @@
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
+
     width: 100%;
     background-color: #454545;
 
@@ -21,15 +20,22 @@
 }
 
 .tbl {
-    width : 50%;
-    float: right;
-    margin-right: 2%;
+
 }
 
 .frm {
-    width: 40%;
-    float: left;
+    width: 80%;
+    margin : 0 0 ;
 
-    margin-left: 2%;
+}
 
+@media screen and (orientation: portrait) {
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #454545;
+
+    }
 }
