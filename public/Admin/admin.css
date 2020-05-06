@@ -20,7 +20,16 @@
     background-color: #454545;
 }
 
-.wth {
-    height : 3vw;
-    background-color: #00BDFC;
+.tbl {
+    width : 50%;
+    float: right;
+    margin-right: 2%;
+}
+
+.frm {
+    width: 40%;
+    float: left;
+
+    margin-left: 2%;
+
 }
