@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Login from './components/Login';
+import Loginxx from './components/Loginxx';
 
 import Products from './components/ProductList';
 
@@ -196,7 +196,7 @@ class App extends Component {
             <Route exact path="/selectItem/:id" component={selectItem} />
 
 
-            {(!auth) ? <Route exact path="/login" component={Login} /> : ''}
+            {(!auth) ? <Route exact path="/login" component={Loginxx} /> : ''}
 
             <Route exact path="/logout" component={Logout} />
 

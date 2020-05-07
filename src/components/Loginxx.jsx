@@ -5,7 +5,7 @@ import { Redirect, Link } from 'react-router-dom';
 
 const BASE_URL = 'http://localhost:5000';
 
-export default class Login extends React.Component {
+export default class Loginxx extends React.Component {
   constructor() {
     super();
     this.state = { username: '', password: '' };
@@ -27,14 +27,14 @@ export default class Login extends React.Component {
     }, () => {
       // console.log("Entered Username: ", this.state.username);
     });
-  }
+  };
   handlePasswordChange(event) {
     this.setState({
       password: event.target.value
     }, () => {
       // console.log("Entered Password: ", this.state.password);
     });
-  }
+  };
 
 
   submitLogin = (event) => {
