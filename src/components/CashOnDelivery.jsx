@@ -1,16 +1,32 @@
 import React, { Component } from 'react'
 import commentBoxStyles from '../css/cashOnDeliveryStyles.css';
+import utils from '../utils/utils';
+
 
 export default class CashOnDelivery extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            loggedInUserObj: {}
+        };
+
+    }
+
+    componentDidMount() {
+        this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
+    }
+
     render() {
         return (
             <div>
+
 
                 <div id="cashOnDeliveryHeading" >
                     <h2>Cash On Delevery</h2>
                 </div>
 
-                <table style="width:100%">
+                <table >
                     <tr>
                         <td>
                             {/* Table Left start */}
@@ -25,16 +41,17 @@ export default class CashOnDelivery extends Component {
 
 
 
+
                 <div id="cashOnDeliveryBody">
                     <form id="cashOnDeliveryForm">
                         <div class="form-group">
                             <label for="inputUsername">Username</label>
-                            <input type="text" class="form-control" id="inputUsername" placeholder="Username" />
+                            <input type="text" class="form-control" id="inputUsername" placeholder="Username" value={this.state.loggedInUserObj.username} readonly />
 
                         </div>
                         <div class="form-group">
                             <label for="inputEmail">Email</label>
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" />
+                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" value={this.state.loggedInUserObj.email} readonly />
 
                         </div>
                         <div class="form-group">
