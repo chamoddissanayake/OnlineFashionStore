@@ -17,6 +17,11 @@ export default class CashOnDelivery extends Component {
         this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
     }
 
+    handleCashOnDeliveryClicked() {
+        console.log("Handle visa clicked");
+        // window.location.href = '/paymentGateway?type=visa';
+    }
+
     render() {
         return (
             <div>
@@ -88,7 +93,8 @@ export default class CashOnDelivery extends Component {
                             <label class="form-check-label" for="exampleCheck1">Agree tearms and conditions</label>
                         </div>
                         <p>* Delivery Charges will be applied</p>
-                        <button type="submit" class="btn btn-primary">Place Order >>></button>
+                        <button type="submit" class="btn btn-primary" onClick={this.handleCashOnDeliveryClicked} >Place Order >>></button>
+
                     </form>
                 </div>
 

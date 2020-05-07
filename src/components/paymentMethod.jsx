@@ -14,30 +14,26 @@ export default class paymentMethod extends Component {
     };
 
 
-    // handleRadioChange(event) {
+    handleRadioChange(event) {
+        // console.log(event.currentTarget.value);
+        if (event.currentTarget.value == 'vi') {
+            window.location.href = '/paymentGateway?type=visa';
+        } else if (event.currentTarget.value == 'masa') {
+            window.location.href = '/paymentGateway?type=master';
+        } else if (event.currentTarget.value == 'ame') {
+            window.location.href = '/paymentGateway?type=amex';
+        } else if (event.currentTarget.value == 'vis') {
+            window.location.href = '/paymentGateway?type=hnb';
+        } else if (event.currentTarget.value == 'ez') {
+            window.location.href = '/cashOnDelivery';
+        }
 
-    // }
 
-    handleVisaClick() {
-        console.log("Handle visa clicked");
-        window.location.href = '/paymentGateway?type=visa';
+
+
+
     }
-    handleMasterClick() {
-        console.log("Handle Master clicked");
-        window.location.href = '/paymentGateway?type=master';
-    }
-    handleAmexClick() {
-        console.log("Handle Amex clicked");
-        window.location.href = '/paymentGateway?type=amex';
-    }
-    handleHNBClick() {
-        console.log("Handle HNB clicked");
-        window.location.href = '/paymentGateway?type=hnb';
-    }
-    handleCashOnDeliveryClick() {
-        console.log("Handle Cash On Delivery clicked");
-        window.location.href = '/cashOnDelivery';
-    }
+
 
 
 
@@ -58,28 +54,28 @@ export default class paymentMethod extends Component {
                                 <h3 class="headingTop text-center">Select Your Payment Method</h3>
                             </div>
                             <div class="paymentWrap">
-                                <div class="btn-group paymentBtnGroup btn-group-justified" data-toggle="buttons" >
+                                <div class="btn-group paymentBtnGroup btn-group-justified"  >
                                     <label class="btn paymentMethod active">
                                         <div class="method visa"></div>
-                                        <input type="radio" name="options" value="visa" onChange={this.handleRadioChange} />
+                                        <input type="radio" name="options" value="vi" onChange={this.handleRadioChange} />
 
 
                                     </label>
                                     <label class="btn paymentMethod">
                                         <div class="method master-card"></div>
-                                        <input type="radio" name="options" onChange={this.handleRadioChange} />
+                                        <input type="radio" name="options" value="masa" onChange={this.handleRadioChange} />
                                     </label>
                                     <label class="btn paymentMethod">
                                         <div class="method amex"></div>
-                                        <input type="radio" name="options" onChange={this.handleRadioChange} />
+                                        <input type="radio" name="options" value="ame" onChange={this.handleRadioChange} />
                                     </label>
                                     <label class="btn paymentMethod">
                                         <div class="method vishwa"></div>
-                                        <input type="radio" name="options" onChange={this.handleRadioChange} />
+                                        <input type="radio" name="options" value="vis" onChange={this.handleRadioChange} />
                                     </label>
                                     <label class="btn paymentMethod">
                                         <div class="method ez-cash"></div>
-                                        <input type="radio" name="options" onChange={this.handleRadioChange} />
+                                        <input type="radio" name="options" value="ez" onChange={this.handleRadioChange} />
                                     </label>
 
                                 </div>
@@ -92,14 +88,6 @@ export default class paymentMethod extends Component {
 
                     </div>
                 </div>
-
-
-                <button onClick={this.handleVisaClick} >--Visa--</button>
-                <button onClick={this.handleMasterClick} >--Master--</button>
-                <button onClick={this.handleAmexClick} >--Amex--</button>
-                <button onClick={this.handleHNBClick} >--HNB--</button>
-                <button onClick={this.handleCashOnDeliveryClick} >--Cash On Delivery--</button>
-
 
 
 
