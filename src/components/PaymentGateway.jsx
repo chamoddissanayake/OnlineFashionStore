@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import paymentGatewayStyles from '../css/paymentGatewayStyles.css';
 
 
+
 export default class PaymentGateway extends Component {
     render() {
         return (
             <div>
+                {console.log(this.props.location)}
 
                 <div class="container">
 

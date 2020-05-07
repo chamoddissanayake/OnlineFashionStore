@@ -5,10 +5,25 @@ export default class CashOnDelivery extends Component {
     render() {
         return (
             <div>
-                Cash on Delevery
-                {/* <div id="cashOnDeliveryHeading" >
+
+                <div id="cashOnDeliveryHeading" >
                     <h2>Cash On Delevery</h2>
                 </div>
+
+                <table style="width:100%">
+                    <tr>
+                        <td>
+                            {/* Table Left start */}
+                            {/* Table left end */}
+                        </td>
+                        <td>
+                            {/* Table right start */}
+                            {/* Table right end */}
+                        </td>
+                    </tr>
+                </table>
+
+
 
                 <div id="cashOnDeliveryBody">
                     <form id="cashOnDeliveryForm">
@@ -58,7 +73,7 @@ export default class CashOnDelivery extends Component {
                         <p>* Delivery Charges will be applied</p>
                         <button type="submit" class="btn btn-primary">Place Order >>></button>
                     </form>
-                </div> */}
+                </div>
 
 
             </div>
