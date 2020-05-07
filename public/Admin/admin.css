@@ -10,8 +10,7 @@
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
+
     width: 100%;
     background-color: #454545;
 
@@ -20,7 +19,23 @@
     background-color: #454545;
 }
 
-.wth {
-    height : 3vw;
-    background-color: #00BDFC;
+.tbl {
+
+}
+
+.frm {
+    width: 80%;
+    margin : 0 0 ;
+
+}
+
+@media screen and (orientation: portrait) {
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #454545;
+
+    }
 }
