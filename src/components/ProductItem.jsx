@@ -66,24 +66,14 @@ export default class ProductItem extends React.Component {
 
     let cart = localStorage.getItem('cart')
 
-      ? JSON.parse(localStorage.getItem('cart')) : {};
+      ? JSON.parse(localStorage.getItem('cart')) : [];
 
-    let id = this.props.product.id.toString();
+    let currentObj = this.props.product;
 
-    cart[id] = (cart[id] ? cart[id] : 0);
-
-    let qty = cart[id] + parseInt(this.state.quantity);
-
-    if (this.props.product.available_quantity < qty) {
-
-      cart[id] = this.props.product.available_quantity;
-
-    } else {
-
-      cart[id] = qty
-
-    }
-
+    console.log(this.props.product.available_quantity);
+    if (this.props.product.available_quantity > 0) {
+      cart.push(currentObj)
+    };
     localStorage.setItem('cart', JSON.stringify(cart));
 
   }
@@ -92,6 +82,7 @@ export default class ProductItem extends React.Component {
   //   // console.log(product_Id);
 
   // }
+
 
 
   render() {
