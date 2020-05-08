@@ -33,6 +33,22 @@ export default class Cart extends Component {
         console.log(this.state.allCartItems);
     }
 
+    updatecart(cartItem) {
+        var cart = [];
+        for (var kkk = 0; kkk < this.state.allCartItems.length; kkk++) {
+            var cartItemaa = this.state.allCartItems[kkk];
+            if (cartItemaa._id == cartItem._id) {
+                cartItemaa.needQuantity = cartItem.needQuantity;
+                cart.push(cartItemaa);
+            } else {
+                cart.push(cartItemaa);
+            }
+
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        this.setCartItems();
+    }
+
 
     deleteFromCart(cartItem) {
         console.log(cartItem._id);
@@ -81,6 +97,8 @@ export default class Cart extends Component {
                             onChange={(e) => {
                                 console.log("sdfsdf" + e.target.value)
                                 cartItem.needQuantity = e.target.value
+
+                                this.updatecart(cartItem);
 
                                 this.setState({
                                 })
