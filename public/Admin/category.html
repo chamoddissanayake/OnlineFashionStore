@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title></title>
 
+    <link rel="stylesheet" href="./admin.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js" ></script>
 
 
@@ -20,29 +22,12 @@
 
 <div class="frm mx-5 my-5">
     <h2>Add Category</h2><br>
-    <form>
-        <div class="form-group">
-            <label for="input1">Fist Name</label>
-            <input type="text" class="form-control" id="input1">
-        </div>
-        <div class="form-group">
-            <label for="input2">Last Name</label>
-            <input type="text" class="form-control" id="input2">
-        </div>
-        <div class="form-group">
-            <label for="input3">Mobile Number</label>
-            <input type="number" class="form-control" id="input3">
-        </div>
-        <div class="form-group">
-            <label for="input4">Email address</label>
-            <input type="email" class="form-control" id="input4" aria-describedby="emailHelp">
-        </div>
-        <div class="form-group">
-            <label for="input5">One Time Password</label>
-            <input type="password" class="form-control" id="input5">
-        </div>
+    <form class="form-inline"  style="margin:  0 auto">
 
-        <button type="submit" class="btn btn-primary my-2">Submit</button>
+
+            <input type="text" class="form-control form-group  mb-2" style="width: 50%; margin: auto 0" id="inputPassword2" placeholder="Enter the category here..">
+
+        <button type="submit" class="btn btn-primary mx-2 mb-2">Add Category</button>
     </form>
 </div>
 <div class="tbl mx-5 my-5 ">
@@ -61,21 +46,21 @@
             <th scope="row">1</th>
             <td>Mark</td>
             <td>Otto</td>
-            <td style="text-align: right ; cursor: pointer" class="text-danger"><i class="fas fa-trash"></i></td>
+            <td  class="text-danger"><i class="fas fa-trash" style="text-align: right ; cursor: pointer"></i></td>
 
         </tr>
         <tr>
             <th scope="row">2</th>
             <td>Jacob</td>
             <td>Thornton</td>
-            <td style="text-align: right ; cursor: pointer" class="text-danger"><i class="fas fa-trash"></i></td>
+            <td  class="text-danger"><i class="fas fa-trash" style="text-align: right ; cursor: pointer"></i></td>
 
         </tr>
         <tr>
             <th scope="row">3</th>
             <td>Larry</td>
             <td>the Bird</td>
-            <td style="text-align: right ; cursor: pointer" class="text-danger"><i class="fas fa-trash"></i></td>
+            <td  class="text-danger"><i class="fas fa-trash" style="text-align: right ; cursor: pointer"></i></td>
 
         </tr>
         </tbody>

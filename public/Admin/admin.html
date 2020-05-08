@@ -47,31 +47,31 @@
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
-                        <a class={{clz1}} ng-click="changeIndex(0)">Category Details</a>
+                        <a class={{clz1}} style="cursor: pointer;" ng-click="changeIndex(0)">Category Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class={{clz2}} ng-click="changeIndex(1)">Store Manager Details</a>
+                        <a class={{clz2}} style="cursor: pointer;" ng-click="changeIndex(1)">Store Manager Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class={{clz3}} ng-click="changeIndex(2)" >Users Management</a>
+                        <a class={{clz3}} style="cursor: pointer;" ng-click="changeIndex(2)" >Users Management</a>
                     </li>
                 </ul>
             </div>
 
         </div>
 
-        <!--Body-->
+         <!--Body-->
         <div class="content">
-            <div ng-if="pageIndex == 0" ng-include ="'category.html'"></div>
-            <div ng-if="pageIndex == 1" ng-include = "'storeMangr.html'"></div>
-            <div ng-if="pageIndex == 2" ng-include = "'users.html'"></div>
+           <div ng-if="pageIndex == 0" ng-include ="'category.html'"></div>
+           <div ng-if="pageIndex == 1" ng-include = "'storeMangr.html'"></div>
+           <div ng-if="pageIndex == 2" ng-include = "'users.html'"></div>
         </div>
 
         <div ng-view></div>
-    <!--Fotter-->
+    <!--Fotter
     <div class="footer">
         <div class="p-3 mb-2 backColorFotter text-center  text-white"> | Copyright ©2020 All rights reserved @ SLIIT - MALABE | </div>
-    </div>
+    </div>-->
     <script src="admin.js"></script>
 </body>
 </html>
