@@ -47,6 +47,21 @@ export default class Cart extends Component {
 
                     </div>
                 </Router>
+
+                {this.state.allCartItems ? this.state.allCartItems.map(cartItem => (
+                    <tr>
+                        {/* <td>{cartItem}</td> */}
+                        <td>{cartItem._id}</td>
+                        <td>{cartItem.id}</td>
+                        <td>{cartItem.category}</td>
+                        <td>{cartItem.brand}</td>
+                        <td>{cartItem.brand}</td> */}
+                    </tr>
+                )) : null}
+
+
+
+
             </div>
         )
     }
