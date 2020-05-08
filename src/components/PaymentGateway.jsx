@@ -4,10 +4,16 @@ import paymentGatewayStyles from '../css/paymentGatewayStyles.css';
 
 
 export default class PaymentGateway extends Component {
+
+    componentDidMount() {
+        console.log("--")
+        console.log(this.props.match.type)
+    }
+
     render() {
         return (
             <div>
-                {console.log(this.props.location)}
+                {/* {console.log(this.props.location)} */}
 
                 <div class="container">
 

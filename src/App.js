@@ -72,6 +72,7 @@ class App extends Component {
   componentDidMount() {
     // this.checkLoggedInUser();
     this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
+
   }
 
 
