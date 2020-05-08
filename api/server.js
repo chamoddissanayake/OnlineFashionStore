@@ -27,6 +27,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
+var mongo = require('mongodb');
+
 var MongoClient = require('mongodb').MongoClient;
 // var url = "mongodb://localhost:27017/";
 
@@ -52,7 +54,7 @@ var url = dbCon.mongoURIConnString;
 
 
 app.get('/api/products', (req, res) => { //lists all  available products
-  console.log("request received for get products");
+  console.log("request received for get products123");
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("FashionStore");
@@ -73,15 +75,25 @@ app.get('/api/products', (req, res) => { //lists all  available products
 
 
 app.post('/api/selectitem', (req, res) => { //retrieve details of the selected item
-  console.log("request received for the selected product");
+
+
+
+  console.log("request received for the selected product1");
   console.log(req.body.id);
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("FashionStore");
-    dbo.collection("products").findOne({}, function (err, result) {
+    console.log("shfjhdgfjshdfg");
+    console.log(req.body.id);
+    var o_id = new mongo.ObjectID(req.body.id);
+
+    dbo.collection("products").find({ _id: o_id }).toArray(function (err, result) {
+
       if (err) throw err;
-      // console.log(result);
+      console.log("--");
+      console.log(result);
+
       res.send(result);
       db.close();
     });
@@ -220,6 +232,7 @@ app.post('/api/products', (req, res) => { //generates the list of products in th
   tempItemObj.image = req.body.image;
 
   var MongoClient = require('mongodb').MongoClient;
+
   // var url = "mongodb://localhost:27017/";
   var url = dbCon.mongoURIConnString;
 

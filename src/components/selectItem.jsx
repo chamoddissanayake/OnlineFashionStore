@@ -29,7 +29,8 @@ export default class selectItem extends Component {
             .then((product) => {
                 // this.setState(product);
                 // this.setState(this.state.selectedProduct.push(product));
-                this.setState(this.state.selectedProduct = product);
+
+                this.setState(this.state.selectedProduct = product[0]);
             }).catch((error) => {
                 console.log(error);
             });
