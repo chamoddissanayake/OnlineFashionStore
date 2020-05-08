@@ -1,0 +1,42 @@
+#delbutton{
+    margin-left: 100px;
+}
+
+.table-row{
+    background-image: url("../pictures/background1.png");
+    width: 150%;
+
+}
+
+.cartImage{
+    margin-left: 40px;
+    margin-top: 15px;
+}
+
+.smallTable{
+    width: 95%;
+}
+
+#delbutton{
+    margin-left: 60px;
+}
+
+
+.tr {
+    border-radius: 10px;
+}
+
+.totPriceLbl{
+    width: 83%;
+    text-align: right;
+}
+
+.totPriceVal{
+    width: 100%;
+    padding-left: 10px;
+}
+
+.CartTitle{
+    text-align: center;
+    font-weight: bold;
+}
