@@ -113,7 +113,7 @@ export default class selectItem extends Component {
 
         return (
             <div>
-                {this.props.match.params.id}<br />
+                {/* {this.props.match.params.id}<br />
                 {console.log(selectedProduct)}<br />
                 {selectedProduct._id}<br />
                 {selectedProduct.id}<br />
@@ -122,7 +122,7 @@ export default class selectItem extends Component {
                 {selectedProduct.name}<br />
                 {selectedProduct.description}<br />
                 {selectedProduct.price}<br />
-                {selectedProduct.available_quantity}<br />
+                {selectedProduct.available_quantity}<br /> */}
                 {/* {selectedProduct.imageURL_main}
                 {selectedProduct.imageURL_1}
                 {selectedProduct.imageURL_2}
