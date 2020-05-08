@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import utils from '../utils/utils';
+import commentBoxStyles from '../css/productItemStyles.css';
 
 import axios from 'axios';
 const BASE_URL = 'http://localhost:5000';
@@ -94,21 +95,21 @@ export default class ProductItem extends React.Component {
 
     return (
 
-      <div className="card" style={{ marginBottom: "10px" }}>
+      <div className="card" id="currentCard" >
 
 
         <table>
           <tr>
-            <td>
+            <td id="table-left-side">
               {/* Display image- start */}
               <Link to={"/selectItem/" + product._id}>
-                <img src={product.imageURL_main} alt="Image Not Found" height="250" width="200" />
+                <img id="productImg" src={product.imageURL_main} alt="Image Not Found" height="250" width="200" />
               </Link>
 
 
               {/* Display image- end */}
             </td>
-            <td>
+            <td id="table-right-side" >
               {/* Display Details - start */}
               <div className="card-body">
 
@@ -136,11 +137,11 @@ export default class ProductItem extends React.Component {
 
                       onClick={this.addToCart}>Add to cart</button>
 
-                    <input type="number" value={this.state.quantity} name="quantity" min="0" max={product.available_quantity}
+                    <input type="number" value={this.state.quantity} name="quantity" min="0" max={product.available_quantity} class="form-control"
 
                       onChange={this.handleInputChange} className="float-right"
 
-                      style={{ width: "60px", marginRight: "10px", borderRadius: "3px" }} />
+                      style={{ width: "60px", marginRight: "10px", borderRadius: "3px" }} ></input>
 
                   </div> :
 

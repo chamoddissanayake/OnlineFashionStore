@@ -1,0 +1,17 @@
+#currentCard{ 
+    margin-bottom: 10px;
+    background-image: url("https://wallpapercave.com/wp/QGj5HZS.jpg");
+}
+
+#productImg{
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+#table-left-side{
+    width: 25%;
+}
+
+#table-right-side{
+    width: 75%;
+}
