@@ -12,15 +12,19 @@ export default class Cart extends Component {
         super();
         this.state = {
             loggedInUserObj: {},
-            allCartItems: []
+            allCartItems: [],
+            totprice: 0
+
         };
 
     }
 
     setCartItems() {
+        let ggg = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
         this.setState({
-            allCartItems: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
+            allCartItems: ggg
         })
+        this.calcTot(ggg);
     }
 
     gotoPaymentMethod = (event) => {
@@ -28,9 +32,22 @@ export default class Cart extends Component {
         window.location.href = '/paymentMethod';
     };
 
-    componentDidMount() {
-        this.setCartItems();
-        console.log(this.state.allCartItems);
+
+
+    calcTot(ggg) {
+        if (!ggg) {
+            ggg = this.state.allCartItems;
+        }
+        var tot = 0;
+        for (var i = 0; i < ggg.length; i++) {
+            var cartItemaa = ggg[i];
+            tot = tot + (cartItemaa.needQuantity * cartItemaa.price)
+        }
+
+        this.setState({
+            totprice: tot
+        })
+
     }
 
     updatecart(cartItem) {
@@ -47,6 +64,8 @@ export default class Cart extends Component {
         }
         localStorage.setItem('cart', JSON.stringify(cart));
         this.setCartItems();
+
+        // this.calcTot();
     }
 
 
@@ -62,6 +81,16 @@ export default class Cart extends Component {
         }
         localStorage.setItem('cart', JSON.stringify(cart));
         this.setCartItems();
+
+        // this.calcTot();
+    }
+
+    componentDidMount() {
+        this.setCartItems();
+        console.log("skjdfhskdjfhksjdhf")
+        console.log(this.state.allCartItems);
+
+        // this.calcTot();
     }
 
     render() {
@@ -110,7 +139,7 @@ export default class Cart extends Component {
                 )) : null}
 
 
-
+                {this.state.totprice}
 
             </div>
         )
