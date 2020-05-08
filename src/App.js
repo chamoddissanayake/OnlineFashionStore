@@ -36,11 +36,23 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      loggedInUserObj: {}
+      loggedInUserObj: {},
+      ccou: 0
     };
 
   }
 
+  loadCou() {
+    this.setState({
+      ccou: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")).length : 0
+    })
+    setTimeout(
+      function () {
+        this.loadCou();
+      }.bind(this),
+      1000
+    );
+  }
 
   logOut() {
 
@@ -71,7 +83,10 @@ class App extends Component {
   componentDidMount() {
     // this.checkLoggedInUser();
     this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
+    this.loadCou();
   }
+
+
 
   render() {
     const auth = isAuthenticated();
@@ -164,7 +179,7 @@ class App extends Component {
               <Link className="nav-item nav-link float-right" to="/cart">
                 <img src="https://f1.pngfuel.com/png/797/375/618/supermarket-cartoon-shopping-cart-shopping-centre-grocery-store-online-shopping-yellow-orange-area-png-clip-art.png"
                   alt="Cart" height="35" width="35" />
-                {localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")).length : 0}
+                {this.state.ccou}
               </Link>
 
             </span>}
