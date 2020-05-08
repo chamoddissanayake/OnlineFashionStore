@@ -64,31 +64,42 @@ export default class selectItem extends Component {
 
 
     }
+
+
     addToCart = () => {
 
         let cart = localStorage.getItem('cart')
 
-            ? JSON.parse(localStorage.getItem('cart')) : {};
+            ? JSON.parse(localStorage.getItem('cart')) : [];
 
-        let id = this.state.selectedProduct.id.toString();
+        let currentObj = this.state.selectedProduct;
 
-        cart[id] = (cart[id] ? cart[id] : 0);
 
-        let qty = cart[id] + parseInt(this.state.quantity);
-
-        if (this.state.selectedProduct.available_quantity < qty) {
-
-            cart[id] = this.state.selectedProduct.available_quantity;
-
-        } else {
-
-            cart[id] = qty
-
-        }
-
+        if (this.state.selectedProduct.available_quantity > 0) {
+            cart.push(currentObj)
+        };
         localStorage.setItem('cart', JSON.stringify(cart));
 
+
+        // cart[id] = (cart[id] ? cart[id] : 0);
+
+        // let qty = cart[id] + parseInt(this.state.quantity);
+
+        // if (this.state.selectedProduct.available_quantity < qty) {
+
+        //     cart[id] = this.state.selectedProduct.available_quantity;
+
+        // } else {
+
+        //     cart[id] = qty
+
+        // }
+
+
+
     }
+
+
 
     handleInputChange = event =>
 
