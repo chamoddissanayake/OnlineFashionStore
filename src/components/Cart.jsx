@@ -33,6 +33,21 @@ export default class Cart extends Component {
         console.log(this.state.allCartItems);
     }
 
+
+    deleteFromCart(cartItem) {
+        console.log(cartItem._id);
+        var cart = [];
+        for (var kkk = 0; kkk < this.state.allCartItems.length; kkk++) {
+            var cartItemaa = this.state.allCartItems[kkk];
+            if (cartItemaa._id != cartItem._id) {
+                cart.push(cartItemaa);
+            }
+            // localStorage.removeItem("cart");
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        this.setCartItems();
+    }
+
     render() {
         return (
             <div>
@@ -51,11 +66,16 @@ export default class Cart extends Component {
                 {this.state.allCartItems ? this.state.allCartItems.map(cartItem => (
                     <tr>
                         {/* <td>{cartItem}</td> */}
-                        <td>{cartItem._id}</td>
-                        <td>{cartItem.id}</td>
-                        <td>{cartItem.category}</td>
-                        <td>{cartItem.brand}</td>
-                        <td>{cartItem.brand}</td> */}
+                        <li>{cartItem._id}</li>
+                        <li>{cartItem.id}</li>
+                        <li>{cartItem.category}</li>
+                        <li>{cartItem.brand}</li>
+                        <li>{cartItem.description}</li>
+                        <li>{cartItem.name}</li>
+                        <li>{cartItem.price}</li>
+                        <img src={cartItem.imageURL_main} alt="Image missing" height="250" width="200" />
+                        <button onClick={() => this.deleteFromCart(cartItem)} >X</button>
+                        <br></br>
                     </tr>
                 )) : null}
 
