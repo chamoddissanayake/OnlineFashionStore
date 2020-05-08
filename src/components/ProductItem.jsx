@@ -69,6 +69,7 @@ export default class ProductItem extends React.Component {
       ? JSON.parse(localStorage.getItem('cart')) : [];
 
     let currentObj = this.props.product;
+    currentObj.needQuantity = this.state.quantity;
 
     console.log(this.props.product.available_quantity);
     if (this.props.product.available_quantity > 0) {

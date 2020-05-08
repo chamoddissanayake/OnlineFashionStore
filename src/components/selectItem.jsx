@@ -74,28 +74,13 @@ export default class selectItem extends Component {
             ? JSON.parse(localStorage.getItem('cart')) : [];
 
         let currentObj = this.state.selectedProduct;
+        currentObj.needQuantity = this.state.quantity;
 
 
         if (this.state.selectedProduct.available_quantity > 0) {
             cart.push(currentObj)
         };
         localStorage.setItem('cart', JSON.stringify(cart));
-
-
-        // cart[id] = (cart[id] ? cart[id] : 0);
-
-        // let qty = cart[id] + parseInt(this.state.quantity);
-
-        // if (this.state.selectedProduct.available_quantity < qty) {
-
-        //     cart[id] = this.state.selectedProduct.available_quantity;
-
-        // } else {
-
-        //     cart[id] = qty
-
-        // }
-
 
 
     }

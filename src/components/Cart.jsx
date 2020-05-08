@@ -73,7 +73,19 @@ export default class Cart extends Component {
                         <li>{cartItem.description}</li>
                         <li>{cartItem.name}</li>
                         <li>{cartItem.price}</li>
+                        <li>{cartItem.available_quantity}</li>
+
                         <img src={cartItem.imageURL_main} alt="Image missing" height="250" width="200" />
+
+                        <input id="needCount" type="number" value={cartItem.needQuantity} min="0" max={cartItem.available_quantity}
+                            onChange={(e) => {
+                                console.log("sdfsdf" + e.target.value)
+                                cartItem.needQuantity = e.target.value
+
+                                this.setState({
+                                })
+                            }}></input>
+
                         <button onClick={() => this.deleteFromCart(cartItem)} >X</button>
                         <br></br>
                     </tr>
