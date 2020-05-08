@@ -290,22 +290,37 @@ app.post('/api/auth', (req, res) => { //signs in user
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
+    console.log("1");
     var dbo = db.db("FashionStore");
+    console.log("2");
     dbo.collection("users").findOne({ username: req.body.username, password: req.body.password }, function (err1, result) {
+      console.log("3");
       if (err1) throw err1;
       // console.log(result);
-
+      console.log("4");
       var currentLoggedInUserObj = new Object();
+      console.log("----");
+      console.log(result);
+      console.log("5");
+      if (result == null) {
+        console.log("6");
+        currentLoggedInUserObj.isFound = 'false';
+        res.send(currentLoggedInUserObj);
+        db.close();
+      } else {
+        console.log("7");
+        currentLoggedInUserObj._id = result._id;
+        currentLoggedInUserObj.username = result.username;
+        currentLoggedInUserObj.email = result.email;
+        currentLoggedInUserObj.type = result.type;
+        currentLoggedInUserObj.isFound = 'true';
 
-      currentLoggedInUserObj._id = result._id;
-      currentLoggedInUserObj.username = result.username;
-      currentLoggedInUserObj.email = result.email;
-      currentLoggedInUserObj.type = result.type;
+
+        res.send(currentLoggedInUserObj);
+        db.close();
+      }
 
 
-
-      res.send(currentLoggedInUserObj);
-      db.close();
     });
   });
 

@@ -12,7 +12,8 @@ export default class Loginxx extends React.Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      iscorrect: ''
 
     };
 
@@ -55,48 +56,75 @@ export default class Loginxx extends React.Component {
         if (res.data) {
           // console.log(res.data);
 
+
+
           var loggedInUserObj = new Object();
 
-          loggedInUserObj._id = res.data._id;
-          loggedInUserObj.username = res.data.username;
-          loggedInUserObj.email = res.data.email;
-          loggedInUserObj.type = res.data.type;
+          console.log(res.data.isFound);
 
-          localStorage.setItem("loggedInUser", JSON.stringify(loggedInUserObj));
+          if (res.data.isFound == 'true') {
+            loggedInUserObj._id = res.data._id;
+            loggedInUserObj.username = res.data.username;
+            loggedInUserObj.email = res.data.email;
+            loggedInUserObj.type = res.data.type;
 
-          this.setState({
-            currentUser: loggedInUserObj
-          })
+            localStorage.setItem("loggedInUser", JSON.stringify(loggedInUserObj));
 
-          if (res.data.type == 'member') {
+            this.setState({
+              currentUser: loggedInUserObj
+            })
 
+            if (res.data.type == 'member') {
+
+              const { location } = this.props;
+              if (location.state && location.state.from) {
+                this.props.history.push(location.state.from);
+              } else {
+                this.props.history.push('/');
+              }
+
+            } else if (res.data.type == 'manager') {
+
+              const { location } = this.props;
+              if (location.state && location.state.from) {
+                this.props.history.push(location.state.from);
+              } else {
+                this.props.history.push('/manager');
+              }
+
+            } else if (res.data.type == 'admin') {
+
+              const { location } = this.props;
+              if (location.state && location.state.from) {
+                this.props.history.push(location.state.from);
+              } else {
+                this.props.history.push('/admin');
+              }
+
+            }
+            window.location.reload();
+
+
+          } else if (res.data.isFound == 'false') {
             const { location } = this.props;
             if (location.state && location.state.from) {
               this.props.history.push(location.state.from);
             } else {
-              this.props.history.push('/');
+              this.props.history.push('/login');
+
+              this.setState({
+                isFound: 'Username or password incorrect',
+                username: '',
+                password: ''
+              }, () => {
+
+              });
+
             }
-
-          } else if (res.data.type == 'manager') {
-
-            const { location } = this.props;
-            if (location.state && location.state.from) {
-              this.props.history.push(location.state.from);
-            } else {
-              this.props.history.push('/manager');
-            }
-
-          } else if (res.data.type == 'admin') {
-
-            const { location } = this.props;
-            if (location.state && location.state.from) {
-              this.props.history.push(location.state.from);
-            } else {
-              this.props.history.push('/admin');
-            }
-
+            console.log(this.state.isFound);
           }
-          window.location.reload();
+
+
 
         } else {
           alert("Incorrect Username or password");
@@ -135,6 +163,7 @@ export default class Loginxx extends React.Component {
                   <input type="password" className="form-control"
                     name="password" onChange={this.handlePasswordChange} />
                 </div>
+                <p>{this.state.isFound}</p>
                 <button type="submit" className="btn btn-success">Submit</button>
               </form>
             </div>
