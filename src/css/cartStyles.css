@@ -27,8 +27,8 @@
 }
 
 .totPriceLbl{
-    width: 83%;
-    text-align: right;
+    width: 82%;
+    padding-left: 350px;
 }
 
 .totPriceVal{
@@ -39,4 +39,13 @@
 .CartTitle{
     text-align: center;
     font-weight: bold;
+}
+
+.fashionstoreImg{
+    width: 125%;
+    height: 70%;
+}
+
+.large-table-left{
+    width: 64%
 }
