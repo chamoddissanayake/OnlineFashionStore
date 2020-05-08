@@ -164,9 +164,7 @@ class App extends Component {
               <Link className="nav-item nav-link float-right" to="/cart">
                 <img src="https://f1.pngfuel.com/png/797/375/618/supermarket-cartoon-shopping-cart-shopping-centre-grocery-store-online-shopping-yellow-orange-area-png-clip-art.png"
                   alt="Cart" height="35" width="35" />
-
-
-
+                {localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")).length : 0}
               </Link>
 
             </span>}
