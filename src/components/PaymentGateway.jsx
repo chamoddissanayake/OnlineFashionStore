@@ -5,9 +5,32 @@ import paymentGatewayStyles from '../css/paymentGatewayStyles.css';
 
 export default class PaymentGateway extends Component {
 
+
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            typeImg: ''
+        }
+    }
+
+
     componentDidMount() {
         console.log("--")
-        console.log(this.props.match.type)
+        console.log(this.props.location.search)
+    }
+
+    findType() {
+        if (this.props.location.search == '?type=visa') {
+            this.setState({ typeImg: 'https://firebasestorage.googleapis.com/v0/b/fashionstore-276105.appspot.com/o/payment%2Fvisa.png?alt=media&token=7b49edee-3b0b-4990-9ba0-759d34033c34' });
+        } else if (this.props.location.search == '?type=master') {
+            this.setState({ typeImg: 'https://firebasestorage.googleapis.com/v0/b/fashionstore-276105.appspot.com/o/payment%2Fmaster.png?alt=media&token=781b9692-1711-46d6-8051-ea802ed31ef5' });
+        } else if (this.props.location.search == '?type=amex') {
+            this.setState({ typeImg: 'https://firebasestorage.googleapis.com/v0/b/fashionstore-276105.appspot.com/o/payment%2Famex.png?alt=media&token=b425e3cd-94c6-4dfd-b119-cd3d82af42b6' });
+        } else if (this.props.location.search == '?type=hnb') {
+            this.setState({ typeImg: 'https://firebasestorage.googleapis.com/v0/b/fashionstore-276105.appspot.com/o/payment%2Fhnb.png?alt=media&token=5486385c-11d0-4d24-9dcc-e3e730ec339b' });
+        }
+
     }
 
     render() {
@@ -28,7 +51,8 @@ export default class PaymentGateway extends Component {
                                     <div class="panel-heading">
                                         <div class="row">
                                             <h3 class="text-center">Payment Details</h3>
-                                            <img class="img-responsive cc-img" src="http://www.prepbootstrap.com/Content/images/shared/misc/creditcardicons.png" />
+                                            {/* <img class="img-responsive cc-img" src="http://www.prepbootstrap.com/Content/images/shared/misc/creditcardicons.png" /> */}
+                                            <img class="img-responsive cc-img" src={this.state.typeImg} />
                                         </div>
                                     </div>
                                     <div class="panel-body">
