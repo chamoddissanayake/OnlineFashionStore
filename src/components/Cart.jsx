@@ -6,38 +6,48 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 
 export default class Cart extends Component {
+
+
+    constructor() {
+        super();
+        this.state = {
+            loggedInUserObj: {},
+            allCartItems: []
+        };
+
+    }
+
+    setCartItems() {
+        this.setState({
+            allCartItems: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
+        })
+    }
+
     gotoPaymentMethod = (event) => {
-        
-        window.location.href='/paymentMethod';
+
+        window.location.href = '/paymentMethod';
     };
+
+    componentDidMount() {
+        this.setCartItems();
+        console.log(this.state.allCartItems);
+    }
+
     render() {
         return (
-            <Router>
-            {/* <div>
-                Cart
-                
-                <Link className="navbar-brand" to="/paymentMethod">
-                <button>Proceed >>></button>
-                </Link>
-
-                <div className="container">
-                <Route exact path="/paymentMethod" component={PaymentMethod} />
-                </div>
-
-            </div> */}
             <div>
-                Cart
-                
-                <button onClick={this.gotoPaymentMethod}>Proceed >>></button>
+                <Router>
 
+                    <div>
+
+                        {console.log(this.state.allCartItems)}
+                                Cart
+
+                                <button onClick={this.gotoPaymentMethod}>Proceed >>></button>
+
+                    </div>
+                </Router>
             </div>
-
-
-
-
-
-            </Router>
-
         )
     }
 }
