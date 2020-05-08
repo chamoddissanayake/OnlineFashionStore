@@ -1,4 +1,31 @@
-angular.module('admin', []).controller('adminCtrl', function($scope , $interval ) {
+var app = angular.module('admin', ["ngRoute"]);
+
+app.controller('adminCtrl', function($scope , $interval ) {
+    $scope.clz1 = "nav-link active";
+    $scope.clz2 = "nav-link ";
+    $scope.clz3 = "nav-link ";
+    $scope.pageIndex = 0;
+
+
+    $scope.changeIndex= function(indexToChange){
+        if(indexToChange == 0) {
+            $scope.clz1 = "nav-link active"
+            $scope.clz2 = "nav-link "
+            $scope.clz3 = "nav-link "
+        }
+        if(indexToChange == 1) {
+            $scope.clz1 = "nav-link "
+            $scope.clz2 = "nav-link active"
+            $scope.clz3 = "nav-link "
+        }
+        if(indexToChange == 2) {
+            $scope.clz1 = "nav-link "
+            $scope.clz2 = "nav-link "
+            $scope.clz3 = "nav-link active"
+        }
+        $scope.pageIndex = indexToChange;
+    }
+
 
     var tick = function() {
         $scope.clock = Date.now();

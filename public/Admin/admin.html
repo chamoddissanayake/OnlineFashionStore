@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Admin Panel</title>
 
+    <script data-semver="1.4.9" src="https://code.angularjs.org/1.6.4/angular.js" data-require="angular.js@1.4.x"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js" ></script>
 
 
@@ -42,13 +47,13 @@
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Category Details</a>
+                        <a class={{clz1}} ng-click="changeIndex(0)">Category Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#">Store Manager Details</a>
+                        <a class={{clz2}} ng-click="changeIndex(1)">Store Manager Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Users Management</a>
+                        <a class={{clz3}} ng-click="changeIndex(2)" >Users Management</a>
                     </li>
                 </ul>
             </div>
@@ -56,70 +61,13 @@
         </div>
 
         <!--Body-->
-        <div class="frm mx-5 my-5">
-            <h2>Add Category</h2><br>
-            <form>
-                <div class="form-group">
-                    <label for="input1">Fist Name</label>
-                    <input type="text" class="form-control" id="input1">
-                </div>
-                <div class="form-group">
-                    <label for="input2">Last Name</label>
-                    <input type="text" class="form-control" id="input2">
-                </div>
-                <div class="form-group">
-                    <label for="input3">Mobile Number</label>
-                    <input type="number" class="form-control" id="input3">
-                </div>
-                <div class="form-group">
-                    <label for="input4">Email address</label>
-                    <input type="email" class="form-control" id="input4" aria-describedby="emailHelp">
-                      </div>
-                <div class="form-group">
-                    <label for="input5">One Time Password</label>
-                    <input type="password" class="form-control" id="input5">
-                </div>
-
-                <button type="submit" class="btn btn-primary my-2">Submit</button>
-            </form>
-        </div>
-        <div class="tbl mx-5 my-5 ">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Category Name</th>
-                    <th scope="col">No of Items</th>
-                    <th scope="col"></th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td style="text-align: right ; cursor: pointer" class="text-danger"><i class="fas fa-trash"></i></td>
-
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td style="text-align: right ; cursor: pointer" class="text-danger"><i class="fas fa-trash"></i></td>
-
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td style="text-align: right ; cursor: pointer" class="text-danger"><i class="fas fa-trash"></i></td>
-
-                </tr>
-                </tbody>
-            </table>
+        <div class="content">
+            <div ng-if="pageIndex == 0" ng-include ="'category.html'"></div>
+            <div ng-if="pageIndex == 1" ng-include = "'storeMangr.html'"></div>
+            <div ng-if="pageIndex == 2" ng-include = "'users.html'"></div>
         </div>
 
+        <div ng-view></div>
     <!--Fotter-->
     <div class="footer">
         <div class="p-3 mb-2 backColorFotter text-center  text-white"> | Copyright ©2020 All rights reserved @ SLIIT - MALABE | </div>

@@ -409,7 +409,7 @@ app.get('/api/products/editItems/:id', (req, res) => {
 });
 
 
-app.get('/api/storeManger', (req, res) => {
+app.get('/storeManger', (req, res) => {
   console.log("Called");
   res.sendFile(__dirname + '/');
 });
@@ -421,7 +421,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('/storeManger', (req, res, next) => {
+app.post('/storeManger', (req, res) => {
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     tls:{
@@ -435,7 +435,7 @@ app.post('/storeManger', (req, res, next) => {
 
   var mailOptions = {
     from: 'prageethpramuditha.2020@gmail.com',
-    to: 'prageethpramuditha.20162@gmail.com',
+    //to: req.body.emailAdd,
     subject: 'Sending Email using Node.js',
     text: 'That was easy!'
   };
@@ -458,7 +458,3 @@ app.listen(PORT);
 
 console.log('api runnging on port ' + PORT + ': ');
 
-
-/*   Please Do not Uncomment This section
-
- */
