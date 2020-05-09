@@ -1,8 +1,19 @@
+const BASE_URL = 'http://localhost:5000';
+
 function login() {
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('Password').value;
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:5000/api/storeManger',
+        dataType: 'json',
 
+        success: function(){
 
-    alert("done");
+            alert("Appointment Added Successfully!");
+            console.log("Added");
+        },
+        error: function(xhr, status, error) {
+            alert(xhr.responseText);
+        }
+    });
 
 }

@@ -18,6 +18,7 @@ const data = require('./data');
 const middleware = require('./middleware');
 const fetch = require('node-fetch');
 
+app.use(express.static(__dirname));
 //for send Emails when a new store manger created
 var nodemailer = require('nodemailer');
 
@@ -34,6 +35,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 var url = dbCon.mongoURIConnString;
 
+var path = require('path');
 // app.get('/api/products', (req, res) => { //lists all  available products
 //   console.log("request received for get products");
 //   MongoClient.connect(url, function (err, db) {
@@ -521,7 +523,82 @@ app.get('/api/products/editItems/:id', (req, res) => {
   console.log("Edit1");
 });
 
+//Get StoreManager Details
+app.get('/storeManger', (req, res) => {
+  console.log("Called");
+  res.sendFile(__dirname + '/');
+});
 
+//Get Category Details
+app.get('/category', (req, res) => {
+  console.log("Called");
+  res.sendFile(__dirname + '/');
+});
+
+//insert a category
+app.post('/category', (req, res) => {
+  console.log("Add to category started");
+  console.log(req.body.categoryName);
+  var categoryObj = new Object();
+
+
+  categoryObj.categoryName = req.body.categoryName;
+  categoryObj.noOfItems = req.body.noOfItems;
+
+  var MongoClient = require('mongodb').MongoClient;
+  // var url = "mongodb://localhost:27017/";
+  var url = dbCon.mongoURIConnString;
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("category").insertOne(categoryObj, function (err1, res1) {
+      if (err1) throw err1;
+      console.log("Item was added to the category added.");
+      res.send(true);
+      db.close();
+
+    });
+  });
+
+});
+
+
+app.get('/', (req, res) => {
+  app.use(express.static(path.join(__dirname, '../public/Admin/')));
+  console.log("Called");
+  res.sendFile(path.join(__dirname, '../public/Admin/admin.html'));
+});
+
+
+app.post('/storeManger', (req, res) => {
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    tls:{
+      rejectUnauthorized: false
+    },
+    auth: {
+      user: 'prageethpramuditha.2020@gmail.com',
+      pass: ''
+    }
+  });
+
+  var mailOptions = {
+    from: 'prageethpramuditha.2020@gmail.com',
+    //to: req.body.emailAdd,
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+
+});
 
 const PORT = 5000;
 
@@ -531,32 +608,3 @@ app.listen(PORT);
 
 console.log('api runnging on port ' + PORT + ': ');
 
-
-/*   Please Do not Uncomment This section
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  tls:{
-        rejectUnauthorized: false
-    },
-  auth: {
-    user: 'prageethpramuditha.2020@gmail.com',
-    pass: 'prageeth.456'
-  }
-});
-
-var mailOptions = {
-  from: 'prageethpramuditha.2020@gmail.com',
-  to: 'prageethpramuditha.20162@gmail.com',
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
-};
-
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
-
- */

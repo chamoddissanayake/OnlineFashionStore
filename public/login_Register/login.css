@@ -15,10 +15,10 @@ html, body {
     padding: 5px;
     background: #eee;
     max-width: 360px;
-    border: 1px dotted #bbb;
+
 }
 
 /* show border around full height container */
 .h-100 {
-    border: 1px dotted #cc2222;
+
 }
