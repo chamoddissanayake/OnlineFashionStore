@@ -212,10 +212,11 @@ class CommentForm extends React.Component {
             .then((comments) => {
 
                 console.log(comments.data);
-
-                // this.setState({
-                //     comments: comments.data
-                // });
+                if (comments.data == true) {
+                    alert("Your comment added successfully");
+                } else {
+                    alert("Error occurred");
+                }
 
             }).catch((error) => {
                 console.log(error)

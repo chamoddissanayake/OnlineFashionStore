@@ -133,10 +133,30 @@ app.post('/api/commentAdd', (req, res) => { //add Comments
   // if (err) throw err;
   // console.log(result);
   // res.send(result);
-  res.send(null);
+  // res.send(null);
   // db.close();
   // });
   // });
+
+  var tempCommentObj = req.body.addCommentObj;
+
+  var MongoClient = require('mongodb').MongoClient;
+
+  var url = dbCon.mongoURIConnString;
+  console.log("1");
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("comments").insertOne(tempCommentObj, function (err1, res1) {
+      if (err1) throw err1;
+      console.log("Comment added.");
+      res.send(true);
+      db.close();
+
+    });
+  });
+
+
 
 });
 
