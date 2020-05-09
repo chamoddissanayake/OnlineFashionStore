@@ -14,6 +14,7 @@ export default class Wishlist extends Component {
             loggedInUserObj: {},
             wishlistArr: []
         };
+        this.addToCart = this.addToCart.bind(this);
     }
 
     componentDidMount() {
@@ -62,17 +63,23 @@ export default class Wishlist extends Component {
             });
 
 
-        // console.log(cartItem._id);
-        // var cart = [];
-        // for (var kkk = 0; kkk < this.state.allCartItems.length; kkk++) {
-        //     var cartItemaa = this.state.allCartItems[kkk];
-        //     if (cartItemaa._id != cartItem._id) {
-        //         cart.push(cartItemaa);
-        //     }
-        //     // localStorage.removeItem("cart");
-        // }
-        // localStorage.setItem('cart', JSON.stringify(cart));
-        // this.setCartItems();
+
+    }
+
+    addToCart = (wishlistItem) => {
+
+        let cart = localStorage.getItem('cart')
+
+            ? JSON.parse(localStorage.getItem('cart')) : [];
+
+
+
+
+        if (wishlistItem.available_quantity > 0) {
+            cart.push(wishlistItem);
+        };
+        localStorage.setItem('cart', JSON.stringify(cart));
+        this.deleteFromWishlist(wishlistItem);
 
     }
 
@@ -104,16 +111,21 @@ export default class Wishlist extends Component {
                         <img src={wishlistItem.imageURL_main} alt="Image missing" height="250" width="200" />
                         <button type="button" class="btn btn-outline-danger" onClick={() => this.deleteFromWishlist(wishlistItem)} >X</button>
 
-                        <input id="needCount" type="number" value="1" min="0" max={wishlistItem.available_quantity}
+                        <input id="needCount" type="number" value={wishlistItem.needQuantity ? wishlistItem.needQuantity : (wishlistItem.needQuantity = 1)} min="0" max={wishlistItem.available_quantity}
                             onChange={(e) => {
                                 // console.log("sdfsdf" + e.target.value)
-                                // cartItem.needQuantity = e.target.value
+                                wishlistItem.needQuantity = e.target.value
 
                                 // this.updatecart(cartItem);
 
-                                // this.setState({
-                                // })
+                                this.setState({
+                                })
                             }}></input>
+
+
+                        <button className="btn btn-sm btn-warning float-right"
+
+                            onClick={() => { this.addToCart(wishlistItem) }}>Add to cart</button>
 
 
                         <hr />
