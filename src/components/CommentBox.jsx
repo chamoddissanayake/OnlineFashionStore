@@ -200,6 +200,28 @@ class CommentForm extends React.Component {
         console.log(this.props.pppddd._id);
         console.log('------------------');
 
+        var addCommentObj = new Object();
+        addCommentObj.productId = this.props.pppddd._id;
+        addCommentObj.author = author.value;
+        addCommentObj.body = this.state.comBd;
+        addCommentObj.rating = rating
+
+        //axios post - start
+
+        axios.post(`${BASE_URL}/api/commentAdd`, { addCommentObj: addCommentObj })
+            .then((comments) => {
+
+                console.log(comments.data);
+
+                // this.setState({
+                //     comments: comments.data
+                // });
+
+            }).catch((error) => {
+                console.log(error)
+            });
+        //axios post - end
+
 
 
 

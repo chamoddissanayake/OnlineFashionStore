@@ -121,6 +121,28 @@ app.post('/api/comments', (req, res) => { //retrieve Comments
 });
 
 
+app.post('/api/commentAdd', (req, res) => { //add Comments
+  console.log("request received for add comments");
+  console.log(req.body.addCommentObj);
+  console.log("*");
+
+  // MongoClient.connect(url, function (err, db) {
+  // if (err) throw err;
+  // var dbo = db.db("FashionStore");
+  // dbo.collection("comments").find({ productId: req.body.selectedProduct._id }).toArray(function (err, result) {
+  // if (err) throw err;
+  // console.log(result);
+  // res.send(result);
+  res.send(null);
+  // db.close();
+  // });
+  // });
+
+});
+
+
+
+
 app.post('/api/wishlist', (req, res) => { //retrieve wishlist
   console.log("request received for the retrieve wishlist");
   console.log(req.body.loggedInUserObj);
