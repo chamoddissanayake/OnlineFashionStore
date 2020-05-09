@@ -1,31 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-
-    <link rel="stylesheet" href="./admin.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js" ></script>
-
-
-    <link rel="stylesheet" href="./admin.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-    <script src="https://kit.fontawesome.com/b1c1380a86.js" crossorigin="anonymous"></script>
-</head>
-<body>
-
+  <div>
         <div class="frm mx-5 my-5">
             <h2>Add Category</h2><br>
             <form class="form-inline"  style="margin:  0 auto">
-                <input type="text" ng-modal="CategoryName" class="form-control form-group  mb-2" style="width: 50%; margin: auto 0" id="category" placeholder="Enter the category here..">
+                <input  ng-model='selection.Category' type="text"  class="form-control form-group  mb-2" style="width: 50%; margin: auto 0" id="category" placeholder="Enter the category here.." >
 
-                <button type="submit" class="btn btn-primary mx-2 mb-2">Add Category</button>
+                <button type="submit" class="btn btn-primary mx-2 mb-2" ng-click="AddCategory()">Add Category</button>
             </form>
         </div>
         <div class="tbl mx-5 my-5 ">
@@ -39,11 +18,11 @@
 
                 </tr>
                 </thead>
-                <tbody ng-repeat="categoryObjArray">
+                <tbody ng-repeat="list in categoryObjArray">
                     <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                        <td>{{list.name}}</td>
+                        <td>{{list.noOfItems}}</td>
                         <td  class="text-danger"><i class="fas fa-trash" style="text-align: right ; cursor: pointer"></i></td>
 
                     </tr>
@@ -51,6 +30,4 @@
                 </tbody>
             </table>
         </div>
-
-</body>
-</html>
+  </div>

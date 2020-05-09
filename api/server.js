@@ -423,14 +423,12 @@ app.get('/category', (req, res) => {
 //insert a category
 app.post('/category', (req, res) => {
   console.log("Add to category started");
-
+  console.log(req.body.categoryName);
   var categoryObj = new Object();
-  console.log("#");
-  console.log(req.body.requestObj);
-  console.log("*");
 
-  categoryObj.categoryName = req.body.requestObj.name;
-  categoryObj.noOfItems = req.body.requestObj.count;
+
+  categoryObj.categoryName = req.body.categoryName;
+  categoryObj.noOfItems = req.body.noOfItems;
 
   var MongoClient = require('mongodb').MongoClient;
   // var url = "mongodb://localhost:27017/";
@@ -441,12 +439,13 @@ app.post('/category', (req, res) => {
     var dbo = db.db("FashionStore");
     dbo.collection("category").insertOne(categoryObj, function (err1, res1) {
       if (err1) throw err1;
-      console.log("Item was added to the wishlist added.");
+      console.log("Item was added to the category added.");
       res.send(true);
       db.close();
 
     });
   });
+
 });
 
 

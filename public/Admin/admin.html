@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="admin" ng-controller="adminCtrl">
 <head>
     <meta charset="UTF-8">
     <title>Admin Panel</title>
@@ -7,6 +7,7 @@
     <script data-semver="1.4.9" src="https://code.angularjs.org/1.6.4/angular.js" data-require="angular.js@1.4.x"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js" ></script>
@@ -22,7 +23,7 @@
     <script src="https://kit.fontawesome.com/b1c1380a86.js" crossorigin="anonymous"></script>
 
 </head>
-<body ng-app="admin" ng-controller="adminCtrl">
+<body >
 
 
 
@@ -62,16 +63,17 @@
 
          <!--Body-->
         <div class="content">
-           <div ng-if="pageIndex == 0" ng-include ="'category.html'"></div>
+           <div ng-if="pageIndex == 0" ng-include ="'category.html'" ></div>
            <div ng-if="pageIndex == 1" ng-include = "'storeMangr.html'"></div>
            <div ng-if="pageIndex == 2" ng-include = "'users.html'"></div>
         </div>
 
         <div ng-view></div>
-    <!--Fotter
-    <div class="footer">
-        <div class="p-3 mb-2 backColorFotter text-center  text-white"> | Copyright ©2020 All rights reserved @ SLIIT - MALABE | </div>
-    </div>-->
-    <script src="admin.js"></script>
+        <!--Fotter
+        <div class="footer">
+            <div class="p-3 mb-2 backColorFotter text-center  text-white"> | Copyright ©2020 All rights reserved @ SLIIT - MALABE | </div>
+        </div>-->
+
+        <script src="admin.js"></script>
 </body>
 </html>
