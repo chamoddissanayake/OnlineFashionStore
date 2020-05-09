@@ -408,11 +408,47 @@ app.get('/api/products/editItems/:id', (req, res) => {
   console.log("Edit1");
 });
 
-
+//Get StoreManager Details
 app.get('/storeManger', (req, res) => {
   console.log("Called");
   res.sendFile(__dirname + '/');
 });
+
+//Get Category Details
+app.get('/category', (req, res) => {
+  console.log("Called");
+  res.sendFile(__dirname + '/');
+});
+
+//insert a category
+app.post('/category', (req, res) => {
+  console.log("Add to category started");
+
+  var categoryObj = new Object();
+  console.log("#");
+  console.log(req.body.requestObj);
+  console.log("*");
+
+  categoryObj.categoryName = req.body.requestObj.name;
+  categoryObj.noOfItems = req.body.requestObj.count;
+
+  var MongoClient = require('mongodb').MongoClient;
+  // var url = "mongodb://localhost:27017/";
+  var url = dbCon.mongoURIConnString;
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("category").insertOne(categoryObj, function (err1, res1) {
+      if (err1) throw err1;
+      console.log("Item was added to the wishlist added.");
+      res.send(true);
+      db.close();
+
+    });
+  });
+});
+
 
 app.get('/', (req, res) => {
   app.use(express.static(path.join(__dirname, '../public/Admin/')));

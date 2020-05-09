@@ -42,7 +42,7 @@ app.controller('adminCtrl', function($scope , $interval ) {
 
 
     $scope.Email = function () {
-        //godk adarei mge raththrn e dws wla aduwa
+
         http.sendEmail()
     }
 });

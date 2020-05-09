@@ -20,52 +20,37 @@
 </head>
 <body>
 
-<div class="frm mx-5 my-5">
-    <h2>Add Category</h2><br>
-    <form class="form-inline"  style="margin:  0 auto">
+        <div class="frm mx-5 my-5">
+            <h2>Add Category</h2><br>
+            <form class="form-inline"  style="margin:  0 auto">
+                <input type="text" ng-modal="CategoryName" class="form-control form-group  mb-2" style="width: 50%; margin: auto 0" id="category" placeholder="Enter the category here..">
 
+                <button type="submit" class="btn btn-primary mx-2 mb-2">Add Category</button>
+            </form>
+        </div>
+        <div class="tbl mx-5 my-5 ">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">No of Items</th>
+                    <th scope="col"></th>
 
-            <input type="text" class="form-control form-group  mb-2" style="width: 50%; margin: auto 0" id="inputPassword2" placeholder="Enter the category here..">
+                </tr>
+                </thead>
+                <tbody ng-repeat="categoryObjArray">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td  class="text-danger"><i class="fas fa-trash" style="text-align: right ; cursor: pointer"></i></td>
 
-        <button type="submit" class="btn btn-primary mx-2 mb-2">Add Category</button>
-    </form>
-</div>
-<div class="tbl mx-5 my-5 ">
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Category Name</th>
-            <th scope="col">No of Items</th>
-            <th scope="col"></th>
+                    </tr>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td  class="text-danger"><i class="fas fa-trash" style="text-align: right ; cursor: pointer"></i></td>
-
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td  class="text-danger"><i class="fas fa-trash" style="text-align: right ; cursor: pointer"></i></td>
-
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td  class="text-danger"><i class="fas fa-trash" style="text-align: right ; cursor: pointer"></i></td>
-
-        </tr>
-        </tbody>
-    </table>
-</div>
+                </tbody>
+            </table>
+        </div>
 
 </body>
 </html>
