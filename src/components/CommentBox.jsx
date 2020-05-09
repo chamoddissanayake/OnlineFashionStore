@@ -19,6 +19,7 @@ export default class CommentBox extends React.Component {
             loggedInUserObj: {},
             selectedProduct: this.props.selectedProduct
         };
+        this.reloadComments = this.reloadComments.bind(this);
     }
 
     componentDidMount() {
@@ -28,6 +29,19 @@ export default class CommentBox extends React.Component {
 
         // axios.post(`${BASE_URL}/api/comments`, { id: productId })
         // .then(response => response.data);
+    }
+
+    reloadComments() {
+        axios.post(`${BASE_URL}/api/comments`, { selectedProduct: this.props.selectedProduct })
+            .then((comments) => {
+                console.log(comments.data);
+                this.setState({
+                    comments: comments.data
+                });
+
+            }).catch((error) => {
+                console.log(error)
+            });
     }
 
     render() {
@@ -68,7 +82,7 @@ export default class CommentBox extends React.Component {
         return (
             <div className="comment-box">
                 <h2>Comments for :{this.props.selectedProduct.name}</h2>
-                <CommentForm addComment={this._addComment.bind(this)} pppddd={this.props.selectedProduct} />
+                <CommentForm addComment={this._addComment.bind(this)} pppddd={this.props.selectedProduct} reloadCmtHandler={this.reloadComments} />
                 <button id="comment-reveal" onClick={this._handleClick.bind(this)}>
                     {buttonText}
                 </button>
@@ -214,6 +228,8 @@ class CommentForm extends React.Component {
                 console.log(comments.data);
                 if (comments.data == true) {
                     alert("Your comment added successfully");
+                    this.props.reloadCmtHandler();
+
                 } else {
                     alert("Error occurred");
                 }
