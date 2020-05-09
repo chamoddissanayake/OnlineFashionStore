@@ -20,10 +20,10 @@
                 </thead>
                 <tbody ng-repeat="list in categoryObjArray">
                     <tr>
-                        <th scope="row">1</th>
-                        <td>{{list.name}}</td>
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{list.categoryName}}</td>
                         <td>{{list.noOfItems}}</td>
-                        <td  class="text-danger"><i class="fas fa-trash" style="text-align: right ; cursor: pointer"></i></td>
+                        <td  class="text-danger"><i class="fas fa-trash" style="text-align: right ; cursor: pointer" ng-click="deleteCategory(list.id)"></i></td>
 
                     </tr>
 
