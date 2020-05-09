@@ -102,7 +102,6 @@ app.post('/api/selectitem', (req, res) => { //retrieve details of the selected i
 });
 
 function calculateAverageRating(results) {
-  console.log("dddddddddddddddddddddddddd")
   console.log(results);
   var avg = 0;
   var tot = 0;
@@ -181,11 +180,18 @@ app.post('/api/commentAdd', (req, res) => { //add Comments
 });
 
 
+async function getWishProd(dbo, idd) {
+  console.log("llw:" + idd);
+  var o_id = new mongo.ObjectID(idd);
+  return await dbo.collection("products").findOne({ _id: o_id });
+}
 
 
 app.post('/api/wishlist', (req, res) => { //retrieve wishlist
   console.log("request received for the retrieve wishlist");
   console.log(req.body.loggedInUserObj);
+
+  let resultProductWishlist = [];
 
   let arr = [];
 
@@ -193,7 +199,7 @@ app.post('/api/wishlist', (req, res) => { //retrieve wishlist
     if (err) throw err;
     var dbo = db.db("FashionStore");
     //Get items of the curret user from wishlist
-    dbo.collection("wishlist").find({ username: req.body.loggedInUserObj.username }).toArray(function (err, result) {
+    dbo.collection("wishlist").find({ username: req.body.loggedInUserObj.username }).toArray(async function (err, result) {
       if (err) throw err;
       console.log("--------");
       console.log(result);
@@ -209,21 +215,15 @@ app.post('/api/wishlist', (req, res) => { //retrieve wishlist
 
       console.log("This is the final wishlist - start");
       while (index < arr.length) {
-        console.log(arr[index]);
+        let rre = await getWishProd(dbo, arr[index]);
+        console.log(rre);
+        resultProductWishlist.push(rre);
 
-        dbo.collection("products").findOne({ _id: arr[index] }, function (err, result) {
-          if (err) throw err;
-          console.log(result);
-          console.log("Found Result");
-          resultProductWishlist.push(result);
-          db.close();
-        });
-        //Checking each items in the items collection and get data - end
         index++;
       }
       console.log("This is the final wishlist - end");
-      res.send(resultProductWishlist);
       db.close();
+      res.send(resultProductWishlist);
     });
   });
 
