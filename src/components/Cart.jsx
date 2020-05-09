@@ -42,7 +42,8 @@ export default class Cart extends Component {
         var tot = 0;
         for (var i = 0; i < ggg.length; i++) {
             var cartItemaa = ggg[i];
-            tot = tot + (cartItemaa.needQuantity * cartItemaa.price)
+            tot = tot + (cartItemaa.needQuantity * cartItemaa.price);
+            this.addTotPricetoStorage(tot);
         }
 
         this.setState({
@@ -66,7 +67,6 @@ export default class Cart extends Component {
         localStorage.setItem('cart', JSON.stringify(cart));
         this.setCartItems();
 
-        // this.calcTot();
     }
 
 
@@ -83,7 +83,6 @@ export default class Cart extends Component {
         localStorage.setItem('cart', JSON.stringify(cart));
         this.setCartItems();
 
-        // this.calcTot();
     }
 
     componentDidMount() {
@@ -91,7 +90,12 @@ export default class Cart extends Component {
         console.log("skjdfhskdjfhksjdhf")
         console.log(this.state.allCartItems);
 
-        // this.calcTot();
+        // this.addTotPricetoStorage(this.state.totprice);
+    }
+    addTotPricetoStorage(totprice) {
+        // var totPrice = this.state.totprice;
+        localStorage.setItem('totprice', JSON.stringify(totprice));
+
     }
 
     render() {

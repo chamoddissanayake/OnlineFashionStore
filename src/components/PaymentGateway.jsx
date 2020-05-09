@@ -17,7 +17,8 @@ export default class PaymentGateway extends Component {
 
     componentDidMount() {
         console.log("--")
-        console.log(this.props.location.search)
+        console.log(this.props.location.search);
+        this.findType();
     }
 
     findType() {
