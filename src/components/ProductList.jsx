@@ -46,7 +46,7 @@ export default class ProductList extends React.Component {
 
         <hr />
 
-        <Link to="/checkout">
+        {/* <Link to="/checkout">
 
           <button className="btn btn-success float-right">Checkout</button>
 
@@ -58,7 +58,9 @@ export default class ProductList extends React.Component {
 
             style={{ marginRight: "10px" }}>View Cart</button>
 
-        </Link><br /><br /><br />
+        </Link>
+         */}
+        <br /><br /><br />
 
 
 
