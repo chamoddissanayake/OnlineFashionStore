@@ -80,6 +80,7 @@ export default class Wishlist extends Component {
         };
         localStorage.setItem('cart', JSON.stringify(cart));
         this.deleteFromWishlist(wishlistItem);
+        alert("Item was added to your cart");
 
     }
 

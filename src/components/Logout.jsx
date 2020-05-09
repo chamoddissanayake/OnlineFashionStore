@@ -13,7 +13,7 @@ export default class Logout extends Component {
 
     componentDidMount() {
         this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
-        localStorage.removeItem("loggedInUser");
+       
 
         const { location } = this.props;
         if (location.state && location.state.from) {
