@@ -102,16 +102,21 @@ app.post('/api/selectitem', (req, res) => { //retrieve details of the selected i
 });
 
 function calculateAverageRating(results) {
+  console.log("dddddddddddddddddddddddddd")
   console.log(results);
   var avg = 0;
   var tot = 0;
   var count = 0;
   const listComments = results.map((c) => {
+    console.log(c.rating);
     tot = tot + c.rating;
     count++;
   }
   );
+  console.log("tot:" + tot);
+  console.log("count:" + count);
   avg = tot / count;
+  avg = (Math.round(avg * 100) / 100).toFixed(2);
   return avg;
 }
 app.post('/api/comments', (req, res) => { //retrieve Comments
