@@ -101,7 +101,19 @@ app.post('/api/selectitem', (req, res) => { //retrieve details of the selected i
 
 });
 
-
+function calculateAverageRating(results) {
+  console.log(results);
+  var avg = 0;
+  var tot = 0;
+  var count = 0;
+  const listComments = results.map((c) => {
+    tot = tot + c.rating;
+    count++;
+  }
+  );
+  avg = tot / count;
+  return avg;
+}
 app.post('/api/comments', (req, res) => { //retrieve Comments
   console.log("request received for the retrieve comments");
   console.log(req.body.selectedProduct._id);
@@ -113,7 +125,10 @@ app.post('/api/comments', (req, res) => { //retrieve Comments
     dbo.collection("comments").find({ productId: req.body.selectedProduct._id }).toArray(function (err, result) {
       if (err) throw err;
       // console.log(result);
-      res.send(result);
+      var obbb = new Object();
+      obbb.comments = result;
+      obbb.averageRating = calculateAverageRating(result);
+      res.send(obbb);
       db.close();
     });
   });

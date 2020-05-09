@@ -17,13 +17,17 @@ export default class CommentBox extends React.Component {
                 // { productId: "456233", id: 3, author: "rosco", body: "What is the meaning of all of this 'React' mumbo-jumbo?", rating: 3 }
             ],
             loggedInUserObj: {},
-            selectedProduct: this.props.selectedProduct
+            selectedProduct: this.props.selectedProduct,
+            averageRating: 0
         };
         this.reloadComments = this.reloadComments.bind(this);
     }
 
+
+
     componentDidMount() {
         this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
+
 
         // postFetchComments(this.props.selectedProduct._id).then((comments) => this.setState({ comments }));
 
@@ -60,13 +64,15 @@ export default class CommentBox extends React.Component {
                     // console.log(arr);
 
                     this.setState({
-                        comments: comments.data
+                        comments: comments.data.comments,
+                        averageRating: comments.data.averageRating
                     });
 
 
                 }).catch((error) => {
                     console.log(error)
                 });
+
         }
 
 
@@ -90,6 +96,8 @@ export default class CommentBox extends React.Component {
                 <h4 className="comment-count">
                     {this._getCommentsTitle(comments.length)}
                 </h4>
+                <span>Average Rating: </span>
+                <span>{this.state.averageRating}</span>
                 {commentNodes}
             </div>
         );
@@ -133,6 +141,7 @@ export default class CommentBox extends React.Component {
             return `${commentCount} comments`;
         }
     }
+
 } // end CommentBox component
 
 class CommentForm extends React.Component {
@@ -149,7 +158,9 @@ class CommentForm extends React.Component {
 
     componentDidMount() {
         this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
+
     }
+
 
     handleChange = (event) => {
 
@@ -195,9 +206,11 @@ class CommentForm extends React.Component {
                     </div>
                 </div>
                 <br />
+                <div>ffffffffffffffff</div>
                 <div className="comment-form-actions">
                     <button type="submit" class="btn btn-primary">Post Comment</button>
                 </div>
+                <div>dgdfgdf{this.state.averageRating}</div>
             </form>
         );
     } // end render

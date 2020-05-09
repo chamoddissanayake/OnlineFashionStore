@@ -23,16 +23,22 @@ export default class Wishlist extends Component {
         console.log(this.state.loggedInUserObj.username);
         console.log("Component Did mount - end");
 
+        this.getWishlistData();
 
+    }
+
+    getWishlistData() {
         axios.post(`${BASE_URL}/api/wishlist`, { loggedInUserObj: this.state.loggedInUserObj })
             .then((wishlist) => {
-
+                console.log("---------");
+                console.log(wishlist);
                 var index;
                 for (index = 0; index < wishlist.data.length; index++) {
 
                     console.log(wishlist.data[index]);
 
                 }
+                console.log("---------");
 
             }).catch((error) => {
                 // console.log(error)
