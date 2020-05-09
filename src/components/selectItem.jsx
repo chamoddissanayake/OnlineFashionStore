@@ -68,21 +68,24 @@ export default class selectItem extends Component {
 
 
     addToCart = () => {
+        if (this.state.loggedInUserObj != null) {
 
-        let cart = localStorage.getItem('cart')
+            let cart = localStorage.getItem('cart')
 
-            ? JSON.parse(localStorage.getItem('cart')) : [];
+                ? JSON.parse(localStorage.getItem('cart')) : [];
 
-        let currentObj = this.state.selectedProduct;
-        currentObj.needQuantity = this.state.quantity;
-
-
-        if (this.state.selectedProduct.available_quantity > 0) {
-            cart.push(currentObj)
-        };
-        localStorage.setItem('cart', JSON.stringify(cart));
+            let currentObj = this.state.selectedProduct;
+            currentObj.needQuantity = this.state.quantity;
 
 
+            if (this.state.selectedProduct.available_quantity > 0) {
+                cart.push(currentObj)
+            };
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+        } else {
+            window.location.href = '/login';
+        }
     }
 
 

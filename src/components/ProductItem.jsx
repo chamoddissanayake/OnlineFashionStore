@@ -65,18 +65,24 @@ export default class ProductItem extends React.Component {
 
   addToCart = () => {
 
-    let cart = localStorage.getItem('cart')
+    if (this.state.loggedInUserObj != null) {
 
-      ? JSON.parse(localStorage.getItem('cart')) : [];
+      let cart = localStorage.getItem('cart')
 
-    let currentObj = this.props.product;
-    currentObj.needQuantity = this.state.quantity;
+        ? JSON.parse(localStorage.getItem('cart')) : [];
 
-    console.log(this.props.product.available_quantity);
-    if (this.props.product.available_quantity > 0) {
-      cart.push(currentObj)
-    };
-    localStorage.setItem('cart', JSON.stringify(cart));
+      let currentObj = this.props.product;
+      currentObj.needQuantity = this.state.quantity;
+
+      console.log(this.props.product.available_quantity);
+      if (this.props.product.available_quantity > 0) {
+        cart.push(currentObj)
+      };
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+    } else {
+      window.location.href = '/login';
+    }
 
   }
   // clickWishlistIcon = (product) => {
