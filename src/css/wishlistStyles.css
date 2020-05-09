@@ -5,3 +5,25 @@
 .personalizeMessage{
     text-align: center;
 }
+.imgclass{
+    padding: 15px;
+}
+
+
+#deletebtn{
+    margin-left: 15%;
+    margin-top: -193px
+}
+
+.middle-td-large{
+    width: 50%;
+}
+
+.td-lbl{
+    width: 200px;
+}
+
+.td-val{
+    width: 300px;
+}
+
