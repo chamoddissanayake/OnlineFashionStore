@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import utils from '../utils/utils';
 import { getWishlist } from '../repository';
 import axios from 'axios';
+import wishlistStyles from '../css/wishlistStyles.css';
 
 const BASE_URL = 'http://localhost:5000';
 
@@ -12,7 +13,8 @@ export default class Wishlist extends Component {
         super();
         this.state = {
             loggedInUserObj: {},
-            wishlistArr: []
+            wishlistArr: [],
+            message: 'You are not added any item to wishlist yet'
         };
         this.addToCart = this.addToCart.bind(this);
     }
@@ -39,6 +41,10 @@ export default class Wishlist extends Component {
                 //     console.log(wishlist.data[index]);
 
                 this.setState(this.state.wishlistArr = wishlist.data);
+
+                if (this.state.wishlistArr.length > 0) {
+                    this.setState({ message: 'This is the list of items you added to the wishlist' });
+                }
 
                 // }
                 console.log("---------");
@@ -91,9 +97,13 @@ export default class Wishlist extends Component {
 
         return (
             <div>
-                Wishlist<br />
-                Hi {this.state.loggedInUserObj.username}, These are the list of objects you added to your wishlist
+                <h1 class="heading" >Wishlist</h1>
 
+                <br />
+                <h3 class="personalizeMessage">
+                    Hi, {this.state.loggedInUserObj.username + "  "} {this.state.message}
+                </h3>
+                <br />
 
 
                 {this.state.wishlistArr.map(wishlistItem => (
