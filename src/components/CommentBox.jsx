@@ -68,7 +68,7 @@ export default class CommentBox extends React.Component {
         return (
             <div className="comment-box">
                 <h2>Comments for :{this.props.selectedProduct.name}</h2>
-                <CommentForm addComment={this._addComment.bind(this)} />
+                <CommentForm addComment={this._addComment.bind(this)} pppddd={this.props.selectedProduct} />
                 <button id="comment-reveal" onClick={this._handleClick.bind(this)}>
                     {buttonText}
                 </button>
@@ -127,8 +127,10 @@ class CommentForm extends React.Component {
         super();
         this.state = {
             loggedInUserObj: {},
-            selectValue: 1
+            selectValue: 1,
+            comBd: ''
         };
+        this.txtArC = this.txtArC.bind(this);
     }
 
     componentDidMount() {
@@ -147,13 +149,19 @@ class CommentForm extends React.Component {
 
     };
 
+    txtArC(e) {
+        // this.setState(this.state. = e.target.value);
+        this.setState({ comBd: e.target.value });
+
+    }
+
     render() {
         return (
             <form className="comment-form" onSubmit={this._handleSubmit.bind(this)}>
                 <div className="comment-form-fields">
                     <input class="form-control" value={this.state.loggedInUserObj.username} disabled required ref={(input) => this._author = input} /><br />
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Comment" rows="4" required ref={(textarea) => this._body = textarea} />
+                        <textarea class="form-control" placeholder="Comment" rows="4" required onChange={this.txtArC} />
                     </div>
 
                     <div>
@@ -185,7 +193,17 @@ class CommentForm extends React.Component {
         let author = this._author;
         let body = this._body;
         let rating = this.state.selectValue;
-        this.props.addComment(author.value, body.value, rating);
+        console.log('------------------');
+        console.log(author.value);
+        console.log(this.state.comBd);
+        console.log(rating);
+        console.log(this.props.pppddd._id);
+        console.log('------------------');
+
+
+
+
+        // this.props.addComment(author.value, body.value, rating);
     }
 } // end CommentForm component
 
