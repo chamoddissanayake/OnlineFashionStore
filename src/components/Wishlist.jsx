@@ -54,12 +54,8 @@ export default class Wishlist extends Component {
 
 
         axios.post(`${BASE_URL}/api/wishlistDelete`, { wishlistItem: wishlistItem })
-            .then((wishlistItems) => {
-                console.log(wishlistItems.data);
-                alert("Item deleted from your wishlist successfully");
-                this.setState({
-                    wishlistArr: wishlistItems.data
-                });
+            .then(() => {
+                this.getWishlistData();
 
             }).catch((error) => {
                 console.log(error)

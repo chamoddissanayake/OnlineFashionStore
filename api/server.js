@@ -474,12 +474,12 @@ app.post('/api/wishlistDelete', (req, res) => {
     if (err) throw err;
     var dbo = db.db("FashionStore");
 
-    var myquery = { id: req.body.id };
+    var myquery = { productId: req.body.wishlistItem._id };
     console.log(myquery);
 
-    dbo.collection("products").deleteOne(myquery, function (err1, result) {
+    dbo.collection("wishlist").deleteOne(myquery, function (err1, result) {
       if (err1) throw err1;
-      console.log("Item was deleted");
+      console.log("Item was deleted form the wishlist");
       res.send(true);
       db.close();
     });
