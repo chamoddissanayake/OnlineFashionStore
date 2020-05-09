@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import paymentGatewayStyles from '../css/paymentGatewayStyles.css';
-
+export const CARD_NUMBER_REGEX = /^[0-9]{0,16}$/;
 
 
 export default class PaymentGateway extends Component {
@@ -10,7 +10,11 @@ export default class PaymentGateway extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            typeImg: ''
+            typeImg: '',
+            owner: '',
+            cardNo: '',
+            expDate: '',
+            cvcCode: 0
         }
     }
 
@@ -19,6 +23,12 @@ export default class PaymentGateway extends Component {
         console.log("--")
         console.log(this.props.location.search);
         this.findType();
+        this.handleChangeOwner = this.handleChangeOwner.bind(this);
+        this.handleChangeCardNo = this.handleChangeCardNo.bind(this);
+        this.handleChangeExpDate = this.handleChangeExpDate.bind(this);
+        this.handleChangeCVCCode = this.handleChangeCVCCode.bind(this);
+        this.handleProcessPaymentClicked = this.handleProcessPaymentClicked.bind(this);
+
     }
 
     findType() {
@@ -33,6 +43,88 @@ export default class PaymentGateway extends Component {
         }
 
     }
+
+    handleProcessPaymentClicked() {
+
+        console.log(this.state.owner);
+        console.log(this.state.cardNo);
+        console.log(this.state.expDate);
+        console.log(this.state.cvcCode);
+
+        let cardNumber = this.state.cardNo;
+        cardNumber = this.formatCardNumber(cardNumber);
+
+        if (this.state.owner == '') {
+            alert('Please enter name');
+        } else if (this.state.cardNo == 0) {
+            alert('Please enter card number');
+        } else if (this.state.expDate == '') {
+            alert('please enter expire date');
+        } else if (this.state.cvcCode == '') {
+            alert('please enter cvc code');
+        } else if (!(cardNumber.match(/^-{0,1}\d+$/))) {
+            //not valid integer (positive or negative)
+            alert('Not a valid card number');
+        } else {
+            //valid number
+            //check number has 16 digits
+            if (cardNumber.length == 16) {
+                //All validation correct
+                // alert('correct');
+                let cvcCode = this.state.cvcCode;
+                if (cvcCode.length == 3) {
+                    window.location.href = '/thanks';
+                } else {
+                    alert('Incorrect CVC Number');
+                }
+            } else {
+                alert('Invalid card number');
+            }
+        }
+    }
+
+
+
+
+    checkNullOrUndefined(value) {
+        return value === null || value === undefined;
+    }
+    checkNullOrUndefinedOrEmptyString(value) {
+        return this.checkNullOrUndefined(value) || value === '';
+    }
+
+    formatCardNumber(cardNumber) {
+        if (!this.checkNullOrUndefinedOrEmptyString(cardNumber)) {
+            let card = cardNumber.trim();
+            let vals = card.split(' ');
+            let number = '';
+            vals.forEach((val) => {
+                number += val;
+            });
+            console.log(number);
+            return number;
+        }
+        return '';
+    }
+
+
+
+
+
+    handleChangeOwner(event) {
+        this.setState({ owner: event.target.value });
+    }
+
+    handleChangeCardNo(event) {
+        this.setState({ cardNo: event.target.value });
+    }
+    handleChangeExpDate(event) {
+        this.setState({ expDate: event.target.value });
+    }
+    handleChangeCVCCode(event) {
+        this.setState({ cvcCode: event.target.value });
+    }
+
 
     render() {
         return (
@@ -62,7 +154,7 @@ export default class PaymentGateway extends Component {
                                                 <div class="col-xs-12">
                                                     <div class="form-group">
                                                         <label>CARD OWNER</label>
-                                                        <input type="text" class="form-control" placeholder="Name on the card" />
+                                                        <input type="text" class="form-control" onChange={this.handleChangeOwner} placeholder="Name on the card" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -71,7 +163,7 @@ export default class PaymentGateway extends Component {
                                                     <div class="form-group">
                                                         <label>CARD NUMBER</label>
                                                         <div class="input-group">
-                                                            <input type="tel" class="form-control" placeholder="Valid Card Number" />
+                                                            <input type="text" class="form-control" onChange={this.handleChangeCardNo} placeholder="Valid Card Number" />
                                                             <span class="input-group-addon"><span class="fa fa-credit-card"></span></span>
                                                         </div>
                                                     </div>
@@ -81,13 +173,13 @@ export default class PaymentGateway extends Component {
                                                 <div class="col-xs-7 col-md-7">
                                                     <div class="form-group">
                                                         <label><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
-                                                        <input type="tel" class="form-control" placeholder="MM / YY" />
+                                                        <input type="tel" class="form-control" placeholder="MM / YY" onChange={this.handleChangeExpDate} />
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-5 col-md-5 pull-right">
                                                     <div class="form-group">
                                                         <label>CV CODE</label>
-                                                        <input type="tel" class="form-control" placeholder="CVC" />
+                                                        <input type="tel" class="form-control" placeholder="CVC" onChange={this.handleChangeCVCCode} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -97,7 +189,7 @@ export default class PaymentGateway extends Component {
                                     <div class="panel-footer">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <button class="btn btn-warning btn-lg btn-block">Process payment</button>
+                                                <button class="btn btn-warning btn-lg btn-block" onClick={this.handleProcessPaymentClicked} >Process payment</button>
                                             </div>
                                         </div>
                                     </div>

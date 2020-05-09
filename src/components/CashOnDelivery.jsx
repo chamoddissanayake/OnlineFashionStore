@@ -8,18 +8,25 @@ export default class CashOnDelivery extends Component {
     constructor() {
         super();
         this.state = {
-            loggedInUserObj: {}
+            loggedInUserObj: {},
+            totprice: 0
         };
 
     }
 
     componentDidMount() {
         this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
+        this.getTotPrice();
     }
 
     handleCashOnDeliveryClicked() {
-        console.log("Handle visa clicked");
-        // window.location.href = '/paymentGateway?type=visa';
+
+        window.location.href = '/thanks';
+    }
+    getTotPrice() {
+        var tot = localStorage.getItem('totprice');
+        this.setState({ totprice: tot });
+
     }
 
     render() {
@@ -61,17 +68,17 @@ export default class CashOnDelivery extends Component {
                         </div>
                         <div class="form-group">
                             <label for="inputRecepientName">Recepient Name</label>
-                            <input type="text" class="form-control" id="inputRecepientName" placeholder="Recepient Name" />
+                            <input type="text" class="form-control" id="inputRecepientName" placeholder="Recepient Name" required />
 
                         </div>
                         <div class="form-group">
                             <label for="inputDeliveryAddress">Delivery Address</label>
-                            <input type="text" class="form-control" id="inputDeliveryAddress" placeholder="Delivery Address" />
+                            <input type="text" class="form-control" id="inputDeliveryAddress" placeholder="Delivery Address" required />
 
                         </div>
                         <div class="form-group">
                             <label for="inputZip">Zip</label>
-                            <input type="number" class="form-control" id="inputZip" placeholder="Zip" />
+                            <input type="number" class="form-control" id="inputZip" placeholder="Zip" required />
                         </div>
 
                         <div class="form-group">
@@ -80,7 +87,7 @@ export default class CashOnDelivery extends Component {
                                     <label>Your Amount :</label>
                                 </div>
                                 <div class="col">
-                                    <input type="number" class="form-control" id="inputZip" readonly />
+                                    <input type="number" value={this.state.totprice} class="form-control" id="inputZip" readonly />
                                 </div>
                             </div>
                         </div>
@@ -89,7 +96,7 @@ export default class CashOnDelivery extends Component {
 
 
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" required />
                             <label class="form-check-label" for="exampleCheck1">Agree tearms and conditions</label>
                         </div>
                         <p>* Delivery Charges will be applied</p>

@@ -29,6 +29,7 @@ import PaymentMethod from './components/paymentMethod';
 import PaymentGateway from './components/PaymentGateway';
 import CashOnDelivery from './components/CashOnDelivery';
 import CartLogo from './components/CartLogo';
+import ThanksForPurchasing from './components/ThanksForPurchasing';
 
 
 class App extends Component {
@@ -200,7 +201,7 @@ class App extends Component {
             <Route exact path="/paymentGateway" component={PaymentGateway} />
 
             <Route exact path="/cashOnDelivery" component={CashOnDelivery} />
-
+            <Route exact path="/thanks" component={ThanksForPurchasing} />
 
           </div>
 

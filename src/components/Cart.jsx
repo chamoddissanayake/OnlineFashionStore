@@ -94,7 +94,7 @@ export default class Cart extends Component {
     }
     addTotPricetoStorage(totprice) {
         // var totPrice = this.state.totprice;
-        localStorage.setItem('totprice', JSON.stringify(totprice));
+        localStorage.setItem('totprice', totprice);
 
     }
 
