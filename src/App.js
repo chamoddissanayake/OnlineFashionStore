@@ -30,6 +30,7 @@ import PaymentGateway from './components/PaymentGateway';
 import CashOnDelivery from './components/CashOnDelivery';
 import CartLogo from './components/CartLogo';
 import ThanksForPurchasing from './components/ThanksForPurchasing';
+import mainStyle from './css/mainStyle.css';
 
 
 class App extends Component {
