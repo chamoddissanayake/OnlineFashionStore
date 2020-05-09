@@ -8,6 +8,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
 
     $scope.selection = {}
 
+    $scope.categoryObjArray = [];
 
     $scope.changeIndex= function(indexToChange){
         if(indexToChange == 0) {
@@ -50,9 +51,17 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     }
 
 
-    $scope.categoryObjArray = [];
+    //Get all Data from Category collection
+    var getDetailsofCategory = function(){
+        $http.get('/category').then(function (response) {
+            console.log(response);
+            $scope.categoryObjArray = response.data;
+        })
+    }
+    getDetailsofCategory();
 
 
+    //Adding Category
     $scope.AddCategory = function () {
         console.log( $scope.selection.Category);
         for(var i = 0 ; i < $scope.categoryObjArray.length ; i++) {
@@ -66,15 +75,37 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
             //$scope.showAlert();
         }
         else {
-            $scope.categoryObjArray.push({name : $scope.selection.Category , noOfItems : 0 });
-            var categoryObj = {categoryName : $scope.selection.Category , noOfItems : 0};
+            var id =  $scope.categoryObjArray.length.toString();
+            var categoryObj = {id : id ,categoryName : $scope.selection.Category , noOfItems : 0};
 
-            $http.post('/category' , categoryObj );
+            $http.post('/category' , categoryObj ).then(function (response) {
+                console.log(response.data)
+                if (response.data == true) {
+                    alert('Item Saved successfully');
+                    getDetailsofCategory();
+                } else {
+                    alert('Error in saving');
+                }
+            });
 
         }
 
     }
 
+    //deleteing category
+    $scope.deleteCategory = function (index) {
+        var id = index;
+        console.log(index);
+
+        $http.delete('/category/'+id).then(function (response) {
+            if (response.data == true) {
+                alert('Item Deleted successfully');
+                getDetailsofCategory();
+            } else {
+                alert('Error in deleting');
+            }
+        });
+    }
 
 
 });

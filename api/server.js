@@ -492,7 +492,6 @@ app.post('/api/wishlistDelete', (req, res) => {
 
 
 
-
 app.post('/api/products/delete/', (req, res) => {
 
   console.log(req.body.id);
@@ -516,23 +515,32 @@ app.post('/api/products/delete/', (req, res) => {
     });
 
   });
-
 });
 
 app.get('/api/products/editItems/:id', (req, res) => {
   console.log("Edit1");
 });
 
+
 //Get StoreManager Details
 app.get('/storeManger', (req, res) => {
-  console.log("Called");
+  console.log("request received for home page");
   res.sendFile(__dirname + '/');
 });
 
 //Get Category Details
 app.get('/category', (req, res) => {
-  console.log("Called");
-  res.sendFile(__dirname + '/');
+  console.log("request received for get category");
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("category").find({}).toArray(function (err, result) {
+      if (err) throw err;
+
+      res.send(result);
+      db.close();
+    });
+  });
 });
 
 //insert a category
@@ -541,7 +549,7 @@ app.post('/category', (req, res) => {
   console.log(req.body.categoryName);
   var categoryObj = new Object();
 
-
+  categoryObj.id = req.body.id;
   categoryObj.categoryName = req.body.categoryName;
   categoryObj.noOfItems = req.body.noOfItems;
 
@@ -563,10 +571,34 @@ app.post('/category', (req, res) => {
 
 });
 
+//delete category
+app.delete('/category/:id', function (req, res) {
+  var id = req.params.id;
+  console.log("deleting" + id);
+
+  var MongoClient = require('mongodb').MongoClient;
+  // var url = "mongodb://localhost:27017/";
+  var url = dbCon.mongoURIConnString;
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+
+    var myquery = { id  :   id };
+    console.log(myquery);
+    dbo.collection("category").deleteOne(myquery, function (err1, result) {
+      if (err1) throw err1;
+      console.log("Item was deleted");
+      res.send(true);
+      db.close();
+    });
+  });
+
+});
 
 app.get('/', (req, res) => {
   app.use(express.static(path.join(__dirname, '../public/Admin/')));
-  console.log("Called");
+  console.log("request received for home page");
   res.sendFile(path.join(__dirname, '../public/Admin/admin.html'));
 });
 
