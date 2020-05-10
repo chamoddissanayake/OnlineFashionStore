@@ -77,47 +77,50 @@ export default class PaymentGateway extends Component {
                 if (cvcCode.length == 3) {
                     //Add to db - start
 
-                    let cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
-                    let currentUser = localStorage.getItem("loggedInUser") ? JSON.parse(localStorage.getItem("loggedInUser")) : [];
 
-                    console.log(cartItems);
-                    console.log(currentUser.username);
+                    window.location.href = '/cashOnDelivery';
 
-                    var tempArr = [];
+                    // let cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+                    // let currentUser = localStorage.getItem("loggedInUser") ? JSON.parse(localStorage.getItem("loggedInUser")) : [];
 
+                    // console.log(cartItems);
+                    // console.log(currentUser.username);
 
-                    for (var asd = 0; asd < cartItems.length; asd++) {
-                        var aaa = cartItems[asd];
-                        tempArr.push(aaa._id);
-                    }
-
-                    console.log(tempArr);
+                    // var tempArr = [];
 
 
-                    var today = new Date();
-                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-                    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-                    var dateTime = date + ' ' + time;
+                    // for (var asd = 0; asd < cartItems.length; asd++) {
+                    //     var aaa = cartItems[asd];
+                    //     tempArr.push(aaa._id);
+                    // }
 
-                    curTime: new Date().toLocaleString()
-                    var tempDetailsObj = new Object();
+                    // console.log(tempArr);
 
-                    tempDetailsObj.username = currentUser.username;
-                    tempDetailsObj.itemsList = tempArr;
-                    tempDetailsObj.datetime = dateTime;
-                    console.log("-----")
-                    console.log(tempDetailsObj);
 
-                    axios.post(`${BASE_URL}/api/purchasesCard`, { tempDetailsObj: tempDetailsObj })
-                        .then((res) => {
-                            window.location.href = '/thanks';
-                            this.setState({
+                    // var today = new Date();
+                    // var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                    // var dateTime = date + ' ' + time;
 
-                            });
+                    // curTime: new Date().toLocaleString()
+                    // var tempDetailsObj = new Object();
 
-                        }).catch((error) => {
-                            console.log(error)
-                        });
+                    // tempDetailsObj.username = currentUser.username;
+                    // tempDetailsObj.itemsList = tempArr;
+                    // tempDetailsObj.datetime = dateTime;
+                    // console.log("-----")
+                    // console.log(tempDetailsObj);
+
+                    // axios.post(`${BASE_URL}/api/purchasesCard`, { tempDetailsObj: tempDetailsObj })
+                    //     .then((res) => {
+                    //         window.location.href = '/thanks';
+                    //         this.setState({
+
+                    //         });
+
+                    //     }).catch((error) => {
+                    //         console.log(error)
+                    //     });
 
                     ///Add to db - end
 

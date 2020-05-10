@@ -89,9 +89,9 @@ export default class CashOnDelivery extends Component {
         axios.post(`${BASE_URL}/api/purchased`, { tempDetailsObj: tempDetailsObj })
             .then((res) => {
                 window.location.href = '/thanks';
-                this.setState({
+                // this.setState({
 
-                });
+                // });
 
             }).catch((error) => {
                 console.log(error)
@@ -112,7 +112,7 @@ export default class CashOnDelivery extends Component {
 
 
                 <div id="cashOnDeliveryHeading" >
-                    <h2>Cash On Delevery</h2>
+                    <h2>Delevery Details</h2>
                 </div>
 
                 <table >

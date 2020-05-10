@@ -14,18 +14,18 @@ export default class TableRow extends React.Component {
   }
 
   delete() {
-  
+
     axios.post(`${BASE_URL}/api/products/delete/`, { id: this.props.obj.id })
       .then(response => {
         console.log(response);
         if (response.data == true) {
           alert('Item Deleted Successfully');
-      } else {
+        } else {
           alert('Error in Deleting');
-      }
+        }
 
       });
-
+    window.location.href = '/viewItems'
 
   }
   render() {
