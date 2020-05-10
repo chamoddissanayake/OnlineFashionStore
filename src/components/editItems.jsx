@@ -39,7 +39,7 @@ export default class editItems extends Component {
         var tempArr = response.data;
         console.log(tempArr[0]);
         this.setState({
-          id: tempArr[0].id,
+          id: tempArr[0]._id,
           price: tempArr[0].price,
           name: tempArr[0].name,
           image: tempArr[0].imageURL_main,
