@@ -5,7 +5,8 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     $scope.clz2 = "nav-link ";
     $scope.clz3 = "nav-link ";
     $scope.pageIndex = 0;
-
+    $scope.tableclz = "";
+    $scope.alert = "hide";
     $scope.selection = {}
 
     $scope.categoryObjArray = [];
@@ -53,10 +54,23 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
 
     //Get all Data from Category collection
     var getDetailsofCategory = function(){
-        $http.get('/category').then(function (response) {
-            console.log(response);
-            $scope.categoryObjArray = response.data;
-        })
+        $scope.tableclz = "table hide";
+        $http.get('/category')
+            .then(function (response) {
+                console.log(response);
+                $scope.categoryObjArray = response.data;
+
+
+            })
+            .finally(function () {
+                if($scope.categoryObjArray.length == 0 ){
+                    $scope.alert = "show";
+                }
+                else {
+                    $scope.tableclz = "table show";
+                }
+
+            })
     }
     getDetailsofCategory();
 
@@ -83,6 +97,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
                 if (response.data == true) {
                     alert('Item Saved successfully');
                     getDetailsofCategory();
+                    $scope.selection.Category = "";
                 } else {
                     alert('Error in saving');
                 }
