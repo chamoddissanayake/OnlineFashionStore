@@ -212,6 +212,34 @@ app.post('/api/purchasesCard', (req, res) => { //add Comments
 
 
 
+app.post('/api/purchased', (req, res) => { //add purchase
+  console.log("request received for add purchases123");
+  console.log(req.body.tempDetailsObj);
+  console.log("*");
+
+
+  var tempDetailsObj = req.body.tempDetailsObj;
+
+  var MongoClient = require('mongodb').MongoClient;
+
+  var url = dbCon.mongoURIConnString;
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("purchases").insertOne(tempDetailsObj, function (err1, res1) {
+      if (err1) throw err1;
+      console.log("Purchase added123");
+      res.send(true);
+      db.close();
+
+    });
+  });
+
+
+
+});
+
 async function getWishProd(dbo, idd) {
   console.log("llw:" + idd);
   var o_id = new mongo.ObjectID(idd);
