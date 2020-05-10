@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import paymentGatewayStyles from '../css/paymentGatewayStyles.css';
+import axios from 'axios';
+const BASE_URL = 'http://localhost:5000';
 export const CARD_NUMBER_REGEX = /^[0-9]{0,16}$/;
 
 
@@ -73,7 +75,52 @@ export default class PaymentGateway extends Component {
                 // alert('correct');
                 let cvcCode = this.state.cvcCode;
                 if (cvcCode.length == 3) {
-                    window.location.href = '/thanks';
+                    //Add to db - start
+
+                    let cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+                    let currentUser = localStorage.getItem("loggedInUser") ? JSON.parse(localStorage.getItem("loggedInUser")) : [];
+
+                    console.log(cartItems);
+                    console.log(currentUser.username);
+
+                    var tempArr = [];
+
+
+                    for (var asd = 0; asd < cartItems.length; asd++) {
+                        var aaa = cartItems[asd];
+                        tempArr.push(aaa._id);
+                    }
+
+                    console.log(tempArr);
+
+
+                    var today = new Date();
+                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                    var dateTime = date + ' ' + time;
+
+                    curTime: new Date().toLocaleString()
+                    var tempDetailsObj = new Object();
+
+                    tempDetailsObj.username = currentUser.username;
+                    tempDetailsObj.itemsList = tempArr;
+                    tempDetailsObj.datetime = dateTime;
+                    console.log("-----")
+                    console.log(tempDetailsObj);
+
+                    axios.post(`${BASE_URL}/api/purchasesCard`, { tempDetailsObj: tempDetailsObj })
+                        .then((res) => {
+                            window.location.href = '/thanks';
+                            this.setState({
+
+                            });
+
+                        }).catch((error) => {
+                            console.log(error)
+                        });
+
+                    ///Add to db - end
+
                 } else {
                     alert('Incorrect CVC Number');
                 }

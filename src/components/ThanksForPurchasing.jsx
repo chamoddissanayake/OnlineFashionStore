@@ -3,7 +3,9 @@ import React, { Component } from 'react'
 export default class ThanksForPurchasing extends Component {
 
     componentDidMount() {
-        this.clearCartItems();
+
+
+        // this.clearCartItems();
     }
     clearCartItems() {
         localStorage.removeItem("cart");

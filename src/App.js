@@ -138,10 +138,10 @@ class App extends Component {
                       to="/login">Log in</Link>)
 
                   } */}
-
+                  {/* 
                   {!utils.isEmpty(this.state.loggedInUserObj) && <span>
                     <Link className="nav-item nav-link" to="/checkout">Checkout</Link>
-                  </span>}
+                  </span>} */}
 
                   {!utils.isEmpty(this.state.loggedInUserObj) && <span>
                     <Link className="nav-item nav-link" to="/logout">Logout</Link>

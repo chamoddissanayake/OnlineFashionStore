@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import commentBoxStyles from '../css/cashOnDeliveryStyles.css';
+import cashOnDeliveryStyles from '../css/cashOnDeliveryStyles.css';
 import utils from '../utils/utils';
 
 
@@ -97,7 +97,7 @@ export default class CashOnDelivery extends Component {
 
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" required />
-                            <label class="form-check-label" for="exampleCheck1">Agree tearms and conditions</label>
+                            <label id="agreeTerms" class="form-check-label" for="exampleCheck1">Agree tearms and conditions</label>
                         </div>
                         <p>* Delivery Charges will be applied</p>
                         <button type="submit" class="btn btn-primary" onClick={this.handleCashOnDeliveryClicked} >Place Order >>></button>

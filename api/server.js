@@ -181,6 +181,36 @@ app.post('/api/commentAdd', (req, res) => { //add Comments
 
 });
 
+//Add purchases card
+app.post('/api/purchasesCard', (req, res) => { //add Comments
+  console.log("request received for add purchases(card)");
+  console.log(req.body.tempDetailsObj);
+  console.log("*");
+
+
+  var tempDetailsObj = req.body.tempDetailsObj;
+
+  var MongoClient = require('mongodb').MongoClient;
+
+  var url = dbCon.mongoURIConnString;
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("purchasedByCard").insertOne(tempDetailsObj, function (err1, res1) {
+      if (err1) throw err1;
+      console.log("Purchase added(cart)");
+      res.send(true);
+      db.close();
+
+    });
+  });
+
+
+
+});
+
+
 
 async function getWishProd(dbo, idd) {
   console.log("llw:" + idd);
@@ -584,7 +614,7 @@ app.delete('/category/:id', function (req, res) {
     if (err) throw err;
     var dbo = db.db("FashionStore");
 
-    var myquery = { id  :   id };
+    var myquery = { id: id };
     console.log(myquery);
     dbo.collection("category").deleteOne(myquery, function (err1, result) {
       if (err1) throw err1;
@@ -606,7 +636,7 @@ app.get('/', (req, res) => {
 app.post('/storeManger', (req, res) => {
   var transporter = nodemailer.createTransport({
     service: 'gmail',
-    tls:{
+    tls: {
       rejectUnauthorized: false
     },
     auth: {
@@ -622,7 +652,7 @@ app.post('/storeManger', (req, res) => {
     text: 'That was easy!'
   };
 
-  transporter.sendMail(mailOptions, function(error, info){
+  transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
     } else {
