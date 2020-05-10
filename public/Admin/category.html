@@ -4,11 +4,14 @@
             <form class="form-inline"  style="margin:  0 auto">
                 <input  ng-model='selection.Category' type="text"  class="form-control form-group  mb-2" style="width: 50%; margin: auto 0" id="category" placeholder="Enter the category here.." >
 
-                <button type="submit" class="btn btn-primary mx-2 mb-2" ng-click="AddCategory()">Add Category</button>
+                <button type="submit" class="btn btn-primary mx-2 mb-2" ng-click="AddCategory()" >Add Category</button>
             </form>
         </div>
         <div class="tbl mx-5 my-5 ">
-            <table class="table">
+            <div class="alert alert-warning {{alert}}" role="alert">
+                No Item To Display
+            </div>
+            <table class={{tableclz}} >
                 <thead>
                 <tr>
                     <th scope="col">ID</th>

@@ -22,6 +22,12 @@
 .tbl {
 
 }
+.show {
+    visibility: visible;
+}
+.hide {
+    visibility: hidden;
+}
 
 .frm {
     width: 80%;
