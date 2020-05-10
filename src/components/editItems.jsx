@@ -32,18 +32,21 @@ export default class editItems extends Component {
   componentDidMount() {
     console.log("Component Did Mount Method");
 
-    axios.get('${BASE_URL}/api/products/editItems/' + this.props.match.params.id)
+    axios.get(`${BASE_URL}/api/products/editItems/` + this.props.match.params.id)
 
       .then(response => {
+        console.log("**");
+        var tempArr = response.data;
+        console.log(tempArr[0]);
         this.setState({
-          id: response.data.id,
-          category: response.data.category,
-          name: response.data.name,
-          description: response.data.description,
-          price: response.data.price,
-          available_quantity: response.data.available_quantity,
-          discount: response.data.discount,
-          image: response.data.image,
+          id: tempArr[0]._id,
+          price: tempArr[0].price,
+          name: tempArr[0].name,
+          image: tempArr[0].imageURL_main,
+          discount: tempArr[0].discount,
+          category: tempArr[0].category,
+          description: tempArr[0].description,
+          available_quantity: tempArr[0].available_quantity,
         });
       })
       .catch(function (error) {
@@ -134,15 +137,17 @@ export default class editItems extends Component {
       price: this.state.price,
       available_quantity: this.state.available_quantity,
       discount: this.state.discount,
-      image: this.state.image
+      imageURL_main: this.state.image
     };
+
     console.log(productObject);
-    axios.post(`${BASE_URL}/api/products`, productObject)
+    axios.post(`${BASE_URL}/api/productsUpdate`, productObject)
       .then((res) => {
 
         console.log(res.data)
         if (res.data == true) {
           alert('Item Edited successfully');
+          window.location.href = '/viewItems'
         } else {
           alert('Error in editing');
         }
@@ -161,7 +166,7 @@ export default class editItems extends Component {
       discount: '',
       image: ''
     })
-    window.location.href = '/viewItems'
+
   }
 
   render() {
@@ -170,6 +175,7 @@ export default class editItems extends Component {
 
       <div>
         <h2>Edit Items</h2>
+        {console.log(this.props.match.params)}
 
         <form onSubmit={this.handleSubmit} action="/api/products" method="POST" >
           <div className="form-group">
@@ -177,7 +183,9 @@ export default class editItems extends Component {
             <input type="text"
               className="form-control"
               id="id"
+              value={this.state.id}
               onChange={this.handleIdChange} />
+            {/* {this.props.match.params.id} */}
           </div>
 
           <div className="form-group">
@@ -185,6 +193,7 @@ export default class editItems extends Component {
             <input type="text"
               className="form-control"
               id="category"
+              value={this.state.category}
               onChange={this.handleCategoryChange} />
           </div>
 
@@ -193,6 +202,7 @@ export default class editItems extends Component {
             <input type="text"
               className="form-control"
               id="name"
+              value={this.state.name}
               onChange={this.handleNameChange} />
           </div>
 
@@ -201,6 +211,7 @@ export default class editItems extends Component {
             <input type="text"
               className="form-control"
               id="description"
+              value={this.state.description}
               onChange={this.handleDescriptionChange} />
           </div>
 
@@ -209,6 +220,7 @@ export default class editItems extends Component {
             <input type="number"
               min="0"
               step="0.00"
+              value={this.state.price}
               className="form-control"
               id="price" onChange={this.handlePriceChange} />
           </div>
@@ -219,6 +231,7 @@ export default class editItems extends Component {
               min="0" step="0"
               className="form-control"
               id="available_quantity"
+              value={this.state.available_quantity}
               onChange={this.handleAvailableQuantityChange} />
           </div>
 
@@ -228,6 +241,7 @@ export default class editItems extends Component {
               min="0" step="0"
               className="form-control"
               id="discount"
+              value={this.state.discount}
               onChange={this.handleDiscountChange} />
           </div>
 
@@ -236,6 +250,7 @@ export default class editItems extends Component {
             <input type="text"
               className="form-control"
               id="image"
+              value={this.state.image}
               onChange={this.handleImageChange} />
           </div>
 

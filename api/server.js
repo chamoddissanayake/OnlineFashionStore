@@ -335,7 +335,69 @@ app.post('/api/wishlist', (req, res) => { //retrieve wishlist
 // });
 
 
-app.post('/api/products', (req, res) => { //generates the list of products in the cart
+
+
+//Edit product
+app.post('/api/productsUpdate', (req, res) => {
+  console.log("Edit product started");
+
+  var tempproductObject = new Object();
+  console.log("#");
+  console.log(req.body);
+  // console.log(req.body.productObject);
+  // console.log(req.body.productObject[0]);
+
+  console.log("*");
+
+  tempproductObject._id = req.body.id;
+  tempproductObject.category = req.body.category;
+  tempproductObject.name = req.body.name;
+  tempproductObject.description = req.body.description;
+  tempproductObject.price = req.body.price;
+  tempproductObject.available_quantity = req.body.available_quantity;
+  tempproductObject.discount = req.body.discount;
+  tempproductObject.imageURL_main = req.body.imageURL_main;
+
+  console.log("-----");
+  console.log(tempproductObject);
+  console.log("-----");
+  // // id  category name description price available_quantity discount image
+
+
+  var MongoClient = require('mongodb').MongoClient;
+  // var url = "mongodb://localhost:27017/";
+  var url = dbCon.mongoURIConnString;
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    // var o_id = new mongo.ObjectID(tempproductObject._id);
+    // var myquery = { o_id: tempproductObject._id };
+    const ObjectID = require('mongodb').ObjectID;
+    dbo.collection("products").updateOne(
+      { _id: new ObjectID(tempproductObject._id) },
+      {
+        $set: {
+          id: tempproductObject._id, category: tempproductObject.category, name: tempproductObject.name,
+          description: tempproductObject.description, price: tempproductObject.price, available_quantity: tempproductObject.available_quantity,
+          discount: tempproductObject.discount, imageURL_main: tempproductObject.imageURL_main
+        }
+      },
+      { upsert: true },
+      function (err1, res1) {
+        if (err1) throw err1;
+        console.log("Item updated successfully.");
+        res.send(true);
+        db.close();
+
+      });
+  });
+
+
+});
+
+
+app.post('/api/Addproducts', (req, res) => { //addProduct
 
   let products = [], id = null;
   // var addStatus = false;
@@ -351,7 +413,7 @@ app.post('/api/products', (req, res) => { //generates the list of products in th
   tempItemObj.price = req.body.price;
   tempItemObj.available_quantity = req.body.available_quantity;
   tempItemObj.discount = req.body.discount;
-  tempItemObj.image = req.body.image;
+  tempItemObj.imageURL_main = req.body.imageURL_main;
 
   var MongoClient = require('mongodb').MongoClient;
 
@@ -576,6 +638,30 @@ app.post('/api/products/delete/', (req, res) => {
 });
 
 app.get('/api/products/editItems/:id', (req, res) => {
+
+
+  console.log(req.params.id);
+  console.log("request received for the get  product details for update");
+
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+
+    var o_id = new mongo.ObjectID(req.params.id);
+
+    dbo.collection("products").find({ _id: o_id }).toArray(function (err, result) {
+
+      if (err) throw err;
+      console.log("--");
+      console.log(result);
+
+      res.send(result);
+      db.close();
+    });
+  });
+
+
   console.log("Edit1");
 });
 

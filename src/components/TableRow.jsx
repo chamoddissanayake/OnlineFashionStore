@@ -63,6 +63,7 @@ export default class TableRow extends React.Component {
           <Link to="/viewItems">
             <button onClick={this.delete} className="btn btn-danger">Delete</button>
           </Link>
+
         </td>
       </tr>
     )

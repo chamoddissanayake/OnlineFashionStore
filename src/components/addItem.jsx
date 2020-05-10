@@ -18,9 +18,9 @@ export default class addItem extends Component {
             price: '',
             available_quantity: '',
             discount: '',
-            image: ''
+            imageURL_main: ''
         };
-        
+
         this.handleIdChange = this.handleIdChange.bind(this);
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -89,7 +89,7 @@ export default class addItem extends Component {
 
     handleImageChange(event) {
         this.setState({
-            image: event.target.value
+            imageURL_main: event.target.value
         }, () => {
             // console.log("Entered image: ", this.state.image);
         });
@@ -97,7 +97,7 @@ export default class addItem extends Component {
 
 
     handleSubmit(event) {
-        
+
         event.preventDefault();
 
         const productObject = {
@@ -108,15 +108,16 @@ export default class addItem extends Component {
             price: this.state.price,
             available_quantity: this.state.available_quantity,
             discount: this.state.discount,
-            image: this.state.image
+            imageURL_main: this.state.imageURL_main
         };
         console.log(productObject);
-        axios.post(`${BASE_URL}/api/products`, productObject)
+        axios.post(`${BASE_URL}/api/Addproducts`, productObject)
             .then((res) => {
 
                 console.log(res.data)
                 if (res.data == true) {
                     alert('Item Saved successfully');
+                    window.location.href = '/add'
                 } else {
                     alert('Error in saving');
                 }
@@ -133,7 +134,7 @@ export default class addItem extends Component {
             price: '',
             available_quantity: '',
             discount: '',
-            image: ''
+            imageURL_main: ''
         })
     }
 
