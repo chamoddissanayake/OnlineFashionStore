@@ -190,11 +190,13 @@ export default class editItems extends Component {
 
           <div className="form-group">
             <label>Category</label>
-            <input type="text"
-              className="form-control"
-              id="category"
-              value={this.state.category}
-              onChange={this.handleCategoryChange} />
+            <select id="category" className="form-control" onChange={this.handleCategoryChange} >
+                            <option value="volvo"></option>
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="opel">Opel</option>
+                            <option value="audi">Audi</option>
+            </select>
           </div>
 
           <div className="form-group">
