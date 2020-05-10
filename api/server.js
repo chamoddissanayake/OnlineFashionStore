@@ -230,7 +230,7 @@ app.post('/api/purchased', (req, res) => { //add purchase
     dbo.collection("purchases").insertOne(tempDetailsObj, function (err1, res1) {
       if (err1) throw err1;
       console.log("Purchase added123");
-      res.send(true);
+      res.send("true");
       db.close();
 
     });
