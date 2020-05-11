@@ -666,6 +666,8 @@ app.get('/api/products/editItems/:id', (req, res) => {
 });
 
 
+
+
 //Get StoreManager Details
 app.get('/storeManger', (req, res) => {
   console.log("request received for home page");
@@ -747,6 +749,7 @@ app.get('/', (req, res) => {
 });
 
 
+//insert storeMAnager
 app.post('/storeManger', (req, res) => {
   console.log("request received for add storemanger");
   //console.log(req.body);
