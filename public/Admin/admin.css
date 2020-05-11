@@ -26,7 +26,8 @@
     visibility: visible;
 }
 .hide {
-    visibility: hidden;
+    visibility: collapse;
+    opacity: 0.0;
 }
 
 .frm {

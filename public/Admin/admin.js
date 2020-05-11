@@ -7,7 +7,11 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     $scope.pageIndex = 0;
     $scope.tableclz = "";
     $scope.alert = "hide";
+    $scope.alertBox = "hide";
+
     $scope.selection = {}
+
+    $scope.storeMAnagerDetails = {}
 
     $scope.categoryObjArray = [];
 
@@ -55,6 +59,8 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     //Get all Data from Category collection
     var getDetailsofCategory = function(){
         $scope.tableclz = "table hide";
+        $scope.alert = "hide";
+        $scope.alertBox = "show";
         $http.get('/category')
             .then(function (response) {
                 console.log(response);
@@ -63,10 +69,13 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
 
             })
             .finally(function () {
+                $scope.alertBox = "hide";
                 if($scope.categoryObjArray.length == 0 ){
                     $scope.alert = "show";
+                    $scope.tableclz = "table hide";
                 }
                 else {
+                    $scope.alert = "hide";
                     $scope.tableclz = "table show";
                 }
 
@@ -123,6 +132,22 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     }
 
 
+    //Add StoreManger
+    $scope.addStoreManager = function () {
+        var StoreManagerObj = {FistName : $scope.storeMAnagerDetails.firstname , LastName : $scope.storeMAnagerDetails.lastname , address1 : $scope.storeMAnagerDetails.address1  , address2 : $scope.storeMAnagerDetails.address2 , Email : $scope.storeMAnagerDetails.Email , mobileNumber : $scope.storeMAnagerDetails.mobileNumber , password : $scope.storeMAnagerDetails.password};
+
+        console.log(StoreManagerObj);
+        $http.post('/storeManger' , StoreManagerObj).then(function (response) {
+            console.log(response.data)
+            if (response.data == true) {
+                alert('Item Saved successfully');
+                getDetailsofCategory();
+                $scope.selection.Category = "";
+            } else {
+                alert('Error in saving');
+            }
+        });
+    }
 });
 
 

@@ -748,31 +748,62 @@ app.get('/', (req, res) => {
 
 
 app.post('/storeManger', (req, res) => {
-  var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    tls: {
-      rejectUnauthorized: false
-    },
-    auth: {
-      user: 'prageethpramuditha.2020@gmail.com',
-      pass: ''
-    }
+  console.log("request received for add storemanger");
+  //console.log(req.body);
+  var storeMangerObj = new Object();
+
+  storeMangerObj.FistName = req.body.FistName;
+  storeMangerObj.LastName = req.body.LastName;
+  storeMangerObj.address1 = req.body.address1;
+  storeMangerObj.address2 = req.body.address2;
+  storeMangerObj.Email = req.body.Email;
+  storeMangerObj.mobileNumber = req.body.mobileNumber;
+  storeMangerObj.password = req.body.password;
+
+  console.log(storeMangerObj);
+
+  var MongoClient = require('mongodb').MongoClient;
+  // var url = "mongodb://localhost:27017/";
+  var url = dbCon.mongoURIConnString;
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("storeManger").insertOne(storeMangerObj, function (err1, res1) {
+      if (err1) throw err1;
+      console.log("Item was added to the storeManger added.");
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        tls: {
+          rejectUnauthorized: false
+        },
+        auth: {
+          user: 'prageethpramuditha.2020@gmail.com',
+          pass: ''
+        }
+      });
+
+      var mailOptions = {
+        from: 'prageethpramuditha.2020@gmail.com',
+        to: 'prageethpramuditha.20162@gmail.com',
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!'
+      };
+
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+      res.send(true);
+      db.close();
+
+    });
   });
 
-  var mailOptions = {
-    from: 'prageethpramuditha.2020@gmail.com',
-    //to: req.body.emailAdd,
-    subject: 'Sending Email using Node.js',
-    text: 'That was easy!'
-  };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
 
 });
 
