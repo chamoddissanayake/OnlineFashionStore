@@ -809,9 +809,9 @@ app.post('/storeManger', (req, res) => {
 
 //delete storeManager
 app.delete('/storeManger/:id', function (req, res) {
- /* var id = req.params.id;
+  var id = req.params.id;
   console.log("deleting" + id);
-
+/*
   var MongoClient = require('mongodb').MongoClient;
   // var url = "mongodb://localhost:27017/";
   var url = dbCon.mongoURIConnString;
