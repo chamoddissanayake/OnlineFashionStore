@@ -1,15 +1,13 @@
 html, body {
     height: 100%;
 }
-
+.bdy {
+    background-image: url("images/backgroundImage.jpg");
+}
 /* CSS only for examples not required for centering */
 .container {
     height: 100%;
 }
-.bdy {
-    background-image: url("images/backgroundImage.jpg");
-}
-
 .note {
     position: absolute;
     z-index: 10;
