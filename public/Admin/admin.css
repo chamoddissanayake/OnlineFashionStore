@@ -24,9 +24,10 @@
 }
 .show {
     visibility: visible;
+
 }
 .hide {
-    visibility: collapse;
+    display: none;
     opacity: 0.0;
 }
 
