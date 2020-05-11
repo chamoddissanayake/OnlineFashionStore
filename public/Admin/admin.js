@@ -7,7 +7,8 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     $scope.pageIndex = 0;
     $scope.tableclz = "";
     $scope.alert = "hide";
-    $scope.alertBox = "hide";
+    $scope.alertBox1 = "hide";
+    $scope.alertBox2 = "hide";
 
     $scope.selection = {}
 
@@ -60,7 +61,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     var getDetailsofCategory = function(){
         $scope.tableclz = "table hide";
         $scope.alert = "hide";
-        $scope.alertBox = "show";
+        $scope.alertBox2 = "show";
         $http.get('/category')
             .then(function (response) {
                 console.log(response);
@@ -69,15 +70,17 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
 
             })
             .finally(function () {
-                $scope.alertBox = "hide";
                 if($scope.categoryObjArray.length == 0 ){
                     $scope.alert = "show";
                     $scope.tableclz = "table hide";
+
                 }
                 else {
                     $scope.alert = "hide";
                     $scope.tableclz = "table show";
+
                 }
+                $scope.alertBox2 = "hide";
 
             })
     }
@@ -86,6 +89,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
 
     //Adding Category
     $scope.AddCategory = function () {
+        $scope.alertBox1 = "show";
         console.log( $scope.selection.Category);
         for(var i = 0 ; i < $scope.categoryObjArray.length ; i++) {
             if($scope.categoryObjArray[i].name == $scope.selection.Category ){
@@ -107,6 +111,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
                     alert('Item Saved successfully');
                     getDetailsofCategory();
                     $scope.selection.Category = "";
+                    $scope.alertBox1 = "hide";
                 } else {
                     alert('Error in saving');
                 }

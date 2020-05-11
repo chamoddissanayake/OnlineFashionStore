@@ -5,11 +5,17 @@
                 <input  ng-model='selection.Category' type="text"  class="form-control form-group  mb-2" style="width: 50%; margin: auto 0" id="category" placeholder="Enter the category here.." >
 
                 <button type="submit" class="btn btn-primary mx-2 mb-2" ng-click="AddCategory()" >Add Category</button>
-                <div class="spinner-border" role="status">
+                <div class="spinner-border text-primary {{alertBox1}} mx-2" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
             </form>
         </div>
+      <div class="mx-auto {{alertBox2}} form-inline" style="width: 200px;">
+          Please Wait
+          <div class="spinner-border text-primary  " role="status">
+              <span class="sr-only">Loading...</span>
+          </div>
+      </div>
 
             <div class="alert alert-warning {{alert}} mx-4"  role="alert">
                 No Item To Display
@@ -31,7 +37,7 @@
                         <th scope="row">{{ $index + 1 }}</th>
                         <td>{{list.categoryName}}</td>
                         <td>{{list.noOfItems}}</td>
-                        <td  class="text-danger"><i class="fas fa-trash" style="text-align: right ; cursor: pointer" ng-click="deleteCategory(list.id)"></i></td>
+                        <td  class="text-danger "><i class="fas fa-trash" style="text-align: right ; cursor: pointer" ng-click="deleteCategory(list.id)"></i></td>
 
                     </tr>
 
