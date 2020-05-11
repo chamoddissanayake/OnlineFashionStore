@@ -6,6 +6,9 @@ html, body {
 .container {
     height: 100%;
 }
+.bdy {
+    background-image: url("images/backgroundImage.jpg");
+}
 
 .note {
     position: absolute;
