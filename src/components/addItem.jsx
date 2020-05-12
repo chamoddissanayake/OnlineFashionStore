@@ -183,10 +183,7 @@ export default class addItem extends Component {
                         <select id="category" className="form-control" onChange={this.handleCategoryChange} >
 
                             <option value="volvo"></option>
-                            <option value="volvo">{this.state.allCategory[0].categoryName} </option>
-                            <option value="saab">{this.state.allCategory[1].categoryName}</option>
-                            <option value="opel">{this.state.allCategory[2].categoryName}</option>
-                            <option value="audi">{this.state.allCategory[3].categoryName}</option>
+
                         </select>
 
                      
