@@ -146,7 +146,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
         $http.post('/storeManger' , StoreManagerObj).then(function (response) {
             console.log(response.data)
             if (response.data == true) {
-                alert('Item Saved successfully');
+                $('#saveStoreManager').modal('show');
                 getDetailsofCategory();
                 $scope.selection.Category = "";
             } else {
