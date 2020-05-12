@@ -177,11 +177,19 @@ export default class addItem extends Component {
                             onChange={this.handleIdChange} />
                     </div>
 
+                    <div className="form-row">
+                        <label className="form-group col-md-1">Category</label>
+                        <div className="spinner-border text-primary " role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    </div>
                     <div className="form-group">
-                        <label>Category</label>
+
 
                         <select id="category" className="form-control" onChange={this.handleCategoryChange} >
+
                             {
+
                                 this.state.allCategory.map((field , key) =>
                                     <option key = {field.id} value="{field.id}">{field.categoryName}</option>
                                 )
