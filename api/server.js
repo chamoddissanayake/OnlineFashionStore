@@ -806,16 +806,19 @@ app.post('/storeManger', (req, res) => {
           rejectUnauthorized: false
         },
         auth: {
-          user: 'prageethpramuditha.2020@gmail.com',
-          pass: ''
+          user: 'onlinefashionstoreaf@gmail.com',
+          pass: 'afproject2020.456'
         }
       });
 
       var mailOptions = {
-        from: 'prageethpramuditha.2020@gmail.com',
-        to: 'prageethpramuditha.20162@gmail.com',
-        subject: 'Sending Email using Node.js',
-        text: 'That was easy!'
+        from: 'onlinefashionstoreaf@gmail.com',
+        to: req.body.Email,
+        subject: 'Account has been created',
+        text: 'Welcome ' + req.body.FistName + ' ' + req.body.LastName + '\n' + 'Your account as an Store Manager was created. Your ' +
+            'username is ' + req.body.Email +
+            ' and the password ' + req.body.password
+
       };
 
       transporter.sendMail(mailOptions, function (error, info) {
