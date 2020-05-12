@@ -108,10 +108,11 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
             $http.post('/category' , categoryObj ).then(function (response) {
                 console.log(response.data)
                 if (response.data == true) {
-                    alert('Item Saved successfully');
+                    $scope.alertBox1 = "hide";
+                    $('#save').modal('show');
                     getDetailsofCategory();
                     $scope.selection.Category = "";
-                    $scope.alertBox1 = "hide";
+
                 } else {
                     alert('Error in saving');
                 }

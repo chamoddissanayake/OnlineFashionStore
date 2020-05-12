@@ -38,7 +38,7 @@
                         <th scope="row">{{ $index + 1 }}</th>
                         <td>{{list.categoryName}}</td>
                         <td>{{list.noOfItems}}</td>
-                        <td  class="text-danger "><i class="fas fa-trash" style="text-align: right ; cursor: pointer" ng-click="deleteCategory(list.id)"></i></td>
+                        <td  class="text-danger "><i class="fas fa-trash" style="text-align: right ; cursor: pointer" ng-click="deleteCategory(list.id)" data-toggle="modal" data-target="#delete"></i></td>
 
                     </tr>
 
@@ -47,4 +47,46 @@
         </div>
   </div>
 
-  <!--Modal-->
+  <!-- Modal for Delete conformation -->
+  <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title text-danger" id="delete1" >Are you sure...?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger">Yes , Delete</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <!-- Modal for Saved conformation -->
+  <div class="modal fade" id="save" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title text-success" id="save1" >successfully</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                    You have successfully added the Category to the system
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              </div>
+          </div>
+      </div>
+  </div>
+
