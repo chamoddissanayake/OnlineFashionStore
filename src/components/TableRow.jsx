@@ -14,7 +14,7 @@ export default class TableRow extends React.Component {
   }
 
   delete() {
-
+    alert('Are you sure to delete this item?');
     axios.post(`${BASE_URL}/api/products/delete/`, { id: this.props.obj.id })
       .then(response => {
         console.log(response);
@@ -31,6 +31,7 @@ export default class TableRow extends React.Component {
   render() {
 
     return (
+      
       <tr >
         <td>
           {this.props.obj._id}
