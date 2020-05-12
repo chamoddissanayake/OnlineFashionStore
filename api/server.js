@@ -749,6 +749,22 @@ app.get('/', (req, res) => {
 });
 
 
+//Get storeMAnager Details
+app.get('/storeManger', (req, res) => {
+  console.log("request received for get storeManger");
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("storeManger").find({}).toArray(function (err, result) {
+      if (err) throw err;
+
+      res.send(result);
+      db.close();
+    });
+  });
+});
+
+
 //insert storeMAnager
 app.post('/storeManger', (req, res) => {
   console.log("request received for add storemanger");
