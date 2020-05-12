@@ -716,7 +716,7 @@ app.post('/category', (req, res) => {
 //delete category
 app.delete('/category/:id', function (req, res) {
   var id = req.params.id;
-  console.log("deleting" + id);
+  console.log("deleting " + id);
 
   var MongoClient = require('mongodb').MongoClient;
   // var url = "mongodb://localhost:27017/";
@@ -726,8 +726,10 @@ app.delete('/category/:id', function (req, res) {
     if (err) throw err;
     var dbo = db.db("FashionStore");
 
-    var myquery = { id: id };
+    var myquery = { _id: mongo.ObjectID(id) };
     console.log(myquery);
+
+
     dbo.collection("category").deleteOne(myquery, function (err1, result) {
       if (err1) throw err1;
       console.log("Item was deleted");
