@@ -18,8 +18,11 @@ export default class addItem extends Component {
             price: '',
             available_quantity: '',
             discount: '',
-            imageURL_main: ''
+            imageURL_main: '',
+            allCategory : {}
         };
+
+
 
         this.handleIdChange = this.handleIdChange.bind(this);
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
@@ -30,6 +33,28 @@ export default class addItem extends Component {
         this.handleDiscountChange = this.handleDiscountChange.bind(this);
         this.handleImageChange = this.handleImageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        axios.get(`${BASE_URL}/category`)
+            .then((res) => {
+
+                console.log(res.data)
+                if (res.data != null) {
+                    this.setState({
+                        allCategory : res.data
+
+                    });
+                    console.log(this.state.allCategory[0].categoryName);
+
+
+                } else {
+                    alert('Error');
+                }
+
+            }).catch((error) => {
+            console.log(error)
+        });
     }
 
     handleIdChange(event) {
@@ -156,11 +181,12 @@ export default class addItem extends Component {
                         <label>Category</label>
 
                         <select id="category" className="form-control" onChange={this.handleCategoryChange} >
+
                             <option value="volvo"></option>
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="opel">Opel</option>
-                            <option value="audi">Audi</option>
+                            <option value="volvo">{this.state.allCategory[0].categoryName} </option>
+                            <option value="saab">{this.state.allCategory[1].categoryName}</option>
+                            <option value="opel">{this.state.allCategory[2].categoryName}</option>
+                            <option value="audi">{this.state.allCategory[3].categoryName}</option>
                         </select>
 
                      
