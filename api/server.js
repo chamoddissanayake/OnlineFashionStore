@@ -670,8 +670,17 @@ app.get('/api/products/editItems/:id', (req, res) => {
 
 //Get StoreManager Details
 app.get('/storeManger', (req, res) => {
-  console.log("request received for home page");
-  res.sendFile(__dirname + '/');
+  console.log("request received for get StoreManager Details");
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("FashionStore");
+    dbo.collection("storeManger").find({}).toArray(function (err, result) {
+      if (err) throw err;
+
+      res.send(result);
+      db.close();
+    });
+  });
 });
 
 //Get Category Details
