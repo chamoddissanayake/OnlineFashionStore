@@ -120,13 +120,7 @@ export default class editItems extends Component {
 
 
   handleSubmit(event) {
-    // alert('Item was sumbitted' +
-    //     this.state.id +
-    //     this.state.name +
-    //     this.state.description +
-    //     this.state.price +
-    //     this.state.available_quantity
-    // );
+   
     event.preventDefault();
 
     const productObject = {

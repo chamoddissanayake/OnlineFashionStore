@@ -23,8 +23,6 @@ export default class addItem extends Component {
             display : true
         };
 
-
-
         this.handleIdChange = this.handleIdChange.bind(this);
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -172,10 +170,9 @@ export default class addItem extends Component {
     render() {
         return (
             <div>
-                <h2>Add Items</h2>
+                <h2>Add Items</h2><br></br>
 
                 <form onSubmit={this.handleSubmit} action="/api/products" method="POST" >
-                   
 
                     <div className="form-row">
                         <label className="form-group col-md-1">Category</label>
@@ -184,8 +181,8 @@ export default class addItem extends Component {
                                 <span className="sr-only">Loading...</span>
                             </div>
                         }
-
                     </div>
+
                     <div className="form-group">
 
 
