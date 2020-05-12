@@ -612,10 +612,9 @@ app.post('/api/wishlistDelete', (req, res) => {
 
 
 
-app.post('/api/products/delete/', (req, res) => {
+app.delete('/api/products/:id', (req, res) => {
 
-  /*var id = req.params.id;*/
-  console.log(req.body);
+  var id = req.params.id;
 
   var MongoClient = require('mongodb').MongoClient;
   // var url = "mongodb://localhost:27017/";
@@ -625,7 +624,7 @@ app.post('/api/products/delete/', (req, res) => {
     if (err) throw err;
     var dbo = db.db("FashionStore");
 
-    var myquery = { _id: mongo.ObjectID(req.body.id) };
+    var myquery = { _id: mongo.ObjectID(id) };
     console.log(myquery);
 
     dbo.collection("products").deleteOne(myquery, function (err1, result) {
