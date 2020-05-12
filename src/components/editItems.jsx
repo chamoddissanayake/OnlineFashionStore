@@ -184,7 +184,8 @@ export default class editItems extends Component {
               className="form-control"
               id="id"
               value={this.state.id}
-              onChange={this.handleIdChange} />
+              onChange={this.handleIdChange}  readOnly
+              />
             {/* {this.props.match.params.id} */}
           </div>
 
