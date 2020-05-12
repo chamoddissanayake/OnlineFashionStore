@@ -19,7 +19,7 @@ export default class addItem extends Component {
             available_quantity: '',
             discount: '',
             imageURL_main: '',
-            allCategory : {}
+            allCategory : []
         };
 
 
@@ -181,8 +181,12 @@ export default class addItem extends Component {
                         <label>Category</label>
 
                         <select id="category" className="form-control" onChange={this.handleCategoryChange} >
+                            {
+                                this.state.allCategory.map((field , key) =>
+                                    <option key = {field.id} value="{field.id}">{field.categoryName}</option>
+                                )
+                            }
 
-                            <option value="volvo"></option>
 
                         </select>
 
