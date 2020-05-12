@@ -154,7 +154,7 @@ export default class addItem extends Component {
             }).catch((error) => {
                 console.log(error)
             });
-
+//add commentd
         this.setState({
             id: '',
             category: '',
@@ -208,7 +208,6 @@ export default class addItem extends Component {
                             id="name"
                             onChange={this.handleNameChange} />
                     </div>
-
                     <div className="form-group">
                         <label>Description</label>
                         <input type="text"
