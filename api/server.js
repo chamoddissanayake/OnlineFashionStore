@@ -614,8 +614,8 @@ app.post('/api/wishlistDelete', (req, res) => {
 
 app.post('/api/products/delete/', (req, res) => {
 
-  /*var id = req.params.id;
-  console.log("deleting" + id);*/
+  /*var id = req.params.id;*/
+  console.log(req.body);
 
   var MongoClient = require('mongodb').MongoClient;
   // var url = "mongodb://localhost:27017/";
@@ -625,7 +625,7 @@ app.post('/api/products/delete/', (req, res) => {
     if (err) throw err;
     var dbo = db.db("FashionStore");
 
-    var myquery = { id: mongo.ObjectID(req.body.id) };
+    var myquery = { _id: mongo.ObjectID(req.body.id) };
     console.log(myquery);
 
     dbo.collection("products").deleteOne(myquery, function (err1, result) {
