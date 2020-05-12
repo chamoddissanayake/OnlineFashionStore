@@ -613,7 +613,7 @@ app.post('/api/wishlistDelete', (req, res) => {
 
 
 app.delete('/api/products/:id', (req, res) => {
-
+  console.log("got the delete request");
   var id = req.params.id;
 
   var MongoClient = require('mongodb').MongoClient;
