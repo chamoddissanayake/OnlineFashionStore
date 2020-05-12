@@ -19,7 +19,8 @@ export default class addItem extends Component {
             available_quantity: '',
             discount: '',
             imageURL_main: '',
-            allCategory : []
+            allCategory : [],
+            display : true
         };
 
 
@@ -54,7 +55,12 @@ export default class addItem extends Component {
 
             }).catch((error) => {
             console.log(error)
-        });
+            }).finally(()=> {
+                this.setState({
+                    display : false
+
+                });
+            }) ;
     }
 
     handleIdChange(event) {
@@ -179,9 +185,12 @@ export default class addItem extends Component {
 
                     <div className="form-row">
                         <label className="form-group col-md-1">Category</label>
-                        <div className="spinner-border text-primary " role="status">
-                            <span className="sr-only">Loading...</span>
-                        </div>
+                        { this.state.display &&
+                            <div className="spinner-border text-primary " id="loader" role="status">
+                                <span className="sr-only">Loading...</span>
+                            </div>
+                        }
+
                     </div>
                     <div className="form-group">
 
