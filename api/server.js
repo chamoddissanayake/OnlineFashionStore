@@ -811,7 +811,7 @@ app.post('/storeManger', (req, res) => {
 app.delete('/storeManger/:id', function (req, res) {
   var id = req.params.id;
   console.log("deleting" + id);
-/*
+
   var MongoClient = require('mongodb').MongoClient;
   // var url = "mongodb://localhost:27017/";
   var url = dbCon.mongoURIConnString;
@@ -822,13 +822,13 @@ app.delete('/storeManger/:id', function (req, res) {
 
     var myquery = { id: id };
     console.log(myquery);
-    dbo.collection("category").deleteOne(myquery, function (err1, result) {
+    dbo.collection("storeManger").deleteOne(myquery, function (err1, result) {
       if (err1) throw err1;
-      console.log("Item was deleted");
+      console.log("storeManger was deleted");
       res.send(true);
       db.close();
     });
-  });*/
+  });
 
 });
 
