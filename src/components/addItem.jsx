@@ -145,7 +145,7 @@ export default class addItem extends Component {
 
                 console.log(res.data)
                 if (res.data == true) {
-                    alert('Item Saved successfully');
+                    alert('Item ' + document.getElementById("name").value + ' Saved Successfuly.');
                     window.location.href = '/add'
                 } else {
                     alert('Error in saving');
@@ -154,7 +154,7 @@ export default class addItem extends Component {
             }).catch((error) => {
                 console.log(error)
             });
-//add commentd
+
         this.setState({
             id: '',
             category: '',
