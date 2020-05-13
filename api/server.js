@@ -769,7 +769,7 @@ app.post('/storeManger', (req, res) => {
   //console.log(req.body);
   var storeMangerObj = new Object();
 
-  storeMangerObj.FistName = req.body.FistName;
+  storeMangerObj.FirstName = req.body.FirstName;
   storeMangerObj.LastName = req.body.LastName;
   storeMangerObj.address1 = req.body.address1;
   storeMangerObj.address2 = req.body.address2;
