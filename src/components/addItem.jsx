@@ -191,7 +191,7 @@ export default class addItem extends Component {
                             {
 
                                 this.state.allCategory.map((field , key) =>
-                                    <option key = {field.id} value="{field.id}">{field.categoryName}</option>
+                                    <option key = {field.id} value={field.categoryName}>{field.categoryName}</option>
                                 )
                             }
 
