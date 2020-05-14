@@ -8,6 +8,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-session": "^1.17.0",
+    "firebase": "^7.14.3",
     "jsonwebtoken": "^8.4.0",
     "mongodb": "^3.5.5",
     "node-fetch": "^2.6.0",
