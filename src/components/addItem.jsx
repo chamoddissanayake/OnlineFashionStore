@@ -198,7 +198,9 @@ export default class addItem extends Component {
         return (
             <div>
                 <center>
+                    
                     <h2>Add Items</h2><br></br>
+
                 </center>
 
                 <form onSubmit={this.handleSubmit} action="/api/products" method="POST" >

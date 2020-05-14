@@ -195,7 +195,9 @@ export default class editItems extends Component {
     return (
 
       <div>
-        <h2>Edit Items</h2>
+        <center>
+          <h2>Edit Items</h2>
+        </center>
         {console.log(this.props.match.params)}
 
         <form onSubmit={this.handleSubmit} action="/api/products" method="POST" >
