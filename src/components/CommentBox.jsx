@@ -212,8 +212,12 @@ class CommentForm extends React.Component {
                 </div>
                 <div>dgdfgdf{this.state.averageRating}</div>
             </form>
+           
         );
     } // end render
+
+    ///new commeny
+
 
     _handleSubmit(event) {
         event.preventDefault();   // prevents page from reloading on submit
