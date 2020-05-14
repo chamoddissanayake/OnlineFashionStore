@@ -14,7 +14,7 @@ export default class TableRow extends React.Component {
   }
 
   delete() {
-    //alert('Are you sure to delete this item?');
+    
     axios.delete(`${BASE_URL}/api/products/`+ this.props.obj._id )
       .then(response => {
         console.log(response);

@@ -16,7 +16,7 @@ const products = [
   
       discount: 10,
 
-      image: 'testIma'
+      imageURL_main: 'testIma'
     }
 ]
 

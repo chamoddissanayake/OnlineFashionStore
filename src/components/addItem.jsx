@@ -247,7 +247,7 @@ export default class addItem extends Component {
                         <label>Image</label>
                         <input type="text"
                             className="form-control"
-                            id="image"
+                            id="imageURL_main"
                             onChange={this.handleImageChange} />
                     </div>
 

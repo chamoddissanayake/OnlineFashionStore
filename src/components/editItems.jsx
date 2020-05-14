@@ -140,7 +140,7 @@ export default class editItems extends Component {
 
         console.log(res.data)
         if (res.data == true) {
-          alert('Item Edited successfully');
+          alert('Item Updated successfully');
           window.location.href = '/viewItems'
         } else {
           alert('Error in editing');
