@@ -197,7 +197,9 @@ export default class addItem extends Component {
     render() {
         return (
             <div>
-                <h2>Add Items</h2><br></br>
+                <center>
+                    <h2>Add Items</h2><br></br>
+                </center>
 
                 <form onSubmit={this.handleSubmit} action="/api/products" method="POST" >
 
