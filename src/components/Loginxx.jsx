@@ -82,7 +82,7 @@ export default class Loginxx extends React.Component {
               } else {
                 this.props.history.push('/');
               }
-
+              window.location.reload();
             } else if (res.data.type == 'manager') {
 
               const { location } = this.props;
@@ -91,7 +91,7 @@ export default class Loginxx extends React.Component {
               } else {
                 this.props.history.push('/manager');
               }
-
+              window.location.reload();
             } else if (res.data.type == 'admin') {
              //axios.get(`${BASE_URL}/`);
               /*const { location } = this.props;
@@ -104,7 +104,6 @@ export default class Loginxx extends React.Component {
               window.location.href = "http://" + window.location.hostname + ":5000/";
 
             }
-            //window.location.reload();
 
 
           } else if (res.data.isFound == 'false') {
