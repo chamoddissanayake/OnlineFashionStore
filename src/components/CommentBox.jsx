@@ -132,6 +132,12 @@ export default class CommentBox extends React.Component {
         });
     }
 
+   /* var ItemNode = this.state.data.map(function(itemData) {
+        return (
+           <ComponentName title={itemData.title} key={itemData.id} number={itemData.id}/>
+         );
+        });*/
+
     _getCommentsTitle(commentCount) {
         if (commentCount === 0) {
             return 'No comments yet';
