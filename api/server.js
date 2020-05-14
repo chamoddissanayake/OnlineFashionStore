@@ -473,6 +473,7 @@ app.post('/api/addWishlist', (req, res) => {
 
 app.post('/api/auth', (req, res) => { //signs in user
 
+
   console.log(req.body.username);
   console.log(req.body.password);
 
@@ -505,6 +506,7 @@ app.post('/api/auth', (req, res) => { //signs in user
         res.send(currentLoggedInUserObj);
         db.close();
       } else {
+
         console.log("7");
         currentLoggedInUserObj._id = result._id;
         currentLoggedInUserObj.username = result.username;
@@ -512,9 +514,8 @@ app.post('/api/auth', (req, res) => { //signs in user
         currentLoggedInUserObj.type = result.type;
         currentLoggedInUserObj.isFound = 'true';
 
-
-        res.send(currentLoggedInUserObj);
-        db.close();
+          res.send(currentLoggedInUserObj);
+          db.close();
       }
 
 
@@ -744,6 +745,7 @@ app.get('/', (req, res) => {
   app.use(express.static(path.join(__dirname, '../public/Admin/')));
   console.log("request received for home page");
   res.sendFile(path.join(__dirname, '../public/Admin/admin.html'));
+
 });
 
 

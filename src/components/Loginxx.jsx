@@ -93,16 +93,17 @@ export default class Loginxx extends React.Component {
               }
 
             } else if (res.data.type == 'admin') {
-
-              const { location } = this.props;
+             //axios.get(`${BASE_URL}/`);
+              /*const { location } = this.props;
               if (location.state && location.state.from) {
                 this.props.history.push(location.state.from);
               } else {
-                this.props.history.push('/admin');
-              }
+                this.props.history.push(axios.get(`${BASE_URL}/`));
+              }*/
+              window.location.href = "http://localhost:5000/";
 
             }
-            window.location.reload();
+            //window.location.reload();
 
 
           } else if (res.data.isFound == 'false') {
