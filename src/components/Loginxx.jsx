@@ -100,7 +100,8 @@ export default class Loginxx extends React.Component {
               } else {
                 this.props.history.push(axios.get(`${BASE_URL}/`));
               }*/
-              window.location.href = "http://localhost:5000/";
+              console.log(window.location.hostname);
+              window.location.href = "http://" + window.location.hostname + ":5000/";
 
             }
             //window.location.reload();
