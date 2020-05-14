@@ -270,14 +270,14 @@ class Comment extends React.Component {
                 <p className="comment-header">{this.props.author}</p>
                 <p className="comment-body">- {this.props.body}</p>
                 <p className="comment-rating">- {this.props.rating}</p>
-                {/* <div className="comment-footer">
-                    <a href="#" className="comment-footer-delete" onClick={this._deleteComment}>Delete Comment</a>
-                </div> */}
+                <div className="comment-footer">
+                <a href="#" className="comment-footer-delete" onClick={this._deleteComment}>Delete Comment</a>
+                </div> 
             </div>
         );
     }
     // _deleteComment() {
-    //     alert("-- DELETE Comment Functionality COMMING SOON...");
+   
     // }
 }
 
