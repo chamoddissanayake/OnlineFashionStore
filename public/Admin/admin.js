@@ -56,7 +56,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
         http.sendEmail()
     }
 
-
+ 
     //Get all Data from Category collection
     var getDetailsofCategory = function(){
         $scope.tableclz = "table hide";

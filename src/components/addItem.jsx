@@ -271,20 +271,20 @@ export default class addItem extends Component {
                     </div>
 
                     <div className="form-group">
-<<<<<<< HEAD
+
                         <label>Image</label>
                         <input type="text"
                             className="form-control"
                             id="imageURL_main"
                             onChange={this.handleImageChange} />
-=======
+
                    
                       <input type="file" onChange={(e)=>{this.handleChange(e.target.files)}}/>
                         <button onClick={this.handleSave}>save</button>
      
                             <img id="new-img"/>
     
->>>>>>> d9d5b2db7495960874d7575a8661f45ef14cd785
+
                     </div>
 
                     <button type="submit" className="btn btn-success">ADD THIS ITEM</button><br></br><br></br>

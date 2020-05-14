@@ -16,7 +16,9 @@ export default class editItems extends Component {
       price: '',
       available_quantity: '',
       discount: '',
-      image: ''
+      image: '',
+      allCategory : [],
+      display : true
     };
     this.handleIdChange = this.handleIdChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
@@ -51,7 +53,32 @@ export default class editItems extends Component {
       })
       .catch(function (error) {
         console.log(error);
-      })
+      });
+
+    axios.get(`${BASE_URL}/category`)
+        .then((res) => {
+
+          console.log(res.data)
+          if (res.data != null) {
+            this.setState({
+              allCategory : res.data
+
+            });
+            console.log(this.state.allCategory[0].categoryName);
+
+
+          } else {
+            alert('Error');
+          }
+
+        }).catch((error) => {
+      console.log(error)
+    }).finally(()=> {
+      this.setState({
+        display : false
+
+      });
+    }) ;
   }
 
   handleIdChange(event) {
@@ -186,11 +213,12 @@ export default class editItems extends Component {
           <div className="form-group">
             <label>Category</label>
             <select id="category" className="form-control" onChange={this.handleCategoryChange} >
-                            <option value="volvo"></option>
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="opel">Opel</option>
-                            <option value="audi">Audi</option>
+              {
+
+                this.state.allCategory.map((field , key) =>
+                    <option key = {field.id} value={field.categoryName}>{field.categoryName}</option>
+                )
+              }
             </select>
           </div>
 
