@@ -11,10 +11,10 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     $scope.alertBox2 = "hide";
 
     $scope.selection = {}
-
     $scope.storeMAnagerDetails = {}
 
     $scope.categoryObjArray = [];
+    $scope.storeMAnagerDetailsArray = [];
 
     $scope.changeIndex= function(indexToChange){
         if(indexToChange == 0) {
@@ -138,9 +138,37 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     }
 
 
+    //Get all Data from StoreManger collection
+    var getDetailsofStoreManger = function(){
+        $http.get('/storeManger')
+            .then(function (response) {
+                console.log(response);
+                $scope.storeMAnagerDetailsArray = response.data;
+
+
+            })
+            .finally(function () {
+               /* if($scope.categoryObjArray.length == 0 ){
+                    $scope.alert = "show";
+                    $scope.tableclz = "table hide";
+
+                }
+                else {
+                    $scope.alert = "hide";
+                    $scope.tableclz = "table show";
+
+                }
+                $scope.alertBox2 = "hide";
+*/
+            })
+    }
+    getDetailsofStoreManger();
+
+
     //Add StoreManger
     $scope.addStoreManager = function () {
-        var StoreManagerObj = {FistName : $scope.storeMAnagerDetails.firstname , LastName : $scope.storeMAnagerDetails.lastname , address1 : $scope.storeMAnagerDetails.address1  , address2 : $scope.storeMAnagerDetails.address2 , Email : $scope.storeMAnagerDetails.Email , mobileNumber : $scope.storeMAnagerDetails.mobileNumber , password : $scope.storeMAnagerDetails.password};
+        $scope.alertBox1 = "show";
+        var StoreManagerObj = {FirstName : $scope.storeMAnagerDetails.firstname , LastName : $scope.storeMAnagerDetails.lastname , address1 : $scope.storeMAnagerDetails.address1  , address2 : $scope.storeMAnagerDetails.address2 , Email : $scope.storeMAnagerDetails.Email , mobileNumber : $scope.storeMAnagerDetails.mobileNumber , password : $scope.storeMAnagerDetails.password};
 
         console.log(StoreManagerObj);
         $http.post('/storeManger' , StoreManagerObj).then(function (response) {
@@ -154,6 +182,9 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
             }
         });
     }
+
+
+
 });
 
 

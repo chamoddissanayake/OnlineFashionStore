@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import firebase from '../firebase'
 import axios from 'axios';
 
 import { Link } from 'react-router-dom';
@@ -20,9 +21,10 @@ export default class addItem extends Component {
             discount: '',
             imageURL_main: '',
             allCategory : [],
-            display : true
+            display : true,
+            file:null
         };
-
+        
         this.handleIdChange = this.handleIdChange.bind(this);
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -33,6 +35,31 @@ export default class addItem extends Component {
         this.handleImageChange = this.handleImageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleChange=(files)=>{
+        this.setState({
+          files:files
+        })
+      }
+      
+      handleSave=()=>{
+        let bucketName = 'images'
+        let file =this.state.files[0]
+        let storageRef=firebase.storage().ref(`${bucketName}/${file.name}`)
+        let uploadTask = storageRef.put(file)
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+          ()=>{
+            let downloadURL = uploadTask.snapshot.downloadURL
+          })
+      }
+      /*showImage=()=>{
+        let storageRef = firebase.storage().ref()
+        let spaceRef = storageRef.child('images/'+this.state.files[0].name)
+        storageRef.child('images/'+this.state.files[0].name).getDownloadURL().then((url)=>{
+          console.log(url)
+          document.getElementById('new-img').src= url
+        })
+      }*/
 
     componentDidMount() {
         axios.get(`${BASE_URL}/category`)
@@ -244,11 +271,20 @@ export default class addItem extends Component {
                     </div>
 
                     <div className="form-group">
+<<<<<<< HEAD
                         <label>Image</label>
                         <input type="text"
                             className="form-control"
                             id="imageURL_main"
                             onChange={this.handleImageChange} />
+=======
+                   
+                      <input type="file" onChange={(e)=>{this.handleChange(e.target.files)}}/>
+                        <button onClick={this.handleSave}>save</button>
+     
+                            <img id="new-img"/>
+    
+>>>>>>> d9d5b2db7495960874d7575a8661f45ef14cd785
                     </div>
 
                     <button type="submit" className="btn btn-success">ADD THIS ITEM</button><br></br><br></br>
