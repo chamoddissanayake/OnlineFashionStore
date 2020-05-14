@@ -282,9 +282,11 @@ class Comment extends React.Component {
             </div>
         );
     }
-    // _deleteComment() {
-   
-    // }
+     _deleteComment() {
+      /*  const comBd = this.state.comments.filter(i => i.id !== comments.Comment)
+        this.setState({comBd})*/
+
+     }
 }
 
 
