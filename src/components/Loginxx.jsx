@@ -89,7 +89,7 @@ export default class Loginxx extends React.Component {
               if (location.state && location.state.from) {
                 this.props.history.push(location.state.from);
               } else {
-                this.props.history.push('/manager');
+                this.props.history.push('/storeManager');
               }
               window.location.reload();
             } else if (res.data.type == 'admin') {
