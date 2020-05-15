@@ -741,12 +741,14 @@ app.delete('/category/:id', function (req, res) {
 
 });
 
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
   app.use(express.static(path.join(__dirname, '../public/Admin/')));
   console.log("request received for home page");
   res.sendFile(path.join(__dirname, '../public/Admin/index.html'));
 
-});
+});*/
+
+app.use('/', express.static(path.join(__dirname, '../public/')));
 
 app.use('/admin', express.static(path.join(__dirname, '../public/Admin/')));
 
