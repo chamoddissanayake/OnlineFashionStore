@@ -741,13 +741,16 @@ app.delete('/category/:id', function (req, res) {
 
 });
 
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
   app.use(express.static(path.join(__dirname, '../public/Admin/')));
   console.log("request received for home page");
-  res.sendFile(path.join(__dirname, '../public/Admin/admin.html'));
+  res.sendFile(path.join(__dirname, '../public/Admin/index.html'));
 
-});
+});*/
 
+app.use('/', express.static(path.join(__dirname, '../public/')));
+
+app.use('/admin', express.static(path.join(__dirname, '../public/Admin/')));
 
 //Get storeMAnager Details
 app.get('/storeManger', (req, res) => {
@@ -771,6 +774,8 @@ app.post('/storeManger', (req, res) => {
   //console.log(req.body);
   var storeMangerObj = new Object();
 
+  var user = new Object();
+
   storeMangerObj.FirstName = req.body.FirstName;
   storeMangerObj.LastName = req.body.LastName;
   storeMangerObj.address1 = req.body.address1;
@@ -780,6 +785,11 @@ app.post('/storeManger', (req, res) => {
   storeMangerObj.password = req.body.password;
 
   console.log(storeMangerObj);
+
+  user.username = req.body.Email;
+  user.password = req.body.password;
+  user.email = req.body.Email;
+  user.type = "manager";
 
   var MongoClient = require('mongodb').MongoClient;
   // var url = "mongodb://localhost:27017/";
@@ -818,6 +828,11 @@ app.post('/storeManger', (req, res) => {
         } else {
           console.log('Email sent: ' + info.response);
         }
+      });
+
+      dbo.collection("users").insertOne(user, function (err1, res1) {
+        if (err1) throw err1;
+
       });
       res.send(true);
       db.close();

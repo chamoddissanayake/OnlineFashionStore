@@ -1,3 +1,6 @@
+
+const BASE_URL = 'http://' + window.location.hostname + ':5000';
+
 var appMain = angular.module('admin', ["ngRoute"]);
 
 appMain.controller('adminCtrl', function($scope , $interval , $http ) {
@@ -62,7 +65,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
         $scope.tableclz = "table hide";
         $scope.alert = "hide";
         $scope.alertBox2 = "show";
-        $http.get('/category')
+        $http.get(`${BASE_URL}/category`)
             .then(function (response) {
                 console.log(response);
                 $scope.categoryObjArray = response.data;
@@ -105,7 +108,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
             var id =  $scope.categoryObjArray.length.toString();
             var categoryObj = {id : id ,categoryName : $scope.selection.Category , noOfItems : 0};
 
-            $http.post('/category' , categoryObj ).then(function (response) {
+            $http.post(`${BASE_URL}/category` , categoryObj ).then(function (response) {
                 console.log(response.data)
                 if (response.data == true) {
                     $scope.alertBox1 = "hide";
@@ -127,7 +130,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
         var id = index;
         console.log(index);
 
-        $http.delete('/category/'+id).then(function (response) {
+        $http.delete(`${BASE_URL}/category`+id).then(function (response) {
             if (response.data == true) {
                 alert('Item Deleted successfully');
                 getDetailsofCategory();
@@ -140,7 +143,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
 
     //Get all Data from StoreManger collection
     var getDetailsofStoreManger = function(){
-        $http.get('/storeManger')
+        $http.get(`${BASE_URL}/storeManger`)
             .then(function (response) {
                 console.log(response);
                 $scope.storeMAnagerDetailsArray = response.data;
@@ -171,7 +174,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
         var StoreManagerObj = {FirstName : $scope.storeMAnagerDetails.firstname , LastName : $scope.storeMAnagerDetails.lastname , address1 : $scope.storeMAnagerDetails.address1  , address2 : $scope.storeMAnagerDetails.address2 , Email : $scope.storeMAnagerDetails.Email , mobileNumber : $scope.storeMAnagerDetails.mobileNumber , password : $scope.storeMAnagerDetails.password};
 
         console.log(StoreManagerObj);
-        $http.post('/storeManger' , StoreManagerObj).then(function (response) {
+        $http.post(`${BASE_URL}/storeManger` , StoreManagerObj).then(function (response) {
             console.log(response.data)
             if (response.data == true) {
                 $('#saveStoreManager').modal('show');
