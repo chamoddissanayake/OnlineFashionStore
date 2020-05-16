@@ -115,9 +115,9 @@ class App extends Component {
 
                   <Link className="nav-item nav-link" to="/cart">Cart</Link><br />
 
-                  {/* {this.state.loggedInUserObj.type == "manager" && <span> */}
-                  <Link className="nav-item nav-link" to="/storeManager">StoreManagerDashbord</Link><br />
-                  {/* </span>} */}
+                  {this.state.loggedInUserObj.type == "manager" && <span>
+                    <Link className="nav-item nav-link" to="/storeManager">StoreManagerDashbord</Link><br />
+                  </span>}
 
                   {this.state.loggedInUserObj.type == "member" && <span>
                     <Link className="nav-item nav-link" to="/wishlist">My Wishlist</Link><br />

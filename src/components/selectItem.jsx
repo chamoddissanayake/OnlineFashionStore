@@ -237,11 +237,15 @@ export default class selectItem extends Component {
                                     </tr>
                                     <tr>
                                         <td>
+
                                             {/* Add To wishlist */}
                                             {/* {this.state.loggedInUserObj.type == "member" && <span> */}
-                                            <div onClick={() => this.handleWishlistClick(selectedProduct)}  >
-                                                <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/red-heart_2764.png"
-                                                    alt="Add to wishlist" height="30" width="30" />
+                                            <div title="Add this Item to wishlist">
+                                                <div onClick={() => this.handleWishlistClick(selectedProduct)}  >
+                                                    <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/red-heart_2764.png"
+                                                        alt="Add to wishlist" height="30" width="30" />
+                                                </div>
+
                                             </div>
                                             {/* </span>} */}
 
@@ -290,19 +294,23 @@ export default class selectItem extends Component {
                 <br />
 
 
-                {!utils.isEmpty(this.state.loggedInUserObj) && <span>
-                    <div id="commentDiv">
-                        <CommentBox selectedProduct={selectedProduct} />
-                    </div>
-                </span>}
-                {utils.isEmpty(this.state.loggedInUserObj) && <span>
-                    <h4>Hi, Guest. You can add your thoughts about this product. Please Log ...</h4>
-                </span>}
+                {
+                    !utils.isEmpty(this.state.loggedInUserObj) && <span>
+                        <div id="commentDiv">
+                            <CommentBox selectedProduct={selectedProduct} />
+                        </div>
+                    </span>
+                }
+                {
+                    utils.isEmpty(this.state.loggedInUserObj) && <span>
+                        <h4>Hi, Guest. You can add your thoughts about this product. Please Log ...</h4>
+                    </span>
+                }
 
 
 
 
-            </div>
+            </div >
         )
     }
 }

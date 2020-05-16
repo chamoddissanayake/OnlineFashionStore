@@ -156,10 +156,13 @@ export default class ProductItem extends React.Component {
                 }
 
                 {this.state.loggedInUserObj.type == "member" && <span>
-                  <div onClick={() => this.handleWishlistClick(product)}  >
-                    <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/red-heart_2764.png"
-                      alt="Add to wishlist" height="30" width="30" />
+                  <div title="Add this Item to wishlist">
+                    <div onClick={() => this.handleWishlistClick(product)}  >
+                      <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/red-heart_2764.png"
+                        alt="Add to wishlist" height="30" width="30" />
+                    </div>
                   </div>
+
                 </span>}
 
               </div>
