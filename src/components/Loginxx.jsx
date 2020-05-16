@@ -84,7 +84,7 @@ export default class Loginxx extends React.Component {
               }
               window.location.reload();
             } else if (res.data.type == 'manager') {
-
+              localStorage.setItem("loggedInUser", JSON.stringify(loggedInUserObj));
               const { location } = this.props;
               if (location.state && location.state.from) {
                 this.props.history.push(location.state.from);
