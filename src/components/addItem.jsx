@@ -20,11 +20,11 @@ export default class addItem extends Component {
             available_quantity: '',
             discount: '',
             imageURL_main: '',
-            allCategory : [],
-            display : true,
-            file:null
+            allCategory: [],
+            display: true,
+            file: null
         };
-        
+
         this.handleIdChange = this.handleIdChange.bind(this);
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -36,30 +36,30 @@ export default class addItem extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange=(files)=>{
+    handleChange = (files) => {
         this.setState({
-          files:files
+            files: files
         })
-      }
-      
-      handleSave=()=>{
+    }
+
+    handleSave = () => {
         let bucketName = 'images'
-        let file =this.state.files[0]
-        let storageRef=firebase.storage().ref(`${bucketName}/${file.name}`)
+        let file = this.state.files[0]
+        let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
         let uploadTask = storageRef.put(file)
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-          ()=>{
-            let downloadURL = uploadTask.snapshot.downloadURL
-          })
-      }
-      /*showImage=()=>{
-        let storageRef = firebase.storage().ref()
-        let spaceRef = storageRef.child('images/'+this.state.files[0].name)
-        storageRef.child('images/'+this.state.files[0].name).getDownloadURL().then((url)=>{
-          console.log(url)
-          document.getElementById('new-img').src= url
-        })
-      }*/
+            () => {
+                let downloadURL = uploadTask.snapshot.downloadURL
+            })
+    }
+    /*showImage=()=>{
+      let storageRef = firebase.storage().ref()
+      let spaceRef = storageRef.child('images/'+this.state.files[0].name)
+      storageRef.child('images/'+this.state.files[0].name).getDownloadURL().then((url)=>{
+        console.log(url)
+        document.getElementById('new-img').src= url
+      })
+    }*/
 
     componentDidMount() {
         axios.get(`${BASE_URL}/category`)
@@ -68,7 +68,7 @@ export default class addItem extends Component {
                 console.log(res.data)
                 if (res.data != null) {
                     this.setState({
-                        allCategory : res.data
+                        allCategory: res.data
 
                     });
                     console.log(this.state.allCategory[0].categoryName);
@@ -79,13 +79,13 @@ export default class addItem extends Component {
                 }
 
             }).catch((error) => {
-            console.log(error)
-            }).finally(()=> {
+                console.log(error)
+            }).finally(() => {
                 this.setState({
-                    display : false
+                    display: false
 
                 });
-            }) ;
+            });
     }
 
     handleIdChange(event) {
@@ -198,7 +198,7 @@ export default class addItem extends Component {
         return (
             <div>
                 <center>
-                    
+
                     <h2>Add Items</h2><br></br>
 
                 </center>
@@ -207,7 +207,7 @@ export default class addItem extends Component {
 
                     <div className="form-row">
                         <label className="form-group col-md-1">Category</label>
-                        { this.state.display &&
+                        {this.state.display &&
                             <div className="spinner-border text-primary " id="loader" role="status">
                                 <span className="sr-only">Loading...</span>
                             </div>
@@ -221,15 +221,15 @@ export default class addItem extends Component {
 
                             {
 
-                                this.state.allCategory.map((field , key) =>
-                                    <option key = {field.id} value={field.categoryName}>{field.categoryName}</option>
+                                this.state.allCategory.map((field, key) =>
+                                    <option key={field.id} value={field.categoryName}>{field.categoryName}</option>
                                 )
                             }
 
 
                         </select>
 
-                     
+
                     </div>
 
                     <div className="form-group">
@@ -282,12 +282,12 @@ export default class addItem extends Component {
                             id="imageURL_main"
                             onChange={this.handleImageChange} />
 
-                   
-                      <input type="file" onChange={(e)=>{this.handleChange(e.target.files)}}/>
+
+                        <input type="file" onChange={(e) => { this.handleChange(e.target.files) }} />
                         <button onClick={this.handleSave}>save</button>
-     
-                            <img id="new-img"/>
-    
+
+                        <img id="new-img" />
+
 
                     </div>
 
