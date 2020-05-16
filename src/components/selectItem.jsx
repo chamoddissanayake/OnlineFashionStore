@@ -195,14 +195,14 @@ export default class selectItem extends Component {
                                             {selectedProduct.category}
                                         </td>
                                     </tr>
-                                    <tr>
+                                    {/* <tr>
                                         <td>
                                             Product Brand :
-                            </td>
+                                        </td>
                                         <td>
                                             {selectedProduct.brand}
                                         </td>
-                                    </tr>
+                                    </tr> */}
                                     <tr>
                                         <td>
                                             Product Name :

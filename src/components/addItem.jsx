@@ -22,7 +22,10 @@ export default class addItem extends Component {
             imageURL_main: '',
             allCategory: [],
             display: true,
-            files: [],
+            fileM: null,
+            file1: null,
+            file2: null,
+            file3: null,
             imageURL_1: '',
             imageURL_2: '',
             imageURL_3: ''
@@ -42,148 +45,213 @@ export default class addItem extends Component {
         this.handleImg1Save = this.handleImg1Save.bind(this);
         this.handleImg2Save = this.handleImg2Save.bind(this);
         this.handleImg3Save = this.handleImg3Save.bind(this);
+        this.imgSaveSuccess = this.imgSaveSuccess.bind(this);
+        this.img1SaveSuccess = this.img1SaveSuccess.bind(this);
+        this.img2SaveSuccess = this.img2SaveSuccess.bind(this);
+        this.img3SaveSuccess = this.img3SaveSuccess.bind(this);
     }
 
     handleImgMainChange = (files) => {
         this.setState({
-            files: files
+            fileM: files[0]
         })
     }
 
     handleImg1Change = (files) => {
         this.setState({
-            files: files
+            file1: files[0]
         })
     }
 
     handleImg2Change = (files) => {
         this.setState({
-            files: files
+            file2: files[0]
         })
     }
     handleImg3Change = (files) => {
         this.setState({
-            files: files
+            file3: files[0]
         })
+    }
+
+
+    imgSaveSuccess = (uploadTask) => {
+        console.log(this.state.fileM)
+        const _this = this;
+
+        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            console.log('File available at', downloadURL);
+
+            _this.setState({
+                imageURL_main: downloadURL
+            })
+            console.log("*");
+            console.log(_this.state.imageURL_main);
+        });
+
+    }
+
+    img1SaveSuccess = (uploadTask) => {
+        console.log(this.state.file1)
+        const _this = this;
+
+        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            console.log('File available at', downloadURL);
+
+            _this.setState({
+                imageURL_1: downloadURL
+            })
+            console.log("%");
+            console.log(_this.state.imageURL_1);
+        });
+
+    }
+
+    img2SaveSuccess = (uploadTask) => {
+        console.log(this.state.file2)
+        const _this = this;
+
+        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            console.log('File available at', downloadURL);
+
+            _this.setState({
+                imageURL_2: downloadURL
+            })
+            console.log("$");
+            console.log(_this.state.imageURL_2);
+        });
+
+    }
+
+    img3SaveSuccess = (uploadTask) => {
+        console.log(this.state.file3)
+        const _this = this;
+
+        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            console.log('File available at', downloadURL);
+
+            _this.setState({
+                imageURL_3: downloadURL
+            })
+            console.log("**");
+            console.log(_this.state.imageURL_3);
+        });
+
     }
 
     handleImgMainSave = () => {
         let bucketName = 'items'
-        let file = this.state.files[0]
-        let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
-        let uploadTask = storageRef.put(file)
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
-            // Observe state change events such as progress, pause, and resume
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-            }
-        }, function (error) {
-            // Handle unsuccessful uploads
-        }, function () {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                console.log('File available at', downloadURL);
+        let file = this.state.fileM
+        if (!file) {
+            alert("Please Select An Image");
+        } else {
+            let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
+            let uploadTask = storageRef.put(file)
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
+                // Observe state change events such as progress, pause, and resume
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            }, function (error) {
+                // Handle unsuccessful uploads
+            }, this.imgSaveSuccess(uploadTask));
 
-            });
-        });
+        }
+
     }
 
 
     handleImg1Save = () => {
         let bucketName = 'items'
-        let file = this.state.files[0]
-        let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
-        let uploadTask = storageRef.put(file)
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
-            // Observe state change events such as progress, pause, and resume
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-            }
-        }, function (error) {
-            // Handle unsuccessful uploads
-        }, function () {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                console.log('File available at', downloadURL);
-            });
-        });
+        let file = this.state.file1
+        if (!file) {
+            alert("Please Select An Image");
+        } else {
+            let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
+            let uploadTask = storageRef.put(file)
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
+                // Observe state change events such as progress, pause, and resume
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            }, function (error) {
+                // Handle unsuccessful uploads
+            }, this.img1SaveSuccess(uploadTask));
+
+        }
     }
 
     handleImg2Save = () => {
         let bucketName = 'items'
-        let file = this.state.files[0]
-        let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
-        let uploadTask = storageRef.put(file)
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
-            // Observe state change events such as progress, pause, and resume
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-            }
-        }, function (error) {
-            // Handle unsuccessful uploads
-        }, function () {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                console.log('File available at', downloadURL);
-            });
-        });
+        let file = this.state.file2
+        if (!file) {
+            alert("Please Select An Image");
+        } else {
+            let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
+            let uploadTask = storageRef.put(file)
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
+                // Observe state change events such as progress, pause, and resume
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            }, function (error) {
+                // Handle unsuccessful uploads
+            }, this.img2SaveSuccess(uploadTask));
+
+        }
     }
 
 
     handleImg3Save = () => {
         let bucketName = 'items'
-        let file = this.state.files[0]
-        let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
-        let uploadTask = storageRef.put(file)
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
-            // Observe state change events such as progress, pause, and resume
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-            }
-        }, function (error) {
-            // Handle unsuccessful uploads
-        }, function () {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                console.log('File available at', downloadURL);
-            });
-        });
+        let file = this.state.file3
+        if (!file) {
+            alert("Please Select An Image");
+        } else {
+            let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
+            let uploadTask = storageRef.put(file)
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
+                // Observe state change events such as progress, pause, and resume
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            }, function (error) {
+                // Handle unsuccessful uploads
+            }, this.img3SaveSuccess(uploadTask));
+
+        }
     }
 
     /*showImage=()=>{
@@ -298,7 +366,10 @@ export default class addItem extends Component {
             price: this.state.price,
             available_quantity: this.state.available_quantity,
             discount: this.state.discount,
-            imageURL_main: this.state.imageURL_main
+            imageURL_main: this.state.imageURL_main,
+            imageURL_1: this.state.imageURL_1,
+            imageURL_2: this.state.imageURL_2,
+            imageURL_3: this.state.imageURL_3
         };
         console.log(productObject);
         axios.post(`${BASE_URL}/api/Addproducts`, productObject)
@@ -324,7 +395,11 @@ export default class addItem extends Component {
             price: '',
             available_quantity: '',
             discount: '',
-            imageURL_main: ''
+            imageURL_main: '',
+            imageURL_1: '',
+            imageURL_2: '',
+            imageURL_3: ''
+
         })
     }
 

@@ -401,8 +401,11 @@ app.post('/api/Addproducts', (req, res) => { //addProduct
 
   let products = [], id = null;
   // var addStatus = false;
+  console.log("&&&&&");
+  console.log(req.body);
 
-  console.log(req.body.id + req.body.category + req.body.name + req.body.description + req.body.price + req.body.available_quantity + req.body.discount + req.body.image);
+  // console.log(req.body.id + req.body.category + req.body.name + req.body.description + 
+  //   req.body.price + req.body.available_quantity + req.body.discount + req.body.image);
 
   var tempItemObj = new Object();
 
@@ -514,8 +517,8 @@ app.post('/api/auth', (req, res) => { //signs in user
         currentLoggedInUserObj.type = result.type;
         currentLoggedInUserObj.isFound = 'true';
 
-          res.send(currentLoggedInUserObj);
-          db.close();
+        res.send(currentLoggedInUserObj);
+        db.close();
       }
 
 
@@ -817,8 +820,8 @@ app.post('/storeManger', (req, res) => {
         to: req.body.Email,
         subject: 'Account has been created',
         text: 'Welcome ' + req.body.FistName + ' ' + req.body.LastName + '\n' + 'Your account as an Store Manager was created. Your ' +
-            'username is ' + req.body.Email +
-            ' and the password ' + req.body.password
+          'username is ' + req.body.Email +
+          ' and the password ' + req.body.password
 
       };
 
