@@ -22,7 +22,11 @@ export default class addItem extends Component {
             imageURL_main: '',
             allCategory: [],
             display: true,
-            file: null
+            files: [],
+            imageURL_1: '',
+            imageURL_2: '',
+            imageURL_3: ''
+
         };
 
         this.handleIdChange = this.handleIdChange.bind(this);
@@ -34,24 +38,154 @@ export default class addItem extends Component {
         this.handleDiscountChange = this.handleDiscountChange.bind(this);
         this.handleImageChange = this.handleImageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleImgMainSave = this.handleImgMainSave.bind(this);
+        this.handleImg1Save = this.handleImg1Save.bind(this);
+        this.handleImg2Save = this.handleImg2Save.bind(this);
+        this.handleImg3Save = this.handleImg3Save.bind(this);
     }
 
-    handleChange = (files) => {
+    handleImgMainChange = (files) => {
         this.setState({
             files: files
         })
     }
 
-    handleSave = () => {
-        let bucketName = 'images'
+    handleImg1Change = (files) => {
+        this.setState({
+            files: files
+        })
+    }
+
+    handleImg2Change = (files) => {
+        this.setState({
+            files: files
+        })
+    }
+    handleImg3Change = (files) => {
+        this.setState({
+            files: files
+        })
+    }
+
+    handleImgMainSave = () => {
+        let bucketName = 'items'
         let file = this.state.files[0]
         let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
         let uploadTask = storageRef.put(file)
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-            () => {
-                let downloadURL = uploadTask.snapshot.downloadURL
-            })
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+            // Handle unsuccessful uploads
+        }, function () {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                console.log('File available at', downloadURL);
+
+            });
+        });
     }
+
+
+    handleImg1Save = () => {
+        let bucketName = 'items'
+        let file = this.state.files[0]
+        let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
+        let uploadTask = storageRef.put(file)
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+            // Handle unsuccessful uploads
+        }, function () {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                console.log('File available at', downloadURL);
+            });
+        });
+    }
+
+    handleImg2Save = () => {
+        let bucketName = 'items'
+        let file = this.state.files[0]
+        let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
+        let uploadTask = storageRef.put(file)
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+            // Handle unsuccessful uploads
+        }, function () {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                console.log('File available at', downloadURL);
+            });
+        });
+    }
+
+
+    handleImg3Save = () => {
+        let bucketName = 'items'
+        let file = this.state.files[0]
+        let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
+        let uploadTask = storageRef.put(file)
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+            // Handle unsuccessful uploads
+        }, function () {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                console.log('File available at', downloadURL);
+            });
+        });
+    }
+
     /*showImage=()=>{
       let storageRef = firebase.storage().ref()
       let spaceRef = storageRef.child('images/'+this.state.files[0].name)
@@ -203,7 +337,7 @@ export default class addItem extends Component {
 
                 </center>
 
-                <form onSubmit={this.handleSubmit} action="/api/products" method="POST" >
+                <form onSubmit={this.handleSubmit}  >
 
                     <div className="form-row">
                         <label className="form-group col-md-1">Category</label>
@@ -274,22 +408,67 @@ export default class addItem extends Component {
                             onChange={this.handleDiscountChange} />
                     </div>
 
-                    <div className="form-group">
+                    {/* <div className="form-group">
 
                         <label>Image</label>
                         <input type="text"
                             className="form-control"
                             id="imageURL_main"
-                            onChange={this.handleImageChange} />
+                            onChange={this.handleImageChange} /> */}
 
 
-                        <input type="file" onChange={(e) => { this.handleChange(e.target.files) }} />
-                        <button onClick={this.handleSave}>save</button>
+                    {/* <input type="file" onChange={(e) => { this.handleImgMainChange(e.target.files) }} />
+                        <button onClick={this.handleImgMainSave}>save</button> */}
 
-                        <img id="new-img" />
+                    {/* <img id="new-img" /> */}
+                    {/* </div> */}
 
-
-                    </div>
+                    <table>
+                        <tr>
+                            <td>
+                                <p>Main Image :</p>
+                            </td>
+                            <th>
+                                <input type="file" onChange={(e) => { this.handleImgMainChange(e.target.files) }} />
+                            </th>
+                            <td>
+                                <button type="button" class="btn btn-primary" onClick={this.handleImgMainSave}>+</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Image 1 :</p>
+                            </td>
+                            <td>
+                                <input type="file" onChange={(e) => { this.handleImg1Change(e.target.files) }} />
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" onClick={this.handleImg1Save}>+</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Image 2 :</p>
+                            </td>
+                            <td>
+                                <input type="file" onChange={(e) => { this.handleImg2Change(e.target.files) }} />
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" onClick={this.handleImg2Save}>+</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Image 3 :</p>
+                            </td>
+                            <td>
+                                <input type="file" onChange={(e) => { this.handleImg3Change(e.target.files) }} />
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" onClick={this.handleImg3Save}>+</button>
+                            </td>
+                        </tr>
+                    </table>
 
                     <button type="submit" className="btn btn-success">ADD THIS ITEM</button><br></br><br></br>
                 </form>
