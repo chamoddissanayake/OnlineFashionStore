@@ -299,7 +299,7 @@ export default class addItem extends Component {
                     console.log(res.data)
                     if (res.data == true) {
                         alert('Item ' + document.getElementById("name").value + ' Saved Successfuly.');
-                        // window.location.href = '/add'
+                        window.location.href = '/add'
                     } else {
                         alert('Error in saving');
                     }
