@@ -201,7 +201,7 @@ export default class Cart extends Component {
                                                         </td>
                                                         <td>
 
-                                                            <input id="needCount" type="number" value={cartItem.needQuantity} min="1" max={cartItem.available_quantity} class="form-control"
+                                                            <input id="needCount" type="number" value={cartItem.needQuantity} min="1" max={cartItem.available_quantity} class="form-control" id="qtyID"
                                                                 onChange={(e) => {
                                                                     console.log("sdfsdf" + e.target.value)
                                                                     cartItem.needQuantity = e.target.value
@@ -235,18 +235,18 @@ export default class Cart extends Component {
                             <table>
                                 <tr >
                                     <td class="totPriceLbl">
-                                        <h3>Your Total Discount</h3>
+                                        <h3 class="boldLbl">Your Total Discount</h3>
                                     </td>
-                                    <td class="totPriceVal">
+                                    <td class="boldLbl" class="totPriceVal">
                                         <h2>{this.state.totDiscount}</h2>
                                     </td>
                                 </tr>
                                 <tr >
                                     <td class="totPriceLbl">
-                                        <h3>Your Total Price With Discount</h3>
+                                        <h3 class="boldLbl">Your Total Price With Discount</h3>
                                     </td>
                                     <td class="totPriceVal">
-                                        <h2>{this.state.totprice}</h2>
+                                        <h2 class="boldLbl">{this.state.totprice}</h2>
                                     </td>
                                 </tr>
                                 <tr >

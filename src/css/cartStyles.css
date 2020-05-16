@@ -1,5 +1,6 @@
 #delbutton{
-    margin-left: 100px;
+    /* margin-left: 100px; */
+    float: right;
 }
 
 .table-row{
@@ -17,8 +18,8 @@
     width: 95%;
 }
 
-#delbutton{
-    margin-left: 60px;
+#qtyID{
+    width: 50%;
 }
 
 
@@ -29,11 +30,13 @@
 .totPriceLbl{
     width: 82%;
     padding-left: 350px;
+    font-weight: bold;
 }
 
 .totPriceVal{
     width: 100%;
     padding-left: 10px;
+    font-weight: bold;
 }
 
 .CartTitle{
@@ -48,4 +51,8 @@
 
 .large-table-left{
     width: 64%
+}
+
+.boldLbl{
+    font-weight: bold;
 }

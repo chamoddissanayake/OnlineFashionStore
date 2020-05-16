@@ -195,8 +195,8 @@ export default class selectItem extends Component {
                                         <table>
                                             <tr>
                                                 <td>
-                                                    Product Category :
-                            </td>
+                                                    <label class="boldLbl">Product Category :</label>
+                                                </td>
                                                 <td>
                                                     {selectedProduct.category}
                                                 </td>
@@ -211,32 +211,33 @@ export default class selectItem extends Component {
                                     </tr> */}
                                             <tr>
                                                 <td>
-                                                    Product Name :
-                            </td>
+                                                    <label class="boldLbl"> Product Name :</label>
+                                                </td>
                                                 <td>
                                                     {selectedProduct.name}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Product Description :
-                            </td>
+                                                    <label class="boldLbl">Product Description :</label>
+                                                </td>
                                                 <td>
                                                     {selectedProduct.description}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Product Price :
-                            </td>
+                                                    <label class="boldLbl">Product Price :</label>
+
+                                                </td>
                                                 <td>
                                                     {selectedProduct.price}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Available Quantity :
-                            </td>
+                                                    <label class="boldLbl">Available Quantity :</label>
+                                                </td>
                                                 <td>
                                                     {selectedProduct.available_quantity}
                                                 </td>
