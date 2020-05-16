@@ -5,7 +5,7 @@ import ProductItem from './ProductItem';
 import { getProducts } from '../repository';
 
 import { Link } from 'react-router-dom';
-
+import loadingStyles from '../css/loadingStyles.css';
 
 
 export default class ProductList extends React.Component {
@@ -16,8 +16,8 @@ export default class ProductList extends React.Component {
 
     this.state = {
 
-      products: []
-
+      products: [],
+      dataNotReceived: true
     }
 
   }
@@ -26,7 +26,11 @@ export default class ProductList extends React.Component {
 
   componentDidMount() {
 
-    getProducts().then((products) => this.setState({ products }));
+    getProducts().then((products) => this.setState({
+      products,
+      dataNotReceived: false
+
+    }));
 
   }
 
@@ -41,6 +45,15 @@ export default class ProductList extends React.Component {
       <div className=" container">
 
         <h3 className="card-title">List of Available Products</h3><hr />
+
+        {this.state.dataNotReceived ? (
+          <div class="mainLoading">
+            <img src="https://gifimage.net/wp-content/uploads/2017/11/gif-caricamento-11.gif"
+              alt="Loading..." height="300" width="300" />
+          </div>
+        ) : null}
+
+
 
         {products.map((product, index) => <ProductItem product={product} key={index} />)}
 
