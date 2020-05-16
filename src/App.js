@@ -89,7 +89,7 @@ class App extends Component {
           {/* {this.state.loggedInUserObj.type}
           {localStorage.getItem("loggedInUser").type} */}
 
-          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <nav className="navigationBarCustom navbar navbar-expand-lg navbar-dark bg-dark">
 
             <div className="container">
 
@@ -110,17 +110,21 @@ class App extends Component {
               <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
 
                 <div className="navbar-nav">
+                  <span class="customButtonsInNavBar">
 
-                  <Link className="nav-item nav-link" to="/">Products</Link><br />
+                  </span>
+                  <Link className="naviButton nav-item nav-link" to="/">Products</Link><br />
 
-                  <Link className="nav-item nav-link" to="/cart">Cart</Link><br />
+                  {this.state.loggedInUserObj.type == "member" && <span>
+                    <Link className="naviButton nav-item nav-link" to="/cart">Cart</Link><br />
+                  </span>}
 
                   {this.state.loggedInUserObj.type == "manager" && <span>
-                    <Link className="nav-item nav-link" to="/storeManager">StoreManagerDashbord</Link><br />
+                    <Link className="naviButton nav-item nav-link" to="/storeManager">StoreManagerDashbord</Link><br />
                   </span>}
 
                   {this.state.loggedInUserObj.type == "member" && <span>
-                    <Link className="nav-item nav-link" to="/wishlist">My Wishlist</Link><br />
+                    <Link className="naviButton nav-item nav-link" to="/wishlist">My Wishlist</Link><br />
                   </span>}
 
                   {/* {(auth) ? <Link className="nav-item nav-link" to="/checkout">
@@ -144,11 +148,11 @@ class App extends Component {
                   </span>} */}
 
                   {!utils.isEmpty(this.state.loggedInUserObj) && <span>
-                    <Link className="nav-item nav-link" to="/logout">Logout</Link>
+                    <Link className="naviButton nav-item nav-link" to="/logout">Logout</Link>
                   </span>}
 
                   {utils.isEmpty(this.state.loggedInUserObj) && <span>
-                    <Link className="nav-item nav-link float-right" to="/login">Log in</Link>
+                    <Link className="naviButton nav-item nav-link float-right" to="/login">Log in</Link>
                   </span>}
 
 

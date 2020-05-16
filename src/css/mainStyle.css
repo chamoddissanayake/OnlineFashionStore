@@ -4,3 +4,16 @@
     background-image: url("../pictures/wall.jpg");
 }
 
+
+
+.navigationBarCustom{
+    min-height: 100px;
+}
+
+.customButtonsInNavBar{
+    padding: 20px;
+}
+
+.naviButton{
+    font-size: 20px;
+}
