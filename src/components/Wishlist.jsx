@@ -184,7 +184,7 @@ export default class Wishlist extends Component {
                                                 <label>Need Amount</label>
                                             </td>
                                             <td class="td-val">
-                                                <input id="needCount" type="number" value={wishlistItem.needQuantity ? wishlistItem.needQuantity : (wishlistItem.needQuantity = 1)} min="0" max={wishlistItem.available_quantity}
+                                                <input id="needCount" type="number" value={wishlistItem.needQuantity ? wishlistItem.needQuantity : (wishlistItem.needQuantity = 1)} min="1" max={wishlistItem.available_quantity}
                                                     onChange={(e) => {
                                                         // console.log("sdfsdf" + e.target.value)
                                                         wishlistItem.needQuantity = e.target.value

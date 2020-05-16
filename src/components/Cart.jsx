@@ -14,7 +14,8 @@ export default class Cart extends Component {
         this.state = {
             loggedInUserObj: {},
             allCartItems: [],
-            totprice: 0
+            totprice: 0,
+            totDiscount: 0
 
         };
 
@@ -40,14 +41,17 @@ export default class Cart extends Component {
             ggg = this.state.allCartItems;
         }
         var tot = 0;
+        var tot_Discount = 0;
         for (var i = 0; i < ggg.length; i++) {
             var cartItemaa = ggg[i];
-            tot = tot + (cartItemaa.needQuantity * cartItemaa.price);
+            tot = tot + (((cartItemaa.needQuantity * cartItemaa.price) - ((cartItemaa.discount * cartItemaa.price) / 100 * cartItemaa.needQuantity)));
             this.addTotPricetoStorage(tot);
+            tot_Discount = ((cartItemaa.discount * cartItemaa.price / 100) * cartItemaa.needQuantity);
         }
 
         this.setState({
-            totprice: tot
+            totprice: tot,
+            totDiscount: tot_Discount
         })
 
     }
@@ -148,7 +152,7 @@ export default class Cart extends Component {
                                                             <label>Item ID</label>
                                                         </td>
                                                         <td>
-                                                            <label>{cartItem.id}</label>
+                                                            <label>{cartItem._id}</label>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -159,14 +163,14 @@ export default class Cart extends Component {
                                                             <label> {cartItem.category}</label>
                                                         </td>
                                                     </tr>
-                                                    <tr>
+                                                    {/* <tr>
                                                         <td>
                                                             <label>Brand</label>
                                                         </td>
                                                         <td>
                                                             <label>{cartItem.brand}</label>
                                                         </td>
-                                                    </tr>
+                                                    </tr> */}
                                                     <tr>
                                                         <td>
                                                             <label>Name</label>
@@ -197,7 +201,7 @@ export default class Cart extends Component {
                                                         </td>
                                                         <td>
 
-                                                            <input id="needCount" type="number" value={cartItem.needQuantity} min="0" max={cartItem.available_quantity} class="form-control"
+                                                            <input id="needCount" type="number" value={cartItem.needQuantity} min="1" max={cartItem.available_quantity} class="form-control"
                                                                 onChange={(e) => {
                                                                     console.log("sdfsdf" + e.target.value)
                                                                     cartItem.needQuantity = e.target.value
@@ -227,10 +231,19 @@ export default class Cart extends Component {
 
 
 
+
                             <table>
                                 <tr >
                                     <td class="totPriceLbl">
-                                        <h3>Your Total Price</h3>
+                                        <h3>Your Total Discount</h3>
+                                    </td>
+                                    <td class="totPriceVal">
+                                        <h2>{this.state.totDiscount}</h2>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td class="totPriceLbl">
+                                        <h3>Your Total Price With Discount</h3>
                                     </td>
                                     <td class="totPriceVal">
                                         <h2>{this.state.totprice}</h2>
@@ -249,8 +262,8 @@ export default class Cart extends Component {
                         </td>
                         <td class="large-table-right">
                             {/* Large table left side -start */}
-                            <img src="https://static.wixstatic.com/media/effc51_45948014481c4068af475d83b864d8b5~mv2.jpg/v1/fill/w_618,h_412,al_c,q_80,usm_0.66_1.00_0.01/effc51_45948014481c4068af475d83b864d8b5~mv2.webp"
-                                class="fashionstoreImg" />
+                            {/* <img src="https://static.wixstatic.com/media/effc51_45948014481c4068af475d83b864d8b5~mv2.jpg/v1/fill/w_618,h_412,al_c,q_80,usm_0.66_1.00_0.01/effc51_45948014481c4068af475d83b864d8b5~mv2.webp"
+                                class="fashionstoreImg" /> */}
 
                             {/* Large table left side -end */}
                         </td>
