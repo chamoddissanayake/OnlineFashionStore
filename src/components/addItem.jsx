@@ -45,10 +45,6 @@ export default class addItem extends Component {
         this.handleImg1Save = this.handleImg1Save.bind(this);
         this.handleImg2Save = this.handleImg2Save.bind(this);
         this.handleImg3Save = this.handleImg3Save.bind(this);
-        this.imgSaveSuccess = this.imgSaveSuccess.bind(this);
-        this.img1SaveSuccess = this.img1SaveSuccess.bind(this);
-        this.img2SaveSuccess = this.img2SaveSuccess.bind(this);
-        this.img3SaveSuccess = this.img3SaveSuccess.bind(this);
     }
 
     handleImgMainChange = (files) => {
@@ -75,69 +71,7 @@ export default class addItem extends Component {
     }
 
 
-    imgSaveSuccess = (uploadTask) => {
-        console.log(this.state.fileM)
-        const _this = this;
 
-        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-            console.log('File available at', downloadURL);
-
-            _this.setState({
-                imageURL_main: downloadURL
-            })
-            console.log("*");
-            console.log(_this.state.imageURL_main);
-        });
-
-    }
-
-    img1SaveSuccess = (uploadTask) => {
-        console.log(this.state.file1)
-        const _this = this;
-
-        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-            console.log('File available at', downloadURL);
-
-            _this.setState({
-                imageURL_1: downloadURL
-            })
-            console.log("%");
-            console.log(_this.state.imageURL_1);
-        });
-
-    }
-
-    img2SaveSuccess = (uploadTask) => {
-        console.log(this.state.file2)
-        const _this = this;
-
-        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-            console.log('File available at', downloadURL);
-
-            _this.setState({
-                imageURL_2: downloadURL
-            })
-            console.log("$");
-            console.log(_this.state.imageURL_2);
-        });
-
-    }
-
-    img3SaveSuccess = (uploadTask) => {
-        console.log(this.state.file3)
-        const _this = this;
-
-        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-            console.log('File available at', downloadURL);
-
-            _this.setState({
-                imageURL_3: downloadURL
-            })
-            console.log("**");
-            console.log(_this.state.imageURL_3);
-        });
-
-    }
 
     handleImgMainSave = () => {
         let bucketName = 'items'
@@ -145,24 +79,20 @@ export default class addItem extends Component {
         if (!file) {
             alert("Please Select An Image");
         } else {
-            let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
-            let uploadTask = storageRef.put(file)
-            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
-                // Observe state change events such as progress, pause, and resume
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                switch (snapshot.state) {
-                    case firebase.storage.TaskState.PAUSED: // or 'paused'
-                        console.log('Upload is paused');
-                        break;
-                    case firebase.storage.TaskState.RUNNING: // or 'running'
-                        console.log('Upload is running');
-                        break;
-                }
-            }, function (error) {
-                // Handle unsuccessful uploads
-            }, this.imgSaveSuccess(uploadTask));
+            let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`);
+            const _this = this;
+            storageRef.put(file).then(function (snapshot) {
+                storageRef.getDownloadURL().then(function (result) {
+                    console.log(_this.state.fileM)
+                    _this.setState({
+                        imageURL_main: result
+                    })
+                    console.log("*");
+                    console.log(_this.state.imageURL_main);
+                });
+
+            }
+            );
 
         }
 
@@ -176,24 +106,19 @@ export default class addItem extends Component {
             alert("Please Select An Image");
         } else {
             let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
-            let uploadTask = storageRef.put(file)
-            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
-                // Observe state change events such as progress, pause, and resume
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                switch (snapshot.state) {
-                    case firebase.storage.TaskState.PAUSED: // or 'paused'
-                        console.log('Upload is paused');
-                        break;
-                    case firebase.storage.TaskState.RUNNING: // or 'running'
-                        console.log('Upload is running');
-                        break;
-                }
-            }, function (error) {
-                // Handle unsuccessful uploads
-            }, this.img1SaveSuccess(uploadTask));
+            const _this = this;
+            storageRef.put(file).then(function (snapshot) {
+                storageRef.getDownloadURL().then(function (result) {
+                    console.log(_this.state.file1)
+                    _this.setState({
+                        imageURL_1: result
+                    })
+                    console.log("*");
+                    console.log(_this.state.imageURL_1);
+                });
 
+            }
+            );
         }
     }
 
@@ -204,23 +129,19 @@ export default class addItem extends Component {
             alert("Please Select An Image");
         } else {
             let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
-            let uploadTask = storageRef.put(file)
-            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
-                // Observe state change events such as progress, pause, and resume
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                switch (snapshot.state) {
-                    case firebase.storage.TaskState.PAUSED: // or 'paused'
-                        console.log('Upload is paused');
-                        break;
-                    case firebase.storage.TaskState.RUNNING: // or 'running'
-                        console.log('Upload is running');
-                        break;
-                }
-            }, function (error) {
-                // Handle unsuccessful uploads
-            }, this.img2SaveSuccess(uploadTask));
+            const _this = this;
+            storageRef.put(file).then(function (snapshot) {
+                storageRef.getDownloadURL().then(function (result) {
+                    console.log(_this.state.file2)
+                    _this.setState({
+                        imageURL_2: result
+                    })
+                    console.log("*");
+                    console.log(_this.state.imageURL_2);
+                });
+
+            }
+            );
 
         }
     }
@@ -233,23 +154,19 @@ export default class addItem extends Component {
             alert("Please Select An Image");
         } else {
             let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
-            let uploadTask = storageRef.put(file)
-            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
-                // Observe state change events such as progress, pause, and resume
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                switch (snapshot.state) {
-                    case firebase.storage.TaskState.PAUSED: // or 'paused'
-                        console.log('Upload is paused');
-                        break;
-                    case firebase.storage.TaskState.RUNNING: // or 'running'
-                        console.log('Upload is running');
-                        break;
-                }
-            }, function (error) {
-                // Handle unsuccessful uploads
-            }, this.img3SaveSuccess(uploadTask));
+            const _this = this;
+            storageRef.put(file).then(function (snapshot) {
+                storageRef.getDownloadURL().then(function (result) {
+                    console.log(_this.state.file3)
+                    _this.setState({
+                        imageURL_3: result
+                    })
+                    console.log("*");
+                    console.log(_this.state.imageURL_3);
+                });
+
+            }
+            );
 
         }
     }
@@ -270,8 +187,8 @@ export default class addItem extends Component {
                 console.log(res.data)
                 if (res.data != null) {
                     this.setState({
-                        allCategory: res.data
-
+                        allCategory: res.data,
+                        category: res.data[0].categoryName
                     });
                     console.log(this.state.allCategory[0].categoryName);
 
@@ -356,51 +273,62 @@ export default class addItem extends Component {
 
     handleSubmit(event) {
 
-        event.preventDefault();
+        if (this.state.imageURL_main == null || this.state.imageURL_1 == null || this.state.imageURL_2 == null || this.state.imageURL_3 == null) {
+            alert('Please select add all images');
+        } else {
+            event.preventDefault();
 
-        const productObject = {
-            id: this.state.id,
-            category: this.state.category,
-            name: this.state.name,
-            description: this.state.description,
-            price: this.state.price,
-            available_quantity: this.state.available_quantity,
-            discount: this.state.discount,
-            imageURL_main: this.state.imageURL_main,
-            imageURL_1: this.state.imageURL_1,
-            imageURL_2: this.state.imageURL_2,
-            imageURL_3: this.state.imageURL_3
-        };
-        console.log(productObject);
-        axios.post(`${BASE_URL}/api/Addproducts`, productObject)
-            .then((res) => {
+            const productObject = {
+                id: this.state.id,
+                category: this.state.category,
+                name: this.state.name,
+                description: this.state.description,
+                price: this.state.price,
+                available_quantity: this.state.available_quantity,
+                discount: this.state.discount,
+                imageURL_main: this.state.imageURL_main,
+                imageURL_1: this.state.imageURL_1,
+                imageURL_2: this.state.imageURL_2,
+                imageURL_3: this.state.imageURL_3
+            };
+            console.log("****")
+            console.log(productObject);
+            axios.post(`${BASE_URL}/api/Addproducts`, productObject)
+                .then((res) => {
 
-                console.log(res.data)
-                if (res.data == true) {
-                    alert('Item ' + document.getElementById("name").value + ' Saved Successfuly.');
-                    window.location.href = '/add'
-                } else {
-                    alert('Error in saving');
-                }
+                    console.log(res.data)
+                    if (res.data == true) {
+                        alert('Item ' + document.getElementById("name").value + ' Saved Successfuly.');
+                        // window.location.href = '/add'
+                    } else {
+                        alert('Error in saving');
+                    }
 
-            }).catch((error) => {
-                console.log(error)
-            });
+                }).catch((error) => {
+                    console.log(error)
+                });
 
-        this.setState({
-            id: '',
-            category: '',
-            name: '',
-            description: '',
-            price: '',
-            available_quantity: '',
-            discount: '',
-            imageURL_main: '',
-            imageURL_1: '',
-            imageURL_2: '',
-            imageURL_3: ''
+            this.setState({
+                id: '',
+                category: '',
+                name: '',
+                description: '',
+                price: '',
+                available_quantity: '',
+                discount: '',
+                imageURL_main: '',
+                imageURL_1: '',
+                imageURL_2: '',
+                imageURL_3: ''
 
-        })
+            })
+        }
+
+
+
+
+
+
     }
 
     render() {
@@ -509,6 +437,11 @@ export default class addItem extends Component {
                             <td>
                                 <button type="button" class="btn btn-primary" onClick={this.handleImgMainSave}>+</button>
                             </td>
+                            <td>
+                                {this.state.imageURL_main ? (
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/e/e4/Green_tick.png" alt="V" height="20" width="20" />
+                                ) : null}
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -519,6 +452,11 @@ export default class addItem extends Component {
                             </td>
                             <td>
                                 <button type="button" class="btn btn-primary" onClick={this.handleImg1Save}>+</button>
+                            </td>
+                            <td>
+                                {this.state.imageURL_1 ? (
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/e/e4/Green_tick.png" alt="V" height="20" width="20" />
+                                ) : null}
                             </td>
                         </tr>
                         <tr>
@@ -531,6 +469,11 @@ export default class addItem extends Component {
                             <td>
                                 <button type="button" class="btn btn-primary" onClick={this.handleImg2Save}>+</button>
                             </td>
+                            <td>
+                                {this.state.imageURL_2 ? (
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/e/e4/Green_tick.png" alt="V" height="20" width="20" />
+                                ) : null}
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -541,6 +484,11 @@ export default class addItem extends Component {
                             </td>
                             <td>
                                 <button type="button" class="btn btn-primary" onClick={this.handleImg3Save}>+</button>
+                            </td>
+                            <td>
+                                {this.state.imageURL_3 ? (
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/e/e4/Green_tick.png" alt="V" height="20" width="20" />
+                                ) : null}
                             </td>
                         </tr>
                     </table>

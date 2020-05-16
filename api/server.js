@@ -417,6 +417,9 @@ app.post('/api/Addproducts', (req, res) => { //addProduct
   tempItemObj.available_quantity = req.body.available_quantity;
   tempItemObj.discount = req.body.discount;
   tempItemObj.imageURL_main = req.body.imageURL_main;
+  tempItemObj.imageURL_1 = req.body.imageURL_1;
+  tempItemObj.imageURL_2 = req.body.imageURL_2;
+  tempItemObj.imageURL_3 = req.body.imageURL_3;
 
   var MongoClient = require('mongodb').MongoClient;
 
