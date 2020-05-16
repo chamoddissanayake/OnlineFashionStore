@@ -3,8 +3,9 @@ import axios from 'axios';
 import { postSelectedProduct } from '../repository';
 import CommentBox from './CommentBox';
 import utils from '../utils/utils';
-
+import commentBoxStyles from '../css/selectItemStyles.css';
 const BASE_URL = 'http://localhost:5000';
+
 
 export default class selectItem extends Component {
 
@@ -16,7 +17,8 @@ export default class selectItem extends Component {
             currentID: this.props.match.params.id,
             selectedProduct: {},
             quantity: 1,
-            loggedInUserObj: {}
+            loggedInUserObj: {},
+            dataNotReceived: true
 
         }
 
@@ -30,9 +32,15 @@ export default class selectItem extends Component {
                 // this.setState(product);
                 // this.setState(this.state.selectedProduct.push(product));
 
-                this.setState(this.state.selectedProduct = product[0]);
+                this.setState({
+                    selectedProduct: product[0],
+                    dataNotReceived: false
+                });
             }).catch((error) => {
                 console.log(error);
+                this.setState(
+                    this.state.dataNotReceived = false
+                );
             });
 
         // axios.post(`${BASE_URL}/api/selectitem`, { id: this.state.currentID })
@@ -116,86 +124,84 @@ export default class selectItem extends Component {
 
         return (
             <div>
-                {/* {this.props.match.params.id}<br />
-                {console.log(selectedProduct)}<br />
-                {selectedProduct._id}<br />
-                {selectedProduct.id}<br />
-                {selectedProduct.category}<br />
-                {selectedProduct.brand}<br />
-                {selectedProduct.name}<br />
-                {selectedProduct.description}<br />
-                {selectedProduct.price}<br />
-                {selectedProduct.available_quantity}<br /> */}
-                {/* {selectedProduct.imageURL_main}
-                {selectedProduct.imageURL_1}
-                {selectedProduct.imageURL_2}
-                {selectedProduct.imageURL_3} */}
-
-                <h2>{selectedProduct.name}</h2>
-                <table>
-                    <tr>
-                        <td>
-                            {/* Large table left side - start */}
-                            {/* //Slider - start */}
-                            <div class="container" style={sliderContainerStyle}>
-
-                                <div id="myCarousel" class="carousel slide" data-ride="carousel" style={sliderCaroselStyle} >
-
-                                    <ol class="carousel-indicators">
-                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                                        <li data-target="#myCarousel" data-slide-to="3"></li>
-                                    </ol>
+                <div class="loadingClass">
+                    {this.state.dataNotReceived ? (
+                        <div class="itemLoading">
+                            <img src="https://gifimage.net/wp-content/uploads/2017/11/gif-caricamento-11.gif"
+                                alt="Loading..." height="300" width="300" />
+                        </div>
+                    ) : null}
+                </div>
 
 
-                                    <div class="carousel-inner">
-                                        <div class="item active">
-                                            <img src={selectedProduct.imageURL_main} alt="Image Not Found" style={sliderImagestyle} />
-                                        </div>
+                {!this.state.dataNotReceived ? (
+                    <div class="pageContent">
 
-                                        <div class="item">
-                                            <img src={selectedProduct.imageURL_1} alt="Image Not Found" style={sliderImagestyle} />
-                                        </div>
+                        <h2>{selectedProduct.name}</h2>
+                        <table>
+                            <tr>
+                                <td>
+                                    {/* Large table left side - start */}
+                                    {/* //Slider - start */}
+                                    <div class="container" style={sliderContainerStyle}>
 
-                                        <div class="item">
-                                            <img src={selectedProduct.imageURL_2} alt="Image Not Found" style={sliderImagestyle} />
-                                        </div>
+                                        <div id="myCarousel" class="carousel slide" data-ride="carousel" style={sliderCaroselStyle} >
 
-                                        <div class="item">
-                                            <img src={selectedProduct.imageURL_3} alt="Image Not Found" style={sliderImagestyle} />
+                                            <ol class="carousel-indicators">
+                                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                                <li data-target="#myCarousel" data-slide-to="1"></li>
+                                                <li data-target="#myCarousel" data-slide-to="2"></li>
+                                                <li data-target="#myCarousel" data-slide-to="3"></li>
+                                            </ol>
+
+
+                                            <div class="carousel-inner">
+                                                <div class="item active">
+                                                    <img src={selectedProduct.imageURL_main} alt="Image Not Found" style={sliderImagestyle} />
+                                                </div>
+
+                                                <div class="item">
+                                                    <img src={selectedProduct.imageURL_1} alt="Image Not Found" style={sliderImagestyle} />
+                                                </div>
+
+                                                <div class="item">
+                                                    <img src={selectedProduct.imageURL_2} alt="Image Not Found" style={sliderImagestyle} />
+                                                </div>
+
+                                                <div class="item">
+                                                    <img src={selectedProduct.imageURL_3} alt="Image Not Found" style={sliderImagestyle} />
+                                                </div>
+                                            </div>
+
+                                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
                                         </div>
                                     </div>
+                                    {/* Slider - End */}
+                                    {/* Large table left side - End */}
+                                </td>
+                                <td>
+                                    {/* Large table right side - start */}
 
-                                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </div>
-                            </div>
-                            {/* Slider - End */}
-                            {/* Large table left side - End */}
-                        </td>
-                        <td>
-                            {/* Large table right side - start */}
+                                    {/* Details - start */}
+                                    <div id="detailsDiv">
 
-                            {/* Details - start */}
-                            <div id="detailsDiv">
-
-                                <table>
-                                    <tr>
-                                        <td>
-                                            Product Category :
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    Product Category :
                             </td>
-                                        <td>
-                                            {selectedProduct.category}
-                                        </td>
-                                    </tr>
-                                    {/* <tr>
+                                                <td>
+                                                    {selectedProduct.category}
+                                                </td>
+                                            </tr>
+                                            {/* <tr>
                                         <td>
                                             Product Brand :
                                         </td>
@@ -203,114 +209,117 @@ export default class selectItem extends Component {
                                             {selectedProduct.brand}
                                         </td>
                                     </tr> */}
-                                    <tr>
-                                        <td>
-                                            Product Name :
+                                            <tr>
+                                                <td>
+                                                    Product Name :
                             </td>
-                                        <td>
-                                            {selectedProduct.name}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Product Description :
+                                                <td>
+                                                    {selectedProduct.name}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Product Description :
                             </td>
-                                        <td>
-                                            {selectedProduct.description}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Product Price :
+                                                <td>
+                                                    {selectedProduct.description}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Product Price :
                             </td>
-                                        <td>
-                                            {selectedProduct.price}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Available Quantity :
+                                                <td>
+                                                    {selectedProduct.price}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Available Quantity :
                             </td>
-                                        <td>
-                                            {selectedProduct.available_quantity}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
+                                                <td>
+                                                    {selectedProduct.available_quantity}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
 
-                                            {/* Add To wishlist */}
-                                            {/* {this.state.loggedInUserObj.type == "member" && <span> */}
-                                            <div title="Add this Item to wishlist">
-                                                <div onClick={() => this.handleWishlistClick(selectedProduct)}  >
-                                                    <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/red-heart_2764.png"
-                                                        alt="Add to wishlist" height="30" width="30" />
-                                                </div>
+                                                    {/* Add To wishlist */}
+                                                    {/* {this.state.loggedInUserObj.type == "member" && <span> */}
+                                                    <div title="Add this Item to wishlist">
+                                                        <div onClick={() => this.handleWishlistClick(selectedProduct)}  >
+                                                            <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/red-heart_2764.png"
+                                                                alt="Add to wishlist" height="30" width="30" />
+                                                        </div>
 
-                                            </div>
-                                            {/* </span>} */}
+                                                    </div>
+                                                    {/* </span>} */}
 
-                                        </td>
-                                        <td>
-                                            {/* Add to cart button - Start */}
-                                            <span>
+                                                </td>
+                                                <td>
+                                                    {/* Add to cart button - Start */}
+                                                    <span>
 
-                                                {selectedProduct.available_quantity > 0 ?
+                                                        {selectedProduct.available_quantity > 0 ?
 
-                                                    <div>
+                                                            <div>
 
-                                                        <button className="btn btn-sm btn-warning float-right"
+                                                                <button className="btn btn-sm btn-warning float-right"
 
-                                                            onClick={this.addToCart}>Add to cart</button>
-
-
-
-
-                                                        <input type="number" value={this.state.quantity} name="quantity" min="0" max={selectedProduct.available_quantity}
-
-                                                            onChange={this.handleInputChange} className="float-right"
-
-                                                            style={{ width: "60px", marginRight: "10px", borderRadius: "3px" }} />
-
-                                                    </div> :
-
-                                                    <p className="text-danger"> product is out of stock </p>
-
-                                                }
-
-                                            </span>
-                                            {/* Add to cart button - End */}
-                                        </td>
-                                    </tr>
-
-                                </table>
-
-                            </div>
-                            {/* Details - End */}
-                            {/* Large table right side - end */}
-                        </td>
-                    </tr>
-                </table>
-
-                <br />
-
-
-                {
-                    !utils.isEmpty(this.state.loggedInUserObj) && <span>
-                        <div id="commentDiv">
-                            <CommentBox selectedProduct={selectedProduct} />
-                        </div>
-                    </span>
-                }
-                {
-                    utils.isEmpty(this.state.loggedInUserObj) && <span>
-                        <h4>Hi, Guest. You can add your thoughts about this product. Please Log ...</h4>
-                    </span>
-                }
+                                                                    onClick={this.addToCart}>Add to cart</button>
 
 
 
 
-            </div >
+                                                                <input type="number" value={this.state.quantity} name="quantity" min="0" max={selectedProduct.available_quantity}
+
+                                                                    onChange={this.handleInputChange} className="float-right"
+
+                                                                    style={{ width: "60px", marginRight: "10px", borderRadius: "3px" }} />
+
+                                                            </div> :
+
+                                                            <p className="text-danger"> product is out of stock </p>
+
+                                                        }
+
+                                                    </span>
+                                                    {/* Add to cart button - End */}
+                                                </td>
+                                            </tr>
+
+                                        </table>
+
+                                    </div>
+                                    {/* Details - End */}
+                                    {/* Large table right side - end */}
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br />
+
+
+                        {
+                            !utils.isEmpty(this.state.loggedInUserObj) && <span>
+                                <div id="commentDiv">
+                                    <CommentBox selectedProduct={selectedProduct} />
+                                </div>
+                            </span>
+                        }
+                        {
+                            utils.isEmpty(this.state.loggedInUserObj) && <span>
+                                <h4>Hi, Guest. You can add your thoughts about this product. Please Log ...</h4>
+                            </span>
+                        }
+                    </div>
+                ) : null}
+
+
+
+
+
+            </div>
         )
     }
 }

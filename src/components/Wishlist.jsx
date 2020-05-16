@@ -128,7 +128,7 @@ export default class Wishlist extends Component {
                                                 <label>Item ID</label>
                                             </td>
                                             <td class="td-val">
-                                                <label>{wishlistItem.id}</label>
+                                                <label>{wishlistItem._id}</label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -139,14 +139,14 @@ export default class Wishlist extends Component {
                                                 <label>{wishlistItem.category}</label>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        {/* <tr>
                                             <td class="td-lbl">
                                                 <label>Brand</label>
                                             </td>
                                             <td class="td-val">
                                                 <label>{wishlistItem.brand}</label>
                                             </td>
-                                        </tr>
+                                        </tr> */}
                                         <tr>
                                             <td class="td-lbl">
                                                 <label>Name</label>
