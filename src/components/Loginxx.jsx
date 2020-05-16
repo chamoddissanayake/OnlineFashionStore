@@ -68,14 +68,14 @@ export default class Loginxx extends React.Component {
             loggedInUserObj.email = res.data.email;
             loggedInUserObj.type = res.data.type;
 
-            localStorage.setItem("loggedInUser", JSON.stringify(loggedInUserObj));
+
 
             this.setState({
               currentUser: loggedInUserObj
             })
 
             if (res.data.type == 'member') {
-
+              localStorage.setItem("loggedInUser", JSON.stringify(loggedInUserObj));
               const { location } = this.props;
               if (location.state && location.state.from) {
                 this.props.history.push(location.state.from);
@@ -93,15 +93,6 @@ export default class Loginxx extends React.Component {
               }
               window.location.reload();
             } else if (res.data.type == 'admin') {
-             //axios.get(`${BASE_URL}/`);
-              /*const { location } = this.props;
-              if (location.state && location.state.from) {
-                this.props.history.push(location.state.from);
-              } else {
-                this.props.history.push(axios.get(`${BASE_URL}/`));
-              }*/
-              /*console.log(window.location.hostname);
-              window.location.href = "http://" + window.location.hostname + ":5000/";*/
               const { location } = this.props;
               if (location.state && location.state.from) {
                 this.props.history.push(location.state.from);
