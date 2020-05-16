@@ -2,7 +2,8 @@
 	text-align:center;
 }
 #cashOnDeliveryBody{
-	margin-left:35%;
+	margin-left:20%;
+	margin-right:20%;
 }
 #cashOnDeliveryForm{
 	width:50%;
@@ -10,4 +11,19 @@
 
 #agreeTerms{
 	margin-left: 20px;
+}
+
+.price{
+	margin-right: 10px;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#customSubmitButton{
+	float: right;
+}
+
+
+#colprice{
+	text-align: right;
 }

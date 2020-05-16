@@ -97,7 +97,7 @@ export default class CashOnDelivery extends Component {
             }).catch((error) => {
                 console.log(error)
             });
-        console.log("ammamammammamma");
+
         ///Add to db - end
     }
 
@@ -164,8 +164,8 @@ export default class CashOnDelivery extends Component {
                             <div class="col">
                                 <label>Your Amount :</label>
                             </div>
-                            <div class="col">
-                                <input type="number" value={this.state.totprice} class="form-control" id="inputZip" readonly />
+                            <div id="colprice" class="col">
+                                <label class="price">{this.state.totprice}</label>
                             </div>
                         </div>
                     </div>
@@ -176,7 +176,7 @@ export default class CashOnDelivery extends Component {
                     </div>
                     <p>* Delivery Charges will be applied</p>
 
-                    <button class="btn btn-primary" onClick={this.handleCashOnDeliveryClicked} >Place Order >>></button>
+                    <button id="customSubmitButton" class="btn btn-primary" onClick={this.handleCashOnDeliveryClicked} >Place Order >>></button>
 
                 </div>
 
