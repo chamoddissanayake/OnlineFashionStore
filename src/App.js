@@ -31,6 +31,8 @@ import CashOnDelivery from './components/CashOnDelivery';
 import CartLogo from './components/CartLogo';
 import ThanksForPurchasing from './components/ThanksForPurchasing';
 import mainStyle from './css/mainStyle.css';
+import newUserRegistration from './components/newUserRegistration';
+
 
 
 class App extends Component {
@@ -207,6 +209,7 @@ class App extends Component {
 
             <Route exact path="/cashOnDelivery" component={CashOnDelivery} />
             <Route exact path="/thanks" component={ThanksForPurchasing} />
+            <Route exact path="/newUser" component={newUserRegistration} />
 
           </div>
 

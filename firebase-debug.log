@@ -1,81 +1,288 @@
-[debug] [2020-05-17T03:42:43.421Z] ----------------------------------------------------------------------
-[debug] [2020-05-17T03:42:43.430Z] Command:       D:\Progam Files\Nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
-[debug] [2020-05-17T03:42:43.431Z] CLI Version:   8.2.0
-[debug] [2020-05-17T03:42:43.432Z] Platform:      win32
-[debug] [2020-05-17T03:42:43.432Z] Node Version:  v12.15.0
-[debug] [2020-05-17T03:42:43.434Z] Time:          Sun May 17 2020 09:12:43 GMT+0530 (India Standard Time)
-[debug] [2020-05-17T03:42:43.435Z] ----------------------------------------------------------------------
-[debug] [2020-05-17T03:42:43.436Z] 
-[debug] [2020-05-17T03:42:43.569Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2020-05-17T03:42:43.571Z] > authorizing via signed-in user
-[debug] [2020-05-17T03:42:43.572Z] [iam] checking project fashionstore-276105 for permissions ["firebase.projects.get"]
-[debug] [2020-05-17T03:42:43.580Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2020-05-17T03:42:43.581Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2020-05-17T03:42:44.084Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 17 May 2020 03:42:45 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
-[debug] [2020-05-17T03:42:44.149Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/fashionstore-276105:testIamPermissions  
+[debug] [2020-05-17T06:28:11.172Z] ----------------------------------------------------------------------
+[debug] [2020-05-17T06:28:11.174Z] Command:       D:\Progam Files\Nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2020-05-17T06:28:11.174Z] CLI Version:   8.2.0
+[debug] [2020-05-17T06:28:11.175Z] Platform:      win32
+[debug] [2020-05-17T06:28:11.175Z] Node Version:  v12.15.0
+[debug] [2020-05-17T06:28:11.175Z] Time:          Sun May 17 2020 11:58:11 GMT+0530 (India Standard Time)
+[debug] [2020-05-17T06:28:11.175Z] ----------------------------------------------------------------------
+[debug] [2020-05-17T06:28:11.175Z] 
+[debug] [2020-05-17T06:28:11.183Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-05-17T06:28:11.184Z] > authorizing via signed-in user
+[debug] [2020-05-17T06:28:11.184Z] [iam] checking project fashionstore-276105 for permissions ["firebase.projects.get"]
+[debug] [2020-05-17T06:28:11.187Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/fashionstore-276105:testIamPermissions  
  {"permissions":["firebase.projects.get"]}
-[debug] [2020-05-17T03:42:45.865Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 17 May 2020 03:42:46 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1317","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
-[debug] [2020-05-17T03:42:45.868Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/fashionstore-276105  
+[debug] [2020-05-17T06:28:12.718Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 17 May 2020 06:28:13 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1177","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-05-17T06:28:12.720Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/fashionstore-276105  
  
-[debug] [2020-05-17T03:42:46.871Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 17 May 2020 03:42:47 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-05-17T06:28:13.179Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 17 May 2020 06:28:14 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
 [info] 
 [info] === Serving from 'C:\Users\User\Desktop\OnlineFashionStore'...
 [info] 
-[debug] [2020-05-17T03:42:46.889Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/fashionstore-276105/webApps/-/config  
+[debug] [2020-05-17T06:28:13.211Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/fashionstore-276105/webApps/-/config  
  
-[debug] [2020-05-17T03:42:48.733Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 17 May 2020 03:42:49 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
-[warn] !  Your requested "node" version "8" doesn't match your global version "12"
+[debug] [2020-05-17T06:28:14.375Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 17 May 2020 06:28:15 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
 [info] i  hosting: Serving hosting files from: build
 [info] +  hosting: Local server: http://localhost:5000
+[warn] !  Your requested "node" version "8" doesn't match your global version "12"
 [info] +  functions: functions emulator started at http://localhost:5001
 [info] i  functions: Watching "C:\Users\User\Desktop\OnlineFashionStore\functions" for Cloud Functions...
-[debug] [2020-05-17T03:42:49.306Z] [worker-pool] addWorker(~diagnostic~) 
-[debug] [2020-05-17T03:42:49.307Z] [worker-pool] Adding worker with key ~diagnostic~, total=1 
-[debug] [2020-05-17T03:42:49.307Z] [worker-pool] submitWork(triggerId=) 
-[debug] [2020-05-17T03:42:49.308Z] [worker-~diagnostic~-ac59b013-f8b6-4702-a58e-7cc9cfee7a1d]: Assigning socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\12624 
-[debug] [2020-05-17T03:42:49.308Z] [worker-~diagnostic~-ac59b013-f8b6-4702-a58e-7cc9cfee7a1d]: BUSY 
-[debug] [2020-05-17T03:42:50.526Z] [runtime-status] [12624] Functions runtime initialized. {"cwd":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions","node_version":"12.15.0"} 
-[debug] [2020-05-17T03:42:50.527Z] [runtime-status] [12624] Disabled runtime features: undefined 
-[debug] [2020-05-17T03:42:50.585Z] [runtime-status] [12624] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"} 
-[debug] [2020-05-17T03:42:50.639Z] [runtime-status] [12624] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
-[debug] [2020-05-17T03:42:50.646Z] [runtime-status] [12624] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
-[debug] [2020-05-17T03:42:52.640Z] [runtime-status] [12624] Checked functions.config() {"config":{}} 
-[debug] [2020-05-17T03:42:52.643Z] [runtime-status] [12624] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
-[debug] [2020-05-17T03:42:52.648Z] [runtime-status] [12624] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"} 
-[debug] [2020-05-17T03:42:52.650Z] [runtime-status] [12624] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
-[debug] [2020-05-17T03:42:52.651Z] [runtime-status] [12624] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} 
+[debug] [2020-05-17T06:28:15.251Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-05-17T06:28:15.251Z] [worker-pool] Adding worker with key ~diagnostic~, total=1 
+[debug] [2020-05-17T06:28:15.251Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-05-17T06:28:15.251Z] [worker-~diagnostic~-7d115b92-a838-4cd1-809f-0571fadb977e]: Assigning socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\1152 
+[debug] [2020-05-17T06:28:15.251Z] [worker-~diagnostic~-7d115b92-a838-4cd1-809f-0571fadb977e]: BUSY 
+[debug] [2020-05-17T06:28:15.653Z] [runtime-status] [1152] Functions runtime initialized. {"cwd":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions","node_version":"12.15.0"} 
+[debug] [2020-05-17T06:28:15.653Z] [runtime-status] [1152] Disabled runtime features: undefined 
+[debug] [2020-05-17T06:28:15.656Z] [runtime-status] [1152] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"} 
+[debug] [2020-05-17T06:28:15.658Z] [runtime-status] [1152] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
+[debug] [2020-05-17T06:28:15.660Z] [runtime-status] [1152] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-05-17T06:28:15.702Z] [runtime-status] [1152] Checked functions.config() {"config":{}} 
+[debug] [2020-05-17T06:28:15.702Z] [runtime-status] [1152] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
+[debug] [2020-05-17T06:28:15.704Z] [runtime-status] [1152] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"} 
+[debug] [2020-05-17T06:28:15.704Z] [runtime-status] [1152] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
+[debug] [2020-05-17T06:28:15.704Z] [runtime-status] [1152] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} 
 [info] +  functions[app]: http function initialized (http://localhost:5001/fashionstore-276105/us-central1/app).
-[debug] [2020-05-17T03:43:09.240Z] [worker-~diagnostic~-ac59b013-f8b6-4702-a58e-7cc9cfee7a1d]: IDLE 
-[info] [hosting] Rewriting /api/products to http://localhost:5001/fashionstore-276105/us-central1/app for local Function app
-[debug] [2020-05-17T03:43:29.452Z] [work-queue] {"queueLength":1,"workRunningCount":0}
-[debug] [2020-05-17T03:43:29.453Z] [work-queue] {"queueLength":0,"workRunningCount":1}
-[debug] [2020-05-17T03:43:29.454Z] Accepted request GET /fashionstore-276105/us-central1/app/api/products --> app
-[debug] [2020-05-17T03:43:29.464Z] [worker-pool] addWorker(app) 
-[debug] [2020-05-17T03:43:29.465Z] [worker-pool] Adding worker with key app, total=1 
-[debug] [2020-05-17T03:43:29.465Z] [worker-pool] submitWork(triggerId=app) 
-[debug] [2020-05-17T03:43:29.466Z] [worker-app-def5c81a-7961-4cd7-926c-60c59d1b5654]: Assigning socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\17056 
-[debug] [2020-05-17T03:43:29.466Z] [worker-app-def5c81a-7961-4cd7-926c-60c59d1b5654]: BUSY 
-[debug] [2020-05-17T03:43:30.246Z] [runtime-status] [17056] Functions runtime initialized. {"cwd":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions","node_version":"12.15.0"} 
-[debug] [2020-05-17T03:43:30.248Z] [runtime-status] [17056] Disabled runtime features: undefined 
-[debug] [2020-05-17T03:43:30.254Z] [runtime-status] [17056] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"} 
-[debug] [2020-05-17T03:43:30.257Z] [runtime-status] [17056] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
-[debug] [2020-05-17T03:43:30.260Z] [runtime-status] [17056] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
-[debug] [2020-05-17T03:43:30.326Z] [runtime-status] [17056] Checked functions.config() {"config":{}} 
-[debug] [2020-05-17T03:43:30.327Z] [runtime-status] [17056] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
-[debug] [2020-05-17T03:43:30.329Z] [runtime-status] [17056] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"} 
-[debug] [2020-05-17T03:43:30.330Z] [runtime-status] [17056] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
-[debug] [2020-05-17T03:43:30.330Z] [runtime-status] [17056] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} 
-[debug] [2020-05-17T03:43:31.144Z] [runtime-status] [17056] Trigger "app" has been found, beginning invocation! 
+[debug] [2020-05-17T06:28:16.126Z] [worker-~diagnostic~-7d115b92-a838-4cd1-809f-0571fadb977e]: IDLE 
+[info] [hosting] Rewriting /api/registerUser to http://localhost:5001/fashionstore-276105/us-central1/app for local Function app
+[debug] [2020-05-17T06:28:56.210Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-05-17T06:28:56.211Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-05-17T06:28:56.211Z] Accepted request OPTIONS /fashionstore-276105/us-central1/app/api/registerUser --> app
+[debug] [2020-05-17T06:28:56.216Z] [worker-pool] addWorker(app) 
+[debug] [2020-05-17T06:28:56.216Z] [worker-pool] Adding worker with key app, total=1 
+[debug] [2020-05-17T06:28:56.216Z] [worker-pool] submitWork(triggerId=app) 
+[debug] [2020-05-17T06:28:56.217Z] [worker-app-7a2565ed-f7ae-4253-aaa6-ce7258638df5]: Assigning socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\13184 
+[debug] [2020-05-17T06:28:56.217Z] [worker-app-7a2565ed-f7ae-4253-aaa6-ce7258638df5]: BUSY 
+[debug] [2020-05-17T06:28:56.609Z] [runtime-status] [13184] Functions runtime initialized. {"cwd":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions","node_version":"12.15.0"} 
+[debug] [2020-05-17T06:28:56.611Z] [runtime-status] [13184] Disabled runtime features: undefined 
+[debug] [2020-05-17T06:28:56.614Z] [runtime-status] [13184] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"} 
+[debug] [2020-05-17T06:28:56.615Z] [runtime-status] [13184] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
+[debug] [2020-05-17T06:28:56.617Z] [runtime-status] [13184] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-05-17T06:28:56.659Z] [runtime-status] [13184] Checked functions.config() {"config":{}} 
+[debug] [2020-05-17T06:28:56.660Z] [runtime-status] [13184] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
+[debug] [2020-05-17T06:28:56.661Z] [runtime-status] [13184] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"} 
+[debug] [2020-05-17T06:28:56.662Z] [runtime-status] [13184] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
+[debug] [2020-05-17T06:28:56.662Z] [runtime-status] [13184] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} 
+[debug] [2020-05-17T06:28:57.080Z] [runtime-status] [13184] Trigger "app" has been found, beginning invocation! 
 [info] i  functions: Beginning execution of "app"
-[debug] [2020-05-17T03:43:31.146Z] [runtime-status] [17056] triggerDefinition {"httpsTrigger":{},"name":"app","entryPoint":"app"} 
-[debug] [2020-05-17T03:43:31.147Z] [runtime-status] [17056] Running app in mode HTTPS 
-[debug] [2020-05-17T03:43:31.154Z] [runtime-status] [17056] Attempting to listen to socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\17056 
-[debug] [2020-05-17T03:43:31.159Z] [functions] Runtime ready! Sending request! 
-[debug] [2020-05-17T03:43:31.170Z] [runtime-status] [17056] Ephemeral server handling GET request 
-[debug] [2020-05-17T03:43:31.175Z] [runtime-status] [17056] Ephemeral server survived. 
-[info] >  request received for get products123 {"user":"request received for get products123"}
-[info] >  (node:17056) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor. {"user":"(node:17056) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor."}
+[debug] [2020-05-17T06:28:57.081Z] [runtime-status] [13184] triggerDefinition {"httpsTrigger":{},"name":"app","entryPoint":"app"} 
+[debug] [2020-05-17T06:28:57.081Z] [runtime-status] [13184] Running app in mode HTTPS 
+[debug] [2020-05-17T06:28:57.084Z] [runtime-status] [13184] Attempting to listen to socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\13184 
+[debug] [2020-05-17T06:28:57.088Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-05-17T06:28:57.095Z] [runtime-status] [13184] Ephemeral server handling OPTIONS request 
+[debug] [2020-05-17T06:28:57.099Z] [runtime-status] [13184] Ephemeral server survived. 
+[info] i  functions: Finished "app" in ~1s
+[debug] [2020-05-17T06:28:57.104Z] [worker-app-7a2565ed-f7ae-4253-aaa6-ce7258638df5]: IDLE 
+[debug] [2020-05-17T06:28:57.105Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] [hosting] Rewriting /api/registerUser to http://localhost:5001/fashionstore-276105/us-central1/app for local Function app
+[debug] [2020-05-17T06:28:57.110Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-05-17T06:28:57.110Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-05-17T06:28:57.110Z] Accepted request POST /fashionstore-276105/us-central1/app/api/registerUser --> app
+[debug] [2020-05-17T06:28:57.111Z] [worker-pool] submitWork(triggerId=app) 
+[debug] [2020-05-17T06:28:57.111Z] [worker-app-7a2565ed-f7ae-4253-aaa6-ce7258638df5]: Assigning socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\13184 
+[debug] [2020-05-17T06:28:57.111Z] [worker-app-7a2565ed-f7ae-4253-aaa6-ce7258638df5]: BUSY 
+[debug] [2020-05-17T06:28:57.112Z] [runtime-status] [13184] Trigger "app" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "app"
+[debug] [2020-05-17T06:28:57.113Z] [runtime-status] [13184] triggerDefinition {"httpsTrigger":{},"name":"app","entryPoint":"app"} 
+[debug] [2020-05-17T06:28:57.113Z] [runtime-status] [13184] Running app in mode HTTPS 
+[debug] [2020-05-17T06:28:57.113Z] [runtime-status] [13184] Attempting to listen to socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\13184 
+[debug] [2020-05-17T06:28:57.114Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-05-17T06:28:57.127Z] [runtime-status] [13184] Ephemeral server handling POST request 
+[info] >  request received for register User {"user":"request received for register User"}
+[info] >  { username: 'asdf', password: 'asdf', email: 'asdf@gmail.com' } {"user":"{ username: 'asdf', password: 'asdf', email: 'asdf@gmail.com' }"}
+[info] >  * {"user":"*"}
+[info] >  { {"user":"{"}
+[info] >    username: 'asdf', {"user":"  username: 'asdf',"}
+[info] >    email: 'asdf@gmail.com', {"user":"  email: 'asdf@gmail.com',"}
+[info] >    password: 'asdf', {"user":"  password: 'asdf',"}
+[info] >    type: 'member' {"user":"  type: 'member'"}
+[info] >  } {"user":"}"}
+[debug] [2020-05-17T06:28:57.146Z] [runtime-status] [13184] Ephemeral server survived. 
+[info] >  C:\Users\User\Desktop\OnlineFashionStore\node_modules\mongodb\lib\utils.js:725 {"user":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\node_modules\\mongodb\\lib\\utils.js:725\r"}
+[info] >            throw error; {"user":"          throw error;\r"}
+[info] >            ^ {"user":"          ^\r"}
+[info] >   {"user":"\r"}
+[info] >  Error: querySrv ESERVFAIL _mongodb._tcp.fashionstorecluster-11atr.gcp.mongodb.net {"user":"Error: querySrv ESERVFAIL _mongodb._tcp.fashionstorecluster-11atr.gcp.mongodb.net\r"}
+[info] >      at QueryReqWrap.onresolve [as oncomplete] (dns.js:202:19) { {"user":"    at QueryReqWrap.onresolve [as oncomplete] (dns.js:202:19) {\r"}
+[info] >    errno: 'ESERVFAIL', {"user":"  errno: 'ESERVFAIL',\r"}
+[info] >    code: 'ESERVFAIL', {"user":"  code: 'ESERVFAIL',\r"}
+[info] >    syscall: 'querySrv', {"user":"  syscall: 'querySrv',\r"}
+[info] >    hostname: '_mongodb._tcp.fashionstorecluster-11atr.gcp.mongodb.net' {"user":"  hostname: '_mongodb._tcp.fashionstorecluster-11atr.gcp.mongodb.net'\r"}
+[info] >  } {"user":"}\r"}
+[debug] [2020-05-17T06:29:01.048Z] [worker-app-7a2565ed-f7ae-4253-aaa6-ce7258638df5]: exited 
+[debug] [2020-05-17T06:29:01.048Z] [worker-app-7a2565ed-f7ae-4253-aaa6-ce7258638df5]: FINISHED 
+[debug] [2020-05-17T06:29:01.048Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] [hosting] Rewriting /api/registerUser to http://localhost:5001/fashionstore-276105/us-central1/app for local Function app
+[debug] [2020-05-17T06:30:37.668Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-05-17T06:30:37.669Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-05-17T06:30:37.669Z] Accepted request OPTIONS /fashionstore-276105/us-central1/app/api/registerUser --> app
+[debug] [2020-05-17T06:30:37.669Z] [worker-pool] Cleaned up workers for app: 1 --> 0 
+[debug] [2020-05-17T06:30:37.681Z] [worker-pool] addWorker(app) 
+[debug] [2020-05-17T06:30:37.681Z] [worker-pool] Adding worker with key app, total=1 
+[debug] [2020-05-17T06:30:37.681Z] [worker-pool] submitWork(triggerId=app) 
+[debug] [2020-05-17T06:30:37.682Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: Assigning socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\5192 
+[debug] [2020-05-17T06:30:37.682Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: BUSY 
+[debug] [2020-05-17T06:30:38.079Z] [runtime-status] [5192] Functions runtime initialized. {"cwd":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions","node_version":"12.15.0"} 
+[debug] [2020-05-17T06:30:38.080Z] [runtime-status] [5192] Disabled runtime features: undefined 
+[debug] [2020-05-17T06:30:38.083Z] [runtime-status] [5192] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"} 
+[debug] [2020-05-17T06:30:38.085Z] [runtime-status] [5192] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
+[debug] [2020-05-17T06:30:38.087Z] [runtime-status] [5192] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-05-17T06:30:38.129Z] [runtime-status] [5192] Checked functions.config() {"config":{}} 
+[debug] [2020-05-17T06:30:38.129Z] [runtime-status] [5192] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
+[debug] [2020-05-17T06:30:38.130Z] [runtime-status] [5192] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"} 
+[debug] [2020-05-17T06:30:38.131Z] [runtime-status] [5192] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
+[debug] [2020-05-17T06:30:38.131Z] [runtime-status] [5192] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} 
+[debug] [2020-05-17T06:30:38.551Z] [runtime-status] [5192] Trigger "app" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "app"
+[debug] [2020-05-17T06:30:38.552Z] [runtime-status] [5192] triggerDefinition {"httpsTrigger":{},"name":"app","entryPoint":"app"} 
+[debug] [2020-05-17T06:30:38.553Z] [runtime-status] [5192] Running app in mode HTTPS 
+[debug] [2020-05-17T06:30:38.555Z] [runtime-status] [5192] Attempting to listen to socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\5192 
+[debug] [2020-05-17T06:30:38.558Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-05-17T06:30:38.564Z] [runtime-status] [5192] Ephemeral server handling OPTIONS request 
+[debug] [2020-05-17T06:30:38.569Z] [runtime-status] [5192] Ephemeral server survived. 
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /api/registerUser to http://localhost:5001/fashionstore-276105/us-central1/app for local Function app
+[debug] [2020-05-17T06:30:38.573Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: IDLE 
+[debug] [2020-05-17T06:30:38.573Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-05-17T06:30:38.574Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-05-17T06:30:38.574Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-05-17T06:30:38.574Z] Accepted request POST /fashionstore-276105/us-central1/app/api/registerUser --> app
+[debug] [2020-05-17T06:30:38.575Z] [worker-pool] submitWork(triggerId=app) 
+[debug] [2020-05-17T06:30:38.575Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: Assigning socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\5192 
+[debug] [2020-05-17T06:30:38.575Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: BUSY 
+[debug] [2020-05-17T06:30:38.581Z] [runtime-status] [5192] Trigger "app" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "app"
+[debug] [2020-05-17T06:30:38.584Z] [runtime-status] [5192] triggerDefinition {"httpsTrigger":{},"name":"app","entryPoint":"app"} 
+[debug] [2020-05-17T06:30:38.584Z] [runtime-status] [5192] Running app in mode HTTPS 
+[debug] [2020-05-17T06:30:38.585Z] [runtime-status] [5192] Attempting to listen to socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\5192 
+[debug] [2020-05-17T06:30:38.586Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-05-17T06:30:38.601Z] [runtime-status] [5192] Ephemeral server handling POST request 
+[info] >  request received for register User {"user":"request received for register User"}
+[info] >  { username: 'zzz', password: 'zzz', email: 'zzz@gmail.com' } {"user":"{ username: 'zzz', password: 'zzz', email: 'zzz@gmail.com' }"}
+[info] >  * {"user":"*"}
+[info] >  { {"user":"{"}
+[info] >    username: 'zzz', {"user":"  username: 'zzz',"}
+[info] >    email: 'zzz@gmail.com', {"user":"  email: 'zzz@gmail.com',"}
+[info] >    password: 'zzz', {"user":"  password: 'zzz',"}
+[info] >    type: 'member' {"user":"  type: 'member'"}
+[info] >  } {"user":"}"}
+[debug] [2020-05-17T06:30:38.622Z] [runtime-status] [5192] Ephemeral server survived. 
+[info] >  (node:5192) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor. {"user":"(node:5192) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor."}
+[info] >  User added. {"user":"User added."}
 [info] i  functions: Finished "app" in ~4s
-[debug] [2020-05-17T03:43:35.779Z] [worker-app-def5c81a-7961-4cd7-926c-60c59d1b5654]: IDLE 
-[debug] [2020-05-17T03:43:35.780Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-05-17T06:30:43.035Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: IDLE 
+[debug] [2020-05-17T06:30:43.035Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] [hosting] Rewriting /api/registerUser to http://localhost:5001/fashionstore-276105/us-central1/app for local Function app
+[debug] [2020-05-17T06:31:38.697Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-05-17T06:31:38.697Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-05-17T06:31:38.698Z] Accepted request OPTIONS /fashionstore-276105/us-central1/app/api/registerUser --> app
+[debug] [2020-05-17T06:31:38.698Z] [worker-pool] submitWork(triggerId=app) 
+[debug] [2020-05-17T06:31:38.698Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: Assigning socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\5192 
+[debug] [2020-05-17T06:31:38.699Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: BUSY 
+[debug] [2020-05-17T06:31:38.700Z] [runtime-status] [5192] Trigger "app" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "app"
+[debug] [2020-05-17T06:31:38.709Z] [runtime-status] [5192] triggerDefinition {"httpsTrigger":{},"name":"app","entryPoint":"app"} 
+[debug] [2020-05-17T06:31:38.710Z] [runtime-status] [5192] Running app in mode HTTPS 
+[debug] [2020-05-17T06:31:38.710Z] [runtime-status] [5192] Attempting to listen to socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\5192 
+[debug] [2020-05-17T06:31:38.711Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-05-17T06:31:38.717Z] [runtime-status] [5192] Ephemeral server handling OPTIONS request 
+[debug] [2020-05-17T06:31:38.718Z] [runtime-status] [5192] Ephemeral server survived. 
+[info] i  functions: Finished "app" in ~1s
+[debug] [2020-05-17T06:31:38.728Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: IDLE 
+[debug] [2020-05-17T06:31:38.728Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] [hosting] Rewriting /api/registerUser to http://localhost:5001/fashionstore-276105/us-central1/app for local Function app
+[debug] [2020-05-17T06:31:38.733Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-05-17T06:31:38.733Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-05-17T06:31:38.733Z] Accepted request POST /fashionstore-276105/us-central1/app/api/registerUser --> app
+[debug] [2020-05-17T06:31:38.733Z] [worker-pool] submitWork(triggerId=app) 
+[debug] [2020-05-17T06:31:38.733Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: Assigning socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\5192 
+[debug] [2020-05-17T06:31:38.734Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: BUSY 
+[debug] [2020-05-17T06:31:38.734Z] [runtime-status] [5192] Trigger "app" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "app"
+[debug] [2020-05-17T06:31:38.741Z] [runtime-status] [5192] triggerDefinition {"httpsTrigger":{},"name":"app","entryPoint":"app"} 
+[debug] [2020-05-17T06:31:38.742Z] [runtime-status] [5192] Running app in mode HTTPS 
+[debug] [2020-05-17T06:31:38.743Z] [runtime-status] [5192] Attempting to listen to socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\5192 
+[debug] [2020-05-17T06:31:38.743Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-05-17T06:31:38.745Z] [runtime-status] [5192] Ephemeral server handling POST request 
+[info] >  request received for register User {"user":"request received for register User"}
+[info] >  { username: 'uuuu', password: 'uuuu', email: 'uuuu@gmail.com' } {"user":"{ username: 'uuuu', password: 'uuuu', email: 'uuuu@gmail.com' }"}
+[info] >  * {"user":"*"}
+[info] >  { {"user":"{"}
+[info] >    username: 'uuuu', {"user":"  username: 'uuuu',"}
+[info] >    email: 'uuuu@gmail.com', {"user":"  email: 'uuuu@gmail.com',"}
+[info] >    password: 'uuuu', {"user":"  password: 'uuuu',"}
+[info] >    type: 'member' {"user":"  type: 'member'"}
+[info] >  } {"user":"}"}
+[debug] [2020-05-17T06:31:38.765Z] [runtime-status] [5192] Ephemeral server survived. 
+[warn] !  functions: Your function timed out after ~60s. To configure this timeout, see
+      https://firebase.google.com/docs/functions/manage-functions#set_timeout_and_memory_allocation.
+[info] >  C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:619 {"user":"C:\\Users\\User\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\emulator\\functionsEmulatorRuntime.js:619\r"}
+[info] >                  throw new Error("Function timed out."); {"user":"                throw new Error(\"Function timed out.\");\r"}
+[info] >                  ^ {"user":"                ^\r"}
+[info] >   {"user":"\r"}
+[info] >  Error: Function timed out. {"user":"Error: Function timed out.\r"}
+[info] >      at Timeout._onTimeout (C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:619:23) {"user":"    at Timeout._onTimeout (C:\\Users\\User\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\emulator\\functionsEmulatorRuntime.js:619:23)\r"}
+[info] >      at listOnTimeout (internal/timers.js:531:17) {"user":"    at listOnTimeout (internal/timers.js:531:17)\r"}
+[info] >      at processTimers (internal/timers.js:475:7) {"user":"    at processTimers (internal/timers.js:475:7)\r"}
+[debug] [2020-05-17T06:32:38.843Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: exited 
+[debug] [2020-05-17T06:32:38.843Z] [worker-app-0e0ac2cd-bd76-473a-97f7-76cc702d3855]: FINISHED 
+[debug] [2020-05-17T06:32:38.843Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] [hosting] Rewriting /api/registerUser to http://localhost:5001/fashionstore-276105/us-central1/app for local Function app
+[debug] [2020-05-17T06:33:22.222Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-05-17T06:33:22.222Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-05-17T06:33:22.222Z] Accepted request OPTIONS /fashionstore-276105/us-central1/app/api/registerUser --> app
+[debug] [2020-05-17T06:33:22.222Z] [worker-pool] Cleaned up workers for app: 1 --> 0 
+[debug] [2020-05-17T06:33:22.227Z] [worker-pool] addWorker(app) 
+[debug] [2020-05-17T06:33:22.227Z] [worker-pool] Adding worker with key app, total=1 
+[debug] [2020-05-17T06:33:22.227Z] [worker-pool] submitWork(triggerId=app) 
+[debug] [2020-05-17T06:33:22.227Z] [worker-app-364c7fb7-a195-4416-8e72-3e2666895219]: Assigning socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\19140 
+[debug] [2020-05-17T06:33:22.227Z] [worker-app-364c7fb7-a195-4416-8e72-3e2666895219]: BUSY 
+[debug] [2020-05-17T06:33:22.640Z] [runtime-status] [19140] Functions runtime initialized. {"cwd":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions","node_version":"12.15.0"} 
+[debug] [2020-05-17T06:33:22.642Z] [runtime-status] [19140] Disabled runtime features: undefined 
+[debug] [2020-05-17T06:33:22.646Z] [runtime-status] [19140] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"} 
+[debug] [2020-05-17T06:33:22.649Z] [runtime-status] [19140] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
+[debug] [2020-05-17T06:33:22.651Z] [runtime-status] [19140] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-05-17T06:33:22.698Z] [runtime-status] [19140] Checked functions.config() {"config":{}} 
+[debug] [2020-05-17T06:33:22.699Z] [runtime-status] [19140] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
+[debug] [2020-05-17T06:33:22.700Z] [runtime-status] [19140] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"} 
+[debug] [2020-05-17T06:33:22.701Z] [runtime-status] [19140] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-functions\\lib\\index.js"} 
+[debug] [2020-05-17T06:33:22.701Z] [runtime-status] [19140] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\User\\Desktop\\OnlineFashionStore\\functions\\node_modules\\firebase-admin\\lib\\index.js"}} 
+[debug] [2020-05-17T06:33:23.162Z] [runtime-status] [19140] Trigger "app" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "app"
+[debug] [2020-05-17T06:33:23.163Z] [runtime-status] [19140] triggerDefinition {"httpsTrigger":{},"name":"app","entryPoint":"app"} 
+[debug] [2020-05-17T06:33:23.164Z] [runtime-status] [19140] Running app in mode HTTPS 
+[debug] [2020-05-17T06:33:23.167Z] [runtime-status] [19140] Attempting to listen to socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\19140 
+[debug] [2020-05-17T06:33:23.169Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-05-17T06:33:23.176Z] [runtime-status] [19140] Ephemeral server handling OPTIONS request 
+[debug] [2020-05-17T06:33:23.180Z] [runtime-status] [19140] Ephemeral server survived. 
+[info] [hosting] Rewriting /api/registerUser to http://localhost:5001/fashionstore-276105/us-central1/app for local Function app
+[info] i  functions: Finished "app" in ~1s
+[debug] [2020-05-17T06:33:23.184Z] [worker-app-364c7fb7-a195-4416-8e72-3e2666895219]: IDLE 
+[debug] [2020-05-17T06:33:23.185Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-05-17T06:33:23.186Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-05-17T06:33:23.186Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-05-17T06:33:23.186Z] Accepted request POST /fashionstore-276105/us-central1/app/api/registerUser --> app
+[debug] [2020-05-17T06:33:23.186Z] [worker-pool] submitWork(triggerId=app) 
+[debug] [2020-05-17T06:33:23.186Z] [worker-app-364c7fb7-a195-4416-8e72-3e2666895219]: Assigning socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\19140 
+[debug] [2020-05-17T06:33:23.186Z] [worker-app-364c7fb7-a195-4416-8e72-3e2666895219]: BUSY 
+[debug] [2020-05-17T06:33:23.193Z] [runtime-status] [19140] Trigger "app" has been found, beginning invocation! 
+[info] i  functions: Beginning execution of "app"
+[debug] [2020-05-17T06:33:23.194Z] [runtime-status] [19140] triggerDefinition {"httpsTrigger":{},"name":"app","entryPoint":"app"} 
+[debug] [2020-05-17T06:33:23.194Z] [runtime-status] [19140] Running app in mode HTTPS 
+[debug] [2020-05-17T06:33:23.194Z] [runtime-status] [19140] Attempting to listen to socketPath: \\?\pipe\C:\Users\User\Desktop\OnlineFashionStore\functions\19140 
+[debug] [2020-05-17T06:33:23.195Z] [functions] Runtime ready! Sending request! 
+[debug] [2020-05-17T06:33:23.208Z] [runtime-status] [19140] Ephemeral server handling POST request 
+[info] >  request received for register User {"user":"request received for register User"}
+[info] >  { username: 'rrrr', password: 'rrr', email: 'rrrr@gmail.com' } {"user":"{ username: 'rrrr', password: 'rrr', email: 'rrrr@gmail.com' }"}
+[info] >  * {"user":"*"}
+[info] >  { {"user":"{"}
+[info] >    username: 'rrrr', {"user":"  username: 'rrrr',"}
+[info] >    email: 'rrrr@gmail.com', {"user":"  email: 'rrrr@gmail.com',"}
+[info] >    password: 'rrr', {"user":"  password: 'rrr',"}
+[info] >    type: 'member' {"user":"  type: 'member'"}
+[info] >  } {"user":"}"}
+[debug] [2020-05-17T06:33:23.218Z] [runtime-status] [19140] Ephemeral server survived. 
+[info] >  (node:19140) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor. {"user":"(node:19140) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor."}
+[info] >  User added. {"user":"User added."}
+[info] i  functions: Finished "app" in ~2s
+[debug] [2020-05-17T06:33:25.975Z] [worker-app-364c7fb7-a195-4416-8e72-3e2666895219]: IDLE 
+[debug] [2020-05-17T06:33:25.975Z] [work-queue] {"queueLength":0,"workRunningCount":0}

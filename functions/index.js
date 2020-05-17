@@ -180,6 +180,45 @@ app.post('/api/commentAdd', (req, res) => { //add Comments
 
 });
 
+
+
+
+app.post('/api/registerUser', (req, res) => { //register New User
+    console.log("request received for register User");
+    // console.log(req.body.addCommentObj);
+    console.log(req.body);
+    console.log("*");
+
+    var tempNewUsertObj = {};
+    tempNewUsertObj.username = req.body.username;
+    tempNewUsertObj.email = req.body.email;
+    tempNewUsertObj.password = req.body.password;
+    tempNewUsertObj.type = 'member';
+
+    console.log(tempNewUsertObj);
+
+    var MongoClient = require('mongodb').MongoClient;
+
+    var url = dbCon.mongoURIConnString;
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("FashionStore");
+        dbo.collection("users").insertOne(tempNewUsertObj, function (err1, res1) {
+            if (err1) throw err1;
+            console.log("User added.");
+            res.send(true);
+            db.close();
+
+        });
+    });
+
+});
+
+
+
+
+
+
 //Add purchases card
 app.post('/api/purchasesCard', (req, res) => { //add Comments
     console.log("request received for add purchases(card)");

@@ -49,7 +49,9 @@ export default class Loginxx extends React.Component {
     // console.log(loginUserObj);
 
 
-    axios.post(`/api/auth`, loginUserObj)
+
+
+    axios.post(`http://localhost:5000/api/auth`, loginUserObj)
       .then((res) => {
 
         if (res.data) {
@@ -143,6 +145,13 @@ export default class Loginxx extends React.Component {
 
   }
 
+
+  handleClickNewUser = (event) => {
+    console.log("Handle New User Registration click");
+    window.location.href = '/newUser';
+
+  };
+
   render() {
     return (
       <div className="container">
@@ -165,6 +174,11 @@ export default class Loginxx extends React.Component {
                 <p>{this.state.isFound}</p>
                 <button type="submit" className="btn btn-success">Submit</button>
               </form>
+              <div>
+
+                <p onClick={this.handleClickNewUser} >New User ?</p>
+
+              </div>
             </div>
           </div>
         </div>
