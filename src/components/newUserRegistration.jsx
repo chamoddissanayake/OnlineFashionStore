@@ -73,7 +73,7 @@ export default class newUserRegistration extends Component {
 
 
 
-            axios.post(`http://localhost:5000/api/registerUser`, tempObj)
+            axios.post(`/api/registerUser`, tempObj)
                 .then((res) => {
 
                     console.log(res.data)

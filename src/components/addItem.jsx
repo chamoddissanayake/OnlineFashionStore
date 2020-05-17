@@ -180,7 +180,7 @@ export default class addItem extends Component {
     }*/
 
     componentDidMount() {
-        axios.get(`/category`)
+        axios.get(`/api/category`)
             .then((res) => {
 
                 console.log(res.data)

@@ -54,7 +54,7 @@ export default class editItems extends Component {
         console.log(error);
       });
 
-    axios.get(`/category`)
+    axios.get(`/api/category`)
         .then((res) => {
 
           console.log(res.data)

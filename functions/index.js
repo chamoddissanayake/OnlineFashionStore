@@ -711,7 +711,7 @@ app.get('/api/products/editItems/:id', (req, res) => {
 
 
 //Get Category Details
-app.get('/category', (req, res) => {
+app.get('/api/category', (req, res) => {
     console.log("request received for get category");
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
@@ -726,7 +726,7 @@ app.get('/category', (req, res) => {
 });
 
 //insert a category
-app.post('/category', (req, res) => {
+app.post('/api/category', (req, res) => {
     console.log("Add to category started");
     console.log(req.body.categoryName);
     var categoryObj = new Object();
@@ -754,7 +754,7 @@ app.post('/category', (req, res) => {
 });
 
 //delete category
-app.delete('/category/:id', function (req, res) {
+app.delete('/api/category/:id', function (req, res) {
     var id = req.params.id;
     console.log("deleting " + id);
 
@@ -792,7 +792,7 @@ app.use('/', express.static(path.join(__dirname, '../public/')));
 app.use('/admin', express.static(path.join(__dirname, '../public/Admin/')));
 
 //Get storeMAnager Details
-app.get('/storeManger', (req, res) => {
+app.get('/api/storeManger', (req, res) => {
     console.log("request received for get storeManger");
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
@@ -808,7 +808,7 @@ app.get('/storeManger', (req, res) => {
 
 
 //insert storeMAnager
-app.post('/storeManger', (req, res) => {
+app.post('/api/storeManger', (req, res) => {
     console.log("request received for add storemanger");
     //console.log(req.body);
     var storeMangerObj = new Object();
@@ -881,7 +881,7 @@ app.post('/storeManger', (req, res) => {
 });
 
 //delete storeManager
-app.delete('/storeManger/:id', function (req, res) {
+app.delete('/api/storeManger/:id', function (req, res) {
     var id = req.params.id;
     console.log("deleting" + id);
 

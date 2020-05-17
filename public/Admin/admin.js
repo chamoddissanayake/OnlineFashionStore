@@ -3,7 +3,7 @@ const BASE_URL = 'http://' + window.location.hostname + ':5000';
 
 var appMain = angular.module('admin', ["ngRoute"]);
 
-appMain.controller('adminCtrl', function($scope , $interval , $http ) {
+appMain.controller('adminCtrl', function ($scope, $interval, $http) {
     $scope.clz1 = "nav-link active";
     $scope.clz2 = "nav-link ";
     $scope.clz3 = "nav-link ";
@@ -19,18 +19,18 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     $scope.categoryObjArray = [];
     $scope.storeMAnagerDetailsArray = [];
 
-    $scope.changeIndex= function(indexToChange){
-        if(indexToChange == 0) {
+    $scope.changeIndex = function (indexToChange) {
+        if (indexToChange == 0) {
             $scope.clz1 = "nav-link active"
             $scope.clz2 = "nav-link "
             $scope.clz3 = "nav-link "
         }
-        if(indexToChange == 1) {
+        if (indexToChange == 1) {
             $scope.clz1 = "nav-link "
             $scope.clz2 = "nav-link active"
             $scope.clz3 = "nav-link "
         }
-        if(indexToChange == 2) {
+        if (indexToChange == 2) {
             $scope.clz1 = "nav-link "
             $scope.clz2 = "nav-link "
             $scope.clz3 = "nav-link active"
@@ -39,7 +39,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     }
 
 
-    var tick = function() {
+    var tick = function () {
         $scope.clock = Date.now();
     }
     tick();
@@ -49,7 +49,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     var date = new Date();
     var TodaydateArray = [];
 
-    TodaydateArray =  date.toString().split(' ');
+    TodaydateArray = date.toString().split(' ');
     $scope.displayTodayDate = "     " + TodaydateArray[1] + "/" + TodaydateArray[2] + "/" + TodaydateArray[3] + "\t" + "\t";
 
 
@@ -59,13 +59,13 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
         http.sendEmail()
     }
 
- 
+
     //Get all Data from Category collection
-    var getDetailsofCategory = function(){
+    var getDetailsofCategory = function () {
         $scope.tableclz = "table hide";
         $scope.alert = "hide";
         $scope.alertBox2 = "show";
-        $http.get(`${BASE_URL}/category`)
+        $http.get(`${BASE_URL}api/category`)
             .then(function (response) {
                 console.log(response);
                 $scope.categoryObjArray = response.data;
@@ -73,7 +73,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
 
             })
             .finally(function () {
-                if($scope.categoryObjArray.length == 0 ){
+                if ($scope.categoryObjArray.length == 0) {
                     $scope.alert = "show";
                     $scope.tableclz = "table hide";
 
@@ -93,22 +93,22 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     //Adding Category
     $scope.AddCategory = function () {
         $scope.alertBox1 = "show";
-        console.log( $scope.selection.Category);
-        for(var i = 0 ; i < $scope.categoryObjArray.length ; i++) {
-            if($scope.categoryObjArray[i].name == $scope.selection.Category ){
+        console.log($scope.selection.Category);
+        for (var i = 0; i < $scope.categoryObjArray.length; i++) {
+            if ($scope.categoryObjArray[i].name == $scope.selection.Category) {
 
                 console.log("already Added");
                 return;
             }
         }
-        if($scope.selection.Category == "" || $scope.selection.Category == null ){
+        if ($scope.selection.Category == "" || $scope.selection.Category == null) {
             //$scope.showAlert();
         }
         else {
-            var id =  $scope.categoryObjArray.length.toString();
-            var categoryObj = {id : id ,categoryName : $scope.selection.Category , noOfItems : 0};
+            var id = $scope.categoryObjArray.length.toString();
+            var categoryObj = { id: id, categoryName: $scope.selection.Category, noOfItems: 0 };
 
-            $http.post(`${BASE_URL}/category` , categoryObj ).then(function (response) {
+            $http.post(`${BASE_URL}/api/category`, categoryObj).then(function (response) {
                 console.log(response.data)
                 if (response.data == true) {
                     $scope.alertBox1 = "hide";
@@ -130,7 +130,7 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
         var id = index;
         console.log(index);
 
-        $http.delete(`${BASE_URL}/category`+id).then(function (response) {
+        $http.delete(`${BASE_URL}/api/category` + id).then(function (response) {
             if (response.data == true) {
                 alert('Item Deleted successfully');
                 getDetailsofCategory();
@@ -142,8 +142,8 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
 
 
     //Get all Data from StoreManger collection
-    var getDetailsofStoreManger = function(){
-        $http.get(`${BASE_URL}/storeManger`)
+    var getDetailsofStoreManger = function () {
+        $http.get(`${BASE_URL}/api/storeManger`)
             .then(function (response) {
                 console.log(response);
                 $scope.storeMAnagerDetailsArray = response.data;
@@ -151,18 +151,18 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
 
             })
             .finally(function () {
-               /* if($scope.categoryObjArray.length == 0 ){
-                    $scope.alert = "show";
-                    $scope.tableclz = "table hide";
-
-                }
-                else {
-                    $scope.alert = "hide";
-                    $scope.tableclz = "table show";
-
-                }
-                $scope.alertBox2 = "hide";
-*/
+                /* if($scope.categoryObjArray.length == 0 ){
+                     $scope.alert = "show";
+                     $scope.tableclz = "table hide";
+ 
+                 }
+                 else {
+                     $scope.alert = "hide";
+                     $scope.tableclz = "table show";
+ 
+                 }
+                 $scope.alertBox2 = "hide";
+ */
             })
     }
     getDetailsofStoreManger();
@@ -171,10 +171,10 @@ appMain.controller('adminCtrl', function($scope , $interval , $http ) {
     //Add StoreManger
     $scope.addStoreManager = function () {
         $scope.alertBox1 = "show";
-        var StoreManagerObj = {FirstName : $scope.storeMAnagerDetails.firstname , LastName : $scope.storeMAnagerDetails.lastname , address1 : $scope.storeMAnagerDetails.address1  , address2 : $scope.storeMAnagerDetails.address2 , Email : $scope.storeMAnagerDetails.Email , mobileNumber : $scope.storeMAnagerDetails.mobileNumber , password : $scope.storeMAnagerDetails.password};
+        var StoreManagerObj = { FirstName: $scope.storeMAnagerDetails.firstname, LastName: $scope.storeMAnagerDetails.lastname, address1: $scope.storeMAnagerDetails.address1, address2: $scope.storeMAnagerDetails.address2, Email: $scope.storeMAnagerDetails.Email, mobileNumber: $scope.storeMAnagerDetails.mobileNumber, password: $scope.storeMAnagerDetails.password };
 
         console.log(StoreManagerObj);
-        $http.post(`${BASE_URL}/storeManger` , StoreManagerObj).then(function (response) {
+        $http.post(`${BASE_URL}/api/storeManger`, StoreManagerObj).then(function (response) {
             console.log(response.data)
             if (response.data == true) {
                 $('#saveStoreManager').modal('show');

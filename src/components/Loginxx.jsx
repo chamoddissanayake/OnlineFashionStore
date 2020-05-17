@@ -51,7 +51,7 @@ export default class Loginxx extends React.Component {
 
 
 
-    axios.post(`http://localhost:5000/api/auth`, loginUserObj)
+    axios.post(`/api/auth`, loginUserObj)
       .then((res) => {
 
         if (res.data) {
