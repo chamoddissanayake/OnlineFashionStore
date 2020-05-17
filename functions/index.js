@@ -220,33 +220,33 @@ app.post('/api/registerUser', (req, res) => { //register New User
 
 
 //Add purchases card
-app.post('/api/purchasesCard', (req, res) => { //add Comments
-    console.log("request received for add purchases(card)");
-    console.log(req.body.tempDetailsObj);
-    console.log("*");
+// app.post('/api/purchasesCard', (req, res) => { //purchase
+//     console.log("request received for add purchases(card)");
+//     console.log(req.body.tempDetailsObj);
+//     console.log("*");
 
 
-    var tempDetailsObj = req.body.tempDetailsObj;
+//     var tempDetailsObj = req.body.tempDetailsObj;
 
-    var MongoClient = require('mongodb').MongoClient;
+//     var MongoClient = require('mongodb').MongoClient;
 
-    var url = dbCon.mongoURIConnString;
+//     var url = dbCon.mongoURIConnString;
 
-    MongoClient.connect(url, function (err, db) {
-        if (err) throw err;
-        var dbo = db.db("FashionStore");
-        dbo.collection("purchasedByCard").insertOne(tempDetailsObj, function (err1, res1) {
-            if (err1) throw err1;
-            console.log("Purchase added(cart)");
-            res.send(true);
-            db.close();
+//     MongoClient.connect(url, function (err, db) {
+//         if (err) throw err;
+//         var dbo = db.db("FashionStore");
+//         dbo.collection("purchasedByCard").insertOne(tempDetailsObj, function (err1, res1) {
+//             if (err1) throw err1;
+//             console.log("Purchase added(cart)");
+//             res.send(true);
+//             db.close();
 
-        });
-    });
+//         });
+//     });
 
 
 
-});
+// });
 
 
 

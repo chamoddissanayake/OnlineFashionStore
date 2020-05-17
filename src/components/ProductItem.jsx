@@ -78,6 +78,7 @@ export default class ProductItem extends React.Component {
         cart.push(currentObj)
       };
       localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Item added to your cart');
 
     } else {
       window.location.href = '/login';
@@ -142,7 +143,7 @@ export default class ProductItem extends React.Component {
 
                       onClick={this.addToCart}>Add to cart</button>
 
-                    <input type="number" value={this.state.quantity} name="quantity" min="0" max={product.available_quantity} class="form-control"
+                    <input type="number" value={this.state.quantity} name="quantity" min="1" max={product.available_quantity} class="form-control"
 
                       onChange={this.handleInputChange} className="float-right"
 

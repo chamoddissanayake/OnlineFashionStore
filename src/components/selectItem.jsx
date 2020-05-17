@@ -89,7 +89,7 @@ export default class selectItem extends Component {
                 cart.push(currentObj)
             };
             localStorage.setItem('cart', JSON.stringify(cart));
-
+            alert('Item added to your cart');
         } else {
             window.location.href = '/login';
         }
@@ -271,7 +271,7 @@ export default class selectItem extends Component {
 
 
 
-                                                                <input type="number" value={this.state.quantity} name="quantity" min="0" max={selectedProduct.available_quantity}
+                                                                <input type="number" value={this.state.quantity} name="quantity" min="1" max={selectedProduct.available_quantity}
 
                                                                     onChange={this.handleInputChange} className="float-right"
 
