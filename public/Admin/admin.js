@@ -1,5 +1,4 @@
 
-const BASE_URL = 'http://' + window.location.hostname + ':5000';
 
 var appMain = angular.module('admin', ["ngRoute"]);
 
@@ -65,7 +64,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http) {
         $scope.tableclz = "table hide";
         $scope.alert = "hide";
         $scope.alertBox2 = "show";
-        $http.get(`${BASE_URL}api/category`)
+        $http.get(`/api/category`)
             .then(function (response) {
                 console.log(response);
                 $scope.categoryObjArray = response.data;
@@ -108,7 +107,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http) {
             var id = $scope.categoryObjArray.length.toString();
             var categoryObj = { id: id, categoryName: $scope.selection.Category, noOfItems: 0 };
 
-            $http.post(`${BASE_URL}/api/category`, categoryObj).then(function (response) {
+            $http.post(`/api/category`, categoryObj).then(function (response) {
                 console.log(response.data)
                 if (response.data == true) {
                     $scope.alertBox1 = "hide";
@@ -130,7 +129,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http) {
         var id = index;
         console.log(index);
 
-        $http.delete(`${BASE_URL}/api/category` + id).then(function (response) {
+        $http.delete(`/api/category` + id).then(function (response) {
             if (response.data == true) {
                 alert('Item Deleted successfully');
                 getDetailsofCategory();
@@ -143,7 +142,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http) {
 
     //Get all Data from StoreManger collection
     var getDetailsofStoreManger = function () {
-        $http.get(`${BASE_URL}/api/storeManger`)
+        $http.get(`/api/storeManger`)
             .then(function (response) {
                 console.log(response);
                 $scope.storeMAnagerDetailsArray = response.data;
@@ -174,7 +173,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http) {
         var StoreManagerObj = { FirstName: $scope.storeMAnagerDetails.firstname, LastName: $scope.storeMAnagerDetails.lastname, address1: $scope.storeMAnagerDetails.address1, address2: $scope.storeMAnagerDetails.address2, Email: $scope.storeMAnagerDetails.Email, mobileNumber: $scope.storeMAnagerDetails.mobileNumber, password: $scope.storeMAnagerDetails.password };
 
         console.log(StoreManagerObj);
-        $http.post(`${BASE_URL}/api/storeManger`, StoreManagerObj).then(function (response) {
+        $http.post(`/api/storeManger`, StoreManagerObj).then(function (response) {
             console.log(response.data)
             if (response.data == true) {
                 $('#saveStoreManager').modal('show');

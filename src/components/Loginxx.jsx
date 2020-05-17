@@ -95,10 +95,11 @@ export default class Loginxx extends React.Component {
               window.location.reload();
             } else if (res.data.type == 'admin') {
               const { location } = this.props;
+              localStorage.setItem("loggedInUser", JSON.stringify(loggedInUserObj));
               if (location.state && location.state.from) {
                 this.props.history.push(location.state.from);
               } else {
-                this.props.history.push('/admin');
+                this.props.history.push('/admin/');
               }
               window.location.reload();
 

@@ -12,6 +12,30 @@
         "function": "app"
       },
       {
+        "source": "/admin/category.html",
+        "destination": "/Admin/category.html"
+      },
+      {
+        "source": "/admin/storeMangr.html",
+        "destination": "/Admin/storeMangr.html"
+      },
+      {
+        "source": "/admin/users.html",
+        "destination": "/Admin/users.html"
+      },
+      {
+        "source": "/admin/admin.css",
+        "destination": "/Admin/admin.css"
+      },
+      {
+        "source": "/admin/admin.js",
+        "destination": "/Admin/admin.js"
+      },
+      {
+        "source": "/admin/**",
+        "destination": "/Admin/index.html"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

@@ -787,9 +787,9 @@ app.delete('/api/category/:id', function (req, res) {
 
 });*/
 
-app.use('/', express.static(path.join(__dirname, '../public/')));
+// app.use('/', express.static(path.join(__dirname, '../public/')));
 
-app.use('/admin', express.static(path.join(__dirname, '../public/Admin/')));
+// app.use('/admin', express.static(path.join(__dirname, '../public/Admin/')));
 
 //Get storeMAnager Details
 app.get('/api/storeManger', (req, res) => {
