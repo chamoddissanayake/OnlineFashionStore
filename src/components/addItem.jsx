@@ -79,18 +79,16 @@ export default class addItem extends Component {
             alert("Please Select An Image");
         } else {
             let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`);
-            const _this = this;
-            storageRef.put(file).then(function (snapshot) {
+            storageRef.put(file).then(function () {
                 storageRef.getDownloadURL().then(function (result) {
-                    console.log(_this.state.fileM)
-                    _this.setState({
+                    console.log(this.state.fileM)
+                    this.setState({
                         imageURL_main: result
                     })
                     console.log("*");
-                    console.log(_this.state.imageURL_main);
-                });
-
-            }
+                    console.log(this.state.imageURL_main);
+                }.bind(this));
+            }.bind(this)
             );
 
         }
@@ -105,18 +103,17 @@ export default class addItem extends Component {
             alert("Please Select An Image");
         } else {
             let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
-            const _this = this;
-            storageRef.put(file).then(function (snapshot) {
+            storageRef.put(file).then(function () {
                 storageRef.getDownloadURL().then(function (result) {
-                    console.log(_this.state.file1)
-                    _this.setState({
+                    console.log(this.state.file1)
+                    this.setState({
                         imageURL_1: result
                     })
                     console.log("*");
-                    console.log(_this.state.imageURL_1);
-                });
+                    console.log(this.state.imageURL_1);
+                }.bind(this));
 
-            }
+            }.bind(this)
             );
         }
     }
@@ -128,18 +125,16 @@ export default class addItem extends Component {
             alert("Please Select An Image");
         } else {
             let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
-            const _this = this;
-            storageRef.put(file).then(function (snapshot) {
+            storageRef.put(file).then(function () {
                 storageRef.getDownloadURL().then(function (result) {
-                    console.log(_this.state.file2)
-                    _this.setState({
+                    console.log(this.state.file2)
+                    this.setState({
                         imageURL_2: result
                     })
                     console.log("*");
-                    console.log(_this.state.imageURL_2);
-                });
-
-            }
+                    console.log(this.state.imageURL_2);
+                }.bind(this));
+            }.bind(this)
             );
 
         }
@@ -153,18 +148,17 @@ export default class addItem extends Component {
             alert("Please Select An Image");
         } else {
             let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
-            const _this = this;
-            storageRef.put(file).then(function (snapshot) {
+            storageRef.put(file).then(function () {
                 storageRef.getDownloadURL().then(function (result) {
-                    console.log(_this.state.file3)
-                    _this.setState({
+                    console.log(this.state.file3)
+                    this.setState({
                         imageURL_3: result
                     })
                     console.log("*");
-                    console.log(_this.state.imageURL_3);
-                });
+                    console.log(this.state.imageURL_3);
+                }.bind(this));
 
-            }
+            }.bind(this)
             );
 
         }
