@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { login } from '../repository';
 import { Redirect, Link } from 'react-router-dom';
+import loginStyles from '../css/loginStyles.css';
 
 
 export default class Loginxx extends React.Component {
@@ -159,7 +160,7 @@ export default class Loginxx extends React.Component {
         <hr />
         <div className="col-sm-8 col-sm-offset-2">
           <div className="panel panel-primary">
-            <div className="panel-heading"><h3>Log in </h3></div>
+            <div id="loginHeading" className="panel-heading"><h3>Log in </h3></div>
             <div className="panel-body">
               <form onSubmit={this.submitLogin} method="POST" >
                 <div className="form-group">
@@ -173,11 +174,13 @@ export default class Loginxx extends React.Component {
                     name="password" onChange={this.handlePasswordChange} />
                 </div>
                 <p>{this.state.isFound}</p>
-                <button type="submit" className="btn btn-success">Submit</button>
+                <div id="regButton">
+                  <button type="submit" className="btn btn-success">Submit</button>
+                </div>
               </form>
               <div>
 
-                <p onClick={this.handleClickNewUser} >New User ?</p>
+                <p id="newLabel" onClick={this.handleClickNewUser} >New User ?</p>
 
               </div>
             </div>
