@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import paymentGatewayStyles from '../css/paymentGatewayStyles.css';
 import axios from 'axios';
-const BASE_URL = 'http://localhost:5000';
 export const CARD_NUMBER_REGEX = /^[0-9]{0,16}$/;
 
 
@@ -111,7 +110,7 @@ export default class PaymentGateway extends Component {
                     // console.log("-----")
                     // console.log(tempDetailsObj);
 
-                    // axios.post(`${BASE_URL}/api/purchasesCard`, { tempDetailsObj: tempDetailsObj })
+                    // axios.post(`/api/purchasesCard`, { tempDetailsObj: tempDetailsObj })
                     //     .then((res) => {
                     //         window.location.href = '/thanks';
                     //         this.setState({

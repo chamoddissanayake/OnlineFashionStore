@@ -10,7 +10,6 @@ import TableRow from './TableRow';
 
 import { Link } from 'react-router-dom';
 
-const BASE_URL = 'http://localhost:5000';
 
 export default class viewItems extends Component{
 
@@ -19,7 +18,7 @@ export default class viewItems extends Component{
     this.state = {products: []};
   }
   componentDidMount(){
-    axios.get(`${BASE_URL}/api/products`)
+    axios.get(`/api/products`)
       .then(response => {
         this.setState({ products: response.data });
       })

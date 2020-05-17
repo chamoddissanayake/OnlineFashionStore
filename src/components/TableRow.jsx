@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000';
 
 export default class TableRow extends React.Component {
 
@@ -15,7 +14,7 @@ export default class TableRow extends React.Component {
 
   delete() {
     
-    axios.delete(`${BASE_URL}/api/products/`+ this.props.obj._id )
+    axios.delete(`/api/products/`+ this.props.obj._id )
       .then(response => {
         console.log(response);
         if (response.data == true) {

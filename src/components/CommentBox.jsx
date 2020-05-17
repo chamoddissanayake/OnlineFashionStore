@@ -3,7 +3,6 @@ import commentBoxStyles from '../css/commentBoxStyles.scss';
 import utils from '../utils/utils';
 import { postFetchComments } from '../repository';
 import axios from 'axios';
-const BASE_URL = 'http://localhost:5000';
 
 export default class CommentBox extends React.Component {
     constructor(props) {
@@ -31,12 +30,12 @@ export default class CommentBox extends React.Component {
 
         // postFetchComments(this.props.selectedProduct._id).then((comments) => this.setState({ comments }));
 
-        // axios.post(`${BASE_URL}/api/comments`, { id: productId })
+        // axios.post(`/api/comments`, { id: productId })
         // .then(response => response.data);
     }
 
     reloadComments() {
-        axios.post(`${BASE_URL}/api/comments`, { selectedProduct: this.props.selectedProduct })
+        axios.post(`/api/comments`, { selectedProduct: this.props.selectedProduct })
             .then((comments) => {
                 console.log(comments.data);
                 this.setState({
@@ -51,7 +50,7 @@ export default class CommentBox extends React.Component {
     render() {
 
         if (this.props.selectedProduct && this.state.comments.length == 0) {
-            axios.post(`${BASE_URL}/api/comments`, { selectedProduct: this.props.selectedProduct })
+            axios.post(`/api/comments`, { selectedProduct: this.props.selectedProduct })
                 .then((comments) => {
 
                     console.log(comments.data);
@@ -245,7 +244,7 @@ class CommentForm extends React.Component {
 
         //axios post - start
 
-        axios.post(`${BASE_URL}/api/commentAdd`, { addCommentObj: addCommentObj })
+        axios.post(`/api/commentAdd`, { addCommentObj: addCommentObj })
             .then((comments) => {
 
                 console.log(comments.data);

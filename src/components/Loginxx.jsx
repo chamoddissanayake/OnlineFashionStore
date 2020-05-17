@@ -3,7 +3,6 @@ import axios from 'axios';
 import { login } from '../repository';
 import { Redirect, Link } from 'react-router-dom';
 
-const BASE_URL = 'http://localhost:5000';
 
 export default class Loginxx extends React.Component {
   constructor() {
@@ -50,7 +49,7 @@ export default class Loginxx extends React.Component {
     // console.log(loginUserObj);
 
 
-    axios.post(`${BASE_URL}/api/auth`, loginUserObj)
+    axios.post(`/api/auth`, loginUserObj)
       .then((res) => {
 
         if (res.data) {

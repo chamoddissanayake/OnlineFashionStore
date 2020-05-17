@@ -5,7 +5,6 @@ import axios from 'axios';
 
 import { Link } from 'react-router-dom';
 
-const BASE_URL = 'http://localhost:5000';
 
 export default class addItem extends Component {
 
@@ -181,7 +180,7 @@ export default class addItem extends Component {
     }*/
 
     componentDidMount() {
-        axios.get(`${BASE_URL}/category`)
+        axios.get(`/category`)
             .then((res) => {
 
                 console.log(res.data)
@@ -293,7 +292,7 @@ export default class addItem extends Component {
             };
             console.log("****")
             console.log(productObject);
-            axios.post(`${BASE_URL}/api/Addproducts`, productObject)
+            axios.post(`/api/Addproducts`, productObject)
                 .then((res) => {
 
                     console.log(res.data)

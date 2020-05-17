@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import cashOnDeliveryStyles from '../css/cashOnDeliveryStyles.css';
 import utils from '../utils/utils';
 import axios from 'axios';
-const BASE_URL = 'http://localhost:5000';
 
 
 export default class CashOnDelivery extends Component {
@@ -86,7 +85,7 @@ export default class CashOnDelivery extends Component {
         console.log("-----")
         console.log(tempDetailsObj);
 
-        axios.post(`${BASE_URL}/api/purchased`, { tempDetailsObj: tempDetailsObj })
+        axios.post(`/api/purchased`, { tempDetailsObj: tempDetailsObj })
             .then((res) => {
                 console.log("appsss");
                 window.location.href = '/thanks';

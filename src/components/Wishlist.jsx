@@ -4,7 +4,6 @@ import { getWishlist } from '../repository';
 import axios from 'axios';
 import wishlistStyles from '../css/wishlistStyles.css';
 
-const BASE_URL = 'http://localhost:5000';
 
 
 export default class Wishlist extends Component {
@@ -31,7 +30,7 @@ export default class Wishlist extends Component {
     }
 
     getWishlistData() {
-        axios.post(`${BASE_URL}/api/wishlist`, { loggedInUserObj: this.state.loggedInUserObj })
+        axios.post(`/api/wishlist`, { loggedInUserObj: this.state.loggedInUserObj })
             .then((wishlist) => {
                 console.log("---------");
                 console.log(wishlist.data);
@@ -60,7 +59,7 @@ export default class Wishlist extends Component {
         console.log(wishlistItem._id);
 
 
-        axios.post(`${BASE_URL}/api/wishlistDelete`, { wishlistItem: wishlistItem })
+        axios.post(`/api/wishlistDelete`, { wishlistItem: wishlistItem })
             .then(() => {
                 this.getWishlistData();
 

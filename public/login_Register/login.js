@@ -1,17 +1,16 @@
-const BASE_URL = 'http://localhost:5000';
 
 function login() {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:5000/api/storeManger',
+        url: '/api/storeManger',
         dataType: 'json',
 
-        success: function(){
+        success: function () {
 
             alert("Appointment Added Successfully!");
             console.log("Added");
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             alert(xhr.responseText);
         }
     });

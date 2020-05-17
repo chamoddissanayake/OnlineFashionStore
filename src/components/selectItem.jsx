@@ -4,7 +4,6 @@ import { postSelectedProduct } from '../repository';
 import CommentBox from './CommentBox';
 import utils from '../utils/utils';
 import commentBoxStyles from '../css/selectItemStyles.css';
-const BASE_URL = 'http://localhost:5000';
 
 
 export default class selectItem extends Component {
@@ -43,7 +42,7 @@ export default class selectItem extends Component {
                 );
             });
 
-        // axios.post(`${BASE_URL}/api/selectitem`, { id: this.state.currentID })
+        // axios.post(`/api/selectitem`, { id: this.state.currentID })
         //     .then(response => response.data);
     }
     handleWishlistClick(product) {
@@ -59,7 +58,7 @@ export default class selectItem extends Component {
             addedDate: utils.getCurrentDate()
         };
 
-        axios.post(`${BASE_URL}/api/addWishlist`, { objToWishlist })
+        axios.post(`/api/addWishlist`, { objToWishlist })
 
             .then(response => {
                 // console.log(response.data);

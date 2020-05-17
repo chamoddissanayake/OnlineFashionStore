@@ -2,13 +2,12 @@ import axios from 'axios';
 
 
 
-const BASE_URL = 'http://localhost:5000';
 
 
 
 export function getProducts() {
 
-        return axios.get(`${BASE_URL}/api/products`)
+        return axios.get(`/api/products`)
 
                 .then(response => response.data);
 
@@ -18,21 +17,21 @@ export function postFetchComments(productId) {
 
         console.log("Product Id_ >" + productId);
 
-        return axios.post(`${BASE_URL}/api/comments`, { id: productId })
+        return axios.post(`/api/comments`, { id: productId })
                 .then(response => response.data);
 
 }
 
 export function postSelectedProduct(currentID) {
         console.log(currentID);
-        return axios.post(`${BASE_URL}/api/selectitem`, { id: currentID })
+        return axios.post(`/api/selectitem`, { id: currentID })
                 .then(response => response.data);
 
 }
 
 export function getCartProducts(cart) {
 
-        return axios.post(`${BASE_URL}/api/products`, { cart })
+        return axios.post(`/api/products`, { cart })
 
                 .then(response => {
                         console.log(response.data);
@@ -43,7 +42,7 @@ export function getCartProducts(cart) {
 
 export function login(data) {
 
-        return axios.post(`${BASE_URL}/api/auth`,
+        return axios.post(`/api/auth`,
 
                 { name: data.name, password: data.password })
 
@@ -64,7 +63,7 @@ export function login(data) {
 
 export function pay(data) {
 
-        return axios.get(`${BASE_URL}/api/pay`,
+        return axios.get(`/api/pay`,
 
                 { params: { 'x-access-token': localStorage.getItem('x-access-token') } })
 

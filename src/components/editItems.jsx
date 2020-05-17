@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-const BASE_URL = 'http://localhost:5000';
 
 
 export default class editItems extends Component {
@@ -34,7 +33,7 @@ export default class editItems extends Component {
   componentDidMount() {
     console.log("Component Did Mount Method");
 
-    axios.get(`${BASE_URL}/api/products/editItems/` + this.props.match.params.id)
+    axios.get(`/api/products/editItems/` + this.props.match.params.id)
 
       .then(response => {
         console.log("**");
@@ -55,7 +54,7 @@ export default class editItems extends Component {
         console.log(error);
       });
 
-    axios.get(`${BASE_URL}/category`)
+    axios.get(`/category`)
         .then((res) => {
 
           console.log(res.data)
@@ -162,7 +161,7 @@ export default class editItems extends Component {
     };
 
     console.log(productObject);
-    axios.post(`${BASE_URL}/api/productsUpdate`, productObject)
+    axios.post(`/api/productsUpdate`, productObject)
       .then((res) => {
 
         console.log(res.data)

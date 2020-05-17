@@ -5,7 +5,6 @@ import utils from '../utils/utils';
 import commentBoxStyles from '../css/productItemStyles.css';
 
 import axios from 'axios';
-const BASE_URL = 'http://localhost:5000';
 
 export default class ProductItem extends React.Component {
 
@@ -37,7 +36,7 @@ export default class ProductItem extends React.Component {
       addedDate: utils.getCurrentDate()
     };
 
-    axios.post(`${BASE_URL}/api/addWishlist`, { objToWishlist })
+    axios.post(`/api/addWishlist`, { objToWishlist })
 
       .then(response => {
         // console.log(response.data);
