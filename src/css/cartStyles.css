@@ -29,7 +29,7 @@
 
 .totPriceLbl{
     width: 82%;
-    padding-left: 350px;
+    padding-left: 93px;
     font-weight: bold;
 }
 
@@ -55,4 +55,8 @@
 
 .boldLbl{
     font-weight: bold;
+}
+
+#cartContent{
+    margin-left: 15%;
 }

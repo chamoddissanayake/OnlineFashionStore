@@ -118,52 +118,53 @@ export default class Cart extends Component {
                     </div>
                 </Router>
 
-                <table class="largeTable">
-                    <tr class="largeTable-row">
-                        <td class="large-table-left">
-                            {/* Large table right side -start */}
-                            {this.state.allCartItems ? this.state.allCartItems.map(cartItem => (
-                                <tr>
-                                    {/* <li>{cartItem._id}</li> */}
+                <div id="cartContent">
+                    <table class="largeTable">
+                        <tr class="largeTable-row">
+                            <td class="large-table-left">
+                                {/* Large table right side -start */}
+                                {this.state.allCartItems ? this.state.allCartItems.map(cartItem => (
+                                    <tr>
+                                        {/* <li>{cartItem._id}</li> */}
 
-                                    {/* <li>{cartItem.description}</li> */}
+                                        {/* <li>{cartItem.description}</li> */}
 
-                                    <table className="table-row">
-                                        <tr >
-                                            <td>
-                                                {/* Left side start  */}
-                                                <img src={cartItem.imageURL_main} alt="Image missing" height="250" width="200" class="cartImage" />
-                                                {/* Left side end  */}
-                                            </td>
-                                            <td>
-                                                {/* Right side start */}
+                                        <table className="table-row">
+                                            <tr >
+                                                <td>
+                                                    {/* Left side start  */}
+                                                    <img src={cartItem.imageURL_main} alt="Image missing" height="250" width="200" class="cartImage" />
+                                                    {/* Left side end  */}
+                                                </td>
+                                                <td>
+                                                    {/* Right side start */}
 
-                                                <table class="smallTable">
-                                                    <tr>
-                                                        <td>
+                                                    <table class="smallTable">
+                                                        <tr>
+                                                            <td>
 
-                                                        </td>
-                                                        <td>
-                                                            <button id="delbutton" type="button" id="delbutton" class="btn btn-outline-danger" onClick={() => this.deleteFromCart(cartItem)} >X</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label>Item ID</label>
-                                                        </td>
-                                                        <td>
-                                                            <label>{cartItem._id}</label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label>Item Category</label>
-                                                        </td>
-                                                        <td>
-                                                            <label> {cartItem.category}</label>
-                                                        </td>
-                                                    </tr>
-                                                    {/* <tr>
+                                                            </td>
+                                                            <td>
+                                                                <button id="delbutton" type="button" id="delbutton" class="btn btn-outline-danger" onClick={() => this.deleteFromCart(cartItem)} >X</button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label>Item ID</label>
+                                                            </td>
+                                                            <td>
+                                                                <label>{cartItem._id}</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label>Item Category</label>
+                                                            </td>
+                                                            <td>
+                                                                <label> {cartItem.category}</label>
+                                                            </td>
+                                                        </tr>
+                                                        {/* <tr>
                                                         <td>
                                                             <label>Brand</label>
                                                         </td>
@@ -171,104 +172,107 @@ export default class Cart extends Component {
                                                             <label>{cartItem.brand}</label>
                                                         </td>
                                                     </tr> */}
-                                                    <tr>
-                                                        <td>
-                                                            <label>Name</label>
-                                                        </td>
-                                                        <td>
-                                                            <label>{cartItem.name}</label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label>Available Quantity</label>
-                                                        </td>
-                                                        <td>
-                                                            <label>{cartItem.available_quantity}</label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label>Item Price</label>
-                                                        </td>
-                                                        <td>
-                                                            <label>{cartItem.price}</label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label>Change Quantity</label>
-                                                        </td>
-                                                        <td>
+                                                        <tr>
+                                                            <td>
+                                                                <label>Name</label>
+                                                            </td>
+                                                            <td>
+                                                                <label>{cartItem.name}</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label>Available Quantity</label>
+                                                            </td>
+                                                            <td>
+                                                                <label>{cartItem.available_quantity}</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label>Item Price</label>
+                                                            </td>
+                                                            <td>
+                                                                <label>{cartItem.price}</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label>Change Quantity</label>
+                                                            </td>
+                                                            <td>
 
-                                                            <input id="needCount" type="number" value={cartItem.needQuantity} min="1" max={cartItem.available_quantity} class="form-control" id="qtyID"
-                                                                onChange={(e) => {
-                                                                    console.log("sdfsdf" + e.target.value)
-                                                                    cartItem.needQuantity = e.target.value
+                                                                <input id="needCount" type="number" value={cartItem.needQuantity} min="1" max={cartItem.available_quantity} class="form-control" id="qtyID"
+                                                                    onChange={(e) => {
+                                                                        console.log("sdfsdf" + e.target.value)
+                                                                        cartItem.needQuantity = e.target.value
 
-                                                                    this.updatecart(cartItem);
+                                                                        this.updatecart(cartItem);
 
-                                                                    this.setState({
-                                                                    })
-                                                                }}></input>
+                                                                        this.setState({
+                                                                        })
+                                                                    }}></input>
 
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                        </tr>
 
-                                                </table>
+                                                    </table>
 
-                                                {/* Right side end */}
-                                            </td>
-                                        </tr>
+                                                    {/* Right side end */}
+                                                </td>
+                                            </tr>
 
-                                        <br></br>
-                                    </table>
-
-
-
-                                </tr>
-                            )) : null}
+                                            <br></br>
+                                        </table>
 
 
 
+                                    </tr>
+                                )) : null}
 
-                            <table>
-                                <tr >
-                                    <td class="totPriceLbl">
-                                        <h3 class="boldLbl">Your Total Discount</h3>
-                                    </td>
-                                    <td class="boldLbl" class="totPriceVal">
-                                        <h2>{this.state.totDiscount}</h2>
-                                    </td>
-                                </tr>
-                                <tr >
-                                    <td class="totPriceLbl">
-                                        <h3 class="boldLbl">Your Total Price With Discount</h3>
-                                    </td>
-                                    <td class="totPriceVal">
-                                        <h2 class="boldLbl">{this.state.totprice}</h2>
-                                    </td>
-                                </tr>
-                                <tr >
-                                    <td class="totPriceLbl">
-                                    </td>
-                                    <td class="totPriceVal">
-                                        {/* pay button */}
-                                        <button type="button" class="btn btn-primary" onClick={this.gotoPaymentMethod}>Proceed >>></button>
-                                    </td>
-                                </tr>
-                            </table>
-                            {/* Large table right side -end */}
-                        </td>
-                        <td class="large-table-right">
-                            {/* Large table left side -start */}
-                            {/* <img src="https://static.wixstatic.com/media/effc51_45948014481c4068af475d83b864d8b5~mv2.jpg/v1/fill/w_618,h_412,al_c,q_80,usm_0.66_1.00_0.01/effc51_45948014481c4068af475d83b864d8b5~mv2.webp"
+
+
+
+                                <table>
+                                    <tr >
+                                        <td class="totPriceLbl">
+                                            <h3 class="boldLbl">Your Total Discount</h3>
+                                        </td>
+                                        <td class="boldLbl" class="totPriceVal">
+                                            <h2>{this.state.totDiscount}</h2>
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td class="totPriceLbl">
+                                            <h3 class="boldLbl">Your Total Price With Discount</h3>
+                                        </td>
+                                        <td class="totPriceVal">
+                                            <h2 class="boldLbl">{this.state.totprice}</h2>
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td class="totPriceLbl">
+                                        </td>
+                                        <td class="totPriceVal">
+                                            {/* pay button */}
+                                            <button type="button" class="btn btn-primary" onClick={this.gotoPaymentMethod}>Proceed >>></button>
+                                        </td>
+                                    </tr>
+                                </table>
+                                {/* Large table right side -end */}
+                            </td>
+                            <td class="large-table-right">
+                                {/* Large table left side -start */}
+                                {/* <img src="https://static.wixstatic.com/media/effc51_45948014481c4068af475d83b864d8b5~mv2.jpg/v1/fill/w_618,h_412,al_c,q_80,usm_0.66_1.00_0.01/effc51_45948014481c4068af475d83b864d8b5~mv2.webp"
                                 class="fashionstoreImg" /> */}
 
-                            {/* Large table left side -end */}
-                        </td>
-                    </tr>
-                </table>
+                                {/* Large table left side -end */}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
 
 
 

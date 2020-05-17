@@ -95,7 +95,7 @@ class App extends Component {
 
             <div className="container">
 
-              <Link className="navbar-brand" to="/">ShoppingCart</Link>
+              <Link className="navbar-brand" to="/">Online Fashion Store</Link>
 
               <button className="navbar-toggler" type="button"
 
@@ -115,18 +115,18 @@ class App extends Component {
                   <span class="customButtonsInNavBar">
 
                   </span>
-                  <Link className="naviButton nav-item nav-link" to="/">Products</Link><br />
+                  <Link className="naviButCust naviButton nav-item nav-link" to="/">Products</Link><br />
 
                   {this.state.loggedInUserObj.type == "member" && <span>
-                    <Link className="naviButton nav-item nav-link" to="/cart">Cart</Link><br />
+                    <Link className="naviButCust naviButton nav-item nav-link" to="/cart">Cart</Link><br />
                   </span>}
 
                   {this.state.loggedInUserObj.type == "manager" && <span>
-                    <Link className="naviButton nav-item nav-link" to="/storeManager">StoreManagerDashbord</Link><br />
+                    <Link className="naviButCust naviButton nav-item nav-link" to="/storeManager">StoreManagerDashbord</Link><br />
                   </span>}
 
                   {this.state.loggedInUserObj.type == "member" && <span>
-                    <Link className="naviButton nav-item nav-link" to="/wishlist">My Wishlist</Link><br />
+                    <Link className="naviButCust naviButton nav-item nav-link" to="/wishlist">My Wishlist</Link><br />
                   </span>}
 
                   {/* {(auth) ? <Link className="nav-item nav-link" to="/checkout">
@@ -150,11 +150,11 @@ class App extends Component {
                   </span>} */}
 
                   {!utils.isEmpty(this.state.loggedInUserObj) && <span>
-                    <Link className="naviButton nav-item nav-link" to="/logout">Logout</Link>
+                    <Link className="naviButCust naviButton nav-item nav-link" to="/logout">Logout</Link>
                   </span>}
 
                   {utils.isEmpty(this.state.loggedInUserObj) && <span>
-                    <Link className="naviButton nav-item nav-link float-right" to="/login">Log in</Link>
+                    <Link className="naviButCust naviButton nav-item nav-link float-right" to="/login">Log in</Link>
                   </span>}
 
 

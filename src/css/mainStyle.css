@@ -4,10 +4,14 @@
     background-image: url("../pictures/wall.jpg");
 }
 
-
+a.naviButCust.naviButton.nav-item.nav-link {
+    padding-right: 20px;
+    padding-top: 13px;
+}
 
 .navigationBarCustom{
     min-height: 100px;
+    padding-right: 2.5rem ;
 }
 
 .customButtonsInNavBar{
