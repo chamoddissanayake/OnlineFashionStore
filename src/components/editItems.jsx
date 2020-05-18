@@ -16,8 +16,8 @@ export default class editItems extends Component {
       available_quantity: '',
       discount: '',
       image: '',
-      allCategory : [],
-      display : true
+      allCategory: [],
+      display: true
     };
     this.handleIdChange = this.handleIdChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
@@ -55,29 +55,29 @@ export default class editItems extends Component {
       });
 
     axios.get(`/api/category`)
-        .then((res) => {
+      .then((res) => {
 
-          console.log(res.data)
-          if (res.data != null) {
-            this.setState({
-              allCategory : res.data
+        console.log(res.data)
+        if (res.data != null) {
+          this.setState({
+            allCategory: res.data
 
-            });
-            console.log(this.state.allCategory[0].categoryName);
+          });
+          console.log(this.state.allCategory[0].categoryName);
 
 
-          } else {
-            alert('Error');
-          }
+        } else {
+          alert('Error');
+        }
 
-        }).catch((error) => {
-      console.log(error)
-    }).finally(()=> {
-      this.setState({
-        display : false
+      }).catch((error) => {
+        console.log(error)
+      }).finally(() => {
+        this.setState({
+          display: false
 
+        });
       });
-    }) ;
   }
 
   handleIdChange(event) {
@@ -146,7 +146,7 @@ export default class editItems extends Component {
 
 
   handleSubmit(event) {
-   
+
     event.preventDefault();
 
     const productObject = {
@@ -206,8 +206,8 @@ export default class editItems extends Component {
               className="form-control"
               id="id"
               value={this.state.id}
-              onChange={this.handleIdChange}  readOnly
-              />
+              onChange={this.handleIdChange} readOnly
+            />
             {/* {this.props.match.params.id} */}
           </div>
 
@@ -216,8 +216,8 @@ export default class editItems extends Component {
             <select id="category" className="form-control" onChange={this.handleCategoryChange} >
               {
 
-                this.state.allCategory.map((field , key) =>
-                    <option key = {field.id} value={field.categoryName}>{field.categoryName}</option>
+                this.state.allCategory.map((field, key) =>
+                  <option key={field.id} value={field.categoryName}>{field.categoryName}</option>
                 )
               }
             </select>
@@ -271,14 +271,14 @@ export default class editItems extends Component {
               onChange={this.handleDiscountChange} />
           </div>
 
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>Image</label>
             <input type="text"
               className="form-control"
               id="image"
               value={this.state.image}
               onChange={this.handleImageChange} />
-          </div>
+          </div> */}
 
           <button type="submit" className="btn btn-success">EDIT THIS ITEM</button><br></br><br></br>
         </form>

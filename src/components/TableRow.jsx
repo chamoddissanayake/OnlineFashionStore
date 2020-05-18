@@ -13,8 +13,8 @@ export default class TableRow extends React.Component {
   }
 
   delete() {
-    
-    axios.delete(`/api/products/`+ this.props.obj._id )
+
+    axios.delete(`/api/products/` + this.props.obj._id)
       .then(response => {
         console.log(response);
         if (response.data == true) {
@@ -30,7 +30,7 @@ export default class TableRow extends React.Component {
   render() {
 
     return (
-      
+
       <tr >
         <td>
           {this.props.obj._id}
@@ -53,9 +53,9 @@ export default class TableRow extends React.Component {
         <td>
           {this.props.obj.discount}
         </td>
-        <td>
+        {/* <td>
           {this.props.obj.image}
-        </td>
+        </td> */}
         <td>
           <Link to={"/editItems/" + this.props.obj._id} className="btn btn-primary">Edit</Link>
         </td>

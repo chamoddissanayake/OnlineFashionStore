@@ -246,13 +246,17 @@ export default class selectItem extends Component {
 
                                                     {/* Add To wishlist */}
                                                     {/* {this.state.loggedInUserObj.type == "member" && <span> */}
-                                                    <div title="Add this Item to wishlist">
-                                                        <div onClick={() => this.handleWishlistClick(selectedProduct)}  >
-                                                            <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/red-heart_2764.png"
-                                                                alt="Add to wishlist" height="30" width="30" />
-                                                        </div>
+                                                    {
+                                                        !utils.isEmpty(this.state.loggedInUserObj) && <span>
+                                                            <div title="Add this Item to wishlist">
+                                                                <div onClick={() => this.handleWishlistClick(selectedProduct)}  >
+                                                                    <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/red-heart_2764.png"
+                                                                        alt="Add to wishlist" height="30" width="30" />
+                                                                </div>
 
-                                                    </div>
+                                                            </div>
+                                                        </span>
+                                                    }
                                                     {/* </span>} */}
 
                                                 </td>

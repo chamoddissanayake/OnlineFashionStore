@@ -50,7 +50,7 @@ export default class viewItems extends Component{
                 <th>Item Price</th>
                 <th>Available Quantity</th>
                 <th>Discount</th>
-                <th>Image</th>
+                {/* <th>Image</th> */}
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>
