@@ -37,7 +37,20 @@
 </head>
 
 <body>
+    <script>
+        var retrievedObject = localStorage.getItem('loggedInUser');
 
+        if (retrievedObject != null) {
+
+            var k = JSON.parse(retrievedObject);
+
+            console.log("" + k.type);
+
+        } else {
+            window.location.href = "./login";
+
+        }
+    </script>
 
 
     <!--Top -->

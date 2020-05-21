@@ -1,5 +1,7 @@
 
 
+
+
 var appMain = angular.module('admin', ["ngRoute"]);
 
 appMain.controller('adminCtrl', function ($scope, $interval, $http) {
