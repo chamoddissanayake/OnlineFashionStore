@@ -4,7 +4,7 @@
 
 var appMain = angular.module('admin', ["ngRoute"]);
 
-appMain.controller('adminCtrl', function ($scope, $interval, $http) {
+appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     $scope.clz1 = "nav-link active";
     $scope.clz2 = "nav-link ";
     $scope.clz3 = "nav-link ";
@@ -188,7 +188,11 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http) {
     }
 
 
-
+    $scope.logOut = function () {
+        alert('log out');
+        localStorage.removeItem("loggedInUser");
+        $window.location.href = '../login';
+    }
 });
 
 
