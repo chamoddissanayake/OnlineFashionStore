@@ -1,0 +1,98 @@
+
+        <form class="mx-5 my-5 ">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstname">First Name</label>
+                    <input type="text" class="form-control" id="firstname" ng-model="storeMAnagerDetails.firstname">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" class="form-control" id="lastname" ng-model="storeMAnagerDetails.lastname">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input type="text" class="form-control" id="inputAddress" ng-model="storeMAnagerDetails.address1">
+            </div>
+            <div class="form-group">
+                <label for="inputAddress2">Address 2</label>
+                <input type="text" class="form-control" id="inputAddress2" ng-model="storeMAnagerDetails.address2">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputCity">Email Addrress</label>
+                    <input type="email" class="form-control" id="inputCity" ng-model="storeMAnagerDetails.Email">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="mobileNumber">Mobile Number</label>
+                    <input type="text" class="form-control" id="mobileNumber" ng-model="storeMAnagerDetails.mobileNumber">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="password">One-Time Password</label>
+                    <input type="password" class="form-control" id="password" ng-model="storeMAnagerDetails.password">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary my-2 " ng-click="addStoreManager()">Create Store Manger</button>
+            <div class="spinner-border text-primary mx-2 {{alertBox1}} " role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+
+            <div class="mx-auto {{alertBox2}} form-inline" style="width: 200px;">
+                <div>Please Wait</div>
+                <div class="spinner-border text-primary mx-2 " role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </form>
+
+        <div class="tbl mx-4 ">
+            <table class="table table-striped {{tableclz}}">
+                <thead class="bg-primary text-white">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile Number</th>
+                    <th scope="col"> </th>
+                    <th scope="col"> </th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="storeMAnagerDetails in storeMAnagerDetailsArray">
+                <tr>
+                    <th scope="row">{{$index + 1}}</th>
+                    <td>{{storeMAnagerDetails.FirstName + " " + storeMAnagerDetails.LastName}}</td>
+                    <td>{{storeMAnagerDetails.address1 + " " + storeMAnagerDetails.address2}}</td>
+                    <td>{{storeMAnagerDetails.Email }}</td>
+                    <td>{{storeMAnagerDetails.mobileNumber }}</td>
+                    <td  class="text-success "> <i class="fas fa-pencil-alt"></i> </td>
+                    <td  class="text-danger "><i class="fas fa-trash" style="text-align: right ; cursor: pointer" ng-click="deletestoreMAnager(storeMAnagerDetails._id)" data-toggle="modal" data-target="#delete"></i></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal for Saved conformation -->
+        <div class="modal fade" id="saveStoreManager" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-success" id="saveStoreManager1" >successfully</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        You have successfully added the Category to the system
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
