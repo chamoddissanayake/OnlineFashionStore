@@ -45,7 +45,9 @@
             var k = JSON.parse(retrievedObject);
 
             console.log("" + k.type);
-
+            if( k.type != "admin"){
+                window.location.href = "../login";
+            }
         } else {
             window.location.href = "../login";
 

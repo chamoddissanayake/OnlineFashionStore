@@ -34,11 +34,11 @@
             </div>
 
             <button type="submit" class="btn btn-primary my-2 " ng-click="addStoreManager()">Create Store Manger</button>
-            <div class="spinner-border text-primary mx-2 {{alertBox1}} " role="status">
+            <div class="spinner-border text-primary mx-2 {{alertBox1M}} " role="status">
                 <span class="sr-only">Loading...</span>
             </div>
 
-            <div class="mx-auto {{alertBox2}} form-inline" style="width: 200px;">
+            <div class="mx-auto {{alertBox2M}} " style="width: 200px;">
                 <div>Please Wait</div>
                 <div class="spinner-border text-primary mx-2 " role="status">
                     <span class="sr-only">Loading...</span>
@@ -47,7 +47,10 @@
         </form>
 
         <div class="tbl mx-4 ">
-            <table class="table table-striped {{tableclz}}">
+            <div class="alert alert-warning {{alertM}} mx-4"  role="alert">
+                No Item To Display
+            </div>
+            <table class="table table-striped {{tableclzM}}">
                 <thead class="bg-primary text-white">
                 <tr>
                     <th scope="col">ID</th>

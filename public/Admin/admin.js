@@ -14,6 +14,11 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     $scope.alertBox1 = "hide";
     $scope.alertBox2 = "hide";
 
+    $scope.tableclzM = "";
+    $scope.alertM = "hide";
+    $scope.alertBox1M = "hide";
+    $scope.alertBox2M = "hide";
+
     $scope.selection = {}
     $scope.storeMAnagerDetails = {}
 
@@ -22,14 +27,16 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
     $scope.changeIndex = function (indexToChange) {
         if (indexToChange == 0) {
-            $scope.clz1 = "nav-link active"
-            $scope.clz2 = "nav-link "
-            $scope.clz3 = "nav-link "
+            $scope.clz1 = "nav-link active";
+            $scope.clz2 = "nav-link ";
+            $scope.clz3 = "nav-link ";
+            getDetailsofCategory();
         }
         if (indexToChange == 1) {
-            $scope.clz1 = "nav-link "
-            $scope.clz2 = "nav-link active"
-            $scope.clz3 = "nav-link "
+            $scope.clz1 = "nav-link ";
+            $scope.clz2 = "nav-link active";
+            $scope.clz3 = "nav-link ";
+            getDetailsofStoreManger();
         }
         if (indexToChange == 2) {
             $scope.clz1 = "nav-link "
@@ -65,7 +72,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     var getDetailsofCategory = function () {
         $scope.tableclz = "table hide";
         $scope.alert = "hide";
-        $scope.alertBox2 = "show";
+        $scope.alertBox2 = "show ";
         $http.get(`/api/category`)
             .then(function (response) {
                 console.log(response);
@@ -144,6 +151,9 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
     //Get all Data from StoreManger collection
     var getDetailsofStoreManger = function () {
+        $scope.tableclzM = "table hide";
+        $scope.alertM = "hide";
+        $scope.alertBox2M = "show form-inline";
         $http.get(`/api/storeManger`)
             .then(function (response) {
                 console.log(response);
@@ -152,18 +162,18 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
             })
             .finally(function () {
-                /* if($scope.categoryObjArray.length == 0 ){
-                     $scope.alert = "show";
-                     $scope.tableclz = "table hide";
+                 if($scope.storeMAnagerDetailsArray.length == 0 ){
+                     $scope.alertM = "show";
+                     $scope.tableclzM = "table hide";
  
                  }
                  else {
-                     $scope.alert = "hide";
-                     $scope.tableclz = "table show";
+                     $scope.alertM = "hide";
+                     $scope.tableclzM = "table show";
  
                  }
-                 $scope.alertBox2 = "hide";
- */
+                 $scope.alertBox2M = "hide";
+
             })
     }
     getDetailsofStoreManger();
@@ -171,15 +181,16 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
     //Add StoreManger
     $scope.addStoreManager = function () {
-        $scope.alertBox1 = "show";
+        $scope.alertBox1M = "show";
         var StoreManagerObj = { FirstName: $scope.storeMAnagerDetails.firstname, LastName: $scope.storeMAnagerDetails.lastname, address1: $scope.storeMAnagerDetails.address1, address2: $scope.storeMAnagerDetails.address2, Email: $scope.storeMAnagerDetails.Email, mobileNumber: $scope.storeMAnagerDetails.mobileNumber, password: $scope.storeMAnagerDetails.password };
 
         console.log(StoreManagerObj);
         $http.post(`/api/storeManger`, StoreManagerObj).then(function (response) {
             console.log(response.data)
             if (response.data == true) {
+                $scope.alertBox1M = "show";
                 $('#saveStoreManager').modal('show');
-                getDetailsofCategory();
+                getDetailsofStoreManger();
                 $scope.selection.Category = "";
             } else {
                 alert('Error in saving');
@@ -189,7 +200,6 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
 
     $scope.logOut = function () {
-        alert('log out');
         localStorage.removeItem("loggedInUser");
         $window.location.href = '../login';
     }

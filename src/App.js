@@ -91,7 +91,7 @@ class App extends Component {
           {/* {this.state.loggedInUserObj.type}
           {localStorage.getItem("loggedInUser").type} */}
 
-          <nav className="navigationBarCustom navbar navbar-expand-lg navbar-dark bg-primary" >
+          <nav className="navigationBarCustom navbar  navbar-dark bg-info" >
 
             <div className="container">
 
