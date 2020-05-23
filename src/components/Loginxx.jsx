@@ -100,7 +100,9 @@ export default class Loginxx extends React.Component {
               if (location.state && location.state.from) {
                 this.props.history.push(location.state.from);
               } else {
-                this.props.history.push('/admin/');
+                //document.getElementById('root') == "";
+                //this.props.history.push('/admin/');
+                console.log('Admin');
               }
               window.location.reload();
 
