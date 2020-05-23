@@ -262,10 +262,59 @@ app.post('/api/purchased', (req, res) => { //add purchase
 
     var url = dbCon.mongoURIConnString;
 
+
+
+    req.body.tempDetailsObj.itemsList.forEach(function (arrayItem) {
+        var itemId = arrayItem._id;
+        var purchasedQty = arrayItem.needQuantity;
+        var availableQty = arrayItem.available_quantity;
+        var newCount = availableQty - purchasedQty;
+
+        MongoClient.connect(url, function (err, db) {
+            if (err) throw err;
+            var dbo = db.db("FashionStore");
+            const ObjectID = require('mongodb').ObjectID;
+            var myquery = { _id: new ObjectID(itemId) };
+            var newvalues = { $set: { available_quantity: newCount } };
+            console.log(myquery);
+            console.log(newvalues);
+
+            dbo.collection("products").updateOne(myquery, newvalues, function (err, res) {
+                if (err) throw err;
+                console.log("updated");
+
+                db.close();
+            });
+        });
+
+
+    });
+
+
+
+
+    var tempPurchasedObj = new Object();
+    tempPurchasedObj.username = tempDetailsObj.username;
+    tempPurchasedObj.datetime = tempDetailsObj.datetime;
+    tempPurchasedObj.recepient = tempDetailsObj.recepient;
+    tempPurchasedObj.deliveryAddress = tempDetailsObj.deliveryAddress;
+    tempPurchasedObj.zip = tempDetailsObj.zip;
+    tempPurchasedObj.email = tempDetailsObj.email;
+    tempPurchasedObj.amount = tempDetailsObj.amount;
+
+    let arr = [];
+
+    req.body.tempDetailsObj.itemsList.forEach(function (arrayItem) {
+        var tempObj = new Object();
+        tempObj.itemId = arrayItem._id;
+        tempObj.purchasedQty = arrayItem.needQuantity;
+        arr.push(arr);
+    });
+
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         var dbo = db.db("FashionStore");
-        dbo.collection("purchases").insertOne(tempDetailsObj, function (err1, res1) {
+        dbo.collection("purchases").insertOne(tempPurchasedObj, function (err1, res1) {
             if (err1) throw err1;
             console.log("Purchase added123");
             res.send("true");
@@ -275,7 +324,6 @@ app.post('/api/purchased', (req, res) => { //add purchase
     });
 
 
-
 });
 
 async function getWishProd(dbo, idd) {
@@ -283,6 +331,7 @@ async function getWishProd(dbo, idd) {
     var o_id = new mongo.ObjectID(idd);
     return await dbo.collection("products").findOne({ _id: o_id });
 }
+
 
 
 app.post('/api/wishlist', (req, res) => { //retrieve wishlist
