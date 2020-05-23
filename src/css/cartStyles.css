@@ -28,8 +28,9 @@
 }
 
 .totPriceLbl{
-    width: 82%;
-    padding-left: 93px;
+    width: 84%;
+    padding-left: 409px;
+    font-weight: 700;
     font-weight: bold;
 }
 
@@ -49,7 +50,7 @@
     height: 70%;
 }
 
-.large-table-left{
+.large-table{
     width: 64%
 }
 

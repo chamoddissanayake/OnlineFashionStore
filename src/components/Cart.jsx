@@ -126,7 +126,7 @@ export default class Cart extends Component {
                 <div id="cartContent">
                     <table class="largeTable">
                         <tr class="largeTable-row">
-                            <td class="large-table-left">
+                            <td class="large-table">
                                 {/* Large table right side -start */}
                                 {this.state.allCartItems ? this.state.allCartItems.map(cartItem => (
                                     <tr>
@@ -266,13 +266,13 @@ export default class Cart extends Component {
                                 </table>
                                 {/* Large table right side -end */}
                             </td>
-                            <td class="large-table-right">
-                                {/* Large table left side -start */}
-                                {/* <img src="https://static.wixstatic.com/media/effc51_45948014481c4068af475d83b864d8b5~mv2.jpg/v1/fill/w_618,h_412,al_c,q_80,usm_0.66_1.00_0.01/effc51_45948014481c4068af475d83b864d8b5~mv2.webp"
+                            {/* <td class="large-table-right"> */}
+                            {/* Large table left side -start */}
+                            {/* <img src="https://static.wixstatic.com/media/effc51_45948014481c4068af475d83b864d8b5~mv2.jpg/v1/fill/w_618,h_412,al_c,q_80,usm_0.66_1.00_0.01/effc51_45948014481c4068af475d83b864d8b5~mv2.webp"
                                 class="fashionstoreImg" /> */}
 
-                                {/* Large table left side -end */}
-                            </td>
+                            {/* Large table left side -end */}
+                            {/* </td> */}
                         </tr>
                     </table>
                 </div>
