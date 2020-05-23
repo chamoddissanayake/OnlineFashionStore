@@ -5,37 +5,26 @@ import { postFetchComments } from '../repository';
 import axios from 'axios';
 
 export default class CommentBox extends React.Component {
+    cmments = [];
     constructor(props) {
         super(props);
-
+        this.comments = []
         this.state = {
             showComments: false,
-            comments: [
-                // { productId: "123345", id: 1, author: "landiggity", body: "This is my first comment on this forum so don't be a dick", rating: 1 },
-                // { productId: "234234", id: 2, author: "scarlett-jo", body: "That's a mighty fine comment you've got there my good looking fellow...", rating: 2 },
-                // { productId: "456233", id: 3, author: "rosco", body: "What is the meaning of all of this 'React' mumbo-jumbo?", rating: 3 }
-            ],
+            comments: [],
             loggedInUserObj: {},
             selectedProduct: this.props.selectedProduct,
-            averageRating: 0
+            averageRating: 0,  
         };
-        this.reloadComments = this.reloadComments.bind(this);
+
+
     }
-
-
-
     componentDidMount() {
         this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
-
-
-        // postFetchComments(this.props.selectedProduct._id).then((comments) => this.setState({ comments }));
-
-        // axios.post(`/api/comments`, { id: productId })
-        // .then(response => response.data);
     }
 
-    reloadComments() {
-        axios.post(`/api/comments`, { selectedProduct: this.props.selectedProduct })
+    /*reloadComments() {
+        axios.post(`${BASE_URL}/api/comments`, { selectedProduct: this.props.selectedProduct })
             .then((comments) => {
                 console.log(comments.data);
                 this.setState({
@@ -45,55 +34,42 @@ export default class CommentBox extends React.Component {
             }).catch((error) => {
                 console.log(error)
             });
-    }
+    }*/
 
     render() {
-
-        if (this.props.selectedProduct && this.state.comments.length == 0) {
-            axios.post(`/api/comments`, { selectedProduct: this.props.selectedProduct })
+       // if (this.props.selectedProduct && this.state.comments.length == 0) {
+            axios.post(`${BASE_URL}/api/comments`, { selectedProduct: this.props.selectedProduct })
                 .then((comments) => {
-
-                    console.log(comments.data);
-
-                    // var arr = [];
-                    // Object.keys(comments.data).forEach(function (key) {
-                    //     arr.push(comments.data[key]);
-                    // });
-                    // console.log("-------")
-                    // console.log(arr);
-
                     this.setState({
                         comments: comments.data.comments,
                         averageRating: comments.data.averageRating
                     });
-
+                    this.cmments = this._getComments();
 
                 }).catch((error) => {
                     console.log(error)
                 });
 
-        }
-
-
-        const comments = this._getComments();
+        //}
         let commentNodes;
         let buttonText = 'Show Comments';
 
         if (this.state.showComments) {
             buttonText = 'Hide Comments';
-            commentNodes = <div className="comment-list">{comments}</div>;
+            commentNodes = <div className="comment-list">{this.cmments}</div>;
         }
 
-        return (
+        return (        
             <div className="comment-box">
                 <h2>Comments for :{this.props.selectedProduct.name}</h2>
-                <CommentForm addComment={this._addComment.bind(this)} pppddd={this.props.selectedProduct} reloadCmtHandler={this.reloadComments} />
+                <CommentForm addComment={this._addComment.bind(this)} pppddd={this.props.selectedProduct} />
                 <button id="comment-reveal" onClick={this._handleClick.bind(this)}>
                     {buttonText}
                 </button>
                 <h3>Comments</h3>
                 <h4 className="comment-count">
-                    {this._getCommentsTitle(comments.length)}
+               
+                {this._getCommentsTitle(this.cmments.length)}
                 </h4>
                 <span>Average Rating: </span>
                 <span>{this.state.averageRating}</span>
@@ -103,12 +79,14 @@ export default class CommentBox extends React.Component {
     } // end render
 
     _addComment(author, body, rating) {
+        let ratingValue = Number(rating)
         const comment = {
             id: this.state.comments.length + 1,
             author,
             body,
-            rating
+            ratingValue
         };
+        //this.comments.concat([comment]);
         this.setState({ comments: this.state.comments.concat([comment]) }); // *new array references help React stay fast, so concat works better than push here.
     }
 
@@ -117,25 +95,19 @@ export default class CommentBox extends React.Component {
             showComments: !this.state.showComments
         });
     }
-
+   
     _getComments() {
-        return this.state.comments.map((comment) => {
-            return (
-                <Comment
-                    author={comment.author}
-                    body={comment.body}
-                    key={comment.id}
-                    rating={comment.rating}
-                />
-            );
-        });
+            return this.state.comments.map((comment)=> {    
+                return (
+                    <Comment
+                        author={comment.author}
+                        body={comment.body}
+                        key={comment.id}
+                        rating={comment.rating}
+                    />
+                );
+            });  
     }
-
-   /* var ItemNode = this.state.data.map(function(itemData) {
-        return (
-           <ComponentName title={itemData.title} key={itemData.id} number={itemData.id}/>
-         );
-        });*/
 
     _getCommentsTitle(commentCount) {
         if (commentCount === 0) {
@@ -168,11 +140,10 @@ class CommentForm extends React.Component {
 
 
     handleChange = (event) => {
-
-
-
+        console.log(typeof event.target.value)
         this.setState({
-            selectValue: event.target.value
+            selectValue: parseInt(event.target.value)
+            
         }, () => {
             console.log("selected value ->" + this.state.selectValue);
         });
@@ -191,11 +162,9 @@ class CommentForm extends React.Component {
                 <div className="comment-form-fields">
                     <input class="form-control" value={this.state.loggedInUserObj.username} disabled required ref={(input) => this._author = input} /><br />
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Comment" rows="4" required onChange={this.txtArC} />
+                        <textarea class="form-control" placeholder="Comment" rows="4" required onChange={this.txtArC} ref={(textarea) => this._body = textarea}/>
                     </div>
-
                     <div>
-
                         <div>
                             <select class="form-control" defaultValue={this.state.selectValue} onChange={this.handleChange}>
                                 <option value="1">1</option>
@@ -204,20 +173,16 @@ class CommentForm extends React.Component {
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
-
                         </div>
-
-
                     </div>
                 </div>
                 <br />
-                <div>ffffffffffffffff</div>
+                <div></div>
                 <div className="comment-form-actions">
-                    <button type="submit" class="btn btn-primary">Post Comment</button>
+                    <button type="submit" class="btn btn-primary" >Post Comment</button>
                 </div>
-                <div>dgdfgdf{this.state.averageRating}</div>
-            </form>
-           
+                <div>{this.state.averageRating}</div>
+            </form>   
         );
     } // end render
 
@@ -229,29 +194,20 @@ class CommentForm extends React.Component {
         let author = this._author;
         let body = this._body;
         let rating = this.state.selectValue;
-        console.log('------------------');
-        console.log(author.value);
-        console.log(this.state.comBd);
-        console.log(rating);
-        console.log(this.props.pppddd._id);
-        console.log('------------------');
-
+        this.props.addComment(author.value, body.value, rating);
         var addCommentObj = new Object();
         addCommentObj.productId = this.props.pppddd._id;
         addCommentObj.author = author.value;
         addCommentObj.body = this.state.comBd;
         addCommentObj.rating = rating
-
+       
         //axios post - start
 
-        axios.post(`/api/commentAdd`, { addCommentObj: addCommentObj })
+        axios.post(`${BASE_URL}/api/commentAdd`, { addCommentObj: addCommentObj })
             .then((comments) => {
-
-                console.log(comments.data);
                 if (comments.data == true) {
                     alert("Your comment added successfully");
-                    this.props.reloadCmtHandler();
-
+                    //this.props.reloadCmtHandler();
                 } else {
                     alert("Error occurred");
                 }
@@ -261,9 +217,14 @@ class CommentForm extends React.Component {
             });
         //axios post - end
 
-
-
-
+        return (
+            <Comment
+                author={author.value}
+                body={body.value}
+                key=''
+                rating={rating}
+            />
+        );
         // this.props.addComment(author.value, body.value, rating);
     }
 } // end CommentForm component
@@ -276,18 +237,9 @@ class Comment extends React.Component {
                 <p className="comment-body">- {this.props.body}</p>
                 <p className="comment-rating">- {this.props.rating}</p>
                 <div className="comment-footer">
-                <a href="#" className="comment-footer-delete" onClick={this._deleteComment}>Delete Comment</a>
                 </div> 
             </div>
         );
     }
-     _deleteComment() {
-      /*  const comBd = this.state.comments.filter(i => i.id !== comments.Comment)
-        this.setState({comBd})*/
-
-     }
+    
 }
-
-
-
-// ReactDOM.render(<CommentBox />, document.getElementById('main'));
