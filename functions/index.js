@@ -846,6 +846,45 @@ app.get('/api/category/getOne/:id', (req, res) => {
 });
 
 //Update Category
+app.put('/api/category', (req, res) => {
+
+    var tempproductObject = new Object();
+
+    tempproductObject._id = req.body.id;
+    tempproductObject.category = req.body.category;
+
+    var MongoClient = require('mongodb').MongoClient;
+    // var url = "mongodb://localhost:27017/";
+    var url = dbCon.mongoURIConnString;
+
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("FashionStore");
+
+        const ObjectID = require('mongodb').ObjectID;
+        dbo.collection("products").updateOne(
+            { _id: new ObjectID(tempproductObject._id) },
+            {
+                $set: {
+                    id: tempproductObject._id, category: tempproductObject.category, name: tempproductObject.name,
+                    description: tempproductObject.description, price: tempproductObject.price, available_quantity: tempproductObject.available_quantity,
+                    discount: tempproductObject.discount, imageURL_main: tempproductObject.imageURL_main
+                }
+            },
+            { upsert: true },
+            function (err1, res1) {
+                if (err1) throw err1;
+                console.log("Item updated successfully.");
+                res.send(true);
+                db.close();
+
+            });
+    });
+
+
+});
+
+
 
 //Get storeMAnager Details
 app.get('/api/storeManger', (req, res) => {
