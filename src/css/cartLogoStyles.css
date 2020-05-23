@@ -7,7 +7,7 @@
 .notify-badge{
     position: absolute;
     right:-20px;
-    top:-10px;
+    top:-49px;
     background:red;
     text-align: center;
     border-radius: 30px 30px 30px 30px;
@@ -18,4 +18,6 @@
 
 .cartItemLogo{
     border-radius: 8px;
+    margin-left: 43px;
+    margin-top: -64px;
 }

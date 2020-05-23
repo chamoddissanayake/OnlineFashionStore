@@ -6,7 +6,7 @@
 
 a.naviButCust.naviButton.nav-item.nav-link {
     padding-right: 20px;
-    padding-top: 13px;
+    padding-top: 35px;
 }
 
 .navigationBarCustom{
@@ -20,4 +20,23 @@ a.naviButCust.naviButton.nav-item.nav-link {
 
 .naviButton{
     font-size: 20px;
+}
+
+
+.navbarA{
+    background-color: #8A2BE2 !important;
+}
+
+
+.logoImg{
+    float: left;
+}
+
+.cus1{
+    padding-top: 40px;
+}
+
+.cartUser{
+    padding-left: 50px;
+    padding-top: 40px;
 }

@@ -14,7 +14,7 @@ export default class CommentBox extends React.Component {
             comments: [],
             loggedInUserObj: {},
             selectedProduct: this.props.selectedProduct,
-            averageRating: 0,  
+            averageRating: 0,
         };
 
 
@@ -37,18 +37,18 @@ export default class CommentBox extends React.Component {
     }*/
 
     render() {
-       // if (this.props.selectedProduct && this.state.comments.length == 0) {
-            axios.post(`${BASE_URL}/api/comments`, { selectedProduct: this.props.selectedProduct })
-                .then((comments) => {
-                    this.setState({
-                        comments: comments.data.comments,
-                        averageRating: comments.data.averageRating
-                    });
-                    this.cmments = this._getComments();
-
-                }).catch((error) => {
-                    console.log(error)
+        // if (this.props.selectedProduct && this.state.comments.length == 0) {
+        axios.post(`/api/comments`, { selectedProduct: this.props.selectedProduct })
+            .then((comments) => {
+                this.setState({
+                    comments: comments.data.comments,
+                    averageRating: comments.data.averageRating
                 });
+                this.cmments = this._getComments();
+
+            }).catch((error) => {
+                console.log(error)
+            });
 
         //}
         let commentNodes;
@@ -59,7 +59,7 @@ export default class CommentBox extends React.Component {
             commentNodes = <div className="comment-list">{this.cmments}</div>;
         }
 
-        return (        
+        return (
             <div className="comment-box">
                 <h2>Comments for :{this.props.selectedProduct.name}</h2>
                 <CommentForm addComment={this._addComment.bind(this)} pppddd={this.props.selectedProduct} />
@@ -68,8 +68,8 @@ export default class CommentBox extends React.Component {
                 </button>
                 <h3>Comments</h3>
                 <h4 className="comment-count">
-               
-                {this._getCommentsTitle(this.cmments.length)}
+
+                    {this._getCommentsTitle(this.cmments.length)}
                 </h4>
                 <span>Average Rating: </span>
                 <span>{this.state.averageRating}</span>
@@ -95,18 +95,18 @@ export default class CommentBox extends React.Component {
             showComments: !this.state.showComments
         });
     }
-   
+
     _getComments() {
-            return this.state.comments.map((comment)=> {    
-                return (
-                    <Comment
-                        author={comment.author}
-                        body={comment.body}
-                        key={comment.id}
-                        rating={comment.rating}
-                    />
-                );
-            });  
+        return this.state.comments.map((comment) => {
+            return (
+                <Comment
+                    author={comment.author}
+                    body={comment.body}
+                    key={comment.id}
+                    rating={comment.rating}
+                />
+            );
+        });
     }
 
     _getCommentsTitle(commentCount) {
@@ -143,7 +143,7 @@ class CommentForm extends React.Component {
         console.log(typeof event.target.value)
         this.setState({
             selectValue: parseInt(event.target.value)
-            
+
         }, () => {
             console.log("selected value ->" + this.state.selectValue);
         });
@@ -162,7 +162,7 @@ class CommentForm extends React.Component {
                 <div className="comment-form-fields">
                     <input class="form-control" value={this.state.loggedInUserObj.username} disabled required ref={(input) => this._author = input} /><br />
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Comment" rows="4" required onChange={this.txtArC} ref={(textarea) => this._body = textarea}/>
+                        <textarea class="form-control" placeholder="Comment" rows="4" required onChange={this.txtArC} ref={(textarea) => this._body = textarea} />
                     </div>
                     <div>
                         <div>
@@ -182,7 +182,7 @@ class CommentForm extends React.Component {
                     <button type="submit" class="btn btn-primary" >Post Comment</button>
                 </div>
                 <div>{this.state.averageRating}</div>
-            </form>   
+            </form>
         );
     } // end render
 
@@ -200,10 +200,10 @@ class CommentForm extends React.Component {
         addCommentObj.author = author.value;
         addCommentObj.body = this.state.comBd;
         addCommentObj.rating = rating
-       
+
         //axios post - start
 
-        axios.post(`${BASE_URL}/api/commentAdd`, { addCommentObj: addCommentObj })
+        axios.post(`/api/commentAdd`, { addCommentObj: addCommentObj })
             .then((comments) => {
                 if (comments.data == true) {
                     alert("Your comment added successfully");
@@ -237,9 +237,9 @@ class Comment extends React.Component {
                 <p className="comment-body">- {this.props.body}</p>
                 <p className="comment-rating">- {this.props.rating}</p>
                 <div className="comment-footer">
-                </div> 
+                </div>
             </div>
         );
     }
-    
+
 }

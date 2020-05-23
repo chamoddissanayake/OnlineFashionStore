@@ -86,16 +86,18 @@ class App extends Component {
     return (
 
       <Router>
-
         <div>
-          {/* {this.state.loggedInUserObj.type}
-          {localStorage.getItem("loggedInUser").type} */}
 
-          <nav className="navbar navbar-expand-lg navbar-dark bg-info" >
+          {/* Right start */}
+          <nav className="navbarA navbar-expand-lg navbar-dark bg-info" >
 
             <div className="container">
 
-              <div className="navbar-brand" to="/">E Fashion - Online Fashion Store</div>
+              <span>
+                <img class="logoImg" src={require("./pictures/mainima.png")} width="100px" height="100px" />
+              </span>
+
+              <div className="cus1 navbar-brand" to="/">E Fashion - Online Fashion Store</div>
 
               <button className="navbar-toggler" type="button"
 
@@ -129,25 +131,6 @@ class App extends Component {
                     <Link className="naviButCust naviButton nav-item nav-link" to="/wishlist">My Wishlist</Link><br />
                   </span>}
 
-                  {/* {(auth) ? <Link className="nav-item nav-link" to="/checkout">
-
-                    Checkout</Link> : ''} */}
-
-                  {/* {(auth) ?
-
-                    (<a className="nav-item nav-link" href="/"
-
-                      onClick={this.logOut}>Log out</a>) :
-
-                    (<Link className="nav-item nav-link float-right"
-
-                      to="/login">Log in</Link>)
-
-                  } */}
-                  {/* 
-                  {!utils.isEmpty(this.state.loggedInUserObj) && <span>
-                    <Link className="nav-item nav-link" to="/checkout">Checkout</Link>
-                  </span>} */}
 
                   {!utils.isEmpty(this.state.loggedInUserObj) && <span>
                     <Link className="naviButCust naviButton nav-item nav-link" to="/logout">Logout</Link>
@@ -157,64 +140,72 @@ class App extends Component {
                     <Link className="naviButCust naviButton nav-item nav-link float-right" to="/login">Log in</Link>
                   </span>}
 
+                  <div class="cartUser">
+                    {!utils.isEmpty(this.state.loggedInUserObj) && <span>
+                      <p style={{ color: "white" }} >Hi {this.state.loggedInUserObj.username}</p>
+                    </span>}
 
-
+                    <CartLogo></CartLogo>
+                  </div>
                 </div>
 
               </div>
 
             </div>
 
-            {!utils.isEmpty(this.state.loggedInUserObj) && <span>
-              <p style={{ color: "white" }} >Hi {this.state.loggedInUserObj.username}</p>
-            </span>}
 
-            <CartLogo></CartLogo>
 
           </nav>
+          {/* Right  end */}
+
+
+          <div>
 
 
 
-          <div className="container">
-
-            <br />
-
-            <Route exact path="/" component={Products} />
-
-            <Route exact path="/cart" component={Cart} />
-
-            <Route exact path="/add" component={addItem} />
-
-            <Route exact path="/checkout" component={Checkout} />
-
-            <Route exact path="/viewItems" component={viewItems} />
-
-            <Route exact path="/editItems/:id" component={editItems} />
-
-            <Route exact path="/storeManager" component={StoreManagerDashbord} />
-
-            <Route exact path="/wishlist" component={Wishlist} />
-
-            {/* <Route exact path="/selectItem" component={selectItem} /> */}
-            <Route exact path="/selectItem/:id" component={selectItem} />
 
 
-            {(!auth) ? <Route exact path="/login" component={Loginxx} /> : ''}
 
-            <Route exact path="/logout" component={Logout} />
+            <div className="container">
 
-            <Route exact path="/paymentMethod" component={PaymentMethod} />
+              <br />
 
-            <Route exact path="/paymentGateway" component={PaymentGateway} />
+              <Route exact path="/" component={Products} />
 
-            <Route exact path="/cashOnDelivery" component={CashOnDelivery} />
-            <Route exact path="/thanks" component={ThanksForPurchasing} />
-            <Route exact path="/newUser" component={newUserRegistration} />
+              <Route exact path="/cart" component={Cart} />
+
+              <Route exact path="/add" component={addItem} />
+
+              <Route exact path="/checkout" component={Checkout} />
+
+              <Route exact path="/viewItems" component={viewItems} />
+
+              <Route exact path="/editItems/:id" component={editItems} />
+
+              <Route exact path="/storeManager" component={StoreManagerDashbord} />
+
+              <Route exact path="/wishlist" component={Wishlist} />
+
+              {/* <Route exact path="/selectItem" component={selectItem} /> */}
+              <Route exact path="/selectItem/:id" component={selectItem} />
+
+
+              {(!auth) ? <Route exact path="/login" component={Loginxx} /> : ''}
+
+              <Route exact path="/logout" component={Logout} />
+
+              <Route exact path="/paymentMethod" component={PaymentMethod} />
+
+              <Route exact path="/paymentGateway" component={PaymentGateway} />
+
+              <Route exact path="/cashOnDelivery" component={CashOnDelivery} />
+              <Route exact path="/thanks" component={ThanksForPurchasing} />
+              <Route exact path="/newUser" component={newUserRegistration} />
+
+            </div>
 
           </div>
-
         </div>
-
       </Router>
 
     );
