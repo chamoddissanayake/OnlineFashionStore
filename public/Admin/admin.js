@@ -134,11 +134,14 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     }
 
     //deleteing category
+    var currentDeleteIDCaegory = 0;
     $scope.deleteCategory = function (index) {
-        var id = index;
+        currentDeleteIDCaegory = index;
         console.log(index);
+    }
 
-        $http.delete(`/api/category/` + id).then(function (response) {
+    $scope.deleteCategoryConfirm = function () {
+        $http.delete(`/api/category/` + currentDeleteIDCaegory).then(function (response) {
             if (response.data == true) {
                 alert('Item Deleted successfully');
                 getDetailsofCategory();
@@ -198,6 +201,23 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
         });
     }
 
+    //deleteing StoreManger
+    var currentDeleteIDStoreManger = 0;
+    $scope.deleteStoreManger = function (index) {
+        currentDeleteIDStoreManger = index;
+        console.log(index);
+    }
+
+    $scope.deleteStoreMangerConfirm = function () {
+        $http.delete(`/api/storeManger/` + currentDeleteIDStoreManger).then(function (response) {
+            if (response.data == true) {
+                alert('Item Deleted successfully');
+                getDetailsofCategory();
+            } else {
+                alert('Error in deleting');
+            }
+        });
+    }
 
     $scope.logOut = function () {
         localStorage.removeItem("loggedInUser");
