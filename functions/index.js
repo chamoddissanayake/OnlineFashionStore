@@ -829,6 +829,21 @@ app.delete('/api/category/:id', function (req, res) {
 
 });
 
+//Get One Category Details
+app.get('/api/category/getOne/:id', (req, res) => {
+    var id = req.params.id;
+    //res.send("got");
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("FashionStore");
+        dbo.collection("category").find({_id : mongo.ObjectID(id)}).toArray(function (err, result) {
+            if (err) throw err;
+
+            res.send(result);
+            db.close();
+        });
+    });
+});
 /*app.get('/', (req, res) => {
   app.use(express.static(path.join(__dirname, '../public/Admin/')));
   console.log("request received for home page");

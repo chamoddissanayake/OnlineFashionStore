@@ -157,10 +157,10 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     $scope.UpdateCategory = function (index) {
         currentUpdateIDCaegory = index;
         console.log(index);
-        $http.get(`/api/storeManger/getOne` + currentUpdateIDCaegory )
+        $http.get(`/api/category/getOne/` + currentUpdateIDCaegory)
         .then(function (response) {
             console.log(response);
-           $scope.selection.updateBoxCategoryName = response.data.categoryName;
+           $scope.selection.updateBoxCategoryName = response.data[0].categoryName;
 
 
         })
