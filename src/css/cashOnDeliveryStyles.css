@@ -27,3 +27,11 @@
 #colprice{
 	text-align: right;
 }
+
+
+.tableleft{
+	width: 30%;
+}
+.tableright{
+	width: 70%;
+}

@@ -54,7 +54,9 @@ export default class newUserRegistration extends Component {
 
     handleRegisterSubmit() {
 
-        if (this.state.password != this.state.repassword) {
+        if (this.state.username == '' || this.state.email == '' || this.state.password == '' || this.state.repassword == '') {
+            alert('Please fill all fields');
+        } else if (this.state.password != this.state.repassword) {
             alert('Passwords are not equal');
         } else {
             this.setState({

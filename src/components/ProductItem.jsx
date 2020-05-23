@@ -1,12 +1,20 @@
-import React from 'react';
-
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
 import utils from '../utils/utils';
 import commentBoxStyles from '../css/productItemStyles.css';
 
 import axios from 'axios';
 
+window.React = React;
+
 export default class ProductItem extends React.Component {
+
+  static propTypes = {
+    data: PropTypes.array.isRequired,
+  };
 
   constructor(props) {
 
