@@ -179,6 +179,7 @@ export default class Loginxx extends React.Component {
                 </div>
               </form>
               <div>
+                <br></br>
 
                 <p id="newLabel" onClick={this.handleClickNewUser} >New User ?</p>
 
