@@ -144,12 +144,60 @@ export default class CashOnDelivery extends Component {
 
                 <table >
                     <tr>
-                        <td>
+                        <td class="tableleft">
                             {/* Table Left start */}
+                            <img src="https://news.usc.edu/files/2015/10/delivery_WEB-1200x800.jpg" width="300px" height="300px" />
                             {/* Table left end */}
                         </td>
-                        <td>
+                        <td class="tableright">
                             {/* Table right start */}
+                            <div id="cashOnDeliveryBody">
+
+                                <div class="form-group">
+                                    <label for="inputUsername">Username</label>
+                                    <input type="text" class="form-control" id="inputUsername" placeholder="Username" value={this.state.loggedInUserObj.username} readonly />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail">Email</label>
+                                    <input type="text" class="form-control" id="inputEmail" placeholder="Email" value={this.state.loggedInUserObj.email} readonly />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputRecepientName">Recepient Name</label>
+                                    <input type="text" class="form-control" id="inputRecepientName" onChange={this.handleRecepient} placeholder="Recepient Name" required />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDeliveryAddress">Delivery Address</label>
+                                    <input type="text" class="form-control" id="inputDeliveryAddress" onChange={this.handleDeliveryAddress} placeholder="Delivery Address" required />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputZip">Zip</label>
+                                    <input type="number" class="form-control" id="inputZip" onChange={this.handleZip} placeholder="Zip" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Your Amount :</label>
+                                        </div>
+                                        <div id="colprice" class="col">
+                                            <label class="price">{this.state.totprice}</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" onChange={this.handleCheckboxChange} />
+                                    <label id="agreeTerms" class="form-check-label" for="exampleCheck1">Agree tearms and conditions</label>
+                                </div>
+                                <p>* Delivery Charges will be applied</p>
+
+                                <button id="customSubmitButton" class="btn btn-primary" onClick={this.handleCashOnDeliveryClicked} >Place Order >>></button>
+
+                            </div>
                             {/* Table right end */}
                         </td>
                     </tr>
@@ -158,53 +206,7 @@ export default class CashOnDelivery extends Component {
 
 
 
-                <div id="cashOnDeliveryBody">
 
-                    <div class="form-group">
-                        <label for="inputUsername">Username</label>
-                        <input type="text" class="form-control" id="inputUsername" placeholder="Username" value={this.state.loggedInUserObj.username} readonly />
-
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail">Email</label>
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Email" value={this.state.loggedInUserObj.email} readonly />
-
-                    </div>
-                    <div class="form-group">
-                        <label for="inputRecepientName">Recepient Name</label>
-                        <input type="text" class="form-control" id="inputRecepientName" onChange={this.handleRecepient} placeholder="Recepient Name" required />
-
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDeliveryAddress">Delivery Address</label>
-                        <input type="text" class="form-control" id="inputDeliveryAddress" onChange={this.handleDeliveryAddress} placeholder="Delivery Address" required />
-
-                    </div>
-                    <div class="form-group">
-                        <label for="inputZip">Zip</label>
-                        <input type="number" class="form-control" id="inputZip" onChange={this.handleZip} placeholder="Zip" required />
-                    </div>
-
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col">
-                                <label>Your Amount :</label>
-                            </div>
-                            <div id="colprice" class="col">
-                                <label class="price">{this.state.totprice}</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" onChange={this.handleCheckboxChange} />
-                        <label id="agreeTerms" class="form-check-label" for="exampleCheck1">Agree tearms and conditions</label>
-                    </div>
-                    <p>* Delivery Charges will be applied</p>
-
-                    <button id="customSubmitButton" class="btn btn-primary" onClick={this.handleCashOnDeliveryClicked} >Place Order >>></button>
-
-                </div>
 
 
             </div>
