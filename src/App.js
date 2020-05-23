@@ -95,7 +95,7 @@ class App extends Component {
 
             <div className="container">
 
-              <div className="navbar-brand" to="/">Online Fashion Store</div>
+              <div className="navbar-brand" to="/">E Fashion - Online Fashion Store</div>
 
               <button className="navbar-toggler" type="button"
 
