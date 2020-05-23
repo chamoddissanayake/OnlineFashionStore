@@ -845,6 +845,8 @@ app.get('/api/category/getOne/:id', (req, res) => {
     });
 });
 
+//Update Category
+
 //Get storeMAnager Details
 app.get('/api/storeManger', (req, res) => {
     console.log("request received for get storeManger");
