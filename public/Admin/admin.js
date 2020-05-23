@@ -25,6 +25,9 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     $scope.categoryObjArray = [];
     $scope.storeMAnagerDetailsArray = [];
 
+
+    $scope.classForUpdateCategoryTextBox = "hide";
+    $scope.classForUpdateCategoryLoader= "hide";
     $scope.changeIndex = function (indexToChange) {
         if (indexToChange == 0) {
             $scope.clz1 = "nav-link active";
@@ -155,12 +158,16 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     //updating category
     var currentUpdateIDCaegory = 0;
     $scope.UpdateCategory = function (index) {
+        $scope.classForUpdateCategoryTextBox = "hide";
+        $scope.classForUpdateCategoryLoader= "show";
         currentUpdateIDCaegory = index;
         console.log(index);
         $http.get(`/api/category/getOne/` + currentUpdateIDCaegory)
         .then(function (response) {
             console.log(response);
            $scope.selection.updateBoxCategoryName = response.data[0].categoryName;
+            $scope.classForUpdateCategoryTextBox = "show";
+            $scope.classForUpdateCategoryLoader= "hide";
 
 
         })
