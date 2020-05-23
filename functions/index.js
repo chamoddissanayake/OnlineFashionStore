@@ -104,13 +104,13 @@ app.post('/api/selectitem', (req, res) => { //retrieve details of the selected i
 
 function calculateAverageRating(results) {
     console.log(results);
-    var avg = 0;
-    var tot = 0;
-    var count = 0;
+    let avg = 0;
+    let tot = 0;
+    let count = 0;
     const listComments = results.map((c) => {
-        console.log(c.rating);
-        tot = tot + c.rating;
-        count++;
+      console.log(c.rating);
+      tot = tot + parseInt(c.rating);
+      count++;
     }
     );
     console.log("tot:" + tot);
@@ -118,7 +118,7 @@ function calculateAverageRating(results) {
     avg = tot / count;
     avg = (Math.round(avg * 100) / 100).toFixed(2);
     return avg;
-}
+  }
 app.post('/api/comments', (req, res) => { //retrieve Comments
     console.log("request received for the retrieve comments");
     console.log(req.body.selectedProduct._id);
