@@ -14,7 +14,8 @@ export default class CashOnDelivery extends Component {
             recepient: '',
             deliveryAddress: '',
             zip: 0,
-            agree: false
+            agree: false,
+            loading: false
         };
         this.handleRecepient = this.handleRecepient.bind(this);
         this.handleDeliveryAddress = this.handleDeliveryAddress.bind(this);
@@ -57,7 +58,9 @@ export default class CashOnDelivery extends Component {
         } else if (this.state.agree == false) {
             alert('Please agree with terms and conditions');
         } else {
-
+            this.setState({
+                loading: true
+            });
             //Add to db - start
 
             let cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
@@ -105,6 +108,9 @@ export default class CashOnDelivery extends Component {
 
             axios.post(`/api/purchased`, { tempDetailsObj: tempDetailsObj })
                 .then((res) => {
+                    this.setState({
+                        loading: true
+                    });
                     console.log("appsss");
                     window.location.href = '/thanks';
                     // this.setState({
@@ -112,6 +118,9 @@ export default class CashOnDelivery extends Component {
                     // });
 
                 }).catch((error) => {
+                    this.setState({
+                        loading: true
+                    });
                     console.log(error)
                 });
 
@@ -196,7 +205,12 @@ export default class CashOnDelivery extends Component {
                                 <p>* Delivery Charges will be applied</p>
 
                                 <button id="customSubmitButton" class="btn btn-primary" onClick={this.handleCashOnDeliveryClicked} >Place Order >>></button>
-
+                                {this.state.loading ? (
+                                    <div class="itemLoading">
+                                        <img src="https://www.bmimages.com/images/WaitCover.gif"
+                                            alt="Loading..." height="20" width="20" />
+                                    </div>
+                                ) : null}
                             </div>
                             {/* Table right end */}
                         </td>
