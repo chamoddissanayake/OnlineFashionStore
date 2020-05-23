@@ -138,7 +138,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
         var id = index;
         console.log(index);
 
-        $http.delete(`/api/category` + id).then(function (response) {
+        $http.delete(`/api/category/` + id).then(function (response) {
             if (response.data == true) {
                 alert('Item Deleted successfully');
                 getDetailsofCategory();
