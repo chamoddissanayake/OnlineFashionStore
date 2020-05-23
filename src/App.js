@@ -93,11 +93,11 @@ class App extends Component {
 
             <div className="container">
 
-              <span>
+              <Link to="/">
                 <img class="logoImg" src={require("./pictures/mainima.png")} width="100px" height="100px" />
-              </span>
+              </Link>
 
-              <div className="cus1 navbar-brand" to="/">E Fashion - Online Fashion Store</div>
+              <Link className="cus1 navbar-brand" to="/">E Fashion - Online Fashion Store</Link>
 
               <button className="navbar-toggler" type="button"
 
