@@ -4,8 +4,6 @@ import commentBoxStyles from '../css/thanksStyles.css';
 export default class ThanksForPurchasing extends Component {
 
     componentDidMount() {
-
-
         this.clearCartItems();
     }
     clearCartItems() {

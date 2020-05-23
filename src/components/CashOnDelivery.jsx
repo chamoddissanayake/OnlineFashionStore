@@ -57,7 +57,10 @@ export default class CashOnDelivery extends Component {
 
         for (var asd = 0; asd < cartItems.length; asd++) {
             var aaa = cartItems[asd];
-            tempArr.push(aaa._id);
+            var tempObj = new Object();
+            tempObj._id = aaa._id;
+            tempObj.needQuantity = aaa.needQuantity;
+            tempArr.push(tempObj);
         }
 
         console.log(tempArr);
@@ -70,7 +73,6 @@ export default class CashOnDelivery extends Component {
 
         curTime: new Date().toLocaleString()
         var tempDetailsObj = new Object();
-        console.log("mmfmfmfmfm");
         console.log(this.state);
         tempDetailsObj.username = currentUser.username;
         tempDetailsObj.itemsList = tempArr;
@@ -84,6 +86,9 @@ export default class CashOnDelivery extends Component {
 
         console.log("-----")
         console.log(tempDetailsObj);
+
+        let purchasedItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+        console.log(purchasedItems);
 
         axios.post(`/api/purchased`, { tempDetailsObj: tempDetailsObj })
             .then((res) => {
