@@ -31,7 +31,12 @@ export default class Cart extends Component {
 
     gotoPaymentMethod = (event) => {
 
-        window.location.href = '/paymentMethod';
+        if (this.state.totprice > 0) {
+            window.location.href = '/paymentMethod';
+        } else {
+            alert('No Items in the cart');
+        }
+
     };
 
 
