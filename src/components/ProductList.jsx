@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import ReactPaginate from 'react-paginate';
 
 import ProductItem from './ProductItem';
 
@@ -6,6 +9,7 @@ import { getProducts } from '../repository';
 
 import { Link } from 'react-router-dom';
 import loadingStyles from '../css/loadingStyles.css';
+
 
 
 export default class ProductList extends React.Component {
@@ -17,7 +21,10 @@ export default class ProductList extends React.Component {
     this.state = {
 
       products: [],
-      dataNotReceived: true
+      allproducts: [],
+      dataNotReceived: true,
+      offset: 0,
+      perPage: 6
     }
 
   }
@@ -25,16 +32,29 @@ export default class ProductList extends React.Component {
 
 
   componentDidMount() {
-
-    getProducts().then((products) => this.setState({
-      products,
-      dataNotReceived: false
-
+    const indexOfLastPost = 1 * this.state.perPage;
+    const indexOfFirstPost = indexOfLastPost - this.state.perPage;
+    getProducts().then((allproducts) => this.setState({
+      allproducts,
+      products: allproducts.slice(indexOfFirstPost, indexOfLastPost),
+      dataNotReceived: false,
+      pageCount: Math.ceil(allproducts.length / this.state.perPage)
     }));
 
   }
 
 
+
+  handlePageClick = data => {
+    let selected = data.selected;
+    let offset = Math.ceil(selected * this.state.perPage);
+    const indexOfLastPost = (selected + 1) * this.state.perPage;
+    const indexOfFirstPost = indexOfLastPost - this.state.perPage;
+    this.setState({
+      offset: offset,
+      products: this.state.allproducts.slice(indexOfFirstPost, indexOfLastPost),
+    });
+  };
 
   render() {
 
@@ -56,6 +76,25 @@ export default class ProductList extends React.Component {
 
 
         {products.map((product, index) => <ProductItem product={product} key={index} />)}
+
+        {!this.state.dataNotReceived ? (
+          <div class="paginateSection">
+            <ReactPaginate
+              previousLabel={'previous'}
+              nextLabel={'next'}
+              breakLabel={'...'}
+              breakClassName={'break-me'}
+              pageCount={this.state.pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={this.handlePageClick}
+              containerClassName={'pagination'}
+              subContainerClassName={'pages pagination'}
+              activeClassName={'active'}
+            />
+          </div>
+
+        ) : null}
 
         <hr />
 
