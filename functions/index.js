@@ -942,7 +942,7 @@ app.delete('/api/storeManger/:id', function (req, res) {
         if (err) throw err;
         var dbo = db.db("FashionStore");
 
-        var myquery = { _id: id };
+        var myquery = { _id: mongo.ObjectID(id) };
         console.log(myquery);
         dbo.collection("storeManger").deleteOne(myquery, function (err1, result) {
             if (err1) throw err1;

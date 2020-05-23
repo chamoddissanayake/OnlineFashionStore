@@ -152,6 +152,33 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     }
 
 
+    //updating category
+    var currentUpdateIDCaegory = 0;
+    $scope.UpdateCategory = function (index) {
+        currentUpdateIDCaegory = index;
+        console.log(index);
+        $http.get(`/api/storeManger/getOne` + currentUpdateIDCaegory )
+        .then(function (response) {
+            console.log(response);
+           $scope.selection.updateBoxCategoryName = response.data.categoryName;
+
+
+        })
+       
+    }
+
+    $scope.UpdateCategoryConfirm = function () {
+        $http.put(`/api/category/` + currentUpdateIDCaegory).then(function (response) {
+            if (response.data == true) {
+                alert('Item Updated successfully');
+                getDetailsofCategory();
+            } else {
+                alert('Error in deleting');
+            }
+        });
+    }
+
+
     //Get all Data from StoreManger collection
     var getDetailsofStoreManger = function () {
         $scope.tableclzM = "table hide";
@@ -212,7 +239,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
         $http.delete(`/api/storeManger/` + currentDeleteIDStoreManger).then(function (response) {
             if (response.data == true) {
                 alert('Item Deleted successfully');
-                getDetailsofCategory();
+                getDetailsofStoreManger();
             } else {
                 alert('Error in deleting');
             }
