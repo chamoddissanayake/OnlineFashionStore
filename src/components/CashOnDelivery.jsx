@@ -13,12 +13,19 @@ export default class CashOnDelivery extends Component {
             totprice: 0,
             recepient: '',
             deliveryAddress: '',
-            zip: 0
+            zip: 0,
+            agree: false
         };
         this.handleRecepient = this.handleRecepient.bind(this);
         this.handleDeliveryAddress = this.handleDeliveryAddress.bind(this);
         this.handleZip = this.handleZip.bind(this);
         this.handleCashOnDeliveryClicked = this.handleCashOnDeliveryClicked.bind(this);
+
+        this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    }
+
+    handleCheckboxChange(event) {
+        this.setState({ agree: event.target.checked });
     }
 
     handleRecepient(event) {
@@ -44,66 +51,80 @@ export default class CashOnDelivery extends Component {
 
     handleCashOnDeliveryClicked() {
 
-        //Add to db - start
+        //Validate
+        if (this.state.recepient == '' || this.state.deliveryAddress == '' || this.state.zip == '') {
+            alert('Please fill all fields');
+        } else if (this.state.agree == false) {
+            alert('Please agree with terms and conditions');
+        } else {
 
-        let cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
-        let currentUser = localStorage.getItem("loggedInUser") ? JSON.parse(localStorage.getItem("loggedInUser")) : [];
+            //Add to db - start
 
-        console.log(cartItems);
-        console.log(currentUser.username);
+            let cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+            let currentUser = localStorage.getItem("loggedInUser") ? JSON.parse(localStorage.getItem("loggedInUser")) : [];
 
-        var tempArr = [];
+            console.log(cartItems);
+            console.log(currentUser.username);
+
+            var tempArr = [];
 
 
-        for (var asd = 0; asd < cartItems.length; asd++) {
-            var aaa = cartItems[asd];
-            var tempObj = new Object();
-            tempObj._id = aaa._id;
-            tempObj.needQuantity = aaa.needQuantity;
-            tempObj.available_quantity = aaa.available_quantity;
-            tempArr.push(tempObj);
+            for (var asd = 0; asd < cartItems.length; asd++) {
+                var aaa = cartItems[asd];
+                var tempObj = new Object();
+                tempObj._id = aaa._id;
+                tempObj.needQuantity = aaa.needQuantity;
+                tempObj.available_quantity = aaa.available_quantity;
+                tempArr.push(tempObj);
+            }
+
+            console.log(tempArr);
+
+
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            var dateTime = date + ' ' + time;
+
+            curTime: new Date().toLocaleString()
+            var tempDetailsObj = new Object();
+            console.log(this.state);
+            tempDetailsObj.username = currentUser.username;
+            tempDetailsObj.itemsList = tempArr;
+            tempDetailsObj.datetime = dateTime;
+            tempDetailsObj.recepient = this.state.recepient;
+            tempDetailsObj.deliveryAddress = this.state.deliveryAddress;
+            tempDetailsObj.zip = this.state.zip;
+            tempDetailsObj.email = this.state.loggedInUserObj.email;
+            tempDetailsObj.amount = this.state.totprice;
+
+
+            console.log("-----")
+            console.log(tempDetailsObj);
+
+
+            axios.post(`/api/purchased`, { tempDetailsObj: tempDetailsObj })
+                .then((res) => {
+                    console.log("appsss");
+                    window.location.href = '/thanks';
+                    // this.setState({
+
+                    // });
+
+                }).catch((error) => {
+                    console.log(error)
+                });
+
+            ///Add to db - end
+
+
         }
 
-        console.log(tempArr);
 
 
-        var today = new Date();
-        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date + ' ' + time;
-
-        curTime: new Date().toLocaleString()
-        var tempDetailsObj = new Object();
-        console.log(this.state);
-        tempDetailsObj.username = currentUser.username;
-        tempDetailsObj.itemsList = tempArr;
-        tempDetailsObj.datetime = dateTime;
-        tempDetailsObj.recepient = this.state.recepient;
-        tempDetailsObj.deliveryAddress = this.state.deliveryAddress;
-        tempDetailsObj.zip = this.state.zip;
-        tempDetailsObj.email = this.state.loggedInUserObj.email;
-        tempDetailsObj.amount = this.state.totprice;
 
 
-        console.log("-----")
-        console.log(tempDetailsObj);
 
-        // let purchasedItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
-        // tempDetailsObj.available_quantity = purchasedItems.available_quantity;
-
-        axios.post(`/api/purchased`, { tempDetailsObj: tempDetailsObj })
-            .then((res) => {
-                console.log("appsss");
-                window.location.href = '/thanks';
-                // this.setState({
-
-                // });
-
-            }).catch((error) => {
-                console.log(error)
-            });
-
-        ///Add to db - end
     }
 
     getTotPrice() {
@@ -176,7 +197,7 @@ export default class CashOnDelivery extends Component {
                     </div>
 
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" required />
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" onChange={this.handleCheckboxChange} />
                         <label id="agreeTerms" class="form-check-label" for="exampleCheck1">Agree tearms and conditions</label>
                     </div>
                     <p>* Delivery Charges will be applied</p>
