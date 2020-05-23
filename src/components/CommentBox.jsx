@@ -38,7 +38,7 @@ export default class CommentBox extends React.Component {
 
     render() {
        // if (this.props.selectedProduct && this.state.comments.length == 0) {
-            axios.post(`${BASE_URL}/api/comments`, { selectedProduct: this.props.selectedProduct })
+            axios.post(`/api/comments`, { selectedProduct: this.props.selectedProduct })
                 .then((comments) => {
                     this.setState({
                         comments: comments.data.comments,
@@ -203,7 +203,7 @@ class CommentForm extends React.Component {
        
         //axios post - start
 
-        axios.post(`${BASE_URL}/api/commentAdd`, { addCommentObj: addCommentObj })
+        axios.post(`/api/commentAdd`, { addCommentObj: addCommentObj })
             .then((comments) => {
                 if (comments.data == true) {
                     alert("Your comment added successfully");
