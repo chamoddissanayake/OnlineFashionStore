@@ -28,6 +28,10 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
     $scope.classForUpdateCategoryTextBox = "hide";
     $scope.classForUpdateCategoryLoader= "hide";
+
+    $scope.classForUpdateStoreMangerTextBox = "hide";
+    $scope.classForUpdateStoreMangerLoader= "hide";
+
     $scope.changeIndex = function (indexToChange) {
         if (indexToChange == 0) {
             $scope.clz1 = "nav-link active";
@@ -234,7 +238,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
                 $('#saveStoreManager').modal('show');
                 getDetailsofStoreManger();
                 $scope.storeMAnagerDetails = {};
-                $scope.selection.Category = "";
+
             } else {
                 alert('Error in saving');
             }
@@ -257,6 +261,42 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
                 alert('Error in deleting');
             }
         });
+    }
+
+
+    //updating category
+    var currentUpdateIDstoreManger = 0;
+    $scope.UpdateCategory = function (index) {
+        $scope.classForUpdateStoreMangerTextBox = "hide";
+        $scope.classForUpdateStoreMangerLoader= "show";
+        currentUpdateIDstoreManger = index;
+        console.log(index);
+        $http.get(`/api/storeManger/getOne/` + currentUpdateIDstoreManger)
+            .then(function (response) {
+                console.log(response);
+                $scope.selection.updateBoxCategoryName = response.data[0].categoryName;
+                $scope.classForUpdateStoreMangerTextBox = "show";
+                $scope.classForUpdateStoreMangerLoader= "hide";
+
+
+            })
+
+    }
+
+    $scope.UpdateCategoryConfirm = function () {
+
+        var categoryUpdateObj = {_id : currentUpdateIDCaegory , name : $scope.selection.updateBoxCategoryNewName};
+        $http.put(`/api/category`, categoryUpdateObj).then(function (response) {
+            console.log(response.data)
+            if (response.data == true) {
+                $scope.storeMAnagerDetails = {};
+                getDetailsofCategory();
+
+            } else {
+                alert('Error in saving');
+            }
+        });
+
     }
 
     $scope.logOut = function () {
