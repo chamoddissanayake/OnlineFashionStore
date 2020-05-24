@@ -1011,6 +1011,55 @@ app.delete('/api/storeManger/:id', function (req, res) {
 
 });
 
+//Get One storeManager Details
+app.get('/api/storeManger/getOne/:id', (req, res) => {
+    var id = req.params.id;
+    //res.send("got");
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("FashionStore");
+        dbo.collection("storeManger").find({_id : mongo.ObjectID(id)}).toArray(function (err, result) {
+            if (err) throw err;
+
+            res.send(result);
+            db.close();
+        });
+    });
+});
+
+//Update Category
+app.put('/api/storeManger/', (req, res) => {
+
+    var tempproductObject = new Object();
+
+    tempproductObject._id = req.body._id;
+    tempproductObject.category = req.body.name;
+
+    console.log(tempproductObject._id + tempproductObject.category);
+    var MongoClient = require('mongodb').MongoClient;
+    // var url = "mongodb://localhost:27017/";
+    var url = dbCon.mongoURIConnString;
+
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("FashionStore");
+
+        var myquery = { _id: mongo.ObjectID( tempproductObject._id) };
+        var newvalues = { $set: {categoryName: tempproductObject.category } };
+
+        dbo.collection("category").updateOne(myquery , newvalues , function (err1, res1) {
+            if (err1) throw err1;
+            console.log("Item updated successfully.");
+            res.send(true);
+            db.close();
+
+        });
+    });
+
+
+});
+
+
 // const PORT = 5000;
 
 

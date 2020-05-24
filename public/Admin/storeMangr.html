@@ -122,11 +122,11 @@
         </div>
 
         <!-- Modal for Update  -->
-        <div class="modal fade" id="updateStoreManger" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade " id="updateStoreManger" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-success" id="updat1" >Updating Category</h5>
+                        <h5 class="modal-title text-success" id="updat1" >Updating StoreManager</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -134,24 +134,35 @@
                     <div class="modal-body">
                         <div class="form-group">
 
-                            <label >Current category name</label>
                             <div class="form-row">
-                                <div class="form-group col-md-12  {{classForUpdateCategoryLoader}}">
+                                <div class="form-group col-md-12  {{classForUpdateStoreMangerLoader}}">
 
-                                    <div class="spinner-border text-primary mx-2" role="status">
+                                    <div class="spinner-border text-primary mx-2 text-center" role="status">
                                         <span class="sr-only">Loading...</span>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-12 {{classForUpdateCategoryTextBox}}">
-                                    <input class="form-control " ng-model='selection.updateBoxCategoryName' type="text" placeholder="" readonly>
-                                </div>
+
+                            </div>
+                            <div class="form-row {{classForUpdateStoreMangerTextBox}}">
+                                <label for="inputAddress">Address</label>
+                                <input type="text" class="form-control" id="input1" ng-model="storeMAnagerDetails.address1">
+                                <label for="inputAddress">Address</label>
+                                <input type="text" class="form-control" id="input2" ng-model="storeMAnagerDetails.address1">
+                                <label for="inputAddress">Address</label>
+                                <input type="text" class="form-control" id="input3" ng-model="storeMAnagerDetails.address1">
+                                <label for="inputAddress">Address</label>
+                                <input type="text" class="form-control" id="input4" ng-model="storeMAnagerDetails.address1">
+                                <label for="inputAddress">Address</label>
+                                <input type="text" class="form-control" id="input5" ng-model="storeMAnagerDetails.address1">
+                                <label for="inputAddress">Address</label>
+                                <input type="text" class="form-control" id="input6" ng-model="storeMAnagerDetails.address1"> <label for="inputAddress">Address</label>
+                                <label for="inputAddress">Address</label>
+                                <input type="text" class="form-control" id="input7" ng-model="storeMAnagerDetails.address1">
+
                             </div>
 
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail2">Enter the new category name</label>
-                            <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp">
-                        </div>
+
 
                     </div>
                     <div class="modal-footer">

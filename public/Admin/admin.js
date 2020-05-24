@@ -266,15 +266,15 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
     //updating category
     var currentUpdateIDstoreManger = 0;
-    $scope.UpdateCategory = function (index) {
+    $scope.updateStoreManger = function (index) {
         $scope.classForUpdateStoreMangerTextBox = "hide";
         $scope.classForUpdateStoreMangerLoader= "show";
         currentUpdateIDstoreManger = index;
         console.log(index);
-        $http.get(`/api/storeManger/getOne/` + currentUpdateIDstoreManger)
+        $http.get('/api/storeManger/getOne/' + currentUpdateIDstoreManger)
             .then(function (response) {
                 console.log(response);
-                $scope.selection.updateBoxCategoryName = response.data[0].categoryName;
+                //$scope.selection.updateBoxCategoryName = response.data[0].categoryName;
                 $scope.classForUpdateStoreMangerTextBox = "show";
                 $scope.classForUpdateStoreMangerLoader= "hide";
 
@@ -283,10 +283,9 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
     }
 
-    $scope.UpdateCategoryConfirm = function () {
-
+    $scope.updateStoreMangerConfirm = function () {
         var categoryUpdateObj = {_id : currentUpdateIDCaegory , name : $scope.selection.updateBoxCategoryNewName};
-        $http.put(`/api/category`, categoryUpdateObj).then(function (response) {
+        $http.put(`/api/storeManger/getOne/`, categoryUpdateObj).then(function (response) {
             console.log(response.data)
             if (response.data == true) {
                 $scope.storeMAnagerDetails = {};
