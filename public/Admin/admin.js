@@ -7,7 +7,7 @@ var appMain = angular.module('admin', ["ngRoute"]);
 appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     $scope.clz1 = "nav-link active";
     $scope.clz2 = "nav-link ";
-    $scope.clz3 = "nav-link ";
+
     $scope.pageIndex = 0;
     $scope.tableclz = "";
     $scope.alert = "hide";
@@ -22,12 +22,18 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     $scope.selection = {}
     $scope.storeMAnagerDetails = {}
 
+
+
     $scope.categoryObjArray = [];
     $scope.storeMAnagerDetailsArray = [];
 
 
     $scope.classForUpdateCategoryTextBox = "hide";
     $scope.classForUpdateCategoryLoader= "hide";
+
+    $scope.classForUpdateStoreMangerTextBox = "hide";
+    $scope.classForUpdateStoreMangerLoader= "hide";
+
     $scope.changeIndex = function (indexToChange) {
         if (indexToChange == 0) {
             $scope.clz1 = "nav-link active";
@@ -41,11 +47,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
             $scope.clz3 = "nav-link ";
             getDetailsofStoreManger();
         }
-        if (indexToChange == 2) {
-            $scope.clz1 = "nav-link "
-            $scope.clz2 = "nav-link "
-            $scope.clz3 = "nav-link active"
-        }
+
         $scope.pageIndex = indexToChange;
     }
 
@@ -73,6 +75,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
     //Get all Data from Category collection
     var getDetailsofCategory = function () {
+        $scope.selection = {};
         $scope.tableclz = "table hide";
         $scope.alert = "hide";
         $scope.alertBox2 = "show ";
@@ -103,19 +106,20 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
     //Adding Category
     $scope.AddCategory = function () {
-        $scope.alertBox1 = "show";
+
         console.log($scope.selection.Category);
         for (var i = 0; i < $scope.categoryObjArray.length; i++) {
-            if ($scope.categoryObjArray[i].name == $scope.selection.Category) {
+            if ($scope.categoryObjArray[i].categoryName == $scope.selection.Category) {
 
-                console.log("already Added");
+                alert("The Category is already in the List");
                 return;
             }
         }
         if ($scope.selection.Category == "" || $scope.selection.Category == null) {
-            //$scope.showAlert();
+
         }
         else {
+            $scope.alertBox1 = "show";
             var id = $scope.categoryObjArray.length.toString();
             var categoryObj = { id: id, categoryName: $scope.selection.Category, noOfItems: 0 };
 
@@ -144,6 +148,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     }
 
     $scope.deleteCategoryConfirm = function () {
+
         $http.delete(`/api/category/` + currentDeleteIDCaegory).then(function (response) {
             if (response.data == true) {
                 alert('Item Deleted successfully');
@@ -175,19 +180,24 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     }
 
     $scope.UpdateCategoryConfirm = function () {
-        $http.put(`/api/category/` + currentUpdateIDCaegory).then(function (response) {
+        var categoryUpdateObj = {_id : currentUpdateIDCaegory , name : $scope.selection.updateBoxCategoryNewName};
+        $http.put(`/api/category`, categoryUpdateObj).then(function (response) {
+            console.log(response.data)
             if (response.data == true) {
-                alert('Item Updated successfully');
+                $scope.selection.updateBoxCategoryNewName = "";
                 getDetailsofCategory();
+
             } else {
-                alert('Error in deleting');
+                alert('Error in saving');
             }
         });
+
     }
 
 
     //Get all Data from StoreManger collection
     var getDetailsofStoreManger = function () {
+        $scope.storeMAnagerDetails = {};
         $scope.tableclzM = "table hide";
         $scope.alertM = "hide";
         $scope.alertBox2M = "show form-inline";
@@ -218,21 +228,36 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
     //Add StoreManger
     $scope.addStoreManager = function () {
-        $scope.alertBox1M = "show";
-        var StoreManagerObj = { FirstName: $scope.storeMAnagerDetails.firstname, LastName: $scope.storeMAnagerDetails.lastname, address1: $scope.storeMAnagerDetails.address1, address2: $scope.storeMAnagerDetails.address2, Email: $scope.storeMAnagerDetails.Email, mobileNumber: $scope.storeMAnagerDetails.mobileNumber, password: $scope.storeMAnagerDetails.password };
+        if($scope.storeMAnagerDetails.firstname == null || $scope.storeMAnagerDetails.lastname == null || $scope.storeMAnagerDetails.address1 == null || $scope.storeMAnagerDetails.Email == null || $scope.storeMAnagerDetails.mobileNumber == null || $scope.storeMAnagerDetails.password == null  ){
 
-        console.log(StoreManagerObj);
-        $http.post(`/api/storeManger`, StoreManagerObj).then(function (response) {
-            console.log(response.data)
-            if (response.data == true) {
-                $scope.alertBox1M = "show";
-                $('#saveStoreManager').modal('show');
-                getDetailsofStoreManger();
-                $scope.selection.Category = "";
-            } else {
-                alert('Error in saving');
-            }
-        });
+        }
+        else
+        {
+            $scope.alertBox1M = "show";
+            var StoreManagerObj = {
+                FirstName: $scope.storeMAnagerDetails.firstname,
+                LastName: $scope.storeMAnagerDetails.lastname,
+                address1: $scope.storeMAnagerDetails.address1,
+                address2: $scope.storeMAnagerDetails.address2,
+                Email: $scope.storeMAnagerDetails.Email,
+                mobileNumber: $scope.storeMAnagerDetails.mobileNumber,
+                password: $scope.storeMAnagerDetails.password
+            };
+
+            console.log(StoreManagerObj);
+            $http.post(`/api/storeManger`, StoreManagerObj).then(function (response) {
+                console.log(response.data)
+                if (response.data == true) {
+                    $scope.alertBox1M = "hide";
+                    $('#saveStoreManager').modal('show');
+                    getDetailsofStoreManger();
+                    $scope.storeMAnagerDetails = {};
+
+                } else {
+                    alert('Error in saving');
+                }
+            });
+        }
     }
 
     //deleteing StoreManger
@@ -251,6 +276,59 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
                 alert('Error in deleting');
             }
         });
+    }
+
+
+    //updating category
+    var currentUpdateIDstoreManger = 0;
+    $scope.updateStoreManger = function (index) {
+        $scope.classForUpdateStoreMangerTextBox = "hide";
+        $scope.classForUpdateStoreMangerLoader= "show";
+        currentUpdateIDstoreManger = index;
+        console.log(index);
+        $http.get('/api/storeManger/getOne/' + currentUpdateIDstoreManger)
+            .then(function (response) {
+                console.log(response);
+                $scope.storeMAnagerDetails.UpdateName1 = response.data[0].FirstName;
+                $scope.storeMAnagerDetails.UpdateName2 = response.data[0].LastName;
+                $scope.storeMAnagerDetails.UpdateAdd1 = response.data[0].address1;
+                $scope.storeMAnagerDetails.UpdateAdd2 = response.data[0].address2;
+                $scope.storeMAnagerDetails.UpdateEmail = response.data[0].Email;
+                $scope.storeMAnagerDetails.UpdateMobile = response.data[0].mobileNumber;
+                $scope.storeMAnagerDetails.UpdatePassword = response.data[0].password;
+                $scope.classForUpdateStoreMangerTextBox = "show";
+                $scope.classForUpdateStoreMangerLoader= "hide";
+
+
+            })
+
+    }
+
+    $scope.updateStoreMangerConfirm = function () {
+        console.log(currentUpdateIDstoreManger);
+        var StoreMangerUpdateObj = {
+            _id : currentUpdateIDstoreManger ,
+            FirstName :  $scope.storeMAnagerDetails.UpdateName1,
+            LastName : $scope.storeMAnagerDetails.UpdateName2 ,
+            address1 : $scope.storeMAnagerDetails.UpdateAdd1 ,
+            address2 : $scope.storeMAnagerDetails.UpdateAdd2,
+            Email : $scope.storeMAnagerDetails.UpdateEmail,
+            mobileNumber : $scope.storeMAnagerDetails.UpdateMobile ,
+            password : $scope.storeMAnagerDetails.UpdatePassword
+
+
+        };
+        $http.put(`/api/storeManger/`, StoreMangerUpdateObj).then(function (response) {
+            console.log(response.data)
+            if (response.data == true) {
+                $scope.storeMAnagerDetails = {};
+                getDetailsofStoreManger();
+
+            } else {
+                alert('Error in saving');
+            }
+        });
+
     }
 
     $scope.logOut = function () {

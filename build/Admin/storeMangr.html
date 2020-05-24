@@ -3,16 +3,16 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="firstname">First Name</label>
-                    <input type="text" class="form-control" id="firstname" ng-model="storeMAnagerDetails.firstname">
+                    <input type="text" class="form-control" id="firstname" ng-model="storeMAnagerDetails.firstname" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="lastname">Last Name</label>
-                    <input type="text" class="form-control" id="lastname" ng-model="storeMAnagerDetails.lastname">
+                    <input type="text" class="form-control" id="lastname" ng-model="storeMAnagerDetails.lastname" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="inputAddress" ng-model="storeMAnagerDetails.address1">
+                <input type="text" class="form-control" id="inputAddress" ng-model="storeMAnagerDetails.address1" required>
             </div>
             <div class="form-group">
                 <label for="inputAddress2">Address 2</label>
@@ -21,15 +21,15 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputCity">Email Addrress</label>
-                    <input type="email" class="form-control" id="inputCity" ng-model="storeMAnagerDetails.Email">
+                    <input type="email" class="form-control" id="inputCity" ng-model="storeMAnagerDetails.Email" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="mobileNumber">Mobile Number</label>
-                    <input type="text" class="form-control" id="mobileNumber" ng-model="storeMAnagerDetails.mobileNumber">
+                    <input type="number" class="form-control" id="mobileNumber" ng-model="storeMAnagerDetails.mobileNumber" pattern="[0-9]{10}" maxlength="10">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="password">One-Time Password</label>
-                    <input type="password" class="form-control" id="password" ng-model="storeMAnagerDetails.password">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" ng-model="storeMAnagerDetails.password" required>
                 </div>
             </div>
 
@@ -69,7 +69,7 @@
                     <td>{{storeMAnagerDetails.address1 + " " + storeMAnagerDetails.address2}}</td>
                     <td>{{storeMAnagerDetails.Email }}</td>
                     <td>{{storeMAnagerDetails.mobileNumber }}</td>
-                    <td  class="text-success "> <i class="fas fa-pencil-alt"  style="text-align: right ; cursor: pointer"></i> </td>
+                    <td  class="text-success "> <i class="fas fa-pencil-alt"  style="text-align: right ; cursor: pointer" ng-click="updateStoreManger(storeMAnagerDetails._id)" data-toggle="modal" data-target="#updateStoreManger"></i> </td>
                     <td  class="text-danger "><i class="fas fa-trash" style="text-align: right ; cursor: pointer" ng-click="deleteStoreManger(storeMAnagerDetails._id)" data-toggle="modal" data-target="#delete"></i></td>
 
                 </tr>
@@ -111,7 +111,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-
+                        You are going to delete the storeManager.
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -121,26 +121,56 @@
             </div>
         </div>
 
-    <!-- Modal for Update conformation -->
-  <div class="modal fade" id="updateCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-success" id="updat1" >Updating Category</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Enter the new category name</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <!-- Modal for Update  -->
+        <div class="modal fade " id="updateStoreManger" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-success" id="updat1" >Updating StoreManager</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12  {{classForUpdateStoreMangerLoader}}">
+
+                                    <div class="spinner-border text-primary mx-2 text-center" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-row {{classForUpdateStoreMangerTextBox}}">
+                                <label for="inputAddress">First Name</label>
+                                <input type="text" class="form-control" id="input1" ng-model="storeMAnagerDetails.UpdateName1">
+                                <label for="inputAddress">Last Name</label>
+                                <input type="text" class="form-control" id="input2" ng-model="storeMAnagerDetails.UpdateName2">
+                                <label for="inputAddress">Address Line1</label>
+                                <input type="text" class="form-control" id="input3" ng-model="storeMAnagerDetails.UpdateAdd1">
+                                <label for="inputAddress">Address Line 2</label>
+                                <input type="text" class="form-control" id="input4" ng-model="storeMAnagerDetails.UpdateAdd2">
+                                <label for="inputAddress">Email</label>
+                                <input type="text" class="form-control" id="input5" ng-model="storeMAnagerDetails.UpdateEmail">
+                                <label for="inputAddress">Mobile Number</label>
+                                <input type="text" class="form-control" id="input6" ng-model="storeMAnagerDetails.UpdateMobile">
+                                <label for="inputAddress">Password</label>
+                                <input type="text" class="form-control" id="input7" ng-model="storeMAnagerDetails.UpdatePassword">
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" ng-click="updateStoreMangerConfirm()" data-dismiss="modal">Update</button>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success" ng-click="updateCategoryConfirm()" data-dismiss="modal">Update</button>
-            </div>
         </div>
-    </div>
-</div>
+
+

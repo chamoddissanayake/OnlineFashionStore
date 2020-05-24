@@ -519,9 +519,27 @@ app.post('/api/Addproducts', (req, res) => { //addProduct
         dbo.collection("products").insertOne(tempItemObj, function (err1, res1) {
             if (err1) throw err1;
             console.log("Product added.");
-            res.send(true);
-            db.close();
 
+
+        });
+        var noOfItem = 1;
+        dbo.collection("category").find({categoryName : tempItemObj.category}).toArray(function (err, result) {
+            if (err) throw err;
+
+            noOfItem = result[0].noOfItems;
+            noOfItem = noOfItem + 1;
+            console.log(noOfItem);
+
+
+            console.log(tempItemObj.category);
+            var myquery = {categoryName : tempItemObj.category};
+            var newvalues = { $set: {noOfItems: noOfItem } };
+            dbo.collection("category").updateOne(myquery , newvalues , function (err1, res1) {
+                if (err1) throw err1;
+                console.log("category item count updated successfully.");
+                res.send(true);
+                db.close();
+            });
         });
     });
 
@@ -850,9 +868,10 @@ app.put('/api/category', (req, res) => {
 
     var tempproductObject = new Object();
 
-    tempproductObject._id = req.body.id;
-    tempproductObject.category = req.body.category;
+    tempproductObject._id = req.body._id;
+    tempproductObject.category = req.body.name;
 
+    console.log(tempproductObject._id + tempproductObject.category);
     var MongoClient = require('mongodb').MongoClient;
     // var url = "mongodb://localhost:27017/";
     var url = dbCon.mongoURIConnString;
@@ -861,24 +880,16 @@ app.put('/api/category', (req, res) => {
         if (err) throw err;
         var dbo = db.db("FashionStore");
 
-        const ObjectID = require('mongodb').ObjectID;
-        dbo.collection("products").updateOne(
-            { _id: new ObjectID(tempproductObject._id) },
-            {
-                $set: {
-                    id: tempproductObject._id, category: tempproductObject.category, name: tempproductObject.name,
-                    description: tempproductObject.description, price: tempproductObject.price, available_quantity: tempproductObject.available_quantity,
-                    discount: tempproductObject.discount, imageURL_main: tempproductObject.imageURL_main
-                }
-            },
-            { upsert: true },
-            function (err1, res1) {
+        var myquery = { _id: mongo.ObjectID( tempproductObject._id) };
+        var newvalues = { $set: {categoryName: tempproductObject.category } };
+
+        dbo.collection("category").updateOne(myquery , newvalues , function (err1, res1) {
                 if (err1) throw err1;
                 console.log("Item updated successfully.");
                 res.send(true);
                 db.close();
 
-            });
+        });
     });
 
 
@@ -999,6 +1010,73 @@ app.delete('/api/storeManger/:id', function (req, res) {
     });
 
 });
+
+//Get One storeManager Details
+app.get('/api/storeManger/getOne/:id', (req, res) => {
+    var id = req.params.id;
+    //res.send("got");
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("FashionStore");
+        dbo.collection("storeManger").find({_id : mongo.ObjectID(id)}).toArray(function (err, result) {
+            if (err) throw err;
+
+            res.send(result);
+            db.close();
+        });
+    });
+});
+
+//Update storeManager
+app.put('/api/storeManger/', (req, res) => {
+
+        console.log("Request Received for update Store Manager " + req.body._id);
+        var tempproductObject = new Object();
+
+        tempproductObject._id = req.body._id ,
+        tempproductObject.FirstName =  req.body.FirstName;
+        tempproductObject.LastName = req.body.LastName ;
+        tempproductObject.address1 = req.body.address1 ;
+        tempproductObject.address2 = req.body.address2;
+        tempproductObject.Email = req.body.Email;
+        tempproductObject.mobileNumber = req.body.mobileNumber;
+        tempproductObject.password = req.body.password;
+
+
+    var MongoClient = require('mongodb').MongoClient;
+    // var url = "mongodb://localhost:27017/";
+    var url = dbCon.mongoURIConnString;
+
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("FashionStore");
+
+        var myquery = { _id: mongo.ObjectID( tempproductObject._id) };
+        var newvalues = {
+            $set: {
+                categoryName: tempproductObject.category ,
+                FirstName :  tempproductObject.FirstName,
+                LastName : tempproductObject.LastName ,
+                address1 : tempproductObject.address1 ,
+                address2 : tempproductObject.address2,
+                Email : tempproductObject.Email,
+                mobileNumber : tempproductObject.mobileNumber,
+                password : tempproductObject.password
+            }
+        };
+
+        dbo.collection("storeManger").updateOne(myquery , newvalues , function (err1, res1) {
+            if (err1) throw err1;
+            console.log("storeManger updated successfully.");
+            res.send(true);
+            db.close();
+
+        });
+    });
+
+
+});
+
 
 // const PORT = 5000;
 
