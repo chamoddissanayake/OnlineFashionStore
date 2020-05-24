@@ -25,6 +25,9 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     $scope.categoryObjArray = [];
     $scope.storeMAnagerDetailsArray = [];
 
+
+    $scope.classForUpdateCategoryTextBox = "hide";
+    $scope.classForUpdateCategoryLoader= "hide";
     $scope.changeIndex = function (indexToChange) {
         if (indexToChange == 0) {
             $scope.clz1 = "nav-link active";
@@ -152,6 +155,37 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     }
 
 
+    //updating category
+    var currentUpdateIDCaegory = 0;
+    $scope.UpdateCategory = function (index) {
+        $scope.classForUpdateCategoryTextBox = "hide";
+        $scope.classForUpdateCategoryLoader= "show";
+        currentUpdateIDCaegory = index;
+        console.log(index);
+        $http.get(`/api/category/getOne/` + currentUpdateIDCaegory)
+        .then(function (response) {
+            console.log(response);
+           $scope.selection.updateBoxCategoryName = response.data[0].categoryName;
+            $scope.classForUpdateCategoryTextBox = "show";
+            $scope.classForUpdateCategoryLoader= "hide";
+
+
+        })
+       
+    }
+
+    $scope.UpdateCategoryConfirm = function () {
+        $http.put(`/api/category/` + currentUpdateIDCaegory).then(function (response) {
+            if (response.data == true) {
+                alert('Item Updated successfully');
+                getDetailsofCategory();
+            } else {
+                alert('Error in deleting');
+            }
+        });
+    }
+
+
     //Get all Data from StoreManger collection
     var getDetailsofStoreManger = function () {
         $scope.tableclzM = "table hide";
@@ -212,7 +246,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
         $http.delete(`/api/storeManger/` + currentDeleteIDStoreManger).then(function (response) {
             if (response.data == true) {
                 alert('Item Deleted successfully');
-                getDetailsofCategory();
+                getDetailsofStoreManger();
             } else {
                 alert('Error in deleting');
             }
