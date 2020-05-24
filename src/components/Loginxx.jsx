@@ -168,12 +168,12 @@ export default class Loginxx extends React.Component {
                 <div className="form-group">
                   <label>Name:</label>
                   <input type="text" className="form-control"
-                    name="name" onChange={this.handleUsernameChange} />
+                    name="name" onChange={this.handleUsernameChange} required />
                 </div>
                 <div className="form-group">
                   <label>Password:</label>
                   <input type="password" className="form-control"
-                    name="password" onChange={this.handlePasswordChange} />
+                    name="password" onChange={this.handlePasswordChange} required />
                 </div>
                 <p>{this.state.isFound}</p>
                 <div id="regButton">
