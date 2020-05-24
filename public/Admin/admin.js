@@ -175,14 +175,19 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     }
 
     $scope.UpdateCategoryConfirm = function () {
-        $http.put(`/api/category/` + currentUpdateIDCaegory).then(function (response) {
+
+        var categoryUpdateObj = {_id : currentUpdateIDCaegory , name : $scope.selection.updateBoxCategoryName};
+        $http.put(`/api/category`, categoryUpdateObj).then(function (response) {
+            console.log(response.data)
             if (response.data == true) {
-                alert('Item Updated successfully');
                 getDetailsofCategory();
+                $scope.selection.updateBoxCategoryName = "";
+
             } else {
-                alert('Error in deleting');
+                alert('Error in saving');
             }
         });
+
     }
 
 

@@ -850,8 +850,8 @@ app.put('/api/category', (req, res) => {
 
     var tempproductObject = new Object();
 
-    tempproductObject._id = req.body.id;
-    tempproductObject.category = req.body.category;
+    tempproductObject._id = req.body._id;
+    tempproductObject.category = req.body.name;
 
     var MongoClient = require('mongodb').MongoClient;
     // var url = "mongodb://localhost:27017/";
@@ -862,13 +862,11 @@ app.put('/api/category', (req, res) => {
         var dbo = db.db("FashionStore");
 
         const ObjectID = require('mongodb').ObjectID;
-        dbo.collection("products").updateOne(
+        dbo.collection("category").updateOne(
             { _id: new ObjectID(tempproductObject._id) },
             {
                 $set: {
-                    id: tempproductObject._id, category: tempproductObject.category, name: tempproductObject.name,
-                    description: tempproductObject.description, price: tempproductObject.price, available_quantity: tempproductObject.available_quantity,
-                    discount: tempproductObject.discount, imageURL_main: tempproductObject.imageURL_main
+                    categoryName : tempproductObject.category
                 }
             },
             { upsert: true },
