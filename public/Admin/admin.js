@@ -109,7 +109,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
         console.log($scope.selection.Category);
         for (var i = 0; i < $scope.categoryObjArray.length; i++) {
-            if ($scope.categoryObjArray[i].name == $scope.selection.Category) {
+            if ($scope.categoryObjArray[i].categoryName == $scope.selection.Category) {
 
                 alert("The Category is already in the List");
                 return;
