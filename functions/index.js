@@ -1030,12 +1030,19 @@ app.get('/api/storeManger/getOne/:id', (req, res) => {
 //Update Category
 app.put('/api/storeManger/', (req, res) => {
 
-    var tempproductObject = new Object();
+        console.log("Request Received for update Store Manager " + req.body._id);
+        var tempproductObject = new Object();
 
-    tempproductObject._id = req.body._id;
-    tempproductObject.category = req.body.name;
+        tempproductObject._id = req.body._id ,
+        tempproductObject.FirstName =  req.body.FirstName;
+        tempproductObject.LastName = req.body.LastName ;
+        tempproductObject.address1 = req.body.address1 ;
+        tempproductObject.address2 = req.body.address2;
+        tempproductObject.Email = req.body.Email;
+        tempproductObject.mobileNumber = req.body.mobileNumber;
+        tempproductObject.password = req.body.password;
 
-    console.log(tempproductObject._id + tempproductObject.category);
+
     var MongoClient = require('mongodb').MongoClient;
     // var url = "mongodb://localhost:27017/";
     var url = dbCon.mongoURIConnString;
@@ -1045,11 +1052,22 @@ app.put('/api/storeManger/', (req, res) => {
         var dbo = db.db("FashionStore");
 
         var myquery = { _id: mongo.ObjectID( tempproductObject._id) };
-        var newvalues = { $set: {categoryName: tempproductObject.category } };
+        var newvalues = {
+            $set: {
+                categoryName: tempproductObject.category ,
+                FirstName :  tempproductObject.FirstName,
+                LastName : tempproductObject.LastName ,
+                address1 : tempproductObject.address1 ,
+                address2 : tempproductObject.address2,
+                Email : tempproductObject.Email,
+                mobileNumber : tempproductObject.mobileNumber,
+                password : tempproductObject.password
+            }
+        };
 
-        dbo.collection("category").updateOne(myquery , newvalues , function (err1, res1) {
+        dbo.collection("storeManger").updateOne(myquery , newvalues , function (err1, res1) {
             if (err1) throw err1;
-            console.log("Item updated successfully.");
+            console.log("storeManger updated successfully.");
             res.send(true);
             db.close();
 

@@ -274,7 +274,13 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
         $http.get('/api/storeManger/getOne/' + currentUpdateIDstoreManger)
             .then(function (response) {
                 console.log(response);
-                //$scope.selection.updateBoxCategoryName = response.data[0].categoryName;
+                $scope.storeMAnagerDetails.UpdateName1 = response.data[0].FirstName;
+                $scope.storeMAnagerDetails.UpdateName2 = response.data[0].LastName;
+                $scope.storeMAnagerDetails.UpdateAdd1 = response.data[0].address1;
+                $scope.storeMAnagerDetails.UpdateAdd2 = response.data[0].address2;
+                $scope.storeMAnagerDetails.UpdateEmail = response.data[0].Email;
+                $scope.storeMAnagerDetails.UpdateMobile = response.data[0].mobileNumber;
+                $scope.storeMAnagerDetails.UpdatePassword = response.data[0].password;
                 $scope.classForUpdateStoreMangerTextBox = "show";
                 $scope.classForUpdateStoreMangerLoader= "hide";
 
@@ -284,12 +290,24 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     }
 
     $scope.updateStoreMangerConfirm = function () {
-        var categoryUpdateObj = {_id : currentUpdateIDCaegory , name : $scope.selection.updateBoxCategoryNewName};
-        $http.put(`/api/storeManger/getOne/`, categoryUpdateObj).then(function (response) {
+        console.log(currentUpdateIDstoreManger);
+        var StoreMangerUpdateObj = {
+            _id : currentUpdateIDstoreManger ,
+            FirstName :  $scope.storeMAnagerDetails.UpdateName1,
+            LastName : $scope.storeMAnagerDetails.UpdateName2 ,
+            address1 : $scope.storeMAnagerDetails.UpdateAdd1 ,
+            address2 : $scope.storeMAnagerDetails.UpdateAdd2,
+            Email : $scope.storeMAnagerDetails.UpdateEmail,
+            mobileNumber : $scope.storeMAnagerDetails.UpdateMobile ,
+            password : $scope.storeMAnagerDetails.UpdatePassword
+
+
+        };
+        $http.put(`/api/storeManger/`, StoreMangerUpdateObj).then(function (response) {
             console.log(response.data)
             if (response.data == true) {
                 $scope.storeMAnagerDetails = {};
-                getDetailsofCategory();
+                getDetailsofStoreManger();
 
             } else {
                 alert('Error in saving');
