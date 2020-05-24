@@ -180,8 +180,8 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
         $http.put(`/api/category`, categoryUpdateObj).then(function (response) {
             console.log(response.data)
             if (response.data == true) {
+                $scope.selection.updateBoxCategoryNewName = "";
                 getDetailsofCategory();
-                $scope.selection.updateBoxCategoryName = "";
 
             } else {
                 alert('Error in saving');
@@ -230,9 +230,10 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
         $http.post(`/api/storeManger`, StoreManagerObj).then(function (response) {
             console.log(response.data)
             if (response.data == true) {
-                $scope.alertBox1M = "show";
+                $scope.alertBox1M = "hide";
                 $('#saveStoreManager').modal('show');
                 getDetailsofStoreManger();
+                $scope.storeMAnagerDetails = {};
                 $scope.selection.Category = "";
             } else {
                 alert('Error in saving');
