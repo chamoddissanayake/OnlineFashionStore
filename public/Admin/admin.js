@@ -111,12 +111,12 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
         for (var i = 0; i < $scope.categoryObjArray.length; i++) {
             if ($scope.categoryObjArray[i].name == $scope.selection.Category) {
 
-                console.log("already Added");
+                alert("The Category is already in the List");
                 return;
             }
         }
         if ($scope.selection.Category == "" || $scope.selection.Category == null) {
-            //$scope.showAlert();
+
         }
         else {
             $scope.alertBox1 = "show";
