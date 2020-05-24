@@ -7,7 +7,7 @@ var appMain = angular.module('admin', ["ngRoute"]);
 appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     $scope.clz1 = "nav-link active";
     $scope.clz2 = "nav-link ";
-    $scope.clz3 = "nav-link ";
+
     $scope.pageIndex = 0;
     $scope.tableclz = "";
     $scope.alert = "hide";
@@ -21,6 +21,8 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
     $scope.selection = {}
     $scope.storeMAnagerDetails = {}
+
+
 
     $scope.categoryObjArray = [];
     $scope.storeMAnagerDetailsArray = [];
@@ -45,11 +47,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
             $scope.clz3 = "nav-link ";
             getDetailsofStoreManger();
         }
-        if (indexToChange == 2) {
-            $scope.clz1 = "nav-link "
-            $scope.clz2 = "nav-link "
-            $scope.clz3 = "nav-link active"
-        }
+
         $scope.pageIndex = indexToChange;
     }
 

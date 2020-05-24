@@ -116,9 +116,7 @@
                 <li class="nav-item">
                     <a class={{clz2}} style="cursor: pointer;" ng-click="changeIndex(1)">Store Manager Details</a>
                 </li>
-                <li class="nav-item">
-                    <a class={{clz3}} style="cursor: pointer;" ng-click="changeIndex(2)">Users Management</a>
-                </li>
+
             </ul>
         </div>
 
@@ -128,7 +126,7 @@
     <div class="content">
         <div ng-if="pageIndex == 0" ng-include="'category.html'"></div>
         <div ng-if="pageIndex == 1" ng-include="'storeMangr.html'"></div>
-        <div ng-if="pageIndex == 2" ng-include="'users.html'"></div>
+
     </div>
 
     <div ng-view></div>
