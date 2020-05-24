@@ -3,7 +3,7 @@
         <div class="frm mx-5 my-5">
             <h2>Add Category</h2><br>
             <form class="form-inline"  style="margin:  0 auto">
-                <input  ng-model='selection.Category' type="text"  class="form-control form-group  mb-2" style="width: 50%; margin: auto 0" id="category" placeholder="Enter the category here.." >
+                <input  ng-model='selection.Category' type="text"  class="form-control form-group  mb-2" style="width: 50%; margin: auto 0" id="category" placeholder="Enter the category here.." required>
 
                 <button type="submit" class="btn btn-primary mx-2 mb-2" ng-click="AddCategory()" >Add Category</button>
                 <div class="spinner-border text-primary {{alertBox1}} mx-2" role="status">
@@ -61,7 +61,7 @@
                   </button>
               </div>
               <div class="modal-body">
-
+                  You are going to delete the category.
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
