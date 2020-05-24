@@ -8,24 +8,24 @@ import { Link } from 'react-router-dom';
 
 export default class StoreManagerDashbord extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            loggedInUserObj: {},
-        };
 
-    }
 
     componentDidMount() {
-        this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
-        if (this.state.loggedInUserObj.type != "manager") {
-            const { location } = this.props;
-            if (location.state && location.state.from) {
-                this.props.history.push(location.state.from);
-            } else {
-                this.props.history.push('/');
+        var retrievedObject = localStorage.getItem('loggedInUser');
+
+        if (retrievedObject != null) {
+
+            var k = JSON.parse(retrievedObject);
+
+            console.log("" + k.type);
+            if( k.type != "manager"){
+                this.props.history.push('/login');
+                window.location.reload();
             }
+        } else {
+            this.props.history.push('/login');
             window.location.reload();
+
         }
     }
 

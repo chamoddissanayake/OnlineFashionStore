@@ -174,6 +174,22 @@ export default class addItem extends Component {
     }*/
 
     componentDidMount() {
+        var retrievedObject = localStorage.getItem('loggedInUser');
+
+        if (retrievedObject != null) {
+
+            var k = JSON.parse(retrievedObject);
+
+            console.log("" + k.type);
+            if( k.type != "manager"){
+                this.props.history.push('/login');
+                window.location.reload();
+            }
+        } else {
+            this.props.history.push('/login');
+            window.location.reload();
+
+        }
         axios.get(`/api/category`)
             .then((res) => {
 
