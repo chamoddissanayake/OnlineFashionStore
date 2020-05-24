@@ -1027,7 +1027,7 @@ app.get('/api/storeManger/getOne/:id', (req, res) => {
     });
 });
 
-//Update Category
+//Update storeManager
 app.put('/api/storeManger/', (req, res) => {
 
         console.log("Request Received for update Store Manager " + req.body._id);
