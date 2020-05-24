@@ -2,11 +2,33 @@ import React, { Component } from 'react'
 
 
 import axios from 'axios';
-
+import utils from '../utils/utils';
 import { Link } from 'react-router-dom';
 
 
 export default class StoreManagerDashbord extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            loggedInUserObj: {},
+        };
+
+    }
+
+    componentDidMount() {
+        this.setState(this.state.loggedInUserObj = utils.checkLoggedInUser());
+        if (this.state.loggedInUserObj.type != "manager") {
+            const { location } = this.props;
+            if (location.state && location.state.from) {
+                this.props.history.push(location.state.from);
+            } else {
+                this.props.history.push('/');
+            }
+            window.location.reload();
+        }
+    }
+
 
     render() {
         return (
