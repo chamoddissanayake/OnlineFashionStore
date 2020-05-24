@@ -146,6 +146,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     }
 
     $scope.deleteCategoryConfirm = function () {
+
         $http.delete(`/api/category/` + currentDeleteIDCaegory).then(function (response) {
             if (response.data == true) {
                 alert('Item Deleted successfully');
@@ -177,7 +178,6 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
     }
 
     $scope.UpdateCategoryConfirm = function () {
-
         var categoryUpdateObj = {_id : currentUpdateIDCaegory , name : $scope.selection.updateBoxCategoryNewName};
         $http.put(`/api/category`, categoryUpdateObj).then(function (response) {
             console.log(response.data)
