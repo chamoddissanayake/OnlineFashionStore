@@ -519,9 +519,27 @@ app.post('/api/Addproducts', (req, res) => { //addProduct
         dbo.collection("products").insertOne(tempItemObj, function (err1, res1) {
             if (err1) throw err1;
             console.log("Product added.");
-            res.send(true);
-            db.close();
 
+
+        });
+        var noOfItem = 1;
+        dbo.collection("category").find({categoryName : tempItemObj.category}).toArray(function (err, result) {
+            if (err) throw err;
+
+            noOfItem = result[0].noOfItems;
+            noOfItem = noOfItem + 1;
+            console.log(noOfItem);
+
+
+            console.log(tempItemObj.category);
+            var myquery = {categoryName : tempItemObj.category};
+            var newvalues = { $set: {noOfItems: noOfItem } };
+            dbo.collection("category").updateOne(myquery , newvalues , function (err1, res1) {
+                if (err1) throw err1;
+                console.log("category item count updated successfully.");
+                res.send(true);
+                db.close();
+            });
         });
     });
 
@@ -853,6 +871,7 @@ app.put('/api/category', (req, res) => {
     tempproductObject._id = req.body._id;
     tempproductObject.category = req.body.name;
 
+    console.log(tempproductObject._id + tempproductObject.category);
     var MongoClient = require('mongodb').MongoClient;
     // var url = "mongodb://localhost:27017/";
     var url = dbCon.mongoURIConnString;
@@ -861,22 +880,16 @@ app.put('/api/category', (req, res) => {
         if (err) throw err;
         var dbo = db.db("FashionStore");
 
-        const ObjectID = require('mongodb').ObjectID;
-        dbo.collection("category").updateOne(
-            { _id: new ObjectID(tempproductObject._id) },
-            {
-                $set: {
-                    categoryName : tempproductObject.category
-                }
-            },
-            { upsert: true },
-            function (err1, res1) {
+        var myquery = { _id: mongo.ObjectID( tempproductObject._id) };
+        var newvalues = { $set: {categoryName: tempproductObject.category } };
+
+        dbo.collection("category").updateOne(myquery , newvalues , function (err1, res1) {
                 if (err1) throw err1;
                 console.log("Item updated successfully.");
                 res.send(true);
                 db.close();
 
-            });
+        });
     });
 
 

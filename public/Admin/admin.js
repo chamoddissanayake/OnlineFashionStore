@@ -176,7 +176,7 @@ appMain.controller('adminCtrl', function ($scope, $interval, $http , $window) {
 
     $scope.UpdateCategoryConfirm = function () {
 
-        var categoryUpdateObj = {_id : currentUpdateIDCaegory , name : $scope.selection.updateBoxCategoryName};
+        var categoryUpdateObj = {_id : currentUpdateIDCaegory , name : $scope.selection.updateBoxCategoryNewName};
         $http.put(`/api/category`, categoryUpdateObj).then(function (response) {
             console.log(response.data)
             if (response.data == true) {
