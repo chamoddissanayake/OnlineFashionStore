@@ -12,7 +12,7 @@
     "firebase-tools": "^8.2.0",
     "jsonwebtoken": "^8.4.0",
     "node-fetch": "^2.6.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-js-pagination": "^3.0.3",
